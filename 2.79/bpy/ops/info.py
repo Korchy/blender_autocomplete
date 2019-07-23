@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def report_copy():
     '''Copy selected reports to Clipboard 
 
@@ -38,31 +42,36 @@ def select_all_toggle():
     pass
 
 
-def select_border(gesture_mode=0, xmin=0, xmax=0, ymin=0, ymax=0, extend=True):
+def select_border(gesture_mode: int = 0,
+                  xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0,
+                  extend: bool = True):
     '''Toggle border selection 
 
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
 
 
-def select_pick(report_index=0):
+def select_pick(report_index: int = 0):
     '''Select reports by index 
 
     :param report_index: Report, Index of the report 
-    :type report_index: int in [0, inf], (optional)
+    :type report_index: int
     '''
 
     pass

@@ -1,48 +1,53 @@
-def cycles_integrator_preset_add(name="",
-                                 remove_name=False,
-                                 remove_active=False):
+import sys
+import typing
+
+
+def cycles_integrator_preset_add(name: str = "",
+                                 remove_name: bool = False,
+                                 remove_active: bool = False):
     '''Add an Integrator Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_name: remove_name 
-    :type remove_name: boolean, (optional)
+    :type remove_name: bool
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def cycles_sampling_preset_add(name="", remove_name=False,
-                               remove_active=False):
+def cycles_sampling_preset_add(name: str = "",
+                               remove_name: bool = False,
+                               remove_active: bool = False):
     '''Add a Sampling Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_name: remove_name 
-    :type remove_name: boolean, (optional)
+    :type remove_name: bool
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def opengl(animation=False,
-           sequencer=False,
-           write_still=False,
-           view_context=True):
+def opengl(animation: bool = False,
+           sequencer: bool = False,
+           write_still: bool = False,
+           view_context: bool = True):
     '''Take a snapshot of the active viewport 
 
     :param animation: Animation, Render files from the animation range of this scene 
-    :type animation: boolean, (optional)
+    :type animation: bool
     :param sequencer: Sequencer, Render using the sequencer’s OpenGL display 
-    :type sequencer: boolean, (optional)
+    :type sequencer: bool
     :param write_still: Write Image, Save rendered the image to the output path (used only when animation is disabled) 
-    :type write_still: boolean, (optional)
+    :type write_still: bool
     :param view_context: View Context, Use the current 3D view for rendering, else use scene settings 
-    :type view_context: boolean, (optional)
+    :type view_context: bool
     '''
 
     pass
@@ -56,47 +61,49 @@ def play_rendered_anim():
     pass
 
 
-def preset_add(name="", remove_name=False, remove_active=False):
+def preset_add(name: str = "",
+               remove_name: bool = False,
+               remove_active: bool = False):
     '''Add or remove a Render Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_name: remove_name 
-    :type remove_name: boolean, (optional)
+    :type remove_name: bool
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def render(animation=False,
-           write_still=False,
-           use_viewport=False,
-           layer="",
-           scene=""):
+def render(animation: bool = False,
+           write_still: bool = False,
+           use_viewport: bool = False,
+           layer: str = "",
+           scene: str = ""):
     '''Render active scene 
 
     :param animation: Animation, Render files from the animation range of this scene 
-    :type animation: boolean, (optional)
+    :type animation: bool
     :param write_still: Write Image, Save rendered the image to the output path (used only when animation is disabled) 
-    :type write_still: boolean, (optional)
+    :type write_still: bool
     :param use_viewport: Use 3D Viewport, When inside a 3D viewport, use layers and camera of the viewport 
-    :type use_viewport: boolean, (optional)
+    :type use_viewport: bool
     :param layer: Render Layer, Single render layer to re-render (used only when animation is disabled) 
-    :type layer: string, (optional, never None)
+    :type layer: str
     :param scene: Scene, Scene to render, current scene if not specified 
-    :type scene: string, (optional, never None)
+    :type scene: str
     '''
 
     pass
 
 
-def shutter_curve_preset(shape='SMOOTH'):
+def shutter_curve_preset(shape: int = 'SMOOTH'):
     '''Set shutter curve 
 
     :param shape: Mode 
-    :type shape: enum in ['SHARP', 'SMOOTH', 'MAX', 'LINE', 'ROUND', 'ROOT'], (optional)
+    :type shape: int
     '''
 
     pass

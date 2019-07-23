@@ -1,38 +1,42 @@
-def action_set(action=''):
+import sys
+import typing
+
+
+def action_set(action: int = ''):
     '''Change the active action used 
 
     :param action: Action 
-    :type action: enum in [], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def animdata_operation(type='CLEAR_ANIMDATA'):
+def animdata_operation(type: int = 'CLEAR_ANIMDATA'):
     '''Undocumented 
 
     :param type: Animation OperationCLEAR_ANIMDATA Clear Animation Data, Remove this animation data container.SET_ACT Set Action.CLEAR_ACT Unlink Action.REFRESH_DRIVERS Refresh Drivers.CLEAR_DRIVERS Clear Drivers. 
-    :type type: enum in ['CLEAR_ANIMDATA', 'SET_ACT', 'CLEAR_ACT', 'REFRESH_DRIVERS', 'CLEAR_DRIVERS'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def constraint_operation(type='ENABLE'):
+def constraint_operation(type: int = 'ENABLE'):
     '''Undocumented 
 
     :param type: Constraint Operation 
-    :type type: enum in ['ENABLE', 'DISABLE', 'DELETE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def data_operation(type='SELECT'):
+def data_operation(type: int = 'SELECT'):
     '''Undocumented 
 
     :param type: Data Operation 
-    :type type: enum in ['SELECT', 'DESELECT', 'HIDE', 'UNHIDE', 'SELECT_LINKED'], (optional)
+    :type type: int
     '''
 
     pass
@@ -62,21 +66,21 @@ def expanded_toggle():
     pass
 
 
-def group_link(object="Object"):
+def group_link(object: str = "Object"):
     '''Link Object to Group in Outliner 
 
     :param object: Object, Target Object 
-    :type object: string, (optional, never None)
+    :type object: str
     '''
 
     pass
 
 
-def group_operation(type='UNLINK'):
+def group_operation(type: int = 'UNLINK'):
     '''Undocumented 
 
     :param type: Group OperationUNLINK Unlink Group.LOCAL Make Local Group.LINK Link Group Objects to Scene.DELETE Delete Group.REMAP Remap Users, Make all users of selected data-blocks to use instead current (clicked) one.INSTANCE Instance Groups in Scene.TOGVIS Toggle Visible Group.TOGSEL Toggle Selectable.TOGREN Toggle Renderable.RENAME Rename. 
-    :type type: enum in ['UNLINK', 'LOCAL', 'LINK', 'DELETE', 'REMAP', 'INSTANCE', 'TOGVIS', 'TOGSEL', 'TOGREN', 'RENAME'], (optional)
+    :type type: int
     '''
 
     pass
@@ -90,47 +94,47 @@ def id_delete():
     pass
 
 
-def id_operation(type='UNLINK'):
+def id_operation(type: int = 'UNLINK'):
     '''Undocumented 
 
     :param type: ID data OperationUNLINK Unlink.LOCAL Make Local.SINGLE Make Single User.DELETE Delete, WARNING: no undo.REMAP Remap Users, Make all users of selected data-blocks to use instead current (clicked) one.ADD_FAKE Add Fake User, Ensure data-block gets saved even if it isn’t in use (e.g. for motion and material libraries).CLEAR_FAKE Clear Fake User.RENAME Rename.SELECT_LINKED Select Linked. 
-    :type type: enum in ['UNLINK', 'LOCAL', 'SINGLE', 'DELETE', 'REMAP', 'ADD_FAKE', 'CLEAR_FAKE', 'RENAME', 'SELECT_LINKED'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def id_remap(id_type='OBJECT', old_id='', new_id=''):
+def id_remap(id_type: int = 'OBJECT', old_id: int = '', new_id: int = ''):
     '''Undocumented 
 
     :param id_type: ID Type 
-    :type id_type: enum in ['ACTION', 'ARMATURE', 'BRUSH', 'CAMERA', 'CACHEFILE', 'CURVE', 'FONT', 'GREASEPENCIL', 'GROUP', 'IMAGE', 'KEY', 'LAMP', 'LIBRARY', 'LINESTYLE', 'LATTICE', 'MASK', 'MATERIAL', 'META', 'MESH', 'MOVIECLIP', 'NODETREE', 'OBJECT', 'PAINTCURVE', 'PALETTE', 'PARTICLE', 'SCENE', 'SCREEN', 'SOUND', 'SPEAKER', 'TEXT', 'TEXTURE', 'WINDOWMANAGER', 'WORLD'], (optional)
+    :type id_type: int
     :param old_id: Old ID, Old ID to replace 
-    :type old_id: enum in [], (optional)
+    :type old_id: int
     :param new_id: New ID, New ID to remap all selected IDs’ users to 
-    :type new_id: enum in [], (optional)
+    :type new_id: int
     '''
 
     pass
 
 
-def item_activate(extend=True, recursive=False):
+def item_activate(extend: bool = True, recursive: bool = False):
     '''Handle mouse clicks to activate/select items 
 
     :param extend: Extend, Extend selection for activation 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param recursive: Recursive, Select Objects and their children 
-    :type recursive: boolean, (optional)
+    :type recursive: bool
     '''
 
     pass
 
 
-def item_openclose(all=True):
+def item_openclose(all: bool = True):
     '''Toggle whether item under cursor is enabled or closed 
 
     :param all: All, Close or open all items 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
@@ -160,11 +164,11 @@ def keyingset_remove_selected():
     pass
 
 
-def lib_operation(type='RENAME'):
+def lib_operation(type: int = 'RENAME'):
     '''Undocumented 
 
     :param type: Library OperationRENAME Rename.DELETE Delete, Delete this library and all its item from Blender - WARNING: no undo.RELOCATE Relocate, Select a new path for this library, and reload all its data.RELOAD Reload, Reload all data from this library. 
-    :type type: enum in ['RENAME', 'DELETE', 'RELOCATE', 'RELOAD'], (optional)
+    :type type: int
     '''
 
     pass
@@ -178,33 +182,33 @@ def lib_relocate():
     pass
 
 
-def material_drop(object="Object", material="Material"):
+def material_drop(object: str = "Object", material: str = "Material"):
     '''Drag material to object in Outliner 
 
     :param object: Object, Target Object 
-    :type object: string, (optional, never None)
+    :type object: str
     :param material: Material, Target Material 
-    :type material: string, (optional, never None)
+    :type material: str
     '''
 
     pass
 
 
-def modifier_operation(type='TOGVIS'):
+def modifier_operation(type: int = 'TOGVIS'):
     '''Undocumented 
 
     :param type: Modifier Operation 
-    :type type: enum in ['TOGVIS', 'TOGREN', 'DELETE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def object_operation(type='SELECT'):
+def object_operation(type: int = 'SELECT'):
     '''Undocumented 
 
     :param type: Object OperationSELECT Select.DESELECT Deselect.SELECT_HIERARCHY Select Hierarchy.DELETE Delete.DELETE_HIERARCHY Delete Hierarchy.REMAP Remap Users, Make all users of selected data-blocks to use instead a new chosen one.TOGVIS Toggle Visible.TOGSEL Toggle Selectable.TOGREN Toggle Renderable.RENAME Rename. 
-    :type type: enum in ['SELECT', 'DESELECT', 'SELECT_HIERARCHY', 'DELETE', 'DELETE_HIERARCHY', 'REMAP', 'TOGVIS', 'TOGSEL', 'TOGREN', 'RENAME'], (optional)
+    :type type: int
     '''
 
     pass
@@ -226,27 +230,29 @@ def orphans_purge():
     pass
 
 
-def parent_clear(dragged_obj="Object", type='CLEAR'):
+def parent_clear(dragged_obj: str = "Object", type: int = 'CLEAR'):
     '''Drag to clear parent in Outliner 
 
     :param dragged_obj: Child, Child Object 
-    :type dragged_obj: string, (optional, never None)
+    :type dragged_obj: str
     :param type: TypeCLEAR Clear Parent, Completely clear the parenting relationship, including involved modifiers if any.CLEAR_KEEP_TRANSFORM Clear and Keep Transformation, As ‘Clear Parent’, but keep the current visual transformations of the object.CLEAR_INVERSE Clear Parent Inverse, Reset the transform corrections applied to the parenting relationship, does not remove parenting itself. 
-    :type type: enum in ['CLEAR', 'CLEAR_KEEP_TRANSFORM', 'CLEAR_INVERSE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def parent_drop(child="Object", parent="Object", type='OBJECT'):
+def parent_drop(child: str = "Object",
+                parent: str = "Object",
+                type: int = 'OBJECT'):
     '''Drag to parent in Outliner 
 
     :param child: Child, Child Object 
-    :type child: string, (optional, never None)
+    :type child: str
     :param parent: Parent, Parent Object 
-    :type parent: string, (optional, never None)
+    :type parent: str
     :param type: Type 
-    :type type: enum in ['OBJECT', 'ARMATURE', 'ARMATURE_NAME', 'ARMATURE_AUTO', 'ARMATURE_ENVELOPE', 'BONE', 'BONE_RELATIVE', 'CURVE', 'FOLLOW', 'PATH_CONST', 'LATTICE', 'VERTEX', 'VERTEX_TRI'], (optional)
+    :type type: int
     '''
 
     pass
@@ -260,51 +266,55 @@ def renderability_toggle():
     pass
 
 
-def scene_drop(object="Object", scene="Scene"):
+def scene_drop(object: str = "Object", scene: str = "Scene"):
     '''Drag object to scene in Outliner 
 
     :param object: Object, Target Object 
-    :type object: string, (optional, never None)
+    :type object: str
     :param scene: Scene, Target Scene 
-    :type scene: string, (optional, never None)
+    :type scene: str
     '''
 
     pass
 
 
-def scene_operation(type='DELETE'):
+def scene_operation(type: int = 'DELETE'):
     '''Context menu for scene operations 
 
     :param type: Scene Operation 
-    :type type: enum in ['DELETE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def scroll_page(up=False):
+def scroll_page(up: bool = False):
     '''Scroll page up or down 
 
     :param up: Up, Scroll up one page 
-    :type up: boolean, (optional)
+    :type up: bool
     '''
 
     pass
 
 
-def select_border(gesture_mode=0, xmin=0, xmax=0, ymin=0, ymax=0):
+def select_border(gesture_mode: int = 0,
+                  xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0):
     '''Use box selection to select tree elements 
 
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     '''
 
     pass
@@ -342,11 +352,11 @@ def show_hierarchy():
     pass
 
 
-def show_one_level(open=True):
+def show_one_level(open: bool = True):
     '''Expand/collapse all entries by one level 
 
     :param open: Open, Expand all entries one level deep 
-    :type open: boolean, (optional)
+    :type open: bool
     '''
 
     pass

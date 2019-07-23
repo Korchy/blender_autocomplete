@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def report_copy():
     '''Copy selected reports to Clipboard 
 
@@ -30,47 +34,48 @@ def reports_display_update():
     pass
 
 
-def select_all_toggle():
-    '''Select or deselect all reports 
+def select_all(action: int = 'SELECT'):
+    '''Change selection of all visible reports 
 
+    :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
+    :type action: int
     '''
 
     pass
 
 
-def select_box(xmin=0,
-               xmax=0,
-               ymin=0,
-               ymax=0,
-               wait_for_input=True,
-               deselect=False,
-               extend=True):
+def select_box(xmin: int = 0,
+               xmax: int = 0,
+               ymin: int = 0,
+               ymax: int = 0,
+               wait_for_input: bool = True,
+               mode: int = 'SET'):
     '''Toggle box selection 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
-    :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
-    :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type wait_for_input: bool
+    :param mode: ModeSET Set, Set a new selection.ADD Extend, Extend existing selection.SUB Subtract, Subtract existing selection. 
+    :type mode: int
     '''
 
     pass
 
 
-def select_pick(report_index=0):
+def select_pick(report_index: int = 0, extend: bool = False):
     '''Select reports by index 
 
     :param report_index: Report, Index of the report 
-    :type report_index: int in [0, inf], (optional)
+    :type report_index: int
+    :param extend: Extend, Extend report selection 
+    :type extend: bool
     '''
 
     pass

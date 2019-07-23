@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def flush_edits():
     '''Flush edit data from active editing modes 
 
@@ -22,21 +26,21 @@ def undo():
     pass
 
 
-def undo_history(item=0):
+def undo_history(item: int = 0):
     '''Redo specific action in history 
 
     :param item: Item 
-    :type item: int in [0, inf], (optional)
+    :type item: int
     '''
 
     pass
 
 
-def undo_push(message="Add an undo step *function may be moved*"):
+def undo_push(message: str = "Addanundostep*functionmaybemoved*"):
     '''Add an undo state (internal use only) 
 
     :param message: Undo Message 
-    :type message: string, (optional, never None)
+    :type message: str
     '''
 
     pass

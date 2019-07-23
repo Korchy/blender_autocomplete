@@ -1,8 +1,12 @@
-def copy_data_path_button(full_path=False):
+import sys
+import typing
+
+
+def copy_data_path_button(full_path: bool = False):
     '''Copy the RNA data path for this property to the clipboard 
 
     :param full_path: full_path, Copy full data path 
-    :type full_path: boolean, (optional)
+    :type full_path: bool
     '''
 
     pass
@@ -16,23 +20,23 @@ def copy_python_command_button():
     pass
 
 
-def copy_to_selected_button(all=True):
+def copy_to_selected_button(all: bool = True):
     '''Copy property from this object to selected objects or bones 
 
     :param all: All, Copy to selected all elements of the array 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
 
 
-def drop_color(color=(0.0, 0.0, 0.0), gamma=False):
+def drop_color(color: float = (0.0, 0.0, 0.0), gamma: bool = False):
     '''Drop colors to buttons 
 
     :param color: Color, Source color 
-    :type color: float array of 3 items in [0, inf], (optional)
+    :type color: float
     :param gamma: Gamma Corrected, The source color is gamma corrected 
-    :type gamma: boolean, (optional)
+    :type gamma: bool
     '''
 
     pass
@@ -70,11 +74,11 @@ def eyedropper_depth():
     pass
 
 
-def eyedropper_driver(mapping_type='SINGLE_MANY'):
+def eyedropper_driver(mapping_type: int = 'SINGLE_MANY'):
     '''Pick a property to use as a driver target 
 
     :param mapping_type: Mapping Type, Method used to match target and driven propertiesSINGLE_MANY All from Target, Drive all components of this property using the target picked.DIRECT Single from Target, Drive this component of this property using the target picked.MATCH Match Indices, Create drivers for each pair of corresponding elements.NONE_ALL Manually Create Later, Create drivers for all properties without assigning any targets yet.NONE_SINGLE Manually Create Later (Single), Create driver for this property only and without assigning any targets yet. 
-    :type mapping_type: enum in ['SINGLE_MANY', 'DIRECT', 'MATCH', 'NONE_ALL', 'NONE_SINGLE'], (optional)
+    :type mapping_type: int
     '''
 
     pass
@@ -104,11 +108,11 @@ def reports_to_textblock():
     pass
 
 
-def reset_default_button(all=True):
+def reset_default_button(all: bool = True):
     '''Reset this property’s value to its default value 
 
     :param all: All, Reset to default values all elements of the array 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass

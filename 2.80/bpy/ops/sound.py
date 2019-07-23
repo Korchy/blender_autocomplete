@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def bake_animation():
     '''Update the audio animation cache 
 
@@ -6,229 +10,229 @@ def bake_animation():
     pass
 
 
-def mixdown(filepath="",
-            check_existing=True,
-            filter_blender=False,
-            filter_backup=False,
-            filter_image=False,
-            filter_movie=False,
-            filter_python=False,
-            filter_font=False,
-            filter_sound=True,
-            filter_text=False,
-            filter_btx=False,
-            filter_collada=False,
-            filter_alembic=False,
-            filter_folder=True,
-            filter_blenlib=False,
-            filemode=9,
-            relative_path=True,
-            display_type='DEFAULT',
-            sort_method='FILE_SORT_ALPHA',
-            accuracy=1024,
-            container='FLAC',
-            codec='FLAC',
-            format='S16',
-            bitrate=192,
-            split_channels=False):
+def mixdown(filepath: str = "",
+            check_existing: bool = True,
+            filter_blender: bool = False,
+            filter_backup: bool = False,
+            filter_image: bool = False,
+            filter_movie: bool = False,
+            filter_python: bool = False,
+            filter_font: bool = False,
+            filter_sound: bool = True,
+            filter_text: bool = False,
+            filter_btx: bool = False,
+            filter_collada: bool = False,
+            filter_alembic: bool = False,
+            filter_folder: bool = True,
+            filter_blenlib: bool = False,
+            filemode: int = 9,
+            relative_path: bool = True,
+            display_type: int = 'DEFAULT',
+            sort_method: int = 'FILE_SORT_ALPHA',
+            accuracy: int = 1024,
+            container: int = 'FLAC',
+            codec: int = 'FLAC',
+            format: int = 'S16',
+            bitrate: int = 192,
+            split_channels: bool = False):
     '''Mix the scene’s audio to a sound file 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param check_existing: Check Existing, Check and warn on overwriting existing files 
-    :type check_existing: boolean, (optional)
+    :type check_existing: bool
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param accuracy: Accuracy, Sample accuracy, important for animation data (the lower the value, the more accurate) 
-    :type accuracy: int in [1, inf], (optional)
+    :type accuracy: int
     :param container: Container, File formatAC3 ac3, Dolby Digital ATRAC 3.FLAC flac, Free Lossless Audio Codec.MATROSKA mkv, Matroska.MP2 mp2, MPEG-1 Audio Layer II.MP3 mp3, MPEG-2 Audio Layer III.OGG ogg, Xiph.Org Ogg Container.WAV wav, Waveform Audio File Format. 
-    :type container: enum in ['AC3', 'FLAC', 'MATROSKA', 'MP2', 'MP3', 'OGG', 'WAV'], (optional)
+    :type container: int
     :param codec: Codec, Audio CodecAAC AAC, Advanced Audio Coding.AC3 AC3, Dolby Digital ATRAC 3.FLAC FLAC, Free Lossless Audio Codec.MP2 MP2, MPEG-1 Audio Layer II.MP3 MP3, MPEG-2 Audio Layer III.PCM PCM, Pulse Code Modulation (RAW).VORBIS Vorbis, Xiph.Org Vorbis Codec. 
-    :type codec: enum in ['AAC', 'AC3', 'FLAC', 'MP2', 'MP3', 'PCM', 'VORBIS'], (optional)
+    :type codec: int
     :param format: Format, Sample formatU8 U8, 8 bit unsigned.S16 S16, 16 bit signed.S24 S24, 24 bit signed.S32 S32, 32 bit signed.F32 F32, 32 bit floating point.F64 F64, 64 bit floating point. 
-    :type format: enum in ['U8', 'S16', 'S24', 'S32', 'F32', 'F64'], (optional)
+    :type format: int
     :param bitrate: Bitrate, Bitrate in kbit/s 
-    :type bitrate: int in [32, 512], (optional)
+    :type bitrate: int
     :param split_channels: Split channels, Each channel will be rendered into a mono file 
-    :type split_channels: boolean, (optional)
+    :type split_channels: bool
     '''
 
     pass
 
 
-def open(filepath="",
-         filter_blender=False,
-         filter_backup=False,
-         filter_image=False,
-         filter_movie=True,
-         filter_python=False,
-         filter_font=False,
-         filter_sound=True,
-         filter_text=False,
-         filter_btx=False,
-         filter_collada=False,
-         filter_alembic=False,
-         filter_folder=True,
-         filter_blenlib=False,
-         filemode=9,
-         relative_path=True,
-         show_multiview=False,
-         use_multiview=False,
-         display_type='DEFAULT',
-         sort_method='FILE_SORT_ALPHA',
-         cache=False,
-         mono=False):
+def open(filepath: str = "",
+         filter_blender: bool = False,
+         filter_backup: bool = False,
+         filter_image: bool = False,
+         filter_movie: bool = True,
+         filter_python: bool = False,
+         filter_font: bool = False,
+         filter_sound: bool = True,
+         filter_text: bool = False,
+         filter_btx: bool = False,
+         filter_collada: bool = False,
+         filter_alembic: bool = False,
+         filter_folder: bool = True,
+         filter_blenlib: bool = False,
+         filemode: int = 9,
+         relative_path: bool = True,
+         show_multiview: bool = False,
+         use_multiview: bool = False,
+         display_type: int = 'DEFAULT',
+         sort_method: int = 'FILE_SORT_ALPHA',
+         cache: bool = False,
+         mono: bool = False):
     '''Load a sound file 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param cache: Cache, Cache the sound in memory 
-    :type cache: boolean, (optional)
+    :type cache: bool
     :param mono: Mono, Merge all the sound’s channels into one 
-    :type mono: boolean, (optional)
+    :type mono: bool
     '''
 
     pass
 
 
-def open_mono(filepath="",
-              filter_blender=False,
-              filter_backup=False,
-              filter_image=False,
-              filter_movie=True,
-              filter_python=False,
-              filter_font=False,
-              filter_sound=True,
-              filter_text=False,
-              filter_btx=False,
-              filter_collada=False,
-              filter_alembic=False,
-              filter_folder=True,
-              filter_blenlib=False,
-              filemode=9,
-              relative_path=True,
-              show_multiview=False,
-              use_multiview=False,
-              display_type='DEFAULT',
-              sort_method='FILE_SORT_ALPHA',
-              cache=False,
-              mono=True):
+def open_mono(filepath: str = "",
+              filter_blender: bool = False,
+              filter_backup: bool = False,
+              filter_image: bool = False,
+              filter_movie: bool = True,
+              filter_python: bool = False,
+              filter_font: bool = False,
+              filter_sound: bool = True,
+              filter_text: bool = False,
+              filter_btx: bool = False,
+              filter_collada: bool = False,
+              filter_alembic: bool = False,
+              filter_folder: bool = True,
+              filter_blenlib: bool = False,
+              filemode: int = 9,
+              relative_path: bool = True,
+              show_multiview: bool = False,
+              use_multiview: bool = False,
+              display_type: int = 'DEFAULT',
+              sort_method: int = 'FILE_SORT_ALPHA',
+              cache: bool = False,
+              mono: bool = True):
     '''Load a sound file as mono 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param cache: Cache, Cache the sound in memory 
-    :type cache: boolean, (optional)
+    :type cache: bool
     :param mono: Mono, Mixdown the sound to mono 
-    :type mono: boolean, (optional)
+    :type mono: bool
     '''
 
     pass
@@ -242,13 +246,13 @@ def pack():
     pass
 
 
-def unpack(method='USE_LOCAL', id=""):
+def unpack(method: int = 'USE_LOCAL', id: str = ""):
     '''Unpack the sound to the samples filename 
 
     :param method: Method, How to unpack 
-    :type method: enum in ['USE_LOCAL', 'WRITE_LOCAL', 'USE_ORIGINAL', 'WRITE_ORIGINAL'], (optional)
+    :type method: int
     :param id: Sound Name, Sound data-block name to unpack 
-    :type id: string, (optional, never None)
+    :type id: str
     '''
 
     pass

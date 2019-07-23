@@ -1,20 +1,6 @@
-def new():
-    '''
-
-    :return:  a new preview collection. 
-    '''
-
-    pass
-
-
-def remove(pcoll):
-    '''Remove the specified previews collection. 
-
-    :param pcoll: Preview collection to close. 
-    :type pcoll: ImagePreviewCollection
-    '''
-
-    pass
+import sys
+import typing
+import bpy
 
 
 class ImagePreviewCollection:
@@ -32,28 +18,51 @@ class ImagePreviewCollection:
         '''
         pass
 
-    def load(self, name, filepath, filetype, force_reload=False):
+    def load(self,
+             name: str,
+             filepath: str,
+             filetype: str,
+             force_reload: bool = False) -> 'bpy.types.ImagePreview':
         '''Generate a new preview from given file path, or return existing one matching name. 
 
         :param name: The name (unique id) identifying the preview. 
-        :type name: string
+        :type name: str
         :param filepath: The file path to generate the preview from. 
-        :type filepath: string
+        :type filepath: str
         :param filetype: The type of file, needed to generate the preview in [‘IMAGE’, ‘MOVIE’, ‘BLEND’, ‘FONT’]. 
-        :type filetype: string
+        :type filetype: str
         :param force_reload: If True, force running thumbnail manager even if preview already exists in cache. 
         :type force_reload: bool
-        :rtype: bpy.types.ImagePreview 
+        :rtype: 'bpy.types.ImagePreview'
         :return:  The Preview matching given name, or a new empty one. 
         '''
         pass
 
-    def new(self, name):
+    def new(self, name: str) -> 'bpy.types.ImagePreview':
         '''Generate a new empty preview, or return existing one matching name. 
 
         :param name: The name (unique id) identifying the preview. 
-        :type name: string
-        :rtype: bpy.types.ImagePreview 
+        :type name: str
+        :rtype: 'bpy.types.ImagePreview'
         :return:  The Preview matching given name, or a new empty one. 
         '''
         pass
+
+
+def new() -> 'ImagePreviewCollection':
+    '''
+
+    :return:  a new preview collection. 
+    '''
+
+    pass
+
+
+def remove(pcoll: 'ImagePreviewCollection'):
+    '''Remove the specified previews collection. 
+
+    :param pcoll: Preview collection to close. 
+    :type pcoll: 'ImagePreviewCollection'
+    '''
+
+    pass

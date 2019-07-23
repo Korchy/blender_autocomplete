@@ -1,10 +1,15 @@
-def abspath(path, start=None, library=None):
+import sys
+import typing
+import bpy
+
+
+def abspath(path, start: bytes = None, library: 'bpy.types.Library' = None):
     '''Returns the absolute path relative to the current blend file using the “//” prefix. 
 
     :param start: Relative to this path, when not set the current filename is used. 
-    :type start: string or bytes
+    :type start: bytes
     :param library: The library this path is from. This is only included for convenience, when the library is not None its path replaces start. 
-    :type library: bpy.types.Library
+    :type library: 'bpy.types.Library'
     '''
 
     pass
@@ -50,11 +55,11 @@ def display_name_to_filepath(name):
     pass
 
 
-def ensure_ext(filepath, ext, case_sensitive=False):
+def ensure_ext(filepath, ext: str, case_sensitive: bool = False):
     '''Return the path with the extension added if it is not already set. 
 
     :param ext: The extension to check for, can be a compound extension. Should start with a dot, such as ‘.blend’ or ‘.tar.gz’. 
-    :type ext: string
+    :type ext: str
     :param case_sensitive: Check for matching case when comparing extensions. 
     :type case_sensitive: bool
     '''
@@ -62,21 +67,21 @@ def ensure_ext(filepath, ext, case_sensitive=False):
     pass
 
 
-def is_subdir(path, directory):
+def is_subdir(path: bytes, directory):
     '''Returns true if path in a subdirectory of directory. Both paths must be absolute. 
 
     :param path: An absolute path. 
-    :type path: string or bytes
+    :type path: bytes
     '''
 
     pass
 
 
-def module_names(path, recursive=False):
+def module_names(path: str, recursive: bool = False) -> list:
     '''Return a list of modules which can be imported from path. 
 
     :param path: a directory to scan. 
-    :type path: string
+    :type path: str
     :param recursive: Also return submodule names for packages. 
     :type recursive: bool
     :return:  a list of string pairs (module_name, module_file). 
@@ -93,24 +98,23 @@ def native_pathsep(path):
     pass
 
 
-def reduce_dirs(dirs):
+def reduce_dirs(dirs) -> list:
     '''Given a sequence of directories, remove duplicates and any directories nested in one of the other paths. (Useful for recursive path searching). 
 
     :param dirs: Sequence of directory paths. 
-    :type dirs: sequence
     :return:  A unique list of paths. 
     '''
 
     pass
 
 
-def relpath(path, start=None):
+def relpath(path: bytes, start: bytes = None):
     '''Returns the path relative to the current blend file using the “//” prefix. 
 
     :param path: An absolute path. 
-    :type path: string or bytes
+    :type path: bytes
     :param start: Relative to this path, when not set the current filename is used. 
-    :type start: string or bytes
+    :type start: bytes
     '''
 
     pass

@@ -1,12 +1,14 @@
-from .context import Context as context
-
+import sys
+import typing
 from . import types
-from . import ops
-from . import app
-from . import utils
 from . import props
-from . import path
+from . import ops
+from . import utils
+from . import app
 from . import context
+from . import path
 
-data = None  # type:  bpy.types.BlendData
+context: 'types.Context' = None
+
+data: 'types.BlendData' = None
 '''Access to Blenders internal data '''

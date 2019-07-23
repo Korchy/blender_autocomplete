@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 class Device:
     '''Unlocks the device after a lock call, see lock() for details. '''
 

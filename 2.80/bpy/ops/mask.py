@@ -1,8 +1,13 @@
-def add_feather_vertex(location=(0.0, 0.0)):
+import sys
+import typing
+import bpy
+
+
+def add_feather_vertex(location: float = (0.0, 0.0)):
     '''Add vertex to feather 
 
     :param location: Location, Location of vertex in normalized space 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
@@ -13,19 +18,17 @@ def add_feather_vertex_slide(MASK_OT_add_feather_vertex=None,
     '''Add new vertex to feather and slide it 
 
     :param MASK_OT_add_feather_vertex: Add Feather Vertex, Add vertex to feather 
-    :type MASK_OT_add_feather_vertex: MASK_OT_add_feather_vertex, (optional)
     :param MASK_OT_slide_point: Slide Point, Slide control points 
-    :type MASK_OT_slide_point: MASK_OT_slide_point, (optional)
     '''
 
     pass
 
 
-def add_vertex(location=(0.0, 0.0)):
+def add_vertex(location: float = (0.0, 0.0)):
     '''Add vertex to active spline 
 
     :param location: Location, Location of vertex in normalized space 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
@@ -35,9 +38,7 @@ def add_vertex_slide(MASK_OT_add_vertex=None, MASK_OT_slide_point=None):
     '''Add new vertex and slide it 
 
     :param MASK_OT_add_vertex: Add Vertex, Add vertex to active spline 
-    :type MASK_OT_add_vertex: MASK_OT_add_vertex, (optional)
     :param MASK_OT_slide_point: Slide Point, Slide control points 
-    :type MASK_OT_slide_point: MASK_OT_slide_point, (optional)
     '''
 
     pass
@@ -79,9 +80,7 @@ def duplicate_move(MASK_OT_duplicate=None, TRANSFORM_OT_translate=None):
     '''Duplicate mask and move 
 
     :param MASK_OT_duplicate: Duplicate Mask, Duplicate selected control points and segments between them 
-    :type MASK_OT_duplicate: MASK_OT_duplicate, (optional)
     :param TRANSFORM_OT_translate: Move, Move selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     '''
 
     pass
@@ -95,51 +94,51 @@ def feather_weight_clear():
     pass
 
 
-def handle_type_set(type='AUTO'):
+def handle_type_set(type: int = 'AUTO'):
     '''Set type of handles for selected control points 
 
     :param type: Type, Spline type 
-    :type type: enum in ['AUTO', 'VECTOR', 'ALIGNED', 'ALIGNED_DOUBLESIDE', 'FREE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def hide_view_clear(select=True):
+def hide_view_clear(select: bool = True):
     '''Reveal the layer by setting the hide flag 
 
     :param select: Select 
-    :type select: boolean, (optional)
+    :type select: bool
     '''
 
     pass
 
 
-def hide_view_set(unselected=False):
+def hide_view_set(unselected: bool = False):
     '''Hide the layer by setting the hide flag 
 
     :param unselected: Unselected, Hide unselected rather than selected layers 
-    :type unselected: boolean, (optional)
+    :type unselected: bool
     '''
 
     pass
 
 
-def layer_move(direction='UP'):
+def layer_move(direction: int = 'UP'):
     '''Move the active layer up/down in the list 
 
     :param direction: Direction, Direction to move the active layer 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
 
 
-def layer_new(name=""):
+def layer_new(name: str = ""):
     '''Add new mask layer for masking 
 
     :param name: Name, Name of new mask layer 
-    :type name: string, (optional, never None)
+    :type name: str
     '''
 
     pass
@@ -153,11 +152,11 @@ def layer_remove():
     pass
 
 
-def new(name=""):
+def new(name: str = ""):
     '''Create new mask 
 
     :param name: Name, Name of new mask 
-    :type name: string, (optional, never None)
+    :type name: str
     '''
 
     pass
@@ -195,111 +194,117 @@ def paste_splines():
     pass
 
 
-def primitive_circle_add(size=100.0, location=(0.0, 0.0)):
+def primitive_circle_add(size: float = 100.0, location: float = (0.0, 0.0)):
     '''Add new circle-shaped spline 
 
     :param size: Size, Size of new circle 
-    :type size: float in [-inf, inf], (optional)
+    :type size: float
     :param location: Location, Location of new circle 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def primitive_square_add(size=100.0, location=(0.0, 0.0)):
+def primitive_square_add(size: float = 100.0, location: float = (0.0, 0.0)):
     '''Add new square-shaped spline 
 
     :param size: Size, Size of new circle 
-    :type size: float in [-inf, inf], (optional)
+    :type size: float
     :param location: Location, Location of new circle 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def select(extend=False, deselect=False, toggle=False, location=(0.0, 0.0)):
+def select(extend: bool = False,
+           deselect: bool = False,
+           toggle: bool = False,
+           deselect_all: bool = False,
+           location: float = (0.0, 0.0)):
     '''Select spline points 
 
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param deselect: Deselect, Remove from selection 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     :param toggle: Toggle Selection, Toggle the selection 
-    :type toggle: boolean, (optional)
+    :type toggle: bool
+    :param deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor 
+    :type deselect_all: bool
     :param location: Location, Location of vertex in normalized space 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''Change selection of all curve points 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_box(xmin=0,
-               xmax=0,
-               ymin=0,
-               ymax=0,
-               wait_for_input=True,
-               deselect=False,
-               extend=True):
+def select_box(xmin: int = 0,
+               xmax: int = 0,
+               ymin: int = 0,
+               ymax: int = 0,
+               wait_for_input: bool = True,
+               mode: int = 'SET'):
     '''Select curve points using box selection 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
-    :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
-    :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type wait_for_input: bool
+    :param mode: ModeSET Set, Set a new selection.ADD Extend, Extend existing selection.SUB Subtract, Subtract existing selection. 
+    :type mode: int
     '''
 
     pass
 
 
-def select_circle(x=0, y=0, radius=25, wait_for_input=True, deselect=False):
+def select_circle(x: int = 0,
+                  y: int = 0,
+                  radius: int = 25,
+                  wait_for_input: bool = True,
+                  mode: int = 'SET'):
     '''Select curve points using circle selection 
 
     :param x: X 
-    :type x: int in [-inf, inf], (optional)
+    :type x: int
     :param y: Y 
-    :type y: int in [-inf, inf], (optional)
+    :type y: int
     :param radius: Radius 
-    :type radius: int in [1, inf], (optional)
+    :type radius: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
-    :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
+    :type wait_for_input: bool
+    :param mode: ModeSET Set, Set a new selection.ADD Extend, Extend existing selection.SUB Subtract, Subtract existing selection. 
+    :type mode: int
     '''
 
     pass
 
 
-def select_lasso(path=None, deselect=False, extend=True):
+def select_lasso(path: typing.List['bpy.types.OperatorMousePath'] = None,
+                 mode: int = 'SET'):
     '''Select curve points using lasso selection 
 
     :param path: Path 
-    :type path: bpy_prop_collection of OperatorMousePath, (optional)
-    :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
-    :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type path: typing.List['bpy.types.OperatorMousePath']
+    :param mode: ModeSET Set, Set a new selection.ADD Extend, Extend existing selection.SUB Subtract, Subtract existing selection. 
+    :type mode: int
     '''
 
     pass
@@ -321,11 +326,11 @@ def select_linked():
     pass
 
 
-def select_linked_pick(deselect=False):
+def select_linked_pick(deselect: bool = False):
     '''(De)select all points linked to the curve under the mouse cursor 
 
     :param deselect: Deselect 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     '''
 
     pass
@@ -363,25 +368,25 @@ def shape_key_insert():
     pass
 
 
-def shape_key_rekey(location=True, feather=True):
+def shape_key_rekey(location: bool = True, feather: bool = True):
     '''Recalculate animation data on selected points for frames selected in the dopesheet 
 
     :param location: Location 
-    :type location: boolean, (optional)
+    :type location: bool
     :param feather: Feather 
-    :type feather: boolean, (optional)
+    :type feather: bool
     '''
 
     pass
 
 
-def slide_point(slide_feather=False, is_new_point=False):
+def slide_point(slide_feather: bool = False, is_new_point: bool = False):
     '''Slide control points 
 
     :param slide_feather: Slide Feather, First try to slide feather instead of vertex 
-    :type slide_feather: boolean, (optional)
+    :type slide_feather: bool
     :param is_new_point: Slide New Point, Newly created vertex is being slid 
-    :type is_new_point: boolean, (optional)
+    :type is_new_point: bool
     '''
 
     pass

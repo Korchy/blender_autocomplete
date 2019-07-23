@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def new():
     '''Add a new texture 
 
@@ -14,11 +18,11 @@ def slot_copy():
     pass
 
 
-def slot_move(type='UP'):
+def slot_move(type: int = 'UP'):
     '''Move texture slots up and down 
 
     :param type: Type 
-    :type type: enum in ['UP', 'DOWN'], (optional)
+    :type type: int
     '''
 
     pass

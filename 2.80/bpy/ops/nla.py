@@ -1,38 +1,42 @@
-def action_pushdown(channel_index=-1):
+import sys
+import typing
+
+
+def action_pushdown(channel_index: int = -1):
     '''Push action down onto the top of the NLA stack as a new strip 
 
     :param channel_index: Channel Index, Index of NLA action channel to perform pushdown operation on 
-    :type channel_index: int in [-1, inf], (optional)
+    :type channel_index: int
     '''
 
     pass
 
 
-def action_sync_length(active=True):
+def action_sync_length(active: bool = True):
     '''Synchronize the length of the referenced Action with the length used in the strip 
 
     :param active: Active Strip Only, Only sync the active length for the active strip 
-    :type active: boolean, (optional)
+    :type active: bool
     '''
 
     pass
 
 
-def action_unlink(force_delete=False):
+def action_unlink(force_delete: bool = False):
     '''Unlink this action from the active action slot (and/or exit Tweak Mode) 
 
     :param force_delete: Force Delete, Clear Fake User and remove copy stashed in this datablock’s NLA stack 
-    :type force_delete: boolean, (optional)
+    :type force_delete: bool
     '''
 
     pass
 
 
-def actionclip_add(action=''):
+def actionclip_add(action: int = ''):
     '''Add an Action-Clip strip (i.e. an NLA Strip referencing an Action) to the active track 
 
     :param action: Action 
-    :type action: enum in [], (optional)
+    :type action: int
     '''
 
     pass
@@ -46,45 +50,45 @@ def apply_scale():
     pass
 
 
-def bake(frame_start=1,
-         frame_end=250,
-         step=1,
-         only_selected=True,
-         visual_keying=False,
-         clear_constraints=False,
-         clear_parents=False,
-         use_current_action=False,
-         bake_types={'POSE'}):
+def bake(frame_start: int = 1,
+         frame_end: int = 250,
+         step: int = 1,
+         only_selected: bool = True,
+         visual_keying: bool = False,
+         clear_constraints: bool = False,
+         clear_parents: bool = False,
+         use_current_action: bool = False,
+         bake_types: typing.Set[int] = {'POSE'}):
     '''Bake all selected objects loc/scale/rotation animation to an action 
 
     :param frame_start: Start Frame, Start frame for baking 
-    :type frame_start: int in [0, 300000], (optional)
+    :type frame_start: int
     :param frame_end: End Frame, End frame for baking 
-    :type frame_end: int in [1, 300000], (optional)
+    :type frame_end: int
     :param step: Frame Step, Frame Step 
-    :type step: int in [1, 120], (optional)
+    :type step: int
     :param only_selected: Only Selected Bones, Only key selected bones (Pose baking only) 
-    :type only_selected: boolean, (optional)
+    :type only_selected: bool
     :param visual_keying: Visual Keying, Keyframe from the final transformations (with constraints applied) 
-    :type visual_keying: boolean, (optional)
+    :type visual_keying: bool
     :param clear_constraints: Clear Constraints, Remove all constraints from keyed object/bones, and do ‘visual’ keying 
-    :type clear_constraints: boolean, (optional)
+    :type clear_constraints: bool
     :param clear_parents: Clear Parents, Bake animation onto the object then clear parents (objects only) 
-    :type clear_parents: boolean, (optional)
+    :type clear_parents: bool
     :param use_current_action: Overwrite Current Action, Bake animation into current action, instead of creating a new one (useful for baking only part of bones in an armature) 
-    :type use_current_action: boolean, (optional)
+    :type use_current_action: bool
     :param bake_types: Bake Data, Which data’s transformations to bakePOSE Pose, Bake bones transformations.OBJECT Object, Bake object transformations. 
-    :type bake_types: enum set in {'POSE', 'OBJECT'}, (optional)
+    :type bake_types: typing.Set[int]
     '''
 
     pass
 
 
-def channels_click(extend=False):
+def channels_click(extend: bool = False):
     '''Handle clicks to select NLA channels 
 
     :param extend: Extend Select 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -98,11 +102,13 @@ def clear_scale():
     pass
 
 
-def click_select(extend=False):
+def click_select(extend: bool = False, deselect_all: bool = False):
     '''Handle clicks to select NLA Strips 
 
     :param extend: Extend Select 
-    :type extend: boolean, (optional)
+    :type extend: bool
+    :param deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor 
+    :type deselect_all: bool
     '''
 
     pass
@@ -116,25 +122,25 @@ def delete():
     pass
 
 
-def duplicate(linked=False, mode='TRANSLATION'):
+def duplicate(linked: bool = False, mode: int = 'TRANSLATION'):
     '''Duplicate selected NLA-Strips, adding the new strips in new tracks above the originals 
 
     :param linked: Linked, When duplicating strips, assign new copies of the actions they use 
-    :type linked: boolean, (optional)
+    :type linked: bool
     :param mode: Mode 
-    :type mode: enum in ['INIT', 'DUMMY', 'TRANSLATION', 'ROTATION', 'RESIZE', 'SKIN_RESIZE', 'TOSPHERE', 'SHEAR', 'BEND', 'SHRINKFATTEN', 'TILT', 'TRACKBALL', 'PUSHPULL', 'CREASE', 'MIRROR', 'BONE_SIZE', 'BONE_ENVELOPE', 'BONE_ENVELOPE_DIST', 'CURVE_SHRINKFATTEN', 'MASK_SHRINKFATTEN', 'GPENCIL_SHRINKFATTEN', 'BONE_ROLL', 'TIME_TRANSLATE', 'TIME_SLIDE', 'TIME_SCALE', 'TIME_EXTEND', 'BAKE_TIME', 'BWEIGHT', 'ALIGN', 'EDGESLIDE', 'SEQSLIDE'], (optional)
+    :type mode: int
     '''
 
     pass
 
 
-def fmodifier_add(type='NULL', only_active=True):
+def fmodifier_add(type: int = 'NULL', only_active: bool = True):
     '''Add F-Modifier to the active/selected NLA-Strips 
 
     :param type: TypeNULL Invalid.GENERATOR Generator, Generate a curve using a factorized or expanded polynomial.FNGENERATOR Built-In Function, Generate a curve using standard math functions such as sin and cos.ENVELOPE Envelope, Reshape F-Curve values - e.g. change amplitude of movements.CYCLES Cycles, Cyclic extend/repeat keyframe sequence.NOISE Noise, Add pseudo-random noise on top of F-Curves.LIMITS Limits, Restrict maximum and minimum values of F-Curve.STEPPED Stepped Interpolation, Snap values to nearest grid-step - e.g. for a stop-motion look. 
-    :type type: enum in ['NULL', 'GENERATOR', 'FNGENERATOR', 'ENVELOPE', 'CYCLES', 'NOISE', 'LIMITS', 'STEPPED'], (optional)
+    :type type: int
     :param only_active: Only Active, Only add a F-Modifier of the specified type to the active strip 
-    :type only_active: boolean, (optional)
+    :type only_active: bool
     '''
 
     pass
@@ -148,13 +154,13 @@ def fmodifier_copy():
     pass
 
 
-def fmodifier_paste(only_active=True, replace=False):
+def fmodifier_paste(only_active: bool = True, replace: bool = False):
     '''Add copied F-Modifiers to the selected NLA-Strips 
 
     :param only_active: Only Active, Only paste F-Modifiers on active strip 
-    :type only_active: boolean, (optional)
+    :type only_active: bool
     :param replace: Replace Existing, Replace existing F-Modifiers, instead of just appending to the end of the existing list 
-    :type replace: boolean, (optional)
+    :type replace: bool
     '''
 
     pass
@@ -216,62 +222,54 @@ def previewrange_set():
     pass
 
 
-def properties():
-    '''Toggle the properties region visibility 
-
-    '''
-
-    pass
-
-
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''Select or deselect all NLA-Strips 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_box(xmin=0,
-               xmax=0,
-               ymin=0,
-               ymax=0,
-               wait_for_input=True,
-               deselect=False,
-               extend=True,
-               axis_range=False):
+def select_box(axis_range: bool = False,
+               tweak: bool = False,
+               xmin: int = 0,
+               xmax: int = 0,
+               ymin: int = 0,
+               ymax: int = 0,
+               wait_for_input: bool = True,
+               mode: int = 'SET'):
     '''Use box selection to grab NLA-Strips 
 
-    :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
-    :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
-    :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
-    :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
-    :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
-    :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
-    :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
     :param axis_range: Axis Range 
-    :type axis_range: boolean, (optional)
+    :type axis_range: bool
+    :param tweak: Tweak, Operator has been activated using a tweak event 
+    :type tweak: bool
+    :param xmin: X Min 
+    :type xmin: int
+    :param xmax: X Max 
+    :type xmax: int
+    :param ymin: Y Min 
+    :type ymin: int
+    :param ymax: Y Max 
+    :type ymax: int
+    :param wait_for_input: Wait for Input 
+    :type wait_for_input: bool
+    :param mode: ModeSET Set, Set a new selection.ADD Extend, Extend existing selection.SUB Subtract, Subtract existing selection. 
+    :type mode: int
     '''
 
     pass
 
 
-def select_leftright(mode='CHECK', extend=False):
+def select_leftright(mode: int = 'CHECK', extend: bool = False):
     '''Select strips to the left or the right of the current frame 
 
     :param mode: Mode 
-    :type mode: enum in ['CHECK', 'LEFT', 'RIGHT'], (optional)
+    :type mode: int
     :param extend: Extend Select 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -285,11 +283,11 @@ def selected_objects_add():
     pass
 
 
-def snap(type='CFRA'):
+def snap(type: int = 'CFRA'):
     '''Move start of strips to specified time 
 
     :param type: Type 
-    :type type: enum in ['CFRA', 'NEAREST_FRAME', 'NEAREST_SECOND', 'NEAREST_MARKER'], (optional)
+    :type type: int
     '''
 
     pass
@@ -319,11 +317,11 @@ def swap():
     pass
 
 
-def tracks_add(above_selected=False):
+def tracks_add(above_selected: bool = False):
     '''Add NLA-Tracks above/after the selected tracks 
 
     :param above_selected: Above Selected, Add a new NLA Track above every existing selected one 
-    :type above_selected: boolean, (optional)
+    :type above_selected: bool
     '''
 
     pass
@@ -345,21 +343,21 @@ def transition_add():
     pass
 
 
-def tweakmode_enter(isolate_action=False):
+def tweakmode_enter(isolate_action: bool = False):
     '''Enter tweaking mode for the action referenced by the active strip to edit its keyframes 
 
     :param isolate_action: Isolate Action, Enable ‘solo’ on the NLA Track containing the active strip, to edit it without seeing the effects of the NLA stack 
-    :type isolate_action: boolean, (optional)
+    :type isolate_action: bool
     '''
 
     pass
 
 
-def tweakmode_exit(isolate_action=False):
+def tweakmode_exit(isolate_action: bool = False):
     '''Exit tweaking mode for the action referenced by the active strip 
 
     :param isolate_action: Isolate Action, Disable ‘solo’ on any of the NLA Tracks after exiting tweak mode to get things back to normal 
-    :type isolate_action: boolean, (optional)
+    :type isolate_action: bool
     '''
 
     pass

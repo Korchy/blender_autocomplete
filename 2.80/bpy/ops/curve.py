@@ -1,8 +1,13 @@
-def cyclic_toggle(direction='CYCLIC_U'):
+import sys
+import typing
+import bpy
+
+
+def cyclic_toggle(direction: int = 'CYCLIC_U'):
     '''Make active spline closed/opened loop 
 
     :param direction: Direction, Direction to make surface cyclic in 
-    :type direction: enum in ['CYCLIC_U', 'CYCLIC_V'], (optional)
+    :type direction: int
     '''
 
     pass
@@ -24,21 +29,21 @@ def de_select_last():
     pass
 
 
-def decimate(ratio=1.0):
+def decimate(ratio: float = 1.0):
     '''Simplify selected curves 
 
     :param ratio: Ratio 
-    :type ratio: float in [0, 1], (optional)
+    :type ratio: float
     '''
 
     pass
 
 
-def delete(type='VERT'):
+def delete(type: int = 'VERT'):
     '''Delete selected control points or segments 
 
     :param type: Type, Which elements to delete 
-    :type type: enum in ['VERT', 'SEGMENT'], (optional)
+    :type type: int
     '''
 
     pass
@@ -52,26 +57,26 @@ def dissolve_verts():
     pass
 
 
-def draw(error_threshold=0.0,
-         fit_method='REFIT',
-         corner_angle=1.22173,
-         use_cyclic=True,
-         stroke=None,
-         wait_for_input=True):
+def draw(error_threshold: float = 0.0,
+         fit_method: int = 'REFIT',
+         corner_angle: float = 1.22173,
+         use_cyclic: bool = True,
+         stroke: typing.List['bpy.types.OperatorStrokeElement'] = None,
+         wait_for_input: bool = True):
     '''Draw a freehand spline 
 
     :param error_threshold: Error, Error distance threshold (in object units) 
-    :type error_threshold: float in [0, 10], (optional)
+    :type error_threshold: float
     :param fit_method: Fit MethodREFIT Refit, Incrementally re-fit the curve (high quality).SPLIT Split, Split the curve until the tolerance is met (fast). 
-    :type fit_method: enum in ['REFIT', 'SPLIT'], (optional)
+    :type fit_method: int
     :param corner_angle: Corner Angle 
-    :type corner_angle: float in [0, 3.14159], (optional)
+    :type corner_angle: float
     :param use_cyclic: Cyclic 
-    :type use_cyclic: boolean, (optional)
+    :type use_cyclic: bool
     :param stroke: Stroke 
-    :type stroke: bpy_prop_collection of OperatorStrokeElement, (optional)
+    :type stroke: typing.List['bpy.types.OperatorStrokeElement']
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
+    :type wait_for_input: bool
     '''
 
     pass
@@ -89,19 +94,17 @@ def duplicate_move(CURVE_OT_duplicate=None, TRANSFORM_OT_translate=None):
     '''Duplicate curve and move 
 
     :param CURVE_OT_duplicate: Duplicate Curve, Duplicate selected control points 
-    :type CURVE_OT_duplicate: CURVE_OT_duplicate, (optional)
     :param TRANSFORM_OT_translate: Move, Move selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     '''
 
     pass
 
 
-def extrude(mode='TRANSLATION'):
+def extrude(mode: int = 'TRANSLATION'):
     '''Extrude selected control point(s) 
 
     :param mode: Mode 
-    :type mode: enum in ['INIT', 'DUMMY', 'TRANSLATION', 'ROTATION', 'RESIZE', 'SKIN_RESIZE', 'TOSPHERE', 'SHEAR', 'BEND', 'SHRINKFATTEN', 'TILT', 'TRACKBALL', 'PUSHPULL', 'CREASE', 'MIRROR', 'BONE_SIZE', 'BONE_ENVELOPE', 'BONE_ENVELOPE_DIST', 'CURVE_SHRINKFATTEN', 'MASK_SHRINKFATTEN', 'GPENCIL_SHRINKFATTEN', 'BONE_ROLL', 'TIME_TRANSLATE', 'TIME_SLIDE', 'TIME_SCALE', 'TIME_EXTEND', 'BAKE_TIME', 'BWEIGHT', 'ALIGN', 'EDGESLIDE', 'SEQSLIDE'], (optional)
+    :type mode: int
     '''
 
     pass
@@ -111,29 +114,27 @@ def extrude_move(CURVE_OT_extrude=None, TRANSFORM_OT_translate=None):
     '''Extrude curve and move result 
 
     :param CURVE_OT_extrude: Extrude, Extrude selected control point(s) 
-    :type CURVE_OT_extrude: CURVE_OT_extrude, (optional)
     :param TRANSFORM_OT_translate: Move, Move selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     '''
 
     pass
 
 
-def handle_type_set(type='AUTOMATIC'):
+def handle_type_set(type: int = 'AUTOMATIC'):
     '''Set type of handles for selected control points 
 
     :param type: Type, Spline type 
-    :type type: enum in ['AUTOMATIC', 'VECTOR', 'ALIGNED', 'FREE_ALIGN', 'TOGGLE_FREE_ALIGN'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def hide(unselected=False):
+def hide(unselected: bool = False):
     '''Hide (un)selected control points 
 
     :param unselected: Unselected, Hide unselected rather than selected 
-    :type unselected: boolean, (optional)
+    :type unselected: bool
     '''
 
     pass
@@ -155,151 +156,151 @@ def match_texture_space():
     pass
 
 
-def normals_make_consistent(calc_length=False):
+def normals_make_consistent(calc_length: bool = False):
     '''Recalculate the direction of selected handles 
 
     :param calc_length: Length, Recalculate handle length 
-    :type calc_length: boolean, (optional)
+    :type calc_length: bool
     '''
 
     pass
 
 
-def primitive_bezier_circle_add(radius=1.0,
-                                view_align=False,
-                                enter_editmode=False,
-                                location=(0.0, 0.0, 0.0),
-                                rotation=(0.0, 0.0, 0.0)):
+def primitive_bezier_circle_add(radius: float = 1.0,
+                                enter_editmode: bool = False,
+                                align: int = 'WORLD',
+                                location: float = (0.0, 0.0, 0.0),
+                                rotation: float = (0.0, 0.0, 0.0)):
     '''Construct a Bezier Circle 
 
     :param radius: Radius 
-    :type radius: float in [0, inf], (optional)
-    :param view_align: Align to View, Align the new object to the view 
-    :type view_align: boolean, (optional)
+    :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object 
-    :type enter_editmode: boolean, (optional)
+    :type enter_editmode: bool
+    :param align: Align, The alignment of the new objectWORLD World, Align the new object to the world.VIEW View, Align the new object to the view.CURSOR 3D Cursor, Use the 3D cursor orientation for the new object. 
+    :type align: int
     :param location: Location, Location for the newly added object 
-    :type location: float array of 3 items in [-inf, inf], (optional)
+    :type location: float
     :param rotation: Rotation, Rotation for the newly added object 
-    :type rotation: float array of 3 items in [-inf, inf], (optional)
+    :type rotation: float
     '''
 
     pass
 
 
-def primitive_bezier_curve_add(radius=1.0,
-                               view_align=False,
-                               enter_editmode=False,
-                               location=(0.0, 0.0, 0.0),
-                               rotation=(0.0, 0.0, 0.0)):
+def primitive_bezier_curve_add(radius: float = 1.0,
+                               enter_editmode: bool = False,
+                               align: int = 'WORLD',
+                               location: float = (0.0, 0.0, 0.0),
+                               rotation: float = (0.0, 0.0, 0.0)):
     '''Construct a Bezier Curve 
 
     :param radius: Radius 
-    :type radius: float in [0, inf], (optional)
-    :param view_align: Align to View, Align the new object to the view 
-    :type view_align: boolean, (optional)
+    :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object 
-    :type enter_editmode: boolean, (optional)
+    :type enter_editmode: bool
+    :param align: Align, The alignment of the new objectWORLD World, Align the new object to the world.VIEW View, Align the new object to the view.CURSOR 3D Cursor, Use the 3D cursor orientation for the new object. 
+    :type align: int
     :param location: Location, Location for the newly added object 
-    :type location: float array of 3 items in [-inf, inf], (optional)
+    :type location: float
     :param rotation: Rotation, Rotation for the newly added object 
-    :type rotation: float array of 3 items in [-inf, inf], (optional)
+    :type rotation: float
     '''
 
     pass
 
 
-def primitive_nurbs_circle_add(radius=1.0,
-                               view_align=False,
-                               enter_editmode=False,
-                               location=(0.0, 0.0, 0.0),
-                               rotation=(0.0, 0.0, 0.0)):
+def primitive_nurbs_circle_add(radius: float = 1.0,
+                               enter_editmode: bool = False,
+                               align: int = 'WORLD',
+                               location: float = (0.0, 0.0, 0.0),
+                               rotation: float = (0.0, 0.0, 0.0)):
     '''Construct a Nurbs Circle 
 
     :param radius: Radius 
-    :type radius: float in [0, inf], (optional)
-    :param view_align: Align to View, Align the new object to the view 
-    :type view_align: boolean, (optional)
+    :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object 
-    :type enter_editmode: boolean, (optional)
+    :type enter_editmode: bool
+    :param align: Align, The alignment of the new objectWORLD World, Align the new object to the world.VIEW View, Align the new object to the view.CURSOR 3D Cursor, Use the 3D cursor orientation for the new object. 
+    :type align: int
     :param location: Location, Location for the newly added object 
-    :type location: float array of 3 items in [-inf, inf], (optional)
+    :type location: float
     :param rotation: Rotation, Rotation for the newly added object 
-    :type rotation: float array of 3 items in [-inf, inf], (optional)
+    :type rotation: float
     '''
 
     pass
 
 
-def primitive_nurbs_curve_add(radius=1.0,
-                              view_align=False,
-                              enter_editmode=False,
-                              location=(0.0, 0.0, 0.0),
-                              rotation=(0.0, 0.0, 0.0)):
+def primitive_nurbs_curve_add(radius: float = 1.0,
+                              enter_editmode: bool = False,
+                              align: int = 'WORLD',
+                              location: float = (0.0, 0.0, 0.0),
+                              rotation: float = (0.0, 0.0, 0.0)):
     '''Construct a Nurbs Curve 
 
     :param radius: Radius 
-    :type radius: float in [0, inf], (optional)
-    :param view_align: Align to View, Align the new object to the view 
-    :type view_align: boolean, (optional)
+    :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object 
-    :type enter_editmode: boolean, (optional)
+    :type enter_editmode: bool
+    :param align: Align, The alignment of the new objectWORLD World, Align the new object to the world.VIEW View, Align the new object to the view.CURSOR 3D Cursor, Use the 3D cursor orientation for the new object. 
+    :type align: int
     :param location: Location, Location for the newly added object 
-    :type location: float array of 3 items in [-inf, inf], (optional)
+    :type location: float
     :param rotation: Rotation, Rotation for the newly added object 
-    :type rotation: float array of 3 items in [-inf, inf], (optional)
+    :type rotation: float
     '''
 
     pass
 
 
-def primitive_nurbs_path_add(radius=1.0,
-                             view_align=False,
-                             enter_editmode=False,
-                             location=(0.0, 0.0, 0.0),
-                             rotation=(0.0, 0.0, 0.0)):
+def primitive_nurbs_path_add(radius: float = 1.0,
+                             enter_editmode: bool = False,
+                             align: int = 'WORLD',
+                             location: float = (0.0, 0.0, 0.0),
+                             rotation: float = (0.0, 0.0, 0.0)):
     '''Construct a Path 
 
     :param radius: Radius 
-    :type radius: float in [0, inf], (optional)
-    :param view_align: Align to View, Align the new object to the view 
-    :type view_align: boolean, (optional)
+    :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object 
-    :type enter_editmode: boolean, (optional)
+    :type enter_editmode: bool
+    :param align: Align, The alignment of the new objectWORLD World, Align the new object to the world.VIEW View, Align the new object to the view.CURSOR 3D Cursor, Use the 3D cursor orientation for the new object. 
+    :type align: int
     :param location: Location, Location for the newly added object 
-    :type location: float array of 3 items in [-inf, inf], (optional)
+    :type location: float
     :param rotation: Rotation, Rotation for the newly added object 
-    :type rotation: float array of 3 items in [-inf, inf], (optional)
+    :type rotation: float
     '''
 
     pass
 
 
-def radius_set(radius=1.0):
+def radius_set(radius: float = 1.0):
     '''Set per-point radius which is used for bevel tapering 
 
     :param radius: Radius 
-    :type radius: float in [0, inf], (optional)
+    :type radius: float
     '''
 
     pass
 
 
-def reveal(select=True):
+def reveal(select: bool = True):
     '''Reveal hidden control points 
 
     :param select: Select 
-    :type select: boolean, (optional)
+    :type select: bool
     '''
 
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''(De)select all control points 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
@@ -321,11 +322,11 @@ def select_linked():
     pass
 
 
-def select_linked_pick(deselect=False):
+def select_linked_pick(deselect: bool = False):
     '''Select all control points linked to already selected ones 
 
     :param deselect: Deselect, Deselect linked control points rather than selecting them 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     '''
 
     pass
@@ -347,15 +348,15 @@ def select_next():
     pass
 
 
-def select_nth(nth=2, skip=1, offset=0):
+def select_nth(nth: int = 2, skip: int = 1, offset: int = 0):
     '''Deselect every other vertex 
 
     :param nth: Nth Element, Skip every Nth element 
-    :type nth: int in [2, inf], (optional)
+    :type nth: int
     :param skip: Skip, Number of elements to skip at once 
-    :type skip: int in [1, inf], (optional)
+    :type skip: int
     :param offset: Offset, Offset from the starting point 
-    :type offset: int in [-inf, inf], (optional)
+    :type offset: int
     '''
 
     pass
@@ -369,15 +370,16 @@ def select_previous():
     pass
 
 
-def select_random(percent=50.0, seed=0, action='SELECT'):
+def select_random(percent: float = 50.0, seed: int = 0,
+                  action: int = 'SELECT'):
     '''Randomly select some control points 
 
     :param percent: Percent, Percentage of objects to select randomly 
-    :type percent: float in [0, 100], (optional)
+    :type percent: float
     :param seed: Random Seed, Seed for the random number generator 
-    :type seed: int in [0, inf], (optional)
+    :type seed: int
     :param action: Action, Selection action to executeSELECT Select, Select all elements.DESELECT Deselect, Deselect all elements. 
-    :type action: enum in ['SELECT', 'DESELECT'], (optional)
+    :type action: int
     '''
 
     pass
@@ -391,15 +393,17 @@ def select_row():
     pass
 
 
-def select_similar(type='WEIGHT', compare='EQUAL', threshold=0.1):
+def select_similar(type: int = 'WEIGHT',
+                   compare: int = 'EQUAL',
+                   threshold: float = 0.1):
     '''Select similar curve points by property type 
 
     :param type: Type 
-    :type type: enum in ['TYPE', 'RADIUS', 'WEIGHT', 'DIRECTION'], (optional)
+    :type type: int
     :param compare: Compare 
-    :type compare: enum in ['EQUAL', 'GREATER', 'LESS'], (optional)
+    :type compare: int
     :param threshold: Threshold 
-    :type threshold: float in [0, inf], (optional)
+    :type threshold: float
     '''
 
     pass
@@ -469,35 +473,35 @@ def smooth_weight():
     pass
 
 
-def spin(center=(0.0, 0.0, 0.0), axis=(0.0, 0.0, 0.0)):
+def spin(center: float = (0.0, 0.0, 0.0), axis: float = (0.0, 0.0, 0.0)):
     '''Extrude selected boundary row around pivot point and current view axis 
 
     :param center: Center, Center in global view space 
-    :type center: float array of 3 items in [-inf, inf], (optional)
+    :type center: float
     :param axis: Axis, Axis in global view space 
-    :type axis: float array of 3 items in [-1, 1], (optional)
+    :type axis: float
     '''
 
     pass
 
 
-def spline_type_set(type='POLY', use_handles=False):
+def spline_type_set(type: int = 'POLY', use_handles: bool = False):
     '''Set type of active spline 
 
     :param type: Type, Spline type 
-    :type type: enum in ['POLY', 'BEZIER', 'NURBS'], (optional)
+    :type type: int
     :param use_handles: Handles, Use handles when converting bezier curves into polygons 
-    :type use_handles: boolean, (optional)
+    :type use_handles: bool
     '''
 
     pass
 
 
-def spline_weight_set(weight=1.0):
+def spline_weight_set(weight: float = 1.0):
     '''Set softbody goal weight for selected points 
 
     :param weight: Weight 
-    :type weight: float in [0, 1], (optional)
+    :type weight: float
     '''
 
     pass
@@ -511,11 +515,11 @@ def split():
     pass
 
 
-def subdivide(number_cuts=1):
+def subdivide(number_cuts: int = 1):
     '''Subdivide selected segments 
 
     :param number_cuts: Number of cuts 
-    :type number_cuts: int in [1, 1000], (optional)
+    :type number_cuts: int
     '''
 
     pass
@@ -537,11 +541,11 @@ def tilt_clear():
     pass
 
 
-def vertex_add(location=(0.0, 0.0, 0.0)):
+def vertex_add(location: float = (0.0, 0.0, 0.0)):
     '''Add a new control point (linked to only selected end-curve one, if any) 
 
     :param location: Location, Location to add new vertex at 
-    :type location: float array of 3 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass

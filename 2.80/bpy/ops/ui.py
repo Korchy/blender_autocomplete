@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def assign_default_button():
     '''Set this property’s current value as the new default 
 
@@ -6,21 +10,21 @@ def assign_default_button():
     pass
 
 
-def button_execute(skip_depressed=False):
+def button_execute(skip_depressed: bool = False):
     '''Presses active button 
 
     :param skip_depressed: Skip Depressed 
-    :type skip_depressed: boolean, (optional)
+    :type skip_depressed: bool
     '''
 
     pass
 
 
-def copy_data_path_button(full_path=False):
+def copy_data_path_button(full_path: bool = False):
     '''Copy the RNA data path for this property to the clipboard 
 
     :param full_path: full_path, Copy full data path 
-    :type full_path: boolean, (optional)
+    :type full_path: bool
     '''
 
     pass
@@ -34,23 +38,23 @@ def copy_python_command_button():
     pass
 
 
-def copy_to_selected_button(all=True):
+def copy_to_selected_button(all: bool = True):
     '''Copy property from this object to selected objects or bones 
 
     :param all: All, Copy to selected all elements of the array 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
 
 
-def drop_color(color=(0.0, 0.0, 0.0), gamma=False):
+def drop_color(color: float = (0.0, 0.0, 0.0), gamma: bool = False):
     '''Drop colors to buttons 
 
     :param color: Color, Source color 
-    :type color: float array of 3 items in [0, inf], (optional)
+    :type color: float
     :param gamma: Gamma Corrected, The source color is gamma corrected 
-    :type gamma: boolean, (optional)
+    :type gamma: bool
     '''
 
     pass
@@ -72,23 +76,17 @@ def edittranslation_init():
     pass
 
 
-def eyedropper_color():
+def eyedropper_color(use_accumulate: bool = True):
     '''Sample a color from the Blender Window to store in a property 
 
+    :param use_accumulate: Accumulate 
+    :type use_accumulate: bool
     '''
 
     pass
 
 
-def eyedropper_color_crypto():
-    '''Pick a color from Cryptomatte node Pick output image 
-
-    '''
-
-    pass
-
-
-def eyedropper_colorband():
+def eyedropper_colorramp():
     '''Sample a color band 
 
     '''
@@ -96,7 +94,7 @@ def eyedropper_colorband():
     pass
 
 
-def eyedropper_colorband_point():
+def eyedropper_colorramp_point():
     '''Point-sample a color band 
 
     '''
@@ -112,11 +110,11 @@ def eyedropper_depth():
     pass
 
 
-def eyedropper_driver(mapping_type='SINGLE_MANY'):
+def eyedropper_driver(mapping_type: int = 'SINGLE_MANY'):
     '''Pick a property to use as a driver target 
 
     :param mapping_type: Mapping Type, Method used to match target and driven propertiesSINGLE_MANY All from Target, Drive all components of this property using the target picked.DIRECT Single from Target, Drive this component of this property using the target picked.MATCH Match Indices, Create drivers for each pair of corresponding elements.NONE_ALL Manually Create Later, Create drivers for all properties without assigning any targets yet.NONE_SINGLE Manually Create Later (Single), Create driver for this property only and without assigning any targets yet. 
-    :type mapping_type: enum in ['SINGLE_MANY', 'DIRECT', 'MATCH', 'NONE_ALL', 'NONE_SINGLE'], (optional)
+    :type mapping_type: int
     '''
 
     pass
@@ -138,23 +136,23 @@ def jump_to_target_button():
     pass
 
 
-def override_remove_button(all=True):
+def override_remove_button(all: bool = True):
     '''Remove an override operation 
 
     :param all: All, Reset to default values all elements of the array 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
 
 
-def override_type_set_button(all=True, type='REPLACE'):
+def override_type_set_button(all: bool = True, type: int = 'REPLACE'):
     '''Create an override operation, or set the type of an existing one 
 
     :param all: All, Reset to default values all elements of the array 
-    :type all: boolean, (optional)
+    :type all: bool
     :param type: Type, Type of override operationNOOP NoOp, ‘No-Operation’, place holder preventing automatic override to ever affect the property.REPLACE Replace, Completely replace value from linked data by local one.DIFFERENCE Difference, Store difference to linked data value.FACTOR Factor, Store factor to linked data value (useful e.g. for scale). 
-    :type type: enum in ['NOOP', 'REPLACE', 'DIFFERENCE', 'FACTOR'], (optional)
+    :type type: int
     '''
 
     pass
@@ -176,19 +174,11 @@ def reports_to_textblock():
     pass
 
 
-def reset_default_button(all=True):
+def reset_default_button(all: bool = True):
     '''Reset this property’s value to its default value 
 
     :param all: All, Reset to default values all elements of the array 
-    :type all: boolean, (optional)
-    '''
-
-    pass
-
-
-def reset_default_theme():
-    '''Reset to the default theme colors 
-
+    :type all: bool
     '''
 
     pass

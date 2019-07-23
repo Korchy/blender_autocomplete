@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def bake():
     '''Bake dynamic paint image sequence surface 
 
@@ -6,11 +10,11 @@ def bake():
     pass
 
 
-def output_toggle(output='A'):
+def output_toggle(output: int = 'A'):
     '''Add or remove Dynamic Paint output data layer 
 
     :param output: Output Toggle 
-    :type output: enum in ['A', 'B'], (optional)
+    :type output: int
     '''
 
     pass
@@ -32,11 +36,11 @@ def surface_slot_remove():
     pass
 
 
-def type_toggle(type='CANVAS'):
+def type_toggle(type: int = 'CANVAS'):
     '''Toggle whether given type is active or not 
 
     :param type: Type 
-    :type type: enum in ['CANVAS', 'BRUSH'], (optional)
+    :type type: int
     '''
 
     pass

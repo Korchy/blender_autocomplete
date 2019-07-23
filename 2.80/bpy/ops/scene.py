@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def delete():
     '''Delete active scene 
 
@@ -22,43 +26,43 @@ def freestyle_add_face_marks_to_keying_set():
     pass
 
 
-def freestyle_alpha_modifier_add(type='ALONG_STROKE'):
+def freestyle_alpha_modifier_add(type: int = 'ALONG_STROKE'):
     '''Add an alpha transparency modifier to the line style associated with the active lineset 
 
     :param type: Type 
-    :type type: enum in ['ALONG_STROKE', 'CREASE_ANGLE', 'CURVATURE_3D', 'DISTANCE_FROM_CAMERA', 'DISTANCE_FROM_OBJECT', 'MATERIAL', 'NOISE', 'TANGENT'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def freestyle_color_modifier_add(type='ALONG_STROKE'):
+def freestyle_color_modifier_add(type: int = 'ALONG_STROKE'):
     '''Add a line color modifier to the line style associated with the active lineset 
 
     :param type: Type 
-    :type type: enum in ['ALONG_STROKE', 'CREASE_ANGLE', 'CURVATURE_3D', 'DISTANCE_FROM_CAMERA', 'DISTANCE_FROM_OBJECT', 'MATERIAL', 'NOISE', 'TANGENT'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def freestyle_fill_range_by_selection(type='COLOR', name=""):
+def freestyle_fill_range_by_selection(type: int = 'COLOR', name: str = ""):
     '''Fill the Range Min/Max entries by the min/max distance between selected mesh objects and the source object 
 
     :param type: Type, Type of the modifier to work onCOLOR Color, Color modifier type.ALPHA Alpha, Alpha modifier type.THICKNESS Thickness, Thickness modifier type. 
-    :type type: enum in ['COLOR', 'ALPHA', 'THICKNESS'], (optional)
+    :type type: int
     :param name: Name, Name of the modifier to work on 
-    :type name: string, (optional, never None)
+    :type name: str
     '''
 
     pass
 
 
-def freestyle_geometry_modifier_add(type='2D_OFFSET'):
+def freestyle_geometry_modifier_add(type: int = '2D_OFFSET'):
     '''Add a stroke geometry modifier to the line style associated with the active lineset 
 
     :param type: Type 
-    :type type: enum in ['2D_OFFSET', '2D_TRANSFORM', 'BACKBONE_STRETCHER', 'BEZIER_CURVE', 'BLUEPRINT', 'GUIDING_LINES', 'PERLIN_NOISE_1D', 'PERLIN_NOISE_2D', 'POLYGONIZATION', 'SAMPLING', 'SIMPLIFICATION', 'SINUS_DISPLACEMENT', 'SPATIAL_NOISE', 'TIP_REMOVER'], (optional)
+    :type type: int
     '''
 
     pass
@@ -80,11 +84,11 @@ def freestyle_lineset_copy():
     pass
 
 
-def freestyle_lineset_move(direction='UP'):
+def freestyle_lineset_move(direction: int = 'UP'):
     '''Change the position of the active line set within the list of line sets 
 
     :param direction: Direction, Direction to move the active line set towards 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
@@ -122,11 +126,11 @@ def freestyle_modifier_copy():
     pass
 
 
-def freestyle_modifier_move(direction='UP'):
+def freestyle_modifier_move(direction: int = 'UP'):
     '''Move the modifier within the list of modifiers 
 
     :param direction: Direction, Direction to move the chosen modifier towards 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
@@ -148,23 +152,23 @@ def freestyle_module_add():
     pass
 
 
-def freestyle_module_move(direction='UP'):
+def freestyle_module_move(direction: int = 'UP'):
     '''Change the position of the style module within in the list of style modules 
 
     :param direction: Direction, Direction to move the chosen style module towards 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
 
 
-def freestyle_module_open(filepath="", make_internal=True):
+def freestyle_module_open(filepath: str = "", make_internal: bool = True):
     '''Open a style module file 
 
     :param filepath: filepath 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param make_internal: Make internal, Make module file internal after loading 
-    :type make_internal: boolean, (optional)
+    :type make_internal: bool
     '''
 
     pass
@@ -186,71 +190,73 @@ def freestyle_stroke_material_create():
     pass
 
 
-def freestyle_thickness_modifier_add(type='ALONG_STROKE'):
+def freestyle_thickness_modifier_add(type: int = 'ALONG_STROKE'):
     '''Add a line thickness modifier to the line style associated with the active lineset 
 
     :param type: Type 
-    :type type: enum in ['ALONG_STROKE', 'CALLIGRAPHY', 'CREASE_ANGLE', 'CURVATURE_3D', 'DISTANCE_FROM_CAMERA', 'DISTANCE_FROM_OBJECT', 'MATERIAL', 'NOISE', 'TANGENT'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def gpencil_brush_preset_add(name="", remove_name=False, remove_active=False):
+def gpencil_brush_preset_add(name: str = "",
+                             remove_name: bool = False,
+                             remove_active: bool = False):
     '''Add or remove grease pencil brush preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_name: remove_name 
-    :type remove_name: boolean, (optional)
+    :type remove_name: bool
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def gpencil_material_preset_add(name="",
-                                remove_name=False,
-                                remove_active=False):
+def gpencil_material_preset_add(name: str = "",
+                                remove_name: bool = False,
+                                remove_active: bool = False):
     '''Add or remove grease pencil material preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_name: remove_name 
-    :type remove_name: boolean, (optional)
+    :type remove_name: bool
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def light_cache_bake(delay=0, subset='ALL'):
+def light_cache_bake(delay: int = 0, subset: int = 'ALL'):
     '''Bake the active view layer lighting 
 
     :param delay: Delay, Delay in millisecond before baking starts 
-    :type delay: int in [0, 2000], (optional)
+    :type delay: int
     :param subset: Subset, Subset of probes to updateALL All LightProbes, Bake both irradiance grids and reflection cubemaps.DIRTY Dirty Only, Only bake lightprobes that are marked as dirty.CUBEMAPS Cubemaps Only, Try to only bake reflection cubemaps if irradiance grids are up to date. 
-    :type subset: enum in ['ALL', 'DIRTY', 'CUBEMAPS'], (optional)
+    :type subset: int
     '''
 
     pass
 
 
 def light_cache_free():
-    '''Free cached indirect lighting 
+    '''Delete cached indirect lighting 
 
     '''
 
     pass
 
 
-def new(type='NEW'):
+def new(type: int = 'NEW'):
     '''Add new scene by type 
 
-    :param type: TypeNEW New, Add new scene.EMPTY Copy Settings, Make a copy without any objects.LINK_OBJECTS Link Objects, Link to the objects from the current scene.LINK_OBJECT_DATA Link Object Data, Copy objects linked to data from the current scene.FULL_COPY Full Copy, Make a full copy of the current scene. 
-    :type type: enum in ['NEW', 'EMPTY', 'LINK_OBJECTS', 'LINK_OBJECT_DATA', 'FULL_COPY'], (optional)
+    :param type: TypeNEW New, Add a new, empty scene with default settings.EMPTY Copy Settings, Add a new, empty scene, and copy settings from the current scene.LINK_COPY Linked Copy, Link in the collections from the current scene (shallow copy).FULL_COPY Full Copy, Make a full copy of the current scene. 
+    :type type: int
     '''
 
     pass

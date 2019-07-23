@@ -1,30 +1,29 @@
+import sys
+import typing
+import bpy
+import freestyle
+
 from . import ContextFunctions
 
 
-def getCurrentScene():
-    '''Returns the current scene. 
+class BoundingBox:
+    '''Object representing a bounding box consisting out of 2 2D vectors '''
 
-    :return:  The current scene. 
-    '''
+    def inside(self, other):
+        '''True if self inside other, False otherwise 
 
-    pass
+        '''
+        pass
 
 
-def integrate(func, it, it_end, integration_type):
-    '''Returns a single value from a set of values evaluated at each 0D element of this 1D element. 
+class StrokeCollector:
+    '''Collects and Stores stroke objects '''
 
-    :param func: The UnaryFunction0D used to compute a value at each Interface0D. 
-    :type func: UnaryFunction0D
-    :param it: The Interface0DIterator used to iterate over the 0D elements of this 1D element. The integration will occur over the 0D elements starting from the one pointed by it. 
-    :type it: Interface0DIterator
-    :param it_end: The Interface0DIterator pointing the end of the 0D elements of the 1D element. 
-    :type it_end: Interface0DIterator
-    :param integration_type: The integration method used to compute a single value from a set of values. 
-    :type integration_type: IntegrationType
-    :return:  The single value obtained for the 1D element. The return value type is float if func is of the UnaryFunction0DDouble or UnaryFunction0DFloat type, and int if func is of the UnaryFunction0DUnsigned type. 
-    '''
+    def shade(self, stroke):
+        '''
 
-    pass
+        '''
+        pass
 
 
 def angle_x_normal(it):
@@ -67,6 +66,15 @@ def find_matching_vertex(id, it):
     pass
 
 
+def getCurrentScene() -> 'bpy.types.Scene':
+    '''Returns the current scene. 
+
+    :return:  The current scene. 
+    '''
+
+    pass
+
+
 def get_chain_length(ve, orientation):
     '''Returns the 2d length of a given ViewEdge. 
 
@@ -94,6 +102,26 @@ def get_strokes():
 def get_test_stroke():
     '''Returns a static stroke object for testing 
 
+    '''
+
+    pass
+
+
+def integrate(func: 'freestyle.types.UnaryFunction0D',
+              it: 'freestyle.types.Interface0DIterator',
+              it_end: 'freestyle.types.Interface0DIterator',
+              integration_type: 'freestyle.types.IntegrationType') -> int:
+    '''Returns a single value from a set of values evaluated at each 0D element of this 1D element. 
+
+    :param func: The UnaryFunction0D used to compute a value at each Interface0D. 
+    :type func: 'freestyle.types.UnaryFunction0D'
+    :param it: The Interface0DIterator used to iterate over the 0D elements of this 1D element. The integration will occur over the 0D elements starting from the one pointed by it. 
+    :type it: 'freestyle.types.Interface0DIterator'
+    :param it_end: The Interface0DIterator pointing the end of the 0D elements of the 1D element. 
+    :type it_end: 'freestyle.types.Interface0DIterator'
+    :param integration_type: The integration method used to compute a single value from a set of values. 
+    :type integration_type: 'freestyle.types.IntegrationType'
+    :return:  The single value obtained for the 1D element. The return value type is float if func is of the UnaryFunction0DDouble or UnaryFunction0DFloat type, and int if func is of the UnaryFunction0DUnsigned type. 
     '''
 
     pass
@@ -209,23 +237,3 @@ def tripplewise(iterable):
     '''
 
     pass
-
-
-class BoundingBox:
-    '''Object representing a bounding box consisting out of 2 2D vectors '''
-
-    def inside(self, other):
-        '''True if self inside other, False otherwise 
-
-        '''
-        pass
-
-
-class StrokeCollector:
-    '''Collects and Stores stroke objects '''
-
-    def shade(self, stroke):
-        '''
-
-        '''
-        pass

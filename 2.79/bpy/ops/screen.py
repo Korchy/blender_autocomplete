@@ -1,30 +1,34 @@
-def actionzone(modifier=0):
+import sys
+import typing
+
+
+def actionzone(modifier: int = 0):
     '''Handle area action zones for mouse actions/gestures 
 
     :param modifier: Modifier, Modifier state 
-    :type modifier: int in [0, 2], (optional)
+    :type modifier: int
     '''
 
     pass
 
 
-def animation_cancel(restore_frame=True):
+def animation_cancel(restore_frame: bool = True):
     '''Cancel animation, returning to the original frame 
 
     :param restore_frame: Restore Frame, Restore the frame when animation was initialized 
-    :type restore_frame: boolean, (optional)
+    :type restore_frame: bool
     '''
 
     pass
 
 
-def animation_play(reverse=False, sync=False):
+def animation_play(reverse: bool = False, sync: bool = False):
     '''Play animation 
 
     :param reverse: Play in Reverse, Animation is played backwards 
-    :type reverse: boolean, (optional)
+    :type reverse: bool
     :param sync: Sync, Drop frames to maintain framerate 
-    :type sync: boolean, (optional)
+    :type sync: bool
     '''
 
     pass
@@ -46,31 +50,34 @@ def area_dupli():
     pass
 
 
-def area_join(min_x=-100, min_y=-100, max_x=-100, max_y=-100):
+def area_join(min_x: int = -100,
+              min_y: int = -100,
+              max_x: int = -100,
+              max_y: int = -100):
     '''Join selected areas into new window 
 
     :param min_x: X 1 
-    :type min_x: int in [-inf, inf], (optional)
+    :type min_x: int
     :param min_y: Y 1 
-    :type min_y: int in [-inf, inf], (optional)
+    :type min_y: int
     :param max_x: X 2 
-    :type max_x: int in [-inf, inf], (optional)
+    :type max_x: int
     :param max_y: Y 2 
-    :type max_y: int in [-inf, inf], (optional)
+    :type max_y: int
     '''
 
     pass
 
 
-def area_move(x=0, y=0, delta=0):
+def area_move(x: int = 0, y: int = 0, delta: int = 0):
     '''Move selected area edges 
 
     :param x: X 
-    :type x: int in [-inf, inf], (optional)
+    :type x: int
     :param y: Y 
-    :type y: int in [-inf, inf], (optional)
+    :type y: int
     :param delta: Delta 
-    :type delta: int in [-inf, inf], (optional)
+    :type delta: int
     '''
 
     pass
@@ -84,17 +91,20 @@ def area_options():
     pass
 
 
-def area_split(direction='HORIZONTAL', factor=0.5, mouse_x=-100, mouse_y=-100):
+def area_split(direction: int = 'HORIZONTAL',
+               factor: float = 0.5,
+               mouse_x: int = -100,
+               mouse_y: int = -100):
     '''Split selected area into new windows 
 
     :param direction: Direction 
-    :type direction: enum in ['HORIZONTAL', 'VERTICAL'], (optional)
+    :type direction: int
     :param factor: Factor 
-    :type factor: float in [0, 1], (optional)
+    :type factor: float
     :param mouse_x: Mouse X 
-    :type mouse_x: int in [-inf, inf], (optional)
+    :type mouse_x: int
     :param mouse_y: Mouse Y 
-    :type mouse_y: int in [-inf, inf], (optional)
+    :type mouse_y: int
     '''
 
     pass
@@ -124,21 +134,21 @@ def delete():
     pass
 
 
-def frame_jump(end=False):
+def frame_jump(end: bool = False):
     '''Jump to first/last frame in frame range 
 
     :param end: Last Frame, Jump to the last frame of the frame range 
-    :type end: boolean, (optional)
+    :type end: bool
     '''
 
     pass
 
 
-def frame_offset(delta=0):
+def frame_offset(delta: int = 0):
     '''Move current frame forward/backward by a given number 
 
     :param delta: Delta 
-    :type delta: int in [-inf, inf], (optional)
+    :type delta: int
     '''
 
     pass
@@ -176,21 +186,21 @@ def header_toolbox():
     pass
 
 
-def keyframe_jump(next=True):
+def keyframe_jump(next: bool = True):
     '''Jump to previous/next keyframe 
 
     :param next: Next Keyframe 
-    :type next: boolean, (optional)
+    :type next: bool
     '''
 
     pass
 
 
-def marker_jump(next=True):
+def marker_jump(next: bool = True):
     '''Jump to previous/next marker 
 
     :param next: Next Marker 
-    :type next: boolean, (optional)
+    :type next: bool
     '''
 
     pass
@@ -244,11 +254,11 @@ def region_scale():
     pass
 
 
-def repeat_history(index=0):
+def repeat_history(index: int = 0):
     '''Display menu for previous actions performed 
 
     :param index: Index 
-    :type index: int in [0, inf], (optional)
+    :type index: int
     '''
 
     pass
@@ -262,113 +272,113 @@ def repeat_last():
     pass
 
 
-def screen_full_area(use_hide_panels=False):
+def screen_full_area(use_hide_panels: bool = False):
     '''Toggle display selected area as fullscreen/maximized 
 
     :param use_hide_panels: Hide Panels, Hide all the panels 
-    :type use_hide_panels: boolean, (optional)
+    :type use_hide_panels: bool
     '''
 
     pass
 
 
-def screen_set(delta=0):
+def screen_set(delta: int = 0):
     '''Cycle through available screens 
 
     :param delta: Delta 
-    :type delta: int in [-inf, inf], (optional)
+    :type delta: int
     '''
 
     pass
 
 
-def screencast(filepath="", full=True):
+def screencast(filepath: str = "", full: bool = True):
     '''Capture a video of the active area or whole Blender window 
 
     :param filepath: filepath 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param full: Full Screen, Capture the whole window (otherwise only capture the active area) 
-    :type full: boolean, (optional)
+    :type full: bool
     '''
 
     pass
 
 
-def screenshot(filepath="",
-               check_existing=True,
-               filter_blender=False,
-               filter_backup=False,
-               filter_image=True,
-               filter_movie=False,
-               filter_python=False,
-               filter_font=False,
-               filter_sound=False,
-               filter_text=False,
-               filter_btx=False,
-               filter_collada=False,
-               filter_alembic=False,
-               filter_folder=True,
-               filter_blenlib=False,
-               filemode=9,
-               show_multiview=False,
-               use_multiview=False,
-               display_type='DEFAULT',
-               sort_method='FILE_SORT_ALPHA',
-               full=True):
+def screenshot(filepath: str = "",
+               check_existing: bool = True,
+               filter_blender: bool = False,
+               filter_backup: bool = False,
+               filter_image: bool = True,
+               filter_movie: bool = False,
+               filter_python: bool = False,
+               filter_font: bool = False,
+               filter_sound: bool = False,
+               filter_text: bool = False,
+               filter_btx: bool = False,
+               filter_collada: bool = False,
+               filter_alembic: bool = False,
+               filter_folder: bool = True,
+               filter_blenlib: bool = False,
+               filemode: int = 9,
+               show_multiview: bool = False,
+               use_multiview: bool = False,
+               display_type: int = 'DEFAULT',
+               sort_method: int = 'FILE_SORT_ALPHA',
+               full: bool = True):
     '''Capture a picture of the active area or whole Blender window 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param check_existing: Check Existing, Check and warn on overwriting existing files 
-    :type check_existing: boolean, (optional)
+    :type check_existing: bool
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param full: Full Screen, Capture the whole window (otherwise only capture the active area) 
-    :type full: boolean, (optional)
+    :type full: bool
     '''
 
     pass
 
 
-def space_context_cycle(direction='NEXT'):
+def space_context_cycle(direction: int = 'NEXT'):
     '''Cycle through the editor context by activating the next/previous one 
 
     :param direction: Direction, Direction to cycle through 
-    :type direction: enum in ['PREV', 'NEXT'], (optional)
+    :type direction: int
     '''
 
     pass

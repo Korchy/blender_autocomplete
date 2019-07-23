@@ -1,67 +1,76 @@
+import sys
+import typing
+from . import bvhtree
+from . import noise
+from . import interpolate
+from . import kdtree
+from . import geometry
+
+
 class Color:
     '''This object gives access to Colors in Blender. '''
 
-    b = None
+    b: float = None
     '''Blue color channel. 
 
-    :type:  float 
+    :type: float
     '''
 
-    g = None
+    g: float = None
     '''Green color channel. 
 
-    :type:  float 
+    :type: float
     '''
 
-    h = None
+    h: float = None
     '''HSV Hue component in [0, 1]. 
 
-    :type:  float 
+    :type: float
     '''
 
-    hsv = None
+    hsv: float = None
     '''HSV Values in [0, 1]. 
 
-    :type:  float triplet 
+    :type: float
     '''
 
-    is_frozen = None
+    is_frozen: bool = None
     '''True when this object has been frozen (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wrapped = None
+    is_wrapped: bool = None
     '''True when this object wraps external data (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
     owner = None
     '''The item this is wrapping or None (read-only). '''
 
-    r = None
+    r: float = None
     '''Red color channel. 
 
-    :type:  float 
+    :type: float
     '''
 
-    s = None
+    s: float = None
     '''HSV Saturation component in [0, 1]. 
 
-    :type:  float 
+    :type: float
     '''
 
-    v = None
+    v: float = None
     '''HSV Value component in [0, 1]. 
 
-    :type:  float 
+    :type: float
     '''
 
-    def copy(self):
+    def copy(self) -> 'Color':
         '''Returns a copy of this color. 
 
-        :rtype: Color 
+        :rtype: 'Color'
         :return:  A copy of the color. 
         '''
         pass
@@ -83,49 +92,49 @@ class Color:
 class Euler:
     '''This object gives access to Eulers in Blender. '''
 
-    is_frozen = None
+    is_frozen: bool = None
     '''True when this object has been frozen (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wrapped = None
+    is_wrapped: bool = None
     '''True when this object wraps external data (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    order = None
+    order: str = None
     '''Euler rotation order. 
 
-    :type:  string in [‘XYZ’, ‘XZY’, ‘YXZ’, ‘YZX’, ‘ZXY’, ‘ZYX’] 
+    :type: str
     '''
 
     owner = None
     '''The item this is wrapping or None (read-only). '''
 
-    x = None
+    x: float = None
     '''Euler axis angle in radians. 
 
-    :type:  float 
+    :type: float
     '''
 
-    y = None
+    y: float = None
     '''Euler axis angle in radians. 
 
-    :type:  float 
+    :type: float
     '''
 
-    z = None
+    z: float = None
     '''Euler axis angle in radians. 
 
-    :type:  float 
+    :type: float
     '''
 
-    def copy(self):
+    def copy(self) -> 'Euler':
         '''Returns a copy of this euler. 
 
-        :rtype: Euler 
+        :rtype: 'Euler'
         :return:  A copy of the euler. 
         '''
         pass
@@ -143,36 +152,36 @@ class Euler:
         '''
         pass
 
-    def rotate(self, other):
+    def rotate(self, other: 'Euler'):
         '''Rotates the euler by another mathutils value. 
 
         :param other: rotation component of mathutils value 
-        :type other: Euler, Quaternion or Matrix
+        :type other: 'Euler'
         '''
         pass
 
-    def rotate_axis(self, axis, angle):
+    def rotate_axis(self, axis: str, angle: float):
         '''Rotates the euler a certain amount and returning a unique euler rotation (no 720 degree pitches). 
 
         :param axis: single character in [‘X, ‘Y’, ‘Z’]. 
-        :type axis: string
+        :type axis: str
         :param angle: angle in radians. 
         :type angle: float
         '''
         pass
 
-    def to_matrix(self):
+    def to_matrix(self) -> 'Matrix':
         '''Return a matrix representation of the euler. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  A 3x3 roation matrix representation of the euler. 
         '''
         pass
 
-    def to_quaternion(self):
+    def to_quaternion(self) -> 'Quaternion':
         '''Return a quaternion representation of the euler. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  Quaternion representation of the euler. 
         '''
         pass
@@ -193,61 +202,61 @@ class Euler:
 class Matrix:
     '''This object gives access to Matrices in Blender, supporting square and rectangular matrices from 2x2 up to 4x4. '''
 
-    col = None
+    col: 'Matrix' = None
     '''Access the matix by colums, 3x3 and 4x4 only, (read-only). 
 
-    :type:  Matrix Access 
+    :type: 'Matrix'
     '''
 
-    is_frozen = None
+    is_frozen: bool = None
     '''True when this object has been frozen (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_negative = None
+    is_negative: bool = None
     '''True if this matrix results in a negative scale, 3x3 and 4x4 only, (read-only). 
 
-    :type:  bool 
+    :type: bool
     '''
 
-    is_orthogonal = None
+    is_orthogonal: bool = None
     '''True if this matrix is orthogonal, 3x3 and 4x4 only, (read-only). 
 
-    :type:  bool 
+    :type: bool
     '''
 
-    is_orthogonal_axis_vectors = None
+    is_orthogonal_axis_vectors: bool = None
     '''True if this matrix has got orthogonal axis vectors, 3x3 and 4x4 only, (read-only). 
 
-    :type:  bool 
+    :type: bool
     '''
 
-    is_wrapped = None
+    is_wrapped: bool = None
     '''True when this object wraps external data (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    median_scale = None
+    median_scale: float = None
     '''The average scale applied to each axis (read-only). 
 
-    :type:  float 
+    :type: float
     '''
 
     owner = None
     '''The item this is wrapping or None (read-only). '''
 
-    row = None
+    row: 'Matrix' = None
     '''Access the matix by rows (default), (read-only). 
 
-    :type:  Matrix Access 
+    :type: 'Matrix'
     '''
 
-    translation = None
+    translation: 'Vector' = None
     '''The translation component of the matrix. 
 
-    :type:  Vector 
+    :type: 'Vector'
     '''
 
     def adjugate(self):
@@ -256,34 +265,34 @@ class Matrix:
         '''
         pass
 
-    def adjugated(self):
+    def adjugated(self) -> 'Matrix':
         '''Return an adjugated copy of the matrix. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  the adjugated matrix. 
         '''
         pass
 
-    def copy(self):
+    def copy(self) -> 'Matrix':
         '''Returns a copy of this matrix. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  an instance of itself 
         '''
         pass
 
-    def decompose(self):
+    def decompose(self) -> 'Quaternion':
         '''Return the translation, rotation and scale components of this matrix. 
 
-        :rtype: (Vector, Quaternion, Vector) 
+        :rtype: 'Quaternion'
         :return:  trans, rot, scale triple. 
         '''
         pass
 
-    def determinant(self):
+    def determinant(self) -> float:
         '''Return the determinant of a matrix. 
 
-        :rtype: float 
+        :rtype: float
         :return:  Return the determinant of a matrix. 
         '''
         pass
@@ -301,11 +310,11 @@ class Matrix:
         '''
         pass
 
-    def invert(self, fallback=None):
+    def invert(self, fallback: 'Matrix' = None):
         '''Set the matrix to its inverse. 
 
         :param fallback: Set the matrix to this value when the inverse cannot be calculated (instead of raising a ValueError exception). 
-        :type fallback: Matrix
+        :type fallback: 'Matrix'
         '''
         pass
 
@@ -315,32 +324,32 @@ class Matrix:
         '''
         pass
 
-    def inverted(self, fallback=None):
+    def inverted(self, fallback=None) -> 'Matrix':
         '''Return an inverted copy of the matrix. 
 
         :param fallback: return this when the inverse can’t be calculated (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: Matrix 
+        :type fallback: 
+        :rtype: 'Matrix'
         :return:  the inverted matrix or fallback when given. 
         '''
         pass
 
-    def inverted_safe(self):
+    def inverted_safe(self) -> 'Matrix':
         '''Return an inverted copy of the matrix, will never error. If degenerated (e.g. zero scale on an axis), add some epsilon to its diagonal, to get an invertible one. If tweaked matrix is still degenerated, return the identity matrix instead. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  the inverted matrix. 
         '''
         pass
 
-    def lerp(self, other, factor):
+    def lerp(self, other: 'Matrix', factor: float) -> 'Matrix':
         '''Returns the interpolation of two matrices. 
 
         :param other: value to interpolate with. 
-        :type other: Matrix
+        :type other: 'Matrix'
         :param factor: The interpolation value in [0.0, 1.0]. 
         :type factor: float
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  The interpolated matrix. 
         '''
         pass
@@ -351,10 +360,10 @@ class Matrix:
         '''
         pass
 
-    def normalized(self):
+    def normalized(self) -> 'Matrix':
         '''Return a column normalized matrix 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  a column normalized matrix 
         '''
         pass
@@ -365,62 +374,62 @@ class Matrix:
         '''
         pass
 
-    def rotate(self, other):
+    def rotate(self, other: 'Euler'):
         '''Rotates the matrix by another mathutils value. 
 
         :param other: rotation component of mathutils value 
-        :type other: Euler, Quaternion or Matrix
+        :type other: 'Euler'
         '''
         pass
 
-    def to_3x3(self):
+    def to_3x3(self) -> 'Matrix':
         '''Return a 3x3 copy of this matrix. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  a new matrix. 
         '''
         pass
 
-    def to_4x4(self):
+    def to_4x4(self) -> 'Matrix':
         '''Return a 4x4 copy of this matrix. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  a new matrix. 
         '''
         pass
 
-    def to_euler(self, order, euler_compat):
+    def to_euler(self, order: str, euler_compat: 'Euler') -> 'Euler':
         '''Return an Euler representation of the rotation matrix (3x3 or 4x4 matrix only). 
 
         :param order: Optional rotation order argument in [‘XYZ’, ‘XZY’, ‘YXZ’, ‘YZX’, ‘ZXY’, ‘ZYX’]. 
-        :type order: string
+        :type order: str
         :param euler_compat: Optional euler argument the new euler will be made compatible with (no axis flipping between them). Useful for converting a series of matrices to animation curves. 
-        :type euler_compat: Euler
-        :rtype: Euler 
+        :type euler_compat: 'Euler'
+        :rtype: 'Euler'
         :return:  Euler representation of the matrix. 
         '''
         pass
 
-    def to_quaternion(self):
+    def to_quaternion(self) -> 'Quaternion':
         '''Return a quaternion representation of the rotation matrix. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  Quaternion representation of the rotation matrix. 
         '''
         pass
 
-    def to_scale(self):
+    def to_scale(self) -> 'Vector':
         '''Return the scale part of a 3x3 or 4x4 matrix. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  Return the scale of a matrix. 
         '''
         pass
 
-    def to_translation(self):
+    def to_translation(self) -> 'Vector':
         '''Return the translation part of a 4 row matrix. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  Return the translation of a matrix. 
         '''
         pass
@@ -431,18 +440,18 @@ class Matrix:
         '''
         pass
 
-    def transposed(self):
+    def transposed(self) -> 'Matrix':
         '''Return a new, transposed matrix. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  a transposed matrix 
         '''
         pass
 
-    def zero(self):
+    def zero(self) -> 'Matrix':
         '''Set all the matrix values to zero. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         '''
         pass
 
@@ -456,61 +465,61 @@ class Matrix:
 class Quaternion:
     '''The constructor takes arguments in various forms: '''
 
-    angle = None
+    angle: float = None
     '''Angle of the quaternion. 
 
-    :type:  float 
+    :type: float
     '''
 
-    axis = None
+    axis: 'Vector' = None
     '''Quaternion axis as a vector. 
 
-    :type:  Vector 
+    :type: 'Vector'
     '''
 
-    is_frozen = None
+    is_frozen: bool = None
     '''True when this object has been frozen (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wrapped = None
+    is_wrapped: bool = None
     '''True when this object wraps external data (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    magnitude = None
+    magnitude: float = None
     '''Size of the quaternion (read-only). 
 
-    :type:  float 
+    :type: float
     '''
 
     owner = None
     '''The item this is wrapping or None (read-only). '''
 
-    w = None
+    w: float = None
     '''Quaternion axis value. 
 
-    :type:  float 
+    :type: float
     '''
 
-    x = None
+    x: float = None
     '''Quaternion axis value. 
 
-    :type:  float 
+    :type: float
     '''
 
-    y = None
+    y: float = None
     '''Quaternion axis value. 
 
-    :type:  float 
+    :type: float
     '''
 
-    z = None
+    z: float = None
     '''Quaternion axis value. 
 
-    :type:  float 
+    :type: float
     '''
 
     def conjugate(self):
@@ -519,38 +528,38 @@ class Quaternion:
         '''
         pass
 
-    def conjugated(self):
+    def conjugated(self) -> 'Quaternion':
         '''Return a new conjugated quaternion. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  a new quaternion. 
         '''
         pass
 
-    def copy(self):
+    def copy(self) -> 'Quaternion':
         '''Returns a copy of this quaternion. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  A copy of the quaternion. 
         '''
         pass
 
-    def cross(self, other):
+    def cross(self, other: 'Quaternion') -> 'Quaternion':
         '''Return the cross product of this quaternion and another. 
 
         :param other: The other quaternion to perform the cross product with. 
-        :type other: Quaternion
-        :rtype: Quaternion 
+        :type other: 'Quaternion'
+        :rtype: 'Quaternion'
         :return:  The cross product. 
         '''
         pass
 
-    def dot(self, other):
+    def dot(self, other: 'Quaternion') -> 'Quaternion':
         '''Return the dot product of this quaternion and another. 
 
         :param other: The other quaternion to perform the dot product with. 
-        :type other: Quaternion
-        :rtype: Quaternion 
+        :type other: 'Quaternion'
+        :rtype: 'Quaternion'
         :return:  The dot product. 
         '''
         pass
@@ -562,10 +571,10 @@ class Quaternion:
         '''
         pass
 
-    def identity(self):
+    def identity(self) -> 'Quaternion':
         '''Set the quaternion to an identity quaternion. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         '''
         pass
 
@@ -575,18 +584,18 @@ class Quaternion:
         '''
         pass
 
-    def inverted(self):
+    def inverted(self) -> 'Quaternion':
         '''Return a new, inverted quaternion. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  the inverted value. 
         '''
         pass
 
-    def negate(self):
+    def negate(self) -> 'Quaternion':
         '''Set the quaternion to its negative. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         '''
         pass
 
@@ -596,76 +605,76 @@ class Quaternion:
         '''
         pass
 
-    def normalized(self):
+    def normalized(self) -> 'Quaternion':
         '''Return a new normalized quaternion. 
 
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  a normalized copy. 
         '''
         pass
 
-    def rotate(self, other):
+    def rotate(self, other: 'Euler'):
         '''Rotates the quaternion by another mathutils value. 
 
         :param other: rotation component of mathutils value 
-        :type other: Euler, Quaternion or Matrix
+        :type other: 'Euler'
         '''
         pass
 
-    def rotation_difference(self, other):
+    def rotation_difference(self, other: 'Quaternion') -> 'Quaternion':
         '''Returns a quaternion representing the rotational difference. 
 
         :param other: second quaternion. 
-        :type other: Quaternion
-        :rtype: Quaternion 
+        :type other: 'Quaternion'
+        :rtype: 'Quaternion'
         :return:  the rotational difference between the two quat rotations. 
         '''
         pass
 
-    def slerp(self, other, factor):
+    def slerp(self, other: 'Quaternion', factor: float) -> 'Quaternion':
         '''Returns the interpolation of two quaternions. 
 
         :param other: value to interpolate with. 
-        :type other: Quaternion
+        :type other: 'Quaternion'
         :param factor: The interpolation value in [0.0, 1.0]. 
         :type factor: float
-        :rtype: Quaternion 
+        :rtype: 'Quaternion'
         :return:  The interpolated rotation. 
         '''
         pass
 
-    def to_axis_angle(self):
+    def to_axis_angle(self) -> float:
         '''Return the axis, angle representation of the quaternion. 
 
-        :rtype: (Vector, float) pair 
+        :rtype: float
         :return:  axis, angle. 
         '''
         pass
 
-    def to_euler(self, order, euler_compat):
+    def to_euler(self, order: str, euler_compat: 'Euler') -> 'Euler':
         '''Return Euler representation of the quaternion. 
 
         :param order: Optional rotation order argument in [‘XYZ’, ‘XZY’, ‘YXZ’, ‘YZX’, ‘ZXY’, ‘ZYX’]. 
-        :type order: string
+        :type order: str
         :param euler_compat: Optional euler argument the new euler will be made compatible with (no axis flipping between them). Useful for converting a series of matrices to animation curves. 
-        :type euler_compat: Euler
-        :rtype: Euler 
+        :type euler_compat: 'Euler'
+        :rtype: 'Euler'
         :return:  Euler representation of the quaternion. 
         '''
         pass
 
-    def to_exponential_map(self):
+    def to_exponential_map(self) -> 'Vector':
         '''To convert back to a quaternion, pass it to the Quaternion constructor. 
 
-        :rtype: Vector of size 3 
+        :rtype: 'Vector'
         :return:  exponential map. 
         '''
         pass
 
-    def to_matrix(self):
+    def to_matrix(self) -> 'Matrix':
         '''Return a matrix representation of the quaternion. 
 
-        :rtype: Matrix 
+        :rtype: 'Matrix'
         :return:  A 3x3 rotation matrix representation of the quaternion. 
         '''
         pass
@@ -680,43 +689,43 @@ class Quaternion:
 class Vector:
     '''This object gives access to Vectors in Blender. '''
 
-    is_frozen = None
+    is_frozen: bool = None
     '''True when this object has been frozen (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wrapped = None
+    is_wrapped: bool = None
     '''True when this object wraps external data (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    length = None
+    length: float = None
     '''Vector Length. 
 
-    :type:  float 
+    :type: float
     '''
 
-    length_squared = None
+    length_squared: float = None
     '''Vector length squared (v.dot(v)). 
 
-    :type:  float 
+    :type: float
     '''
 
-    magnitude = None
+    magnitude: float = None
     '''Vector Length. 
 
-    :type:  float 
+    :type: float
     '''
 
     owner = None
     '''The item this is wrapping or None (read-only). '''
 
-    w = None
+    w: float = None
     '''Vector W axis (4D Vectors only). 
 
-    :type:  float 
+    :type: float
     '''
 
     ww = None
@@ -971,10 +980,10 @@ class Vector:
     wzzz = None
     '''Undocumented '''
 
-    x = None
+    x: float = None
     '''Vector X axis. 
 
-    :type:  float 
+    :type: float
     '''
 
     xw = None
@@ -1229,10 +1238,10 @@ class Vector:
     xzzz = None
     '''Undocumented '''
 
-    y = None
+    y: float = None
     '''Vector Y axis. 
 
-    :type:  float 
+    :type: float
     '''
 
     yw = None
@@ -1487,10 +1496,10 @@ class Vector:
     yzzz = None
     '''Undocumented '''
 
-    z = None
+    z: float = None
     '''Vector Z axis (3D Vectors only). 
 
-    :type:  float 
+    :type: float
     '''
 
     zw = None
@@ -1745,54 +1754,54 @@ class Vector:
     zzzz = None
     '''Undocumented '''
 
-    def angle(self, other, fallback=None):
+    def angle(self, other: 'Vector', fallback=None) -> float:
         '''Return the angle between two vectors. 
 
         :param other: another vector to compare the angle with 
-        :type other: Vector
+        :type other: 'Vector'
         :param fallback: return this when the angle can’t be calculated (zero length vector), (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: float 
+        :type fallback: 
+        :rtype: float
         :return:  angle in radians or fallback when given 
         '''
         pass
 
-    def angle_signed(self, other, fallback):
+    def angle_signed(self, other: 'Vector', fallback) -> float:
         '''Return the signed angle between two 2D vectors (clockwise is positive). 
 
         :param other: another vector to compare the angle with 
-        :type other: Vector
+        :type other: 'Vector'
         :param fallback: return this when the angle can’t be calculated (zero length vector), (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: float 
+        :type fallback: 
+        :rtype: float
         :return:  angle in radians or fallback when given 
         '''
         pass
 
-    def copy(self):
+    def copy(self) -> 'Vector':
         '''Returns a copy of this vector. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  A copy of the vector. 
         '''
         pass
 
-    def cross(self, other):
+    def cross(self, other: 'Vector') -> float:
         '''Return the cross product of this vector and another. 
 
         :param other: The other vector to perform the cross product with. 
-        :type other: Vector
-        :rtype: Vector or float when 2D vectors are used 
+        :type other: 'Vector'
+        :rtype: float
         :return:  The cross product. 
         '''
         pass
 
-    def dot(self, other):
+    def dot(self, other: 'Vector') -> 'Vector':
         '''Return the dot product of this vector and another. 
 
         :param other: The other vector to perform the dot product with. 
-        :type other: Vector
-        :rtype: Vector 
+        :type other: 'Vector'
+        :rtype: 'Vector'
         :return:  The dot product. 
         '''
         pass
@@ -1804,14 +1813,14 @@ class Vector:
         '''
         pass
 
-    def lerp(self, other, factor):
+    def lerp(self, other: 'Vector', factor: float) -> 'Vector':
         '''Returns the interpolation of two vectors. 
 
         :param other: value to interpolate with. 
-        :type other: Vector
+        :type other: 'Vector'
         :param factor: The interpolation value in [0.0, 1.0]. 
         :type factor: float
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  The interpolated vector. 
         '''
         pass
@@ -1828,38 +1837,38 @@ class Vector:
         '''
         pass
 
-    def normalized(self):
+    def normalized(self) -> 'Vector':
         '''Return a new, normalized vector. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  a normalized copy of the vector 
         '''
         pass
 
-    def orthogonal(self):
+    def orthogonal(self) -> 'Vector':
         '''Return a perpendicular vector. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  a new vector 90 degrees from this vector. 
         '''
         pass
 
-    def project(self, other):
+    def project(self, other: 'Vector') -> 'Vector':
         '''Return the projection of this vector onto the other. 
 
         :param other: second vector. 
-        :type other: Vector
-        :rtype: Vector 
+        :type other: 'Vector'
+        :rtype: 'Vector'
         :return:  the parallel projection vector 
         '''
         pass
 
-    def reflect(self, mirror):
+    def reflect(self, mirror: 'Vector') -> 'Vector':
         '''Return the reflection vector from the mirror argument. 
 
         :param mirror: This vector could be a normal from the reflecting surface. 
-        :type mirror: Vector
-        :rtype: Vector 
+        :type mirror: 'Vector'
+        :rtype: 'Vector'
         :return:  The reflected vector matching the size of this vector. 
         '''
         pass
@@ -1888,88 +1897,87 @@ class Vector:
         '''
         pass
 
-    def resized(self, size=3):
+    def resized(self, size=3) -> 'Vector':
         '''Return a resized copy of the vector with size number of elements. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  a new vector 
         '''
         pass
 
-    def rotate(self, other):
+    def rotate(self, other: 'Euler'):
         '''Rotate the vector by a rotation value. 
 
         :param other: rotation component of mathutils value 
-        :type other: Euler, Quaternion or Matrix
+        :type other: 'Euler'
         '''
         pass
 
-    def rotation_difference(self, other):
+    def rotation_difference(self, other: 'Vector') -> 'Quaternion':
         '''Returns a quaternion representing the rotational difference between this vector and another. 
 
         :param other: second vector. 
-        :type other: Vector
-        :rtype: Quaternion 
+        :type other: 'Vector'
+        :rtype: 'Quaternion'
         :return:  the rotational difference between the two vectors. 
         '''
         pass
 
-    def slerp(self, other, factor, fallback=None):
+    def slerp(self, other: 'Vector', factor: float, fallback=None) -> 'Vector':
         '''Returns the interpolation of two non-zero vectors (spherical coordinates). 
 
         :param other: value to interpolate with. 
-        :type other: Vector
+        :type other: 'Vector'
         :param factor: The interpolation value typically in [0.0, 1.0]. 
         :type factor: float
         :param fallback: return this when the vector can’t be calculated (zero length vector or direct opposites), (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: Vector 
+        :type fallback: 
+        :rtype: 'Vector'
         :return:  The interpolated vector. 
         '''
         pass
 
-    def to_2d(self):
+    def to_2d(self) -> 'Vector':
         '''Return a 2d copy of the vector. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  a new vector 
         '''
         pass
 
-    def to_3d(self):
+    def to_3d(self) -> 'Vector':
         '''Return a 3d copy of the vector. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  a new vector 
         '''
         pass
 
-    def to_4d(self):
+    def to_4d(self) -> 'Vector':
         '''Return a 4d copy of the vector. 
 
-        :rtype: Vector 
+        :rtype: 'Vector'
         :return:  a new vector 
         '''
         pass
 
-    def to_track_quat(self, track, up):
+    def to_track_quat(self, track: str, up: str) -> 'Quaternion':
         '''Return a quaternion rotation from the vector and the track and up axis. 
 
         :param track: Track axis in [‘X’, ‘Y’, ‘Z’, ‘-X’, ‘-Y’, ‘-Z’]. 
-        :type track: string
+        :type track: str
         :param up: Up axis in [‘X’, ‘Y’, ‘Z’]. 
-        :type up: string
-        :rtype: Quaternion 
+        :type up: str
+        :rtype: 'Quaternion'
         :return:  rotation from the vector and the track and up axis. 
         '''
         pass
 
-    def to_tuple(self, precision=-1):
+    def to_tuple(self, precision: int = -1):
         '''Return this vector as a tuple with. 
 
         :param precision: The number to round the value to in [-1, 21]. 
         :type precision: int
-        :rtype: tuple 
         :return:  the values of the vector rounded by precision 
         '''
         pass

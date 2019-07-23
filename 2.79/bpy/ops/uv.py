@@ -1,8 +1,13 @@
-def align(axis='ALIGN_AUTO'):
+import sys
+import typing
+import bpy
+
+
+def align(axis: int = 'ALIGN_AUTO'):
     '''Align selected UV vertices to an axis 
 
     :param axis: Axis, Axis to align UV locations onALIGN_S Straighten, Align UVs along the line defined by the endpoints.ALIGN_T Straighten X, Align UVs along the line defined by the endpoints along the X axis.ALIGN_U Straighten Y, Align UVs along the line defined by the endpoints along the Y axis.ALIGN_AUTO Align Auto, Automatically choose the axis on which there is most alignment already.ALIGN_X Align X, Align UVs on X axis.ALIGN_Y Align Y, Align UVs on Y axis. 
-    :type axis: enum in ['ALIGN_S', 'ALIGN_T', 'ALIGN_U', 'ALIGN_AUTO', 'ALIGN_X', 'ALIGN_Y'], (optional)
+    :type axis: int
     '''
 
     pass
@@ -16,230 +21,235 @@ def average_islands_scale():
     pass
 
 
-def circle_select(x=0, y=0, radius=1, gesture_mode=0):
+def circle_select(x: int = 0,
+                  y: int = 0,
+                  radius: int = 1,
+                  gesture_mode: int = 0):
     '''Select UV vertices using circle selection 
 
     :param x: X 
-    :type x: int in [-inf, inf], (optional)
+    :type x: int
     :param y: Y 
-    :type y: int in [-inf, inf], (optional)
+    :type y: int
     :param radius: Radius 
-    :type radius: int in [1, inf], (optional)
+    :type radius: int
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     '''
 
     pass
 
 
-def cube_project(cube_size=1.0,
-                 correct_aspect=True,
-                 clip_to_bounds=False,
-                 scale_to_bounds=False):
+def cube_project(cube_size: float = 1.0,
+                 correct_aspect: bool = True,
+                 clip_to_bounds: bool = False,
+                 scale_to_bounds: bool = False):
     '''Project the UV vertices of the mesh over the six faces of a cube 
 
     :param cube_size: Cube Size, Size of the cube to project on 
-    :type cube_size: float in [0, inf], (optional)
+    :type cube_size: float
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account 
-    :type correct_aspect: boolean, (optional)
+    :type correct_aspect: bool
     :param clip_to_bounds: Clip to Bounds, Clip UV coordinates to bounds after unwrapping 
-    :type clip_to_bounds: boolean, (optional)
+    :type clip_to_bounds: bool
     :param scale_to_bounds: Scale to Bounds, Scale UV coordinates to bounds after unwrapping 
-    :type scale_to_bounds: boolean, (optional)
+    :type scale_to_bounds: bool
     '''
 
     pass
 
 
-def cursor_set(location=(0.0, 0.0)):
+def cursor_set(location: float = (0.0, 0.0)):
     '''Set 2D cursor location 
 
     :param location: Location, Cursor location in normalized (0.0-1.0) coordinates 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def cylinder_project(direction='VIEW_ON_EQUATOR',
-                     align='POLAR_ZX',
-                     radius=1.0,
-                     correct_aspect=True,
-                     clip_to_bounds=False,
-                     scale_to_bounds=False):
+def cylinder_project(direction: int = 'VIEW_ON_EQUATOR',
+                     align: int = 'POLAR_ZX',
+                     radius: float = 1.0,
+                     correct_aspect: bool = True,
+                     clip_to_bounds: bool = False,
+                     scale_to_bounds: bool = False):
     '''Project the UV vertices of the mesh over the curved wall of a cylinder 
 
     :param direction: Direction, Direction of the sphere or cylinderVIEW_ON_EQUATOR View on Equator, 3D view is on the equator.VIEW_ON_POLES View on Poles, 3D view is on the poles.ALIGN_TO_OBJECT Align to Object, Align according to object transform. 
-    :type direction: enum in ['VIEW_ON_EQUATOR', 'VIEW_ON_POLES', 'ALIGN_TO_OBJECT'], (optional)
+    :type direction: int
     :param align: Align, How to determine rotation around the polePOLAR_ZX Polar ZX, Polar 0 is X.POLAR_ZY Polar ZY, Polar 0 is Y. 
-    :type align: enum in ['POLAR_ZX', 'POLAR_ZY'], (optional)
+    :type align: int
     :param radius: Radius, Radius of the sphere or cylinder 
-    :type radius: float in [0, inf], (optional)
+    :type radius: float
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account 
-    :type correct_aspect: boolean, (optional)
+    :type correct_aspect: bool
     :param clip_to_bounds: Clip to Bounds, Clip UV coordinates to bounds after unwrapping 
-    :type clip_to_bounds: boolean, (optional)
+    :type clip_to_bounds: bool
     :param scale_to_bounds: Scale to Bounds, Scale UV coordinates to bounds after unwrapping 
-    :type scale_to_bounds: boolean, (optional)
+    :type scale_to_bounds: bool
     '''
 
     pass
 
 
-def export_layout(filepath="",
-                  check_existing=True,
-                  export_all=False,
-                  modified=False,
-                  mode='PNG',
-                  size=(1024, 1024),
-                  opacity=0.25,
-                  tessellated=False):
+def export_layout(filepath: str = "",
+                  check_existing: bool = True,
+                  export_all: bool = False,
+                  modified: bool = False,
+                  mode: int = 'PNG',
+                  size: int = (1024, 1024),
+                  opacity: float = 0.25,
+                  tessellated: bool = False):
     '''Export UV layout to file 
 
     :param filepath: filepath 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param check_existing: Check Existing, Check and warn on overwriting existing files 
-    :type check_existing: boolean, (optional)
+    :type check_existing: bool
     :param export_all: All UVs, Export all UVs in this mesh (not just visible ones) 
-    :type export_all: boolean, (optional)
+    :type export_all: bool
     :param modified: Modified, Exports UVs from the modified mesh 
-    :type modified: boolean, (optional)
+    :type modified: bool
     :param mode: Format, File format to export the UV layout toSVG Scalable Vector Graphic (.svg), Export the UV layout to a vector SVG file.EPS Encapsulate PostScript (.eps), Export the UV layout to a vector EPS file.PNG PNG Image (.png), Export the UV layout to a bitmap image. 
-    :type mode: enum in ['SVG', 'EPS', 'PNG'], (optional)
+    :type mode: int
     :param size: size, Dimensions of the exported file 
-    :type size: int array of 2 items in [8, 32768], (optional)
+    :type size: int
     :param opacity: Fill Opacity, Set amount of opacity for exported UV layout 
-    :type opacity: float in [0, 1], (optional)
+    :type opacity: float
     :param tessellated: Tessellated UVs, Export tessellated UVs instead of polygons ones 
-    :type tessellated: boolean, (optional)
+    :type tessellated: bool
     '''
 
     pass
 
 
-def follow_active_quads(mode='LENGTH_AVERAGE'):
+def follow_active_quads(mode: int = 'LENGTH_AVERAGE'):
     '''Follow UVs from active quads along continuous face loops 
 
     :param mode: Edge Length Mode, Method to space UV edge loopsEVEN Even, Space all UVs evenly.LENGTH Length, Average space UVs edge length of each loop.LENGTH_AVERAGE Length Average, Average space UVs edge length of each loop. 
-    :type mode: enum in ['EVEN', 'LENGTH', 'LENGTH_AVERAGE'], (optional)
+    :type mode: int
     '''
 
     pass
 
 
-def hide(unselected=False):
+def hide(unselected: bool = False):
     '''Hide (un)selected UV vertices 
 
     :param unselected: Unselected, Hide unselected rather than selected 
-    :type unselected: boolean, (optional)
+    :type unselected: bool
     '''
 
     pass
 
 
-def lightmap_pack(PREF_CONTEXT='SEL_FACES',
-                  PREF_PACK_IN_ONE=True,
-                  PREF_NEW_UVLAYER=False,
-                  PREF_APPLY_IMAGE=False,
-                  PREF_IMG_PX_SIZE=512,
-                  PREF_BOX_DIV=12,
-                  PREF_MARGIN_DIV=0.1):
+def lightmap_pack(PREF_CONTEXT: int = 'SEL_FACES',
+                  PREF_PACK_IN_ONE: bool = True,
+                  PREF_NEW_UVLAYER: bool = False,
+                  PREF_APPLY_IMAGE: bool = False,
+                  PREF_IMG_PX_SIZE: int = 512,
+                  PREF_BOX_DIV: int = 12,
+                  PREF_MARGIN_DIV: float = 0.1):
     '''Pack each faces UV’s into the UV bounds 
 
     :param PREF_CONTEXT: SelectionSEL_FACES Selected Faces, Space all UVs evenly.ALL_FACES All Faces, Average space UVs edge length of each loop.ALL_OBJECTS Selected Mesh Object, Average space UVs edge length of each loop. 
-    :type PREF_CONTEXT: enum in ['SEL_FACES', 'ALL_FACES', 'ALL_OBJECTS'], (optional)
+    :type PREF_CONTEXT: int
     :param PREF_PACK_IN_ONE: Share Tex Space, Objects Share texture space, map all objects into 1 uvmap 
-    :type PREF_PACK_IN_ONE: boolean, (optional)
+    :type PREF_PACK_IN_ONE: bool
     :param PREF_NEW_UVLAYER: New UV Map, Create a new UV map for every mesh packed 
-    :type PREF_NEW_UVLAYER: boolean, (optional)
+    :type PREF_NEW_UVLAYER: bool
     :param PREF_APPLY_IMAGE: New Image, Assign new images for every mesh (only one if shared tex space enabled) 
-    :type PREF_APPLY_IMAGE: boolean, (optional)
+    :type PREF_APPLY_IMAGE: bool
     :param PREF_IMG_PX_SIZE: Image Size, Width and Height for the new image 
-    :type PREF_IMG_PX_SIZE: int in [64, 5000], (optional)
+    :type PREF_IMG_PX_SIZE: int
     :param PREF_BOX_DIV: Pack Quality, Pre Packing before the complex boxpack 
-    :type PREF_BOX_DIV: int in [1, 48], (optional)
+    :type PREF_BOX_DIV: int
     :param PREF_MARGIN_DIV: Margin, Size of the margin as a division of the UV 
-    :type PREF_MARGIN_DIV: float in [0.001, 1], (optional)
+    :type PREF_MARGIN_DIV: float
     '''
 
     pass
 
 
-def mark_seam(clear=False):
+def mark_seam(clear: bool = False):
     '''Mark selected UV edges as seams 
 
     :param clear: Clear Seams, Clear instead of marking seams 
-    :type clear: boolean, (optional)
+    :type clear: bool
     '''
 
     pass
 
 
-def minimize_stretch(fill_holes=True, blend=0.0, iterations=0):
+def minimize_stretch(fill_holes: bool = True,
+                     blend: float = 0.0,
+                     iterations: int = 0):
     '''Reduce UV stretching by relaxing angles 
 
     :param fill_holes: Fill Holes, Virtual fill holes in mesh before unwrapping, to better avoid overlaps and preserve symmetry 
-    :type fill_holes: boolean, (optional)
+    :type fill_holes: bool
     :param blend: Blend, Blend factor between stretch minimized and original 
-    :type blend: float in [0, 1], (optional)
+    :type blend: float
     :param iterations: Iterations, Number of iterations to run, 0 is unlimited when run interactively 
-    :type iterations: int in [0, inf], (optional)
+    :type iterations: int
     '''
 
     pass
 
 
-def pack_islands(rotate=True, margin=0.001):
+def pack_islands(rotate: bool = True, margin: float = 0.001):
     '''Transform all islands so that they fill up the UV space as much as possible 
 
     :param rotate: Rotate, Rotate islands for best fit 
-    :type rotate: boolean, (optional)
+    :type rotate: bool
     :param margin: Margin, Space between islands 
-    :type margin: float in [0, 1], (optional)
+    :type margin: float
     '''
 
     pass
 
 
-def pin(clear=False):
+def pin(clear: bool = False):
     '''Set/clear selected UV vertices as anchored between multiple unwrap operations 
 
     :param clear: Clear, Clear pinning for the selection instead of setting it 
-    :type clear: boolean, (optional)
+    :type clear: bool
     '''
 
     pass
 
 
-def project_from_view(orthographic=False,
-                      camera_bounds=True,
-                      correct_aspect=True,
-                      clip_to_bounds=False,
-                      scale_to_bounds=False):
+def project_from_view(orthographic: bool = False,
+                      camera_bounds: bool = True,
+                      correct_aspect: bool = True,
+                      clip_to_bounds: bool = False,
+                      scale_to_bounds: bool = False):
     '''Project the UV vertices of the mesh as seen in current 3D view 
 
     :param orthographic: Orthographic, Use orthographic projection 
-    :type orthographic: boolean, (optional)
+    :type orthographic: bool
     :param camera_bounds: Camera Bounds, Map UVs to the camera region taking resolution and aspect into account 
-    :type camera_bounds: boolean, (optional)
+    :type camera_bounds: bool
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account 
-    :type correct_aspect: boolean, (optional)
+    :type correct_aspect: bool
     :param clip_to_bounds: Clip to Bounds, Clip UV coordinates to bounds after unwrapping 
-    :type clip_to_bounds: boolean, (optional)
+    :type clip_to_bounds: bool
     :param scale_to_bounds: Scale to Bounds, Scale UV coordinates to bounds after unwrapping 
-    :type scale_to_bounds: boolean, (optional)
+    :type scale_to_bounds: bool
     '''
 
     pass
 
 
-def remove_doubles(threshold=0.02, use_unselected=False):
+def remove_doubles(threshold: float = 0.02, use_unselected: bool = False):
     '''Selected UV vertices that are within a radius of each other are welded together 
 
     :param threshold: Merge Distance, Maximum distance between welded vertices 
-    :type threshold: float in [0, 10], (optional)
+    :type threshold: float
     :param use_unselected: Unselected, Merge selected to other unselected vertices 
-    :type use_unselected: boolean, (optional)
+    :type use_unselected: bool
     '''
 
     pass
@@ -261,77 +271,79 @@ def reveal():
     pass
 
 
-def seams_from_islands(mark_seams=True, mark_sharp=False):
+def seams_from_islands(mark_seams: bool = True, mark_sharp: bool = False):
     '''Set mesh seams according to island setup in the UV editor 
 
     :param mark_seams: Mark Seams, Mark boundary edges as seams 
-    :type mark_seams: boolean, (optional)
+    :type mark_seams: bool
     :param mark_sharp: Mark Sharp, Mark boundary edges as sharp 
-    :type mark_sharp: boolean, (optional)
+    :type mark_sharp: bool
     '''
 
     pass
 
 
-def select(extend=False, location=(0.0, 0.0)):
+def select(extend: bool = False, location: float = (0.0, 0.0)):
     '''Select UV vertices 
 
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param location: Location, Mouse location in normalized coordinates, 0.0 to 1.0 is within the image bounds 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''Change selection of all UV vertices 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_border(pinned=False,
-                  gesture_mode=0,
-                  xmin=0,
-                  xmax=0,
-                  ymin=0,
-                  ymax=0,
-                  extend=True):
+def select_border(pinned: bool = False,
+                  gesture_mode: int = 0,
+                  xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0,
+                  extend: bool = True):
     '''Select UV vertices using border selection 
 
     :param pinned: Pinned, Border select pinned UVs only 
-    :type pinned: boolean, (optional)
+    :type pinned: bool
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
 
 
-def select_lasso(path=None, deselect=False, extend=True):
+def select_lasso(path: typing.List['bpy.types.OperatorMousePath'] = None,
+                 deselect: bool = False,
+                 extend: bool = True):
     '''Select UVs using lasso selection 
 
     :param path: Path 
-    :type path: bpy_prop_collection of OperatorMousePath, (optional)
+    :type path: typing.List['bpy.types.OperatorMousePath']
     :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -345,35 +357,35 @@ def select_less():
     pass
 
 
-def select_linked(extend=False):
+def select_linked(extend: bool = False):
     '''Select all UV vertices linked to the active UV map 
 
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
 
 
-def select_linked_pick(extend=False, location=(0.0, 0.0)):
+def select_linked_pick(extend: bool = False, location: float = (0.0, 0.0)):
     '''Select all UV vertices linked under the mouse 
 
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param location: Location, Mouse location in normalized coordinates, 0.0 to 1.0 is within the image bounds 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def select_loop(extend=False, location=(0.0, 0.0)):
+def select_loop(extend: bool = False, location: float = (0.0, 0.0)):
     '''Select a loop of connected UV vertices 
 
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param location: Location, Mouse location in normalized coordinates, 0.0 to 1.0 is within the image bounds 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
@@ -403,131 +415,131 @@ def select_split():
     pass
 
 
-def smart_project(angle_limit=66.0,
-                  island_margin=0.0,
-                  user_area_weight=0.0,
-                  use_aspect=True,
-                  stretch_to_bounds=True):
+def smart_project(angle_limit: float = 66.0,
+                  island_margin: float = 0.0,
+                  user_area_weight: float = 0.0,
+                  use_aspect: bool = True,
+                  stretch_to_bounds: bool = True):
     '''This script projection unwraps the selected faces of a mesh (it operates on all selected mesh objects, and can be used to unwrap selected faces, or all faces) 
 
     :param angle_limit: Angle Limit, Lower for more projection groups, higher for less distortion 
-    :type angle_limit: float in [1, 89], (optional)
+    :type angle_limit: float
     :param island_margin: Island Margin, Margin to reduce bleed from adjacent islands 
-    :type island_margin: float in [0, 1], (optional)
+    :type island_margin: float
     :param user_area_weight: Area Weight, Weight projections vector by faces with larger areas 
-    :type user_area_weight: float in [0, 1], (optional)
+    :type user_area_weight: float
     :param use_aspect: Correct Aspect, Map UVs taking image aspect ratio into account 
-    :type use_aspect: boolean, (optional)
+    :type use_aspect: bool
     :param stretch_to_bounds: Stretch to UV Bounds, Stretch the final output to texture bounds 
-    :type stretch_to_bounds: boolean, (optional)
+    :type stretch_to_bounds: bool
     '''
 
     pass
 
 
-def snap_cursor(target='PIXELS'):
+def snap_cursor(target: int = 'PIXELS'):
     '''Snap cursor to target type 
 
     :param target: Target, Target to snap the selected UVs to 
-    :type target: enum in ['PIXELS', 'SELECTED'], (optional)
+    :type target: int
     '''
 
     pass
 
 
-def snap_selected(target='PIXELS'):
+def snap_selected(target: int = 'PIXELS'):
     '''Snap selected UV vertices to target type 
 
     :param target: Target, Target to snap the selected UVs to 
-    :type target: enum in ['PIXELS', 'CURSOR', 'CURSOR_OFFSET', 'ADJACENT_UNSELECTED'], (optional)
+    :type target: int
     '''
 
     pass
 
 
-def sphere_project(direction='VIEW_ON_EQUATOR',
-                   align='POLAR_ZX',
-                   correct_aspect=True,
-                   clip_to_bounds=False,
-                   scale_to_bounds=False):
+def sphere_project(direction: int = 'VIEW_ON_EQUATOR',
+                   align: int = 'POLAR_ZX',
+                   correct_aspect: bool = True,
+                   clip_to_bounds: bool = False,
+                   scale_to_bounds: bool = False):
     '''Project the UV vertices of the mesh over the curved surface of a sphere 
 
     :param direction: Direction, Direction of the sphere or cylinderVIEW_ON_EQUATOR View on Equator, 3D view is on the equator.VIEW_ON_POLES View on Poles, 3D view is on the poles.ALIGN_TO_OBJECT Align to Object, Align according to object transform. 
-    :type direction: enum in ['VIEW_ON_EQUATOR', 'VIEW_ON_POLES', 'ALIGN_TO_OBJECT'], (optional)
+    :type direction: int
     :param align: Align, How to determine rotation around the polePOLAR_ZX Polar ZX, Polar 0 is X.POLAR_ZY Polar ZY, Polar 0 is Y. 
-    :type align: enum in ['POLAR_ZX', 'POLAR_ZY'], (optional)
+    :type align: int
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account 
-    :type correct_aspect: boolean, (optional)
+    :type correct_aspect: bool
     :param clip_to_bounds: Clip to Bounds, Clip UV coordinates to bounds after unwrapping 
-    :type clip_to_bounds: boolean, (optional)
+    :type clip_to_bounds: bool
     :param scale_to_bounds: Scale to Bounds, Scale UV coordinates to bounds after unwrapping 
-    :type scale_to_bounds: boolean, (optional)
+    :type scale_to_bounds: bool
     '''
 
     pass
 
 
-def stitch(use_limit=False,
-           snap_islands=True,
-           limit=0.01,
-           static_island=0,
-           midpoint_snap=False,
-           clear_seams=True,
-           mode='VERTEX',
-           stored_mode='VERTEX',
-           selection=None):
+def stitch(use_limit: bool = False,
+           snap_islands: bool = True,
+           limit: float = 0.01,
+           static_island: int = 0,
+           midpoint_snap: bool = False,
+           clear_seams: bool = True,
+           mode: int = 'VERTEX',
+           stored_mode: int = 'VERTEX',
+           selection: typing.List['bpy.types.SelectedUvElement'] = None):
     '''Stitch selected UV vertices by proximity 
 
     :param use_limit: Use Limit, Stitch UVs within a specified limit distance 
-    :type use_limit: boolean, (optional)
+    :type use_limit: bool
     :param snap_islands: Snap Islands, Snap islands together (on edge stitch mode, rotates the islands too) 
-    :type snap_islands: boolean, (optional)
+    :type snap_islands: bool
     :param limit: Limit, Limit distance in normalized coordinates 
-    :type limit: float in [0, inf], (optional)
+    :type limit: float
     :param static_island: Static Island, Island that stays in place when stitching islands 
-    :type static_island: int in [0, inf], (optional)
+    :type static_island: int
     :param midpoint_snap: Snap At Midpoint, UVs are stitched at midpoint instead of at static island 
-    :type midpoint_snap: boolean, (optional)
+    :type midpoint_snap: bool
     :param clear_seams: Clear Seams, Clear seams of stitched edges 
-    :type clear_seams: boolean, (optional)
+    :type clear_seams: bool
     :param mode: Operation Mode, Use vertex or edge stitching 
-    :type mode: enum in ['VERTEX', 'EDGE'], (optional)
+    :type mode: int
     :param stored_mode: Stored Operation Mode, Use vertex or edge stitching 
-    :type stored_mode: enum in ['VERTEX', 'EDGE'], (optional)
+    :type stored_mode: int
     :param selection: Selection 
-    :type selection: bpy_prop_collection of SelectedUvElement, (optional)
+    :type selection: typing.List['bpy.types.SelectedUvElement']
     '''
 
     pass
 
 
-def tile_set(tile=(0, 0)):
+def tile_set(tile: int = (0, 0)):
     '''Set UV image tile coordinates 
 
     :param tile: Tile, Tile coordinate 
-    :type tile: int array of 2 items in [0, inf], (optional)
+    :type tile: int
     '''
 
     pass
 
 
-def unwrap(method='ANGLE_BASED',
-           fill_holes=True,
-           correct_aspect=True,
-           use_subsurf_data=False,
-           margin=0.001):
+def unwrap(method: int = 'ANGLE_BASED',
+           fill_holes: bool = True,
+           correct_aspect: bool = True,
+           use_subsurf_data: bool = False,
+           margin: float = 0.001):
     '''Unwrap the mesh of the object being edited 
 
     :param method: Method, Unwrapping method (Angle Based usually gives better results than Conformal, while being somewhat slower) 
-    :type method: enum in ['ANGLE_BASED', 'CONFORMAL'], (optional)
+    :type method: int
     :param fill_holes: Fill Holes, Virtual fill holes in mesh before unwrapping, to better avoid overlaps and preserve symmetry 
-    :type fill_holes: boolean, (optional)
+    :type fill_holes: bool
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account 
-    :type correct_aspect: boolean, (optional)
+    :type correct_aspect: bool
     :param use_subsurf_data: Use Subsurf Modifier, Map UVs taking vertex position after Subdivision Surface modifier has been applied 
-    :type use_subsurf_data: boolean, (optional)
+    :type use_subsurf_data: bool
     :param margin: Margin, Space between islands 
-    :type margin: float in [0, 1], (optional)
+    :type margin: float
     '''
 
     pass

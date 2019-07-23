@@ -1,8 +1,13 @@
-def add_marker(location=(0.0, 0.0)):
+import sys
+import typing
+import bpy
+
+
+def add_marker(location: float = (0.0, 0.0)):
     '''Place new marker at specified location 
 
     :param location: Location, Location of marker on frame 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
@@ -20,9 +25,7 @@ def add_marker_move(CLIP_OT_add_marker=None, TRANSFORM_OT_translate=None):
     '''Add new marker and move it on movie 
 
     :param CLIP_OT_add_marker: Add Marker, Place new marker at specified location 
-    :type CLIP_OT_add_marker: CLIP_OT_add_marker, (optional)
     :param TRANSFORM_OT_translate: Translate, Translate (move) selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     '''
 
     pass
@@ -32,19 +35,17 @@ def add_marker_slide(CLIP_OT_add_marker=None, TRANSFORM_OT_translate=None):
     '''Add new marker and slide it with mouse until mouse button release 
 
     :param CLIP_OT_add_marker: Add Marker, Place new marker at specified location 
-    :type CLIP_OT_add_marker: CLIP_OT_add_marker, (optional)
     :param TRANSFORM_OT_translate: Translate, Translate (move) selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     '''
 
     pass
 
 
-def apply_solution_scale(distance=0.0):
+def apply_solution_scale(distance: float = 0.0):
     '''Apply scale on solution itself to make distance between selected tracks equals to desired 
 
     :param distance: Distance, Distance between selected tracks 
-    :type distance: float in [-inf, inf], (optional)
+    :type distance: float
     '''
 
     pass
@@ -58,39 +59,41 @@ def bundles_to_mesh():
     pass
 
 
-def camera_preset_add(name="", remove_active=False, use_focal_length=True):
+def camera_preset_add(name: str = "",
+                      remove_active: bool = False,
+                      use_focal_length: bool = True):
     '''Add or remove a Tracking Camera Intrinsics Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     :param use_focal_length: Include Focal Length, Include focal length into the preset 
-    :type use_focal_length: boolean, (optional)
+    :type use_focal_length: bool
     '''
 
     pass
 
 
-def change_frame(frame=0):
+def change_frame(frame: int = 0):
     '''Interactively change the current frame number 
 
     :param frame: Frame 
-    :type frame: int in [-1048574, 1048574], (optional)
+    :type frame: int
     '''
 
     pass
 
 
-def clean_tracks(frames=0, error=0.0, action='SELECT'):
+def clean_tracks(frames: int = 0, error: float = 0.0, action: int = 'SELECT'):
     '''Clean tracks with high error values or few frames 
 
     :param frames: Tracked Frames, Effect on tracks which are tracked less than specified amount of frames 
-    :type frames: int in [0, inf], (optional)
+    :type frames: int
     :param error: Reprojection Error, Effect on tracks which have got larger re-projection error 
-    :type error: float in [0, inf], (optional)
+    :type error: float
     :param action: Action, Cleanup action to executeSELECT Select, Select unclean tracks.DELETE_TRACK Delete Track, Delete unclean tracks.DELETE_SEGMENTS Delete Segments, Delete unclean segments of tracks. 
-    :type action: enum in ['SELECT', 'DELETE_TRACK', 'DELETE_SEGMENTS'], (optional)
+    :type action: int
     '''
 
     pass
@@ -104,13 +107,13 @@ def clear_solution():
     pass
 
 
-def clear_track_path(action='REMAINED', clear_active=False):
+def clear_track_path(action: int = 'REMAINED', clear_active: bool = False):
     '''Clear tracks after/before current position or clear the whole track 
 
     :param action: Action, Clear action to executeUPTO Clear up-to, Clear path up to current frame.REMAINED Clear remained, Clear path at remaining frames (after current).ALL Clear all, Clear the whole path. 
-    :type action: enum in ['UPTO', 'REMAINED', 'ALL'], (optional)
+    :type action: int
     :param clear_active: Clear Active, Clear active track only instead of all selected tracks 
-    :type clear_active: boolean, (optional)
+    :type clear_active: bool
     '''
 
     pass
@@ -140,11 +143,11 @@ def create_plane_track():
     pass
 
 
-def cursor_set(location=(0.0, 0.0)):
+def cursor_set(location: float = (0.0, 0.0)):
     '''Set 2D cursor location 
 
     :param location: Location, Cursor location in normalized clip coordinates 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
@@ -174,42 +177,43 @@ def delete_track():
     pass
 
 
-def detect_features(placement='FRAME',
-                    margin=16,
-                    threshold=0.5,
-                    min_distance=120):
+def detect_features(placement: int = 'FRAME',
+                    margin: int = 16,
+                    threshold: float = 0.5,
+                    min_distance: int = 120):
     '''Automatically detect features and place markers to track 
 
     :param placement: Placement, Placement for detected featuresFRAME Whole Frame, Place markers across the whole frame.INSIDE_GPENCIL Inside grease pencil, Place markers only inside areas outlined with grease pencil.OUTSIDE_GPENCIL Outside grease pencil, Place markers only outside areas outlined with grease pencil. 
-    :type placement: enum in ['FRAME', 'INSIDE_GPENCIL', 'OUTSIDE_GPENCIL'], (optional)
+    :type placement: int
     :param margin: Margin, Only features further than margin pixels from the image edges are considered 
-    :type margin: int in [0, inf], (optional)
+    :type margin: int
     :param threshold: Threshold, Threshold level to consider feature good enough for tracking 
-    :type threshold: float in [0.0001, inf], (optional)
+    :type threshold: float
     :param min_distance: Distance, Minimal distance accepted between two features 
-    :type min_distance: int in [0, inf], (optional)
+    :type min_distance: int
     '''
 
     pass
 
 
-def disable_markers(action='DISABLE'):
+def disable_markers(action: int = 'DISABLE'):
     '''Disable/enable selected markers 
 
     :param action: Action, Disable action to executeDISABLE Disable, Disable selected markers.ENABLE Enable, Enable selected markers.TOGGLE Toggle, Toggle disabled flag for selected markers. 
-    :type action: enum in ['DISABLE', 'ENABLE', 'TOGGLE'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def dopesheet_select_channel(location=(0.0, 0.0), extend=False):
+def dopesheet_select_channel(location: float = (0.0, 0.0),
+                             extend: bool = False):
     '''Select movie tracking channel 
 
     :param location: Location, Mouse location to select channel 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -223,21 +227,21 @@ def dopesheet_view_all():
     pass
 
 
-def filter_tracks(track_threshold=5.0):
+def filter_tracks(track_threshold: float = 5.0):
     '''Filter tracks which has weirdly looking spikes in motion curves 
 
     :param track_threshold: Track Threshold, Filter Threshold to select problematic tracks 
-    :type track_threshold: float in [-inf, inf], (optional)
+    :type track_threshold: float
     '''
 
     pass
 
 
-def frame_jump(position='PATHSTART'):
+def frame_jump(position: int = 'PATHSTART'):
     '''Jump to special frame 
 
     :param position: Position, Position to jump toPATHSTART Path Start, Jump to start of current path.PATHEND Path End, Jump to end of current path.FAILEDPREV Previous Failed, Jump to previous failed frame.FAILNEXT Next Failed, Jump to next failed frame. 
-    :type position: enum in ['PATHSTART', 'PATHEND', 'FAILEDPREV', 'FAILNEXT'], (optional)
+    :type position: int
     '''
 
     pass
@@ -267,58 +271,58 @@ def graph_delete_knot():
     pass
 
 
-def graph_disable_markers(action='DISABLE'):
+def graph_disable_markers(action: int = 'DISABLE'):
     '''Disable/enable selected markers 
 
     :param action: Action, Disable action to executeDISABLE Disable, Disable selected markers.ENABLE Enable, Enable selected markers.TOGGLE Toggle, Toggle disabled flag for selected markers. 
-    :type action: enum in ['DISABLE', 'ENABLE', 'TOGGLE'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def graph_select(location=(0.0, 0.0), extend=False):
+def graph_select(location: float = (0.0, 0.0), extend: bool = False):
     '''Select graph curves 
 
     :param location: Location, Mouse location to select nearest entity 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
 
 
-def graph_select_all_markers(action='TOGGLE'):
+def graph_select_all_markers(action: int = 'TOGGLE'):
     '''Change selection of all markers of active track 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def graph_select_border(gesture_mode=0,
-                        xmin=0,
-                        xmax=0,
-                        ymin=0,
-                        ymax=0,
-                        extend=True):
+def graph_select_border(gesture_mode: int = 0,
+                        xmin: int = 0,
+                        xmax: int = 0,
+                        ymin: int = 0,
+                        ymax: int = 0,
+                        extend: bool = True):
     '''Select curve points using border selection 
 
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -332,11 +336,11 @@ def graph_view_all():
     pass
 
 
-def hide_tracks(unselected=False):
+def hide_tracks(unselected: bool = False):
     '''Hide selected tracks 
 
     :param unselected: Unselected, Hide unselected tracks 
-    :type unselected: boolean, (optional)
+    :type unselected: bool
     '''
 
     pass
@@ -374,91 +378,91 @@ def keyframe_insert():
     pass
 
 
-def lock_tracks(action='LOCK'):
+def lock_tracks(action: int = 'LOCK'):
     '''Lock/unlock selected tracks 
 
     :param action: Action, Lock action to executeLOCK Lock, Lock selected tracks.UNLOCK Unlock, Unlock selected tracks.TOGGLE Toggle, Toggle locked flag for selected tracks. 
-    :type action: enum in ['LOCK', 'UNLOCK', 'TOGGLE'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def mode_set(mode='TRACKING'):
+def mode_set(mode: int = 'TRACKING'):
     '''Set the clip interaction mode 
 
     :param mode: ModeTRACKING Tracking, Show tracking and solving tools.MASK Mask, Show mask editing tools. 
-    :type mode: enum in ['TRACKING', 'MASK'], (optional)
+    :type mode: int
     '''
 
     pass
 
 
-def open(directory="",
-         files=None,
-         filter_blender=False,
-         filter_backup=False,
-         filter_image=True,
-         filter_movie=True,
-         filter_python=False,
-         filter_font=False,
-         filter_sound=False,
-         filter_text=False,
-         filter_btx=False,
-         filter_collada=False,
-         filter_alembic=False,
-         filter_folder=True,
-         filter_blenlib=False,
-         filemode=9,
-         relative_path=True,
-         show_multiview=False,
-         use_multiview=False,
-         display_type='DEFAULT',
-         sort_method='FILE_SORT_ALPHA'):
+def open(directory: str = "",
+         files: typing.List['bpy.types.OperatorFileListElement'] = None,
+         filter_blender: bool = False,
+         filter_backup: bool = False,
+         filter_image: bool = True,
+         filter_movie: bool = True,
+         filter_python: bool = False,
+         filter_font: bool = False,
+         filter_sound: bool = False,
+         filter_text: bool = False,
+         filter_btx: bool = False,
+         filter_collada: bool = False,
+         filter_alembic: bool = False,
+         filter_folder: bool = True,
+         filter_blenlib: bool = False,
+         filemode: int = 9,
+         relative_path: bool = True,
+         show_multiview: bool = False,
+         use_multiview: bool = False,
+         display_type: int = 'DEFAULT',
+         sort_method: int = 'FILE_SORT_ALPHA'):
     '''Load a sequence of frames or a movie file 
 
     :param directory: Directory, Directory of the file 
-    :type directory: string, (optional, never None)
+    :type directory: str
     :param files: Files 
-    :type files: bpy_prop_collection of OperatorFileListElement, (optional)
+    :type files: typing.List['bpy.types.OperatorFileListElement']
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     '''
 
     pass
@@ -496,11 +500,11 @@ def rebuild_proxy():
     pass
 
 
-def refine_markers(backwards=False):
+def refine_markers(backwards: bool = False):
     '''Refine selected markers positions by running the tracker from track’s reference to current frame 
 
     :param backwards: Backwards, Do backwards tracking 
-    :type backwards: boolean, (optional)
+    :type backwards: bool
     '''
 
     pass
@@ -514,83 +518,93 @@ def reload():
     pass
 
 
-def select(extend=False, location=(0.0, 0.0)):
+def select(extend: bool = False, location: float = (0.0, 0.0)):
     '''Select tracking markers 
 
     :param extend: Extend, Extend selection rather than clearing the existing selection 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param location: Location, Mouse location in normalized coordinates, 0.0 to 1.0 is within the image bounds 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''Change selection of all tracking markers 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_border(gesture_mode=0, xmin=0, xmax=0, ymin=0, ymax=0, extend=True):
+def select_border(gesture_mode: int = 0,
+                  xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0,
+                  extend: bool = True):
     '''Select markers using border selection 
 
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
 
 
-def select_circle(x=0, y=0, radius=1, gesture_mode=0):
+def select_circle(x: int = 0,
+                  y: int = 0,
+                  radius: int = 1,
+                  gesture_mode: int = 0):
     '''Select markers using circle selection 
 
     :param x: X 
-    :type x: int in [-inf, inf], (optional)
+    :type x: int
     :param y: Y 
-    :type y: int in [-inf, inf], (optional)
+    :type y: int
     :param radius: Radius 
-    :type radius: int in [1, inf], (optional)
+    :type radius: int
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     '''
 
     pass
 
 
-def select_grouped(group='ESTIMATED'):
+def select_grouped(group: int = 'ESTIMATED'):
     '''Select all tracks from specified group 
 
     :param group: Action, Clear action to executeKEYFRAMED Keyframed tracks, Select all keyframed tracks.ESTIMATED Estimated tracks, Select all estimated tracks.TRACKED Tracked tracks, Select all tracked tracks.LOCKED Locked tracks, Select all locked tracks.DISABLED Disabled tracks, Select all disabled tracks.COLOR Tracks with same color, Select all tracks with same color as active track.FAILED Failed Tracks, Select all tracks which failed to be reconstructed. 
-    :type group: enum in ['KEYFRAMED', 'ESTIMATED', 'TRACKED', 'LOCKED', 'DISABLED', 'COLOR', 'FAILED'], (optional)
+    :type group: int
     '''
 
     pass
 
 
-def select_lasso(path=None, deselect=False, extend=True):
+def select_lasso(path: typing.List['bpy.types.OperatorMousePath'] = None,
+                 deselect: bool = False,
+                 extend: bool = True):
     '''Select markers using lasso selection 
 
     :param path: Path 
-    :type path: bpy_prop_collection of OperatorMousePath, (optional)
+    :type path: typing.List['bpy.types.OperatorMousePath']
     :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -604,11 +618,11 @@ def set_active_clip():
     pass
 
 
-def set_axis(axis='X'):
+def set_axis(axis: int = 'X'):
     '''Set direction of scene axis rotating camera (or its parent if present) and assume selected track lies on real axis, joining it with the origin 
 
     :param axis: Axis, Axis to use to align bundle alongX X, Align bundle align X axis.Y Y, Align bundle align Y axis. 
-    :type axis: enum in ['X', 'Y'], (optional)
+    :type axis: int
     '''
 
     pass
@@ -622,31 +636,31 @@ def set_center_principal():
     pass
 
 
-def set_origin(use_median=False):
+def set_origin(use_median: bool = False):
     '''Set active marker as origin by moving camera (or its parent if present) in 3D space 
 
     :param use_median: Use Median, Set origin to median point of selected bundles 
-    :type use_median: boolean, (optional)
+    :type use_median: bool
     '''
 
     pass
 
 
-def set_plane(plane='FLOOR'):
+def set_plane(plane: int = 'FLOOR'):
     '''Set plane based on 3 selected bundles by moving camera (or its parent if present) in 3D space 
 
     :param plane: Plane, Plane to be used for orientationFLOOR Floor, Set floor plane.WALL Wall, Set wall plane. 
-    :type plane: enum in ['FLOOR', 'WALL'], (optional)
+    :type plane: int
     '''
 
     pass
 
 
-def set_scale(distance=0.0):
+def set_scale(distance: float = 0.0):
     '''Set scale of scene by scaling camera (or its parent if present) 
 
     :param distance: Distance, Distance between selected tracks 
-    :type distance: float in [-inf, inf], (optional)
+    :type distance: float
     '''
 
     pass
@@ -660,21 +674,21 @@ def set_scene_frames():
     pass
 
 
-def set_solution_scale(distance=0.0):
+def set_solution_scale(distance: float = 0.0):
     '''Set object solution scale using distance between two selected tracks 
 
     :param distance: Distance, Distance between selected tracks 
-    :type distance: float in [-inf, inf], (optional)
+    :type distance: float
     '''
 
     pass
 
 
-def set_solver_keyframe(keyframe='KEYFRAME_A'):
+def set_solver_keyframe(keyframe: int = 'KEYFRAME_A'):
     '''Set keyframe used by solver 
 
     :param keyframe: Keyframe, Keyframe to set 
-    :type keyframe: enum in ['KEYFRAME_A', 'KEYFRAME_B'], (optional)
+    :type keyframe: int
     '''
 
     pass
@@ -696,11 +710,11 @@ def setup_tracking_scene():
     pass
 
 
-def slide_marker(offset=(0.0, 0.0)):
+def slide_marker(offset: float = (0.0, 0.0)):
     '''Slide marker areas 
 
     :param offset: Offset, Offset in floating point units, 1.0 is the width and height of the image 
-    :type offset: float array of 2 items in [-inf, inf], (optional)
+    :type offset: float
     '''
 
     pass
@@ -778,13 +792,13 @@ def tools():
     pass
 
 
-def track_color_preset_add(name="", remove_active=False):
+def track_color_preset_add(name: str = "", remove_active: bool = False):
     '''Add or remove a Clip Track Color Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
@@ -798,13 +812,13 @@ def track_copy_color():
     pass
 
 
-def track_markers(backwards=False, sequence=False):
+def track_markers(backwards: bool = False, sequence: bool = False):
     '''Track selected markers 
 
     :param backwards: Backwards, Do backwards tracking 
-    :type backwards: boolean, (optional)
+    :type backwards: bool
     :param sequence: Track Sequence, Track marker during image sequence rather than single image 
-    :type sequence: boolean, (optional)
+    :type sequence: bool
     '''
 
     pass
@@ -850,23 +864,23 @@ def tracking_object_remove():
     pass
 
 
-def tracking_settings_preset_add(name="", remove_active=False):
+def tracking_settings_preset_add(name: str = "", remove_active: bool = False):
     '''Add or remove a motion tracking settings preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def view_all(fit_view=False):
+def view_all(fit_view: bool = False):
     '''View whole image with markers 
 
     :param fit_view: Fit View, Fit frame to the viewport 
-    :type fit_view: boolean, (optional)
+    :type fit_view: bool
     '''
 
     pass
@@ -880,11 +894,11 @@ def view_ndof():
     pass
 
 
-def view_pan(offset=(0.0, 0.0)):
+def view_pan(offset: float = (0.0, 0.0)):
     '''Pan the view 
 
     :param offset: Offset, Offset in floating point units, 1.0 is the width and height of the image 
-    :type offset: float array of 2 items in [-inf, inf], (optional)
+    :type offset: float
     '''
 
     pass
@@ -898,41 +912,41 @@ def view_selected():
     pass
 
 
-def view_zoom(factor=0.0):
+def view_zoom(factor: float = 0.0):
     '''Zoom in/out the view 
 
     :param factor: Factor, Zoom factor, values higher than 1.0 zoom in, lower values zoom out 
-    :type factor: float in [-inf, inf], (optional)
+    :type factor: float
     '''
 
     pass
 
 
-def view_zoom_in(location=(0.0, 0.0)):
+def view_zoom_in(location: float = (0.0, 0.0)):
     '''Zoom in the view 
 
     :param location: Location, Cursor location in screen coordinates 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def view_zoom_out(location=(0.0, 0.0)):
+def view_zoom_out(location: float = (0.0, 0.0)):
     '''Zoom out the view 
 
     :param location: Location, Cursor location in normalized (0.0-1.0) coordinates 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def view_zoom_ratio(ratio=0.0):
+def view_zoom_ratio(ratio: float = 0.0):
     '''Set the zoom ratio (based on clip size) 
 
     :param ratio: Ratio, Zoom ratio, 1.0 is 1:1, higher is zoomed in, lower is zoomed out 
-    :type ratio: float in [-inf, inf], (optional)
+    :type ratio: float
     '''
 
     pass

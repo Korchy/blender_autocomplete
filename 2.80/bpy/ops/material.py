@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def copy():
     '''Copy the material settings and nodes 
 

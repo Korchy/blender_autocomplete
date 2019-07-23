@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def bake():
     '''Bake fluid simulation 
 
@@ -6,13 +10,13 @@ def bake():
     pass
 
 
-def preset_add(name="", remove_active=False):
+def preset_add(name: str = "", remove_active: bool = False):
     '''Add or remove a Fluid Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass

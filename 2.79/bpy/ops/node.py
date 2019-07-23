@@ -1,139 +1,150 @@
-def add_and_link_node(type="",
-                      use_transform=False,
-                      settings=None,
-                      link_socket_index=0):
+import sys
+import typing
+import bpy
+
+
+def add_and_link_node(type: str = "",
+                      use_transform: bool = False,
+                      settings: typing.List['bpy.types.NodeSetting'] = None,
+                      link_socket_index: int = 0):
     '''Add a node to the active tree and link to an existing socket 
 
     :param type: Node Type, Node type 
-    :type type: string, (optional, never None)
+    :type type: str
     :param use_transform: Use Transform, Start transform operator after inserting the node 
-    :type use_transform: boolean, (optional)
+    :type use_transform: bool
     :param settings: Settings, Settings to be applied on the newly created node 
-    :type settings: bpy_prop_collection of NodeSetting, (optional)
+    :type settings: typing.List['bpy.types.NodeSetting']
     :param link_socket_index: Link Socket Index, Index of the socket to link 
-    :type link_socket_index: int in [-inf, inf], (optional)
+    :type link_socket_index: int
     '''
 
     pass
 
 
-def add_file(filepath="",
-             filter_blender=False,
-             filter_backup=False,
-             filter_image=True,
-             filter_movie=True,
-             filter_python=False,
-             filter_font=False,
-             filter_sound=False,
-             filter_text=False,
-             filter_btx=False,
-             filter_collada=False,
-             filter_alembic=False,
-             filter_folder=True,
-             filter_blenlib=False,
-             filemode=9,
-             relative_path=True,
-             show_multiview=False,
-             use_multiview=False,
-             display_type='DEFAULT',
-             sort_method='FILE_SORT_ALPHA',
-             name="Image"):
+def add_file(filepath: str = "",
+             filter_blender: bool = False,
+             filter_backup: bool = False,
+             filter_image: bool = True,
+             filter_movie: bool = True,
+             filter_python: bool = False,
+             filter_font: bool = False,
+             filter_sound: bool = False,
+             filter_text: bool = False,
+             filter_btx: bool = False,
+             filter_collada: bool = False,
+             filter_alembic: bool = False,
+             filter_folder: bool = True,
+             filter_blenlib: bool = False,
+             filemode: int = 9,
+             relative_path: bool = True,
+             show_multiview: bool = False,
+             use_multiview: bool = False,
+             display_type: int = 'DEFAULT',
+             sort_method: int = 'FILE_SORT_ALPHA',
+             name: str = "Image"):
     '''Add a file node to the current node editor 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param name: Name, Data-block name to assign 
-    :type name: string, (optional, never None)
+    :type name: str
     '''
 
     pass
 
 
-def add_mask(name="Mask"):
+def add_mask(name: str = "Mask"):
     '''Add a mask node to the current node editor 
 
     :param name: Name, Data-block name to assign 
-    :type name: string, (optional, never None)
+    :type name: str
     '''
 
     pass
 
 
-def add_node(type="", use_transform=False, settings=None):
+def add_node(type: str = "",
+             use_transform: bool = False,
+             settings: typing.List['bpy.types.NodeSetting'] = None):
     '''Add a node to the active tree 
 
     :param type: Node Type, Node type 
-    :type type: string, (optional, never None)
+    :type type: str
     :param use_transform: Use Transform, Start transform operator after inserting the node 
-    :type use_transform: boolean, (optional)
+    :type use_transform: bool
     :param settings: Settings, Settings to be applied on the newly created node 
-    :type settings: bpy_prop_collection of NodeSetting, (optional)
+    :type settings: typing.List['bpy.types.NodeSetting']
     '''
 
     pass
 
 
-def add_reroute(path=None, cursor=6):
+def add_reroute(path: typing.List['bpy.types.OperatorMousePath'] = None,
+                cursor: int = 6):
     '''Add a reroute node 
 
     :param path: path 
-    :type path: bpy_prop_collection of OperatorMousePath, (optional)
+    :type path: typing.List['bpy.types.OperatorMousePath']
     :param cursor: Cursor 
-    :type cursor: int in [0, inf], (optional)
+    :type cursor: int
     '''
 
     pass
 
 
-def add_search(type="", use_transform=False, settings=None, node_item=''):
+def add_search(type: str = "",
+               use_transform: bool = False,
+               settings: typing.List['bpy.types.NodeSetting'] = None,
+               node_item: int = ''):
     '''Add a node to the active tree 
 
     :param type: Node Type, Node type 
-    :type type: string, (optional, never None)
+    :type type: str
     :param use_transform: Use Transform, Start transform operator after inserting the node 
-    :type use_transform: boolean, (optional)
+    :type use_transform: bool
     :param settings: Settings, Settings to be applied on the newly created node 
-    :type settings: bpy_prop_collection of NodeSetting, (optional)
+    :type settings: typing.List['bpy.types.NodeSetting']
     :param node_item: Node Type, Node type 
-    :type node_item: enum in [], (optional)
+    :type node_item: int
     '''
 
     pass
@@ -171,11 +182,11 @@ def backimage_sample():
     pass
 
 
-def backimage_zoom(factor=1.2):
+def backimage_zoom(factor: float = 1.2):
     '''Zoom in/out the background image 
 
     :param factor: Factor 
-    :type factor: float in [0, 10], (optional)
+    :type factor: float
     '''
 
     pass
@@ -243,21 +254,18 @@ def detach_translate_attach(NODE_OT_detach=None,
     '''Detach nodes, move and attach to frame 
 
     :param NODE_OT_detach: Detach Nodes, Detach selected nodes from parents 
-    :type NODE_OT_detach: NODE_OT_detach, (optional)
     :param TRANSFORM_OT_translate: Translate, Translate (move) selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     :param NODE_OT_attach: Attach Nodes, Attach active node to a frame 
-    :type NODE_OT_attach: NODE_OT_attach, (optional)
     '''
 
     pass
 
 
-def duplicate(keep_inputs=False):
+def duplicate(keep_inputs: bool = False):
     '''Duplicate selected nodes 
 
     :param keep_inputs: Keep Inputs, Keep the input links to duplicated nodes 
-    :type keep_inputs: boolean, (optional)
+    :type keep_inputs: bool
     '''
 
     pass
@@ -267,9 +275,7 @@ def duplicate_move(NODE_OT_duplicate=None, NODE_OT_translate_attach=None):
     '''Duplicate selected nodes and move them 
 
     :param NODE_OT_duplicate: Duplicate Nodes, Duplicate selected nodes 
-    :type NODE_OT_duplicate: NODE_OT_duplicate, (optional)
     :param NODE_OT_translate_attach: Move and Attach, Move nodes and attach to frame 
-    :type NODE_OT_translate_attach: NODE_OT_translate_attach, (optional)
     '''
 
     pass
@@ -280,29 +286,27 @@ def duplicate_move_keep_inputs(NODE_OT_duplicate=None,
     '''Duplicate selected nodes keeping input links and move them 
 
     :param NODE_OT_duplicate: Duplicate Nodes, Duplicate selected nodes 
-    :type NODE_OT_duplicate: NODE_OT_duplicate, (optional)
     :param NODE_OT_translate_attach: Move and Attach, Move nodes and attach to frame 
-    :type NODE_OT_translate_attach: NODE_OT_translate_attach, (optional)
     '''
 
     pass
 
 
-def find_node(prev=False):
+def find_node(prev: bool = False):
     '''Search for named node and allow to select and activate it 
 
     :param prev: Previous 
-    :type prev: boolean, (optional)
+    :type prev: bool
     '''
 
     pass
 
 
-def group_edit(exit=False):
+def group_edit(exit: bool = False):
     '''Edit node group 
 
     :param exit: Exit 
-    :type exit: boolean, (optional)
+    :type exit: bool
     '''
 
     pass
@@ -324,11 +328,11 @@ def group_make():
     pass
 
 
-def group_separate(type='COPY'):
+def group_separate(type: int = 'COPY'):
     '''Separate selected nodes from the node group 
 
     :param type: TypeCOPY Copy, Copy to parent node tree, keep group intact.MOVE Move, Move to parent node tree, remove from group. 
-    :type type: enum in ['COPY', 'MOVE'], (optional)
+    :type type: int
     '''
 
     pass
@@ -374,21 +378,21 @@ def join():
     pass
 
 
-def link(detach=False):
+def link(detach: bool = False):
     '''Use the mouse to create a link between two nodes 
 
     :param detach: Detach, Detach and redirect existing links 
-    :type detach: boolean, (optional)
+    :type detach: bool
     '''
 
     pass
 
 
-def link_make(replace=False):
+def link_make(replace: bool = False):
     '''Makes a link between selected output in input sockets 
 
     :param replace: Replace, Replace socket connections with the new links 
-    :type replace: boolean, (optional)
+    :type replace: bool
     '''
 
     pass
@@ -402,13 +406,14 @@ def link_viewer():
     pass
 
 
-def links_cut(path=None, cursor=9):
+def links_cut(path: typing.List['bpy.types.OperatorMousePath'] = None,
+              cursor: int = 9):
     '''Use the mouse to cut (remove) some links 
 
     :param path: path 
-    :type path: bpy_prop_collection of OperatorMousePath, (optional)
+    :type path: typing.List['bpy.types.OperatorMousePath']
     :param cursor: Cursor 
-    :type cursor: int in [0, inf], (optional)
+    :type cursor: int
     '''
 
     pass
@@ -428,11 +433,8 @@ def move_detach_links(NODE_OT_links_detach=None,
     '''Move a node to detach links 
 
     :param NODE_OT_links_detach: Detach Links, Remove all links to selected nodes, and try to connect neighbor nodes together 
-    :type NODE_OT_links_detach: NODE_OT_links_detach, (optional)
     :param TRANSFORM_OT_translate: Translate, Translate (move) selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     :param NODE_OT_insert_offset: Insert Offset, Automatically offset nodes on insertion 
-    :type NODE_OT_insert_offset: NODE_OT_insert_offset, (optional)
     '''
 
     pass
@@ -443,9 +445,7 @@ def move_detach_links_release(NODE_OT_links_detach=None,
     '''Move a node to detach links 
 
     :param NODE_OT_links_detach: Detach Links, Remove all links to selected nodes, and try to connect neighbor nodes together 
-    :type NODE_OT_links_detach: NODE_OT_links_detach, (optional)
     :param NODE_OT_translate_attach: Move and Attach, Move nodes and attach to frame 
-    :type NODE_OT_translate_attach: NODE_OT_translate_attach, (optional)
     '''
 
     pass
@@ -459,25 +459,25 @@ def mute_toggle():
     pass
 
 
-def new_node_tree(type='', name="NodeTree"):
+def new_node_tree(type: int = '', name: str = "NodeTree"):
     '''Create a new node tree 
 
     :param type: Tree Type 
-    :type type: enum in [], (optional)
+    :type type: int
     :param name: Name 
-    :type name: string, (optional, never None)
+    :type name: str
     '''
 
     pass
 
 
-def node_color_preset_add(name="", remove_active=False):
+def node_color_preset_add(name: str = "", remove_active: bool = False):
     '''Add or remove a Node Color Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
@@ -499,21 +499,21 @@ def options_toggle():
     pass
 
 
-def output_file_add_socket(file_path="Image"):
+def output_file_add_socket(file_path: str = "Image"):
     '''Add a new input to a file output node 
 
     :param file_path: File Path, Sub-path of the output file 
-    :type file_path: string, (optional, never None)
+    :type file_path: str
     '''
 
     pass
 
 
-def output_file_move_active_socket(direction='DOWN'):
+def output_file_move_active_socket(direction: int = 'DOWN'):
     '''Move the active input of a file output node up or down the list 
 
     :param direction: Direction 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
@@ -583,95 +583,100 @@ def resize():
     pass
 
 
-def select(mouse_x=0, mouse_y=0, extend=False):
+def select(mouse_x: int = 0, mouse_y: int = 0, extend: bool = False):
     '''Select the node under the cursor 
 
     :param mouse_x: Mouse X 
-    :type mouse_x: int in [-inf, inf], (optional)
+    :type mouse_x: int
     :param mouse_y: Mouse Y 
-    :type mouse_y: int in [-inf, inf], (optional)
+    :type mouse_y: int
     :param extend: Extend 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''(De)select all nodes 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_border(gesture_mode=0,
-                  xmin=0,
-                  xmax=0,
-                  ymin=0,
-                  ymax=0,
-                  extend=True,
-                  tweak=False):
+def select_border(gesture_mode: int = 0,
+                  xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0,
+                  extend: bool = True,
+                  tweak: bool = False):
     '''Use box selection to select nodes 
 
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param tweak: Tweak, Only activate when mouse is not over a node - useful for tweak gesture 
-    :type tweak: boolean, (optional)
+    :type tweak: bool
     '''
 
     pass
 
 
-def select_circle(x=0, y=0, radius=1, gesture_mode=0):
+def select_circle(x: int = 0,
+                  y: int = 0,
+                  radius: int = 1,
+                  gesture_mode: int = 0):
     '''Use circle selection to select nodes 
 
     :param x: X 
-    :type x: int in [-inf, inf], (optional)
+    :type x: int
     :param y: Y 
-    :type y: int in [-inf, inf], (optional)
+    :type y: int
     :param radius: Radius 
-    :type radius: int in [1, inf], (optional)
+    :type radius: int
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     '''
 
     pass
 
 
-def select_grouped(extend=False, type='TYPE'):
+def select_grouped(extend: bool = False, type: int = 'TYPE'):
     '''Select nodes with similar properties 
 
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param type: Type 
-    :type type: enum in ['TYPE', 'COLOR', 'PREFIX', 'SUFFIX'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def select_lasso(path=None, deselect=False, extend=True):
+def select_lasso(path: typing.List['bpy.types.OperatorMousePath'] = None,
+                 deselect: bool = False,
+                 extend: bool = True):
     '''Select nodes using lasso selection 
 
     :param path: Path 
-    :type path: bpy_prop_collection of OperatorMousePath, (optional)
+    :type path: typing.List['bpy.types.OperatorMousePath']
     :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass
@@ -681,9 +686,7 @@ def select_link_viewer(NODE_OT_select=None, NODE_OT_link_viewer=None):
     '''Select node and link it to a viewer node 
 
     :param NODE_OT_select: Select, Select the node under the cursor 
-    :type NODE_OT_select: NODE_OT_select, (optional)
     :param NODE_OT_link_viewer: Link to Viewer Node, Link to viewer node 
-    :type NODE_OT_link_viewer: NODE_OT_link_viewer, (optional)
     '''
 
     pass
@@ -705,11 +708,11 @@ def select_linked_to():
     pass
 
 
-def select_same_type_step(prev=False):
+def select_same_type_step(prev: bool = False):
     '''Activate and view same node type, step by step 
 
     :param prev: Previous 
-    :type prev: boolean, (optional)
+    :type prev: bool
     '''
 
     pass
@@ -745,11 +748,8 @@ def translate_attach(TRANSFORM_OT_translate=None,
     '''Move nodes and attach to frame 
 
     :param TRANSFORM_OT_translate: Translate, Translate (move) selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     :param NODE_OT_attach: Attach Nodes, Attach active node to a frame 
-    :type NODE_OT_attach: NODE_OT_attach, (optional)
     :param NODE_OT_insert_offset: Insert Offset, Automatically offset nodes on insertion 
-    :type NODE_OT_insert_offset: NODE_OT_insert_offset, (optional)
     '''
 
     pass
@@ -761,11 +761,8 @@ def translate_attach_remove_on_cancel(TRANSFORM_OT_translate=None,
     '''Move nodes and attach to frame 
 
     :param TRANSFORM_OT_translate: Translate, Translate (move) selected items 
-    :type TRANSFORM_OT_translate: TRANSFORM_OT_translate, (optional)
     :param NODE_OT_attach: Attach Nodes, Attach active node to a frame 
-    :type NODE_OT_attach: NODE_OT_attach, (optional)
     :param NODE_OT_insert_offset: Insert Offset, Automatically offset nodes on insertion 
-    :type NODE_OT_insert_offset: NODE_OT_insert_offset, (optional)
     '''
 
     pass
@@ -779,21 +776,21 @@ def tree_path_parent():
     pass
 
 
-def tree_socket_add(in_out='IN'):
+def tree_socket_add(in_out: int = 'IN'):
     '''Add an input or output socket to the current node tree 
 
     :param in_out: Socket Type 
-    :type in_out: enum in ['IN', 'OUT'], (optional)
+    :type in_out: int
     '''
 
     pass
 
 
-def tree_socket_move(direction='UP'):
+def tree_socket_move(direction: int = 'UP'):
     '''Move a socket up or down in the current node tree’s sockets stack 
 
     :param direction: Direction 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
@@ -823,21 +820,26 @@ def view_selected():
     pass
 
 
-def viewer_border(gesture_mode=0, xmin=0, xmax=0, ymin=0, ymax=0, extend=True):
+def viewer_border(gesture_mode: int = 0,
+                  xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0,
+                  extend: bool = True):
     '''Set the boundaries for viewer operations 
 
     :param gesture_mode: Gesture Mode 
-    :type gesture_mode: int in [-inf, inf], (optional)
+    :type gesture_mode: int
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param extend: Extend, Extend selection instead of deselecting everything first 
-    :type extend: boolean, (optional)
+    :type extend: bool
     '''
 
     pass

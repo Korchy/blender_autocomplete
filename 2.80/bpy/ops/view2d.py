@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def ndof():
     '''Use a 3D mouse device to pan/zoom the view 
 
@@ -6,13 +10,13 @@ def ndof():
     pass
 
 
-def pan(deltax=0, deltay=0):
+def pan(deltax: int = 0, deltay: int = 0):
     '''Pan the view 
 
     :param deltax: Delta X 
-    :type deltax: int in [-inf, inf], (optional)
+    :type deltax: int
     :param deltay: Delta Y 
-    :type deltay: int in [-inf, inf], (optional)
+    :type deltay: int
     '''
 
     pass
@@ -26,53 +30,53 @@ def reset():
     pass
 
 
-def scroll_down(deltax=0, deltay=0, page=False):
+def scroll_down(deltax: int = 0, deltay: int = 0, page: bool = False):
     '''Scroll the view down 
 
     :param deltax: Delta X 
-    :type deltax: int in [-inf, inf], (optional)
+    :type deltax: int
     :param deltay: Delta Y 
-    :type deltay: int in [-inf, inf], (optional)
+    :type deltay: int
     :param page: Page, Scroll down one page 
-    :type page: boolean, (optional)
+    :type page: bool
     '''
 
     pass
 
 
-def scroll_left(deltax=0, deltay=0):
+def scroll_left(deltax: int = 0, deltay: int = 0):
     '''Scroll the view left 
 
     :param deltax: Delta X 
-    :type deltax: int in [-inf, inf], (optional)
+    :type deltax: int
     :param deltay: Delta Y 
-    :type deltay: int in [-inf, inf], (optional)
+    :type deltay: int
     '''
 
     pass
 
 
-def scroll_right(deltax=0, deltay=0):
+def scroll_right(deltax: int = 0, deltay: int = 0):
     '''Scroll the view right 
 
     :param deltax: Delta X 
-    :type deltax: int in [-inf, inf], (optional)
+    :type deltax: int
     :param deltay: Delta Y 
-    :type deltay: int in [-inf, inf], (optional)
+    :type deltay: int
     '''
 
     pass
 
 
-def scroll_up(deltax=0, deltay=0, page=False):
+def scroll_up(deltax: int = 0, deltay: int = 0, page: bool = False):
     '''Scroll the view up 
 
     :param deltax: Delta X 
-    :type deltax: int in [-inf, inf], (optional)
+    :type deltax: int
     :param deltay: Delta Y 
-    :type deltay: int in [-inf, inf], (optional)
+    :type deltay: int
     :param page: Page, Scroll up one page 
-    :type page: boolean, (optional)
+    :type page: bool
     '''
 
     pass
@@ -86,80 +90,88 @@ def scroller_activate():
     pass
 
 
-def smoothview(xmin=0, xmax=0, ymin=0, ymax=0, wait_for_input=True):
+def smoothview(xmin: int = 0,
+               xmax: int = 0,
+               ymin: int = 0,
+               ymax: int = 0,
+               wait_for_input: bool = True):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
+    :type wait_for_input: bool
     '''
 
     pass
 
 
-def zoom(deltax=0.0, deltay=0.0):
+def zoom(deltax: float = 0.0,
+         deltay: float = 0.0,
+         use_cursor_init: bool = True):
     '''Zoom in/out the view 
 
     :param deltax: Delta X 
-    :type deltax: float in [-inf, inf], (optional)
+    :type deltax: float
     :param deltay: Delta Y 
-    :type deltay: float in [-inf, inf], (optional)
+    :type deltay: float
+    :param use_cursor_init: Cursor Init, Use initial cursor position 
+    :type use_cursor_init: bool
     '''
 
     pass
 
 
-def zoom_border(xmin=0,
-                xmax=0,
-                ymin=0,
-                ymax=0,
-                wait_for_input=True,
-                zoom_out=False):
+def zoom_border(xmin: int = 0,
+                xmax: int = 0,
+                ymin: int = 0,
+                ymax: int = 0,
+                wait_for_input: bool = True,
+                zoom_out: bool = False):
     '''Zoom in the view to the nearest item contained in the border 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
+    :type wait_for_input: bool
     :param zoom_out: Zoom Out 
-    :type zoom_out: boolean, (optional)
+    :type zoom_out: bool
     '''
 
     pass
 
 
-def zoom_in(zoomfacx=0.0, zoomfacy=0.0):
+def zoom_in(zoomfacx: float = 0.0, zoomfacy: float = 0.0):
     '''Zoom in the view 
 
     :param zoomfacx: Zoom Factor X 
-    :type zoomfacx: float in [-inf, inf], (optional)
+    :type zoomfacx: float
     :param zoomfacy: Zoom Factor Y 
-    :type zoomfacy: float in [-inf, inf], (optional)
+    :type zoomfacy: float
     '''
 
     pass
 
 
-def zoom_out(zoomfacx=0.0, zoomfacy=0.0):
+def zoom_out(zoomfacx: float = 0.0, zoomfacy: float = 0.0):
     '''Zoom out the view 
 
     :param zoomfacx: Zoom Factor X 
-    :type zoomfacx: float in [-inf, inf], (optional)
+    :type zoomfacx: float
     :param zoomfacy: Zoom Factor Y 
-    :type zoomfacy: float in [-inf, inf], (optional)
+    :type zoomfacy: float
     '''
 
     pass

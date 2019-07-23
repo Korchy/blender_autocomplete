@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def autocomplete():
     '''Show a list of used text in the open document 
 
@@ -14,11 +18,11 @@ def comment():
     pass
 
 
-def convert_whitespace(type='SPACES'):
+def convert_whitespace(type: int = 'SPACES'):
     '''Convert whitespaces by type 
 
     :param type: Type, Type of whitespace to convert to 
-    :type type: enum in ['SPACES', 'TABS'], (optional)
+    :type type: int
     '''
 
     pass
@@ -32,13 +36,13 @@ def copy():
     pass
 
 
-def cursor_set(x=0, y=0):
+def cursor_set(x: int = 0, y: int = 0):
     '''Set cursor position 
 
     :param x: X 
-    :type x: int in [-inf, inf], (optional)
+    :type x: int
     :param y: Y 
-    :type y: int in [-inf, inf], (optional)
+    :type y: int
     '''
 
     pass
@@ -52,11 +56,11 @@ def cut():
     pass
 
 
-def delete(type='NEXT_CHARACTER'):
+def delete(type: int = 'NEXT_CHARACTER'):
     '''Delete text by cursor position 
 
     :param type: Type, Which part of the text to delete 
-    :type type: enum in ['NEXT_CHARACTER', 'PREVIOUS_CHARACTER', 'NEXT_WORD', 'PREVIOUS_WORD'], (optional)
+    :type type: int
     '''
 
     pass
@@ -94,21 +98,21 @@ def indent():
     pass
 
 
-def insert(text=""):
+def insert(text: str = ""):
     '''Insert text at cursor position 
 
     :param text: Text, Text to insert at the cursor position 
-    :type text: string, (optional, never None)
+    :type text: str
     '''
 
     pass
 
 
-def jump(line=1):
+def jump(line: int = 1):
     '''Jump cursor to line 
 
     :param line: Line, Line number to jump to 
-    :type line: int in [1, inf], (optional)
+    :type line: int
     '''
 
     pass
@@ -138,31 +142,31 @@ def make_internal():
     pass
 
 
-def move(type='LINE_BEGIN'):
+def move(type: int = 'LINE_BEGIN'):
     '''Move cursor to position type 
 
     :param type: Type, Where to move cursor to 
-    :type type: enum in ['LINE_BEGIN', 'LINE_END', 'FILE_TOP', 'FILE_BOTTOM', 'PREVIOUS_CHARACTER', 'NEXT_CHARACTER', 'PREVIOUS_WORD', 'NEXT_WORD', 'PREVIOUS_LINE', 'NEXT_LINE', 'PREVIOUS_PAGE', 'NEXT_PAGE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def move_lines(direction='DOWN'):
+def move_lines(direction: int = 'DOWN'):
     '''Move the currently selected line(s) up/down 
 
     :param direction: Direction 
-    :type direction: enum in ['UP', 'DOWN'], (optional)
+    :type direction: int
     '''
 
     pass
 
 
-def move_select(type='LINE_BEGIN'):
+def move_select(type: int = 'LINE_BEGIN'):
     '''Move the cursor while selecting 
 
     :param type: Type, Where to move cursor to, to make a selection 
-    :type type: enum in ['LINE_BEGIN', 'LINE_END', 'FILE_TOP', 'FILE_BOTTOM', 'PREVIOUS_CHARACTER', 'NEXT_CHARACTER', 'PREVIOUS_WORD', 'NEXT_WORD', 'PREVIOUS_LINE', 'NEXT_LINE', 'PREVIOUS_PAGE', 'NEXT_PAGE'], (optional)
+    :type type: int
     '''
 
     pass
@@ -176,62 +180,62 @@ def new():
     pass
 
 
-def open(filepath="",
-         filter_blender=False,
-         filter_backup=False,
-         filter_image=False,
-         filter_movie=False,
-         filter_python=True,
-         filter_font=False,
-         filter_sound=False,
-         filter_text=True,
-         filter_btx=False,
-         filter_collada=False,
-         filter_alembic=False,
-         filter_folder=True,
-         filter_blenlib=False,
-         filemode=9,
-         display_type='DEFAULT',
-         sort_method='FILE_SORT_ALPHA',
-         internal=False):
+def open(filepath: str = "",
+         filter_blender: bool = False,
+         filter_backup: bool = False,
+         filter_image: bool = False,
+         filter_movie: bool = False,
+         filter_python: bool = True,
+         filter_font: bool = False,
+         filter_sound: bool = False,
+         filter_text: bool = True,
+         filter_btx: bool = False,
+         filter_collada: bool = False,
+         filter_alembic: bool = False,
+         filter_folder: bool = True,
+         filter_blenlib: bool = False,
+         filemode: int = 9,
+         display_type: int = 'DEFAULT',
+         sort_method: int = 'FILE_SORT_ALPHA',
+         internal: bool = False):
     '''Open a new text data-block 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param internal: Make internal, Make text file internal after loading 
-    :type internal: boolean, (optional)
+    :type internal: bool
     '''
 
     pass
@@ -245,11 +249,11 @@ def overwrite_toggle():
     pass
 
 
-def paste(selection=False):
+def paste(selection: bool = False):
     '''Paste text from clipboard 
 
     :param selection: Selection, Paste text selected elsewhere rather than copied (X11 only) 
-    :type selection: boolean, (optional)
+    :type selection: bool
     '''
 
     pass
@@ -295,11 +299,11 @@ def replace_set_selected():
     pass
 
 
-def resolve_conflict(resolution='IGNORE'):
+def resolve_conflict(resolution: int = 'IGNORE'):
     '''When external text is out of sync, resolve the conflict 
 
     :param resolution: Resolution, How to solve conflict due to differences in internal and external text 
-    :type resolution: enum in ['IGNORE', 'RELOAD', 'SAVE', 'MAKE_INTERNAL'], (optional)
+    :type resolution: int
     '''
 
     pass
@@ -321,82 +325,82 @@ def save():
     pass
 
 
-def save_as(filepath="",
-            check_existing=True,
-            filter_blender=False,
-            filter_backup=False,
-            filter_image=False,
-            filter_movie=False,
-            filter_python=True,
-            filter_font=False,
-            filter_sound=False,
-            filter_text=True,
-            filter_btx=False,
-            filter_collada=False,
-            filter_alembic=False,
-            filter_folder=True,
-            filter_blenlib=False,
-            filemode=9,
-            display_type='DEFAULT',
-            sort_method='FILE_SORT_ALPHA'):
+def save_as(filepath: str = "",
+            check_existing: bool = True,
+            filter_blender: bool = False,
+            filter_backup: bool = False,
+            filter_image: bool = False,
+            filter_movie: bool = False,
+            filter_python: bool = True,
+            filter_font: bool = False,
+            filter_sound: bool = False,
+            filter_text: bool = True,
+            filter_btx: bool = False,
+            filter_collada: bool = False,
+            filter_alembic: bool = False,
+            filter_folder: bool = True,
+            filter_blenlib: bool = False,
+            filemode: int = 9,
+            display_type: int = 'DEFAULT',
+            sort_method: int = 'FILE_SORT_ALPHA'):
     '''Save active text file with options 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param check_existing: Check Existing, Check and warn on overwriting existing files 
-    :type check_existing: boolean, (optional)
+    :type check_existing: bool
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     '''
 
     pass
 
 
-def scroll(lines=1):
+def scroll(lines: int = 1):
     '''Undocumented 
 
     :param lines: Lines, Number of lines to scroll 
-    :type lines: int in [-inf, inf], (optional)
+    :type lines: int
     '''
 
     pass
 
 
-def scroll_bar(lines=1):
+def scroll_bar(lines: int = 1):
     '''Undocumented 
 
     :param lines: Lines, Number of lines to scroll 
-    :type lines: int in [-inf, inf], (optional)
+    :type lines: int
     '''
 
     pass
@@ -426,11 +430,11 @@ def select_word():
     pass
 
 
-def selection_set(select=False):
+def selection_set(select: bool = False):
     '''Set cursor selection 
 
     :param select: Select, Set selection end rather than cursor 
-    :type select: boolean, (optional)
+    :type select: bool
     '''
 
     pass
@@ -444,11 +448,11 @@ def start_find():
     pass
 
 
-def to_3d_object(split_lines=False):
+def to_3d_object(split_lines: bool = False):
     '''Create 3D text object from active text data-block 
 
     :param split_lines: Split Lines, Create one object per line in the text 
-    :type split_lines: boolean, (optional)
+    :type split_lines: bool
     '''
 
     pass

@@ -1,28 +1,48 @@
-def action_set(action=''):
+import sys
+import typing
+
+
+def action_set(action: int = ''):
     '''Change the active action used 
 
     :param action: Action 
-    :type action: enum in [], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def animdata_operation(type='CLEAR_ANIMDATA'):
+def animdata_operation(type: int = 'CLEAR_ANIMDATA'):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param type: Animation OperationCLEAR_ANIMDATA Clear Animation Data, Remove this animation data container.SET_ACT Set Action.CLEAR_ACT Unlink Action.REFRESH_DRIVERS Refresh Drivers.CLEAR_DRIVERS Clear Drivers. 
-    :type type: enum in ['CLEAR_ANIMDATA', 'SET_ACT', 'CLEAR_ACT', 'REFRESH_DRIVERS', 'CLEAR_DRIVERS'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def collection_delete(hierarchy=False):
+def collection_delete(hierarchy: bool = False):
     '''Delete selected collections 
 
     :param hierarchy: Hierarchy, Delete child objects and collections 
-    :type hierarchy: boolean, (optional)
+    :type hierarchy: bool
+    '''
+
+    pass
+
+
+def collection_disable():
+    '''Disable viewport drawing in the view layers 
+
+    '''
+
+    pass
+
+
+def collection_disable_render():
+    '''Do not render this collection 
+
     '''
 
     pass
@@ -37,7 +57,31 @@ def collection_drop():
 
 
 def collection_duplicate():
-    '''Duplicate selected collections 
+    '''Recursively duplicate the collection, all its children, objects and object data 
+
+    '''
+
+    pass
+
+
+def collection_duplicate_linked():
+    '''Recursively duplicate the collection, all its children and objects, with linked object data 
+
+    '''
+
+    pass
+
+
+def collection_enable():
+    '''Enable viewport drawing in the view layers 
+
+    '''
+
+    pass
+
+
+def collection_enable_render():
+    '''Render the collection 
 
     '''
 
@@ -54,6 +98,22 @@ def collection_exclude_clear():
 
 def collection_exclude_set():
     '''Exclude collection from the active view layer 
+
+    '''
+
+    pass
+
+
+def collection_hide():
+    '''Hide the collection in this view layer 
+
+    '''
+
+    pass
+
+
+def collection_hide_inside():
+    '''Hide all the objects and collections inside the collection 
 
     '''
 
@@ -100,6 +160,16 @@ def collection_instance():
     pass
 
 
+def collection_isolate(extend: bool = False):
+    '''Hide all but this collection and its parents 
+
+    :param extend: Extend, Extend current visible collections 
+    :type extend: bool
+    '''
+
+    pass
+
+
 def collection_link():
     '''Link selected collections to active scene 
 
@@ -108,11 +178,11 @@ def collection_link():
     pass
 
 
-def collection_new(nested=True):
+def collection_new(nested: bool = True):
     '''Add a new collection inside selected collection 
 
     :param nested: Nested, Add as child of selected collection 
-    :type nested: boolean, (optional)
+    :type nested: bool
     '''
 
     pass
@@ -134,21 +204,37 @@ def collection_objects_select():
     pass
 
 
-def constraint_operation(type='ENABLE'):
-    '''Undocumented contribute <https://developer.blender.org/T51061> 
+def collection_show():
+    '''Show the collection in this view layer 
 
-    :param type: Constraint Operation 
-    :type type: enum in ['ENABLE', 'DISABLE', 'DELETE'], (optional)
     '''
 
     pass
 
 
-def data_operation(type='SELECT'):
+def collection_show_inside():
+    '''Show all the objects and collections inside the collection 
+
+    '''
+
+    pass
+
+
+def constraint_operation(type: int = 'ENABLE'):
+    '''Undocumented contribute <https://developer.blender.org/T51061> 
+
+    :param type: Constraint Operation 
+    :type type: int
+    '''
+
+    pass
+
+
+def data_operation(type: int = 'SELECT'):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param type: Data Operation 
-    :type type: enum in ['SELECT', 'DESELECT', 'HIDE', 'UNHIDE', 'SELECT_LINKED'], (optional)
+    :type type: int
     '''
 
     pass
@@ -178,8 +264,24 @@ def expanded_toggle():
     pass
 
 
+def hide():
+    '''Hide selected objects and collections 
+
+    '''
+
+    pass
+
+
 def highlight_update():
     '''Update the item highlight based on the current mouse position 
+
+    '''
+
+    pass
+
+
+def id_copy():
+    '''Selected data-blocks are copied to the clipboard 
 
     '''
 
@@ -194,37 +296,49 @@ def id_delete():
     pass
 
 
-def id_operation(type='UNLINK'):
+def id_operation(type: int = 'UNLINK'):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
-    :param type: ID data OperationUNLINK Unlink.LOCAL Make Local.STATIC_OVERRIDE Add Static Override, Add a local static override of this data-block.SINGLE Make Single User.DELETE Delete, WARNING: no undo.REMAP Remap Users, Make all users of selected data-blocks to use instead current (clicked) one.ADD_FAKE Add Fake User, Ensure data-block gets saved even if it isn’t in use (e.g. for motion and material libraries).CLEAR_FAKE Clear Fake User.RENAME Rename.SELECT_LINKED Select Linked. 
-    :type type: enum in ['UNLINK', 'LOCAL', 'STATIC_OVERRIDE', 'SINGLE', 'DELETE', 'REMAP', 'ADD_FAKE', 'CLEAR_FAKE', 'RENAME', 'SELECT_LINKED'], (optional)
+    :param type: ID data OperationUNLINK Unlink.LOCAL Make Local.OVERRIDE_LIBRARY Add Library Override, Add a local override of this linked data-block.SINGLE Make Single User.DELETE Delete.REMAP Remap Users, Make all users of selected data-blocks to use instead current (clicked) one.COPY Copy.PASTE Paste.ADD_FAKE Add Fake User, Ensure data-block gets saved even if it isn’t in use (e.g. for motion and material libraries).CLEAR_FAKE Clear Fake User.RENAME Rename.SELECT_LINKED Select Linked. 
+    :type type: int
     '''
 
     pass
 
 
-def id_remap(id_type='OBJECT', old_id='', new_id=''):
+def id_paste():
+    '''Data-blocks from the clipboard are pasted 
+
+    '''
+
+    pass
+
+
+def id_remap(id_type: int = 'OBJECT', old_id: int = '', new_id: int = ''):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param id_type: ID Type 
-    :type id_type: enum in ['ACTION', 'ARMATURE', 'BRUSH', 'CAMERA', 'CACHEFILE', 'CURVE', 'FONT', 'GREASEPENCIL', 'COLLECTION', 'IMAGE', 'KEY', 'LIGHT', 'LIBRARY', 'LINESTYLE', 'LATTICE', 'MASK', 'MATERIAL', 'META', 'MESH', 'MOVIECLIP', 'NODETREE', 'OBJECT', 'PAINTCURVE', 'PALETTE', 'PARTICLE', 'LIGHT_PROBE', 'SCENE', 'SOUND', 'SPEAKER', 'TEXT', 'TEXTURE', 'WINDOWMANAGER', 'WORLD', 'WORKSPACE'], (optional)
+    :type id_type: int
     :param old_id: Old ID, Old ID to replace 
-    :type old_id: enum in [], (optional)
+    :type old_id: int
     :param new_id: New ID, New ID to remap all selected IDs’ users to 
-    :type new_id: enum in [], (optional)
+    :type new_id: int
     '''
 
     pass
 
 
-def item_activate(extend=True, recursive=False):
+def item_activate(extend: bool = True,
+                  recursive: bool = False,
+                  deselect_all: bool = False):
     '''Handle mouse clicks to select and activate items 
 
     :param extend: Extend, Extend selection for activation 
-    :type extend: boolean, (optional)
+    :type extend: bool
     :param recursive: Recursive, Select Objects and their children 
-    :type recursive: boolean, (optional)
+    :type recursive: bool
+    :param deselect_all: Deselect On Nothing, Deselect all when nothing under the cursor 
+    :type deselect_all: bool
     '''
 
     pass
@@ -238,11 +352,11 @@ def item_drag_drop():
     pass
 
 
-def item_openclose(all=True):
+def item_openclose(all: bool = True):
     '''Toggle whether item under cursor is enabled or closed 
 
     :param all: All, Close or open all items 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
@@ -272,11 +386,11 @@ def keyingset_remove_selected():
     pass
 
 
-def lib_operation(type='RENAME'):
+def lib_operation(type: int = 'RENAME'):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param type: Library OperationRENAME Rename.DELETE Delete, Delete this library and all its item from Blender - WARNING: no undo.RELOCATE Relocate, Select a new path for this library, and reload all its data.RELOAD Reload, Reload all data from this library. 
-    :type type: enum in ['RENAME', 'DELETE', 'RELOCATE', 'RELOAD'], (optional)
+    :type type: int
     '''
 
     pass
@@ -298,21 +412,21 @@ def material_drop():
     pass
 
 
-def modifier_operation(type='TOGVIS'):
+def modifier_operation(type: int = 'TOGVIS'):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param type: Modifier Operation 
-    :type type: enum in ['TOGVIS', 'TOGREN', 'DELETE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def object_operation(type='SELECT'):
+def object_operation(type: int = 'SELECT'):
     '''Undocumented contribute <https://developer.blender.org/T51061> 
 
     :param type: Object OperationSELECT Select.DESELECT Deselect.SELECT_HIERARCHY Select Hierarchy.DELETE Delete.DELETE_HIERARCHY Delete Hierarchy.REMAP Remap Users, Make all users of selected data-blocks to use instead a new chosen one.RENAME Rename.OBJECT_MODE_ENTER Enter Mode.OBJECT_MODE_EXIT Exit Mode. 
-    :type type: enum in ['SELECT', 'DESELECT', 'SELECT_HIERARCHY', 'DELETE', 'DELETE_HIERARCHY', 'REMAP', 'RENAME', 'OBJECT_MODE_ENTER', 'OBJECT_MODE_EXIT'], (optional)
+    :type type: int
     '''
 
     pass
@@ -326,8 +440,8 @@ def operation():
     pass
 
 
-def orphans_purge():
-    '''Clear all orphaned data-blocks without any users from the file (cannot be undone, saves to current .blend file) 
+def orphans_purge(num_deleted=0):
+    '''Clear all orphaned data-blocks without any users from the file 
 
     '''
 
@@ -342,15 +456,17 @@ def parent_clear():
     pass
 
 
-def parent_drop(child="Object", parent="Object", type='OBJECT'):
+def parent_drop(child: str = "Object",
+                parent: str = "Object",
+                type: int = 'OBJECT'):
     '''Drag to parent in Outliner 
 
     :param child: Child, Child Object 
-    :type child: string, (optional, never None)
+    :type child: str
     :param parent: Parent, Parent Object 
-    :type parent: string, (optional, never None)
+    :type parent: str
     :param type: Type 
-    :type type: enum in ['OBJECT', 'ARMATURE', 'ARMATURE_NAME', 'ARMATURE_AUTO', 'ARMATURE_ENVELOPE', 'BONE', 'BONE_RELATIVE', 'CURVE', 'FOLLOW', 'PATH_CONST', 'LATTICE', 'VERTEX', 'VERTEX_TRI'], (optional)
+    :type type: int
     '''
 
     pass
@@ -364,56 +480,56 @@ def scene_drop():
     pass
 
 
-def scene_operation(type='DELETE'):
+def scene_operation(type: int = 'DELETE'):
     '''Context menu for scene operations 
 
     :param type: Scene Operation 
-    :type type: enum in ['DELETE'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def scroll_page(up=False):
+def scroll_page(up: bool = False):
     '''Scroll page up or down 
 
     :param up: Up, Scroll up one page 
-    :type up: boolean, (optional)
+    :type up: bool
     '''
 
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''Toggle the Outliner selection of items 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_box(xmin=0,
-               xmax=0,
-               ymin=0,
-               ymax=0,
-               wait_for_input=True,
-               deselect=False):
+def select_box(xmin: int = 0,
+               xmax: int = 0,
+               ymin: int = 0,
+               ymax: int = 0,
+               wait_for_input: bool = True,
+               mode: int = 'SET'):
     '''Use box selection to select tree elements 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
-    :param deselect: Deselect, Deselect rather than select items 
-    :type deselect: boolean, (optional)
+    :type wait_for_input: bool
+    :param mode: ModeSET Set, Set a new selection.ADD Extend, Extend existing selection.SUB Subtract, Subtract existing selection. 
+    :type mode: int
     '''
 
     pass
@@ -435,11 +551,19 @@ def show_hierarchy():
     pass
 
 
-def show_one_level(open=True):
+def show_one_level(open: bool = True):
     '''Expand/collapse all entries by one level 
 
     :param open: Open, Expand all entries one level deep 
-    :type open: boolean, (optional)
+    :type open: bool
+    '''
+
+    pass
+
+
+def unhide_all():
+    '''Unhide all objects and collections 
+
     '''
 
     pass

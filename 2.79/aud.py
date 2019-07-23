@@ -1,68 +1,5 @@
-AUD_DEVICE_JACK = None
-'''constant value 3 '''
-
-AUD_DEVICE_NULL = None
-'''constant value 0 '''
-
-AUD_DEVICE_OPENAL = None
-'''constant value 1 '''
-
-AUD_DEVICE_SDL = None
-'''constant value 2 '''
-
-AUD_DISTANCE_MODEL_EXPONENT = None
-'''constant value 5 '''
-
-AUD_DISTANCE_MODEL_EXPONENT_CLAMPED = None
-'''constant value 6 '''
-
-AUD_DISTANCE_MODEL_INVALID = None
-'''constant value 0 '''
-
-AUD_DISTANCE_MODEL_INVERSE = None
-'''constant value 1 '''
-
-AUD_DISTANCE_MODEL_INVERSE_CLAMPED = None
-'''constant value 2 '''
-
-AUD_DISTANCE_MODEL_LINEAR = None
-'''constant value 3 '''
-
-AUD_DISTANCE_MODEL_LINEAR_CLAMPED = None
-'''constant value 4 '''
-
-AUD_FORMAT_FLOAT32 = None
-'''constant value 36 '''
-
-AUD_FORMAT_FLOAT64 = None
-'''constant value 40 '''
-
-AUD_FORMAT_INVALID = None
-'''constant value 0 '''
-
-AUD_FORMAT_S16 = None
-'''constant value 18 '''
-
-AUD_FORMAT_S24 = None
-'''constant value 19 '''
-
-AUD_FORMAT_S32 = None
-'''constant value 20 '''
-
-AUD_FORMAT_U8 = None
-'''constant value 1 '''
-
-AUD_STATUS_INVALID = None
-'''constant value 0 '''
-
-AUD_STATUS_PAUSED = None
-'''constant value 2 '''
-
-AUD_STATUS_PLAYING = None
-'''constant value 1 '''
-
-AUD_STATUS_STOPPED = None
-'''constant value 3 '''
+import sys
+import typing
 
 
 class Device:
@@ -165,3 +102,70 @@ class Handle:
 
 class error:
     pass
+
+
+AUD_DEVICE_JACK = None
+'''constant value 3 '''
+
+AUD_DEVICE_NULL = None
+'''constant value 0 '''
+
+AUD_DEVICE_OPENAL = None
+'''constant value 1 '''
+
+AUD_DEVICE_SDL = None
+'''constant value 2 '''
+
+AUD_DISTANCE_MODEL_EXPONENT = None
+'''constant value 5 '''
+
+AUD_DISTANCE_MODEL_EXPONENT_CLAMPED = None
+'''constant value 6 '''
+
+AUD_DISTANCE_MODEL_INVALID = None
+'''constant value 0 '''
+
+AUD_DISTANCE_MODEL_INVERSE = None
+'''constant value 1 '''
+
+AUD_DISTANCE_MODEL_INVERSE_CLAMPED = None
+'''constant value 2 '''
+
+AUD_DISTANCE_MODEL_LINEAR = None
+'''constant value 3 '''
+
+AUD_DISTANCE_MODEL_LINEAR_CLAMPED = None
+'''constant value 4 '''
+
+AUD_FORMAT_FLOAT32 = None
+'''constant value 36 '''
+
+AUD_FORMAT_FLOAT64 = None
+'''constant value 40 '''
+
+AUD_FORMAT_INVALID = None
+'''constant value 0 '''
+
+AUD_FORMAT_S16 = None
+'''constant value 18 '''
+
+AUD_FORMAT_S24 = None
+'''constant value 19 '''
+
+AUD_FORMAT_S32 = None
+'''constant value 20 '''
+
+AUD_FORMAT_U8 = None
+'''constant value 1 '''
+
+AUD_STATUS_INVALID = None
+'''constant value 0 '''
+
+AUD_STATUS_PAUSED = None
+'''constant value 2 '''
+
+AUD_STATUS_PLAYING = None
+'''constant value 1 '''
+
+AUD_STATUS_STOPPED = None
+'''constant value 3 '''

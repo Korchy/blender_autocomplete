@@ -1,20 +1,24 @@
+import sys
+import typing
+
+
 class GPUOffscreen:
     '''unbind(restore=True) '''
 
-    color_texture = None
+    color_texture: int = None
     '''Color texture. 
 
-    :type:  int 
+    :type: int
     '''
 
-    height = None
+    height: int = None
     '''Texture height. 
 
-    :type:  int 
+    :type: int
     '''
 
-    width = None
+    width: int = None
     '''Texture width. 
 
-    :type:  int 
+    :type: int
     '''

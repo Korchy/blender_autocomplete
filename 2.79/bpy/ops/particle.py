@@ -1,64 +1,69 @@
-def brush_edit(stroke=None):
+import sys
+import typing
+import bpy
+
+
+def brush_edit(stroke: typing.List['bpy.types.OperatorStrokeElement'] = None):
     '''Apply a stroke of brush to the particles 
 
     :param stroke: Stroke 
-    :type stroke: bpy_prop_collection of OperatorStrokeElement, (optional)
+    :type stroke: typing.List['bpy.types.OperatorStrokeElement']
     '''
 
     pass
 
 
-def connect_hair(all=False):
+def connect_hair(all: bool = False):
     '''Connect hair to the emitter mesh 
 
     :param all: All hair, Connect all hair systems to the emitter mesh 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
 
 
-def copy_particle_systems(space='OBJECT',
-                          remove_target_particles=True,
-                          use_active=False):
+def copy_particle_systems(space: int = 'OBJECT',
+                          remove_target_particles: bool = True,
+                          use_active: bool = False):
     '''Copy particle systems from the active object to selected objects 
 
     :param space: Space, Space transform for copying from one object to anotherOBJECT Object, Copy inside each object’s local space.WORLD World, Copy in world space. 
-    :type space: enum in ['OBJECT', 'WORLD'], (optional)
+    :type space: int
     :param remove_target_particles: Remove Target Particles, Remove particle systems on the target objects 
-    :type remove_target_particles: boolean, (optional)
+    :type remove_target_particles: bool
     :param use_active: Use Active, Use the active particle system from the context 
-    :type use_active: boolean, (optional)
+    :type use_active: bool
     '''
 
     pass
 
 
-def delete(type='PARTICLE'):
+def delete(type: int = 'PARTICLE'):
     '''Delete selected particles or keys 
 
     :param type: Type, Delete a full particle or only keys 
-    :type type: enum in ['PARTICLE', 'KEY'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def disconnect_hair(all=False):
+def disconnect_hair(all: bool = False):
     '''Disconnect hair from the emitter mesh 
 
     :param all: All hair, Disconnect all hair systems from the emitter mesh 
-    :type all: boolean, (optional)
+    :type all: bool
     '''
 
     pass
 
 
-def duplicate_particle_system(use_duplicate_settings=False):
+def duplicate_particle_system(use_duplicate_settings: bool = False):
     '''Duplicate particle system within the active object 
 
     :param use_duplicate_settings: Duplicate Settings, Duplicate settings as well, so new particle system uses own settings 
-    :type use_duplicate_settings: boolean, (optional)
+    :type use_duplicate_settings: bool
     '''
 
     pass
@@ -104,23 +109,23 @@ def edited_clear():
     pass
 
 
-def hair_dynamics_preset_add(name="", remove_active=False):
+def hair_dynamics_preset_add(name: str = "", remove_active: bool = False):
     '''Add or remove a Hair Dynamics Preset 
 
     :param name: Name, Name of the preset, used to make the path name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param remove_active: remove_active 
-    :type remove_active: boolean, (optional)
+    :type remove_active: bool
     '''
 
     pass
 
 
-def hide(unselected=False):
+def hide(unselected: bool = False):
     '''Hide selected particles 
 
     :param unselected: Unselected, Hide unselected rather than selected 
-    :type unselected: boolean, (optional)
+    :type unselected: bool
     '''
 
     pass
@@ -158,21 +163,21 @@ def particle_edit_toggle():
     pass
 
 
-def rekey(keys_number=2):
+def rekey(keys_number: int = 2):
     '''Change the number of keys of selected particles (root and tip keys included) 
 
     :param keys_number: Number of Keys 
-    :type keys_number: int in [2, inf], (optional)
+    :type keys_number: int
     '''
 
     pass
 
 
-def remove_doubles(threshold=0.0002):
+def remove_doubles(threshold: float = 0.0002):
     '''Remove selected particles close enough of others 
 
     :param threshold: Merge Distance, Threshold distance withing which particles are removed 
-    :type threshold: float in [0, inf], (optional)
+    :type threshold: float
     '''
 
     pass
@@ -186,11 +191,11 @@ def reveal():
     pass
 
 
-def select_all(action='TOGGLE'):
+def select_all(action: int = 'TOGGLE'):
     '''(De)select all particles’ keys 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
@@ -204,13 +209,13 @@ def select_less():
     pass
 
 
-def select_linked(deselect=False, location=(0, 0)):
+def select_linked(deselect: bool = False, location: int = (0, 0)):
     '''Select nearest particle from mouse pointer 
 
     :param deselect: Deselect, Deselect linked keys rather than selecting them 
-    :type deselect: boolean, (optional)
+    :type deselect: bool
     :param location: Location 
-    :type location: int array of 2 items in [0, inf], (optional)
+    :type location: int
     '''
 
     pass
@@ -224,37 +229,40 @@ def select_more():
     pass
 
 
-def select_random(percent=50.0, seed=0, action='SELECT', type='HAIR'):
+def select_random(percent: float = 50.0,
+                  seed: int = 0,
+                  action: int = 'SELECT',
+                  type: int = 'HAIR'):
     '''Select a randomly distributed set of hair or points 
 
     :param percent: Percent, Percentage of objects to select randomly 
-    :type percent: float in [0, 100], (optional)
+    :type percent: float
     :param seed: Random Seed, Seed for the random number generator 
-    :type seed: int in [0, inf], (optional)
+    :type seed: int
     :param action: Action, Selection action to executeSELECT Select, Select all elements.DESELECT Deselect, Deselect all elements. 
-    :type action: enum in ['SELECT', 'DESELECT'], (optional)
+    :type action: int
     :param type: Type, Select either hair or points 
-    :type type: enum in ['HAIR', 'POINTS'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def select_roots(action='SELECT'):
+def select_roots(action: int = 'SELECT'):
     '''Select roots of all visible particles 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
 
 
-def select_tips(action='SELECT'):
+def select_tips(action: int = 'SELECT'):
     '''Select tips of all visible particles 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: enum in ['TOGGLE', 'SELECT', 'DESELECT', 'INVERT'], (optional)
+    :type action: int
     '''
 
     pass
@@ -308,11 +316,11 @@ def unify_length():
     pass
 
 
-def weight_set(factor=1.0):
+def weight_set(factor: float = 1.0):
     '''Set the weight of selected keys 
 
     :param factor: Factor, Interpolation factor between current brush weight, and keys’ weights 
-    :type factor: float in [0, 1], (optional)
+    :type factor: float
     '''
 
     pass

@@ -1,22 +1,24 @@
+import sys
+import typing
 categories = None
-'''constant value bpy.utils.units.categories(NONE=NONE, LENGTH=LENGTH, AREA=AREA, VOLUME=VOLUME, MASS=MASS, ROTATION=ROTATION, TIME=TIME, VELOCITY=VELOCITY, ACCELERATION=ACCELERATION, CAMERA=CAMERA) '''
+'''constant value bpy.utils.units.categories(NONE=NONE, LENGTH=LENGTH, AREA=AREA, VOLUME=VOLUME, MASS=MASS, ROTATION=ROTATION, TIME=TIME, VELOCITY=VELOCITY, ACCELERATION=ACCELERATION, CAMERA=CAMERA, POWER=POWER) '''
 
 systems = None
 '''constant value bpy.utils.units.systems(NONE=NONE, METRIC=METRIC, IMPERIAL=IMPERIAL) '''
 
 
-def to_string(unit_system,
-              unit_category,
-              value,
-              precision=3,
-              split_unit=False,
-              compatible_unit=False):
+def to_string(unit_system: str,
+              unit_category: str,
+              value: float,
+              precision: int = 3,
+              split_unit: bool = False,
+              compatible_unit: bool = False) -> str:
     '''Convert a given input float value into a string with units. 
 
     :param unit_system: The unit system, from bpy.utils.units.systems. 
-    :type unit_system: string
+    :type unit_system: str
     :param unit_category: The category of data we are converting (length, area, rotation, etc.), from bpy.utils.units.categories. 
-    :type unit_category: string
+    :type unit_category: str
     :param value: The value to convert to a string. 
     :type value: float
     :param precision: Number of digits after the comma. 
@@ -31,17 +33,20 @@ def to_string(unit_system,
     pass
 
 
-def to_value(unit_system, unit_category, str_input, str_ref_unit=None):
+def to_value(unit_system: str,
+             unit_category: str,
+             str_input: str,
+             str_ref_unit: str = None) -> float:
     '''Convert a given input string into a float value. 
 
     :param unit_system: The unit system, from bpy.utils.units.systems. 
-    :type unit_system: string
+    :type unit_system: str
     :param unit_category: The category of data we are converting (length, area, rotation, etc.), from bpy.utils.units.categories. 
-    :type unit_category: string
+    :type unit_category: str
     :param str_input: The string to convert to a float value. 
-    :type str_input: string
+    :type str_input: str
     :param str_ref_unit: A reference string from which to extract a default unit, if none is found in str_input. 
-    :type str_ref_unit: string or None
+    :type str_ref_unit: str
     :return:  The converted/interpreted value. 
     '''
 

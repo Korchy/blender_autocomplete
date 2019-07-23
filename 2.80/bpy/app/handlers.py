@@ -1,3 +1,5 @@
+import sys
+import typing
 depsgraph_update_post = None
 '''on depsgraph update (post) '''
 
@@ -10,6 +12,9 @@ frame_change_post = None
 frame_change_pre = None
 '''on frame change for playback and rendering (before) '''
 
+load_factory_preferences_post = None
+'''on loading factory preferences (after) '''
+
 load_factory_startup_post = None
 '''on loading factory startup (after) '''
 
@@ -18,6 +23,9 @@ load_post = None
 
 load_pre = None
 '''on loading a new blend file (before) '''
+
+persistent = None
+'''Function decorator for callback functions not to be removed when loading new files '''
 
 redo_post = None
 '''on loading a redo step (after) '''
@@ -60,6 +68,3 @@ undo_pre = None
 
 version_update = None
 '''on ending the versioning code '''
-
-persistent = None
-'''Function decorator for callback functions not to be removed when loading new files '''

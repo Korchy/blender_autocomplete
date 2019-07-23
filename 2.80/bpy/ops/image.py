@@ -1,3 +1,8 @@
+import sys
+import typing
+import bpy
+
+
 def add_render_slot():
     '''Add a new render slot 
 
@@ -6,18 +11,18 @@ def add_render_slot():
     pass
 
 
-def change_frame(frame=0):
+def change_frame(frame: int = 0):
     '''Interactively change the current frame number 
 
     :param frame: Frame 
-    :type frame: int in [-1048574, 1048574], (optional)
+    :type frame: int
     '''
 
     pass
 
 
 def clear_render_border():
-    '''Clear the boundaries of the border render and disable border render 
+    '''Clear the boundaries of the render region and disable render region 
 
     '''
 
@@ -32,47 +37,52 @@ def clear_render_slot():
     pass
 
 
-def curves_point_set(point='BLACK_POINT'):
+def curves_point_set(point: int = 'BLACK_POINT', size: int = 1):
     '''Set black point or white point for curves 
 
     :param point: Point, Set black point or white point for curves 
-    :type point: enum in ['BLACK_POINT', 'WHITE_POINT'], (optional)
+    :type point: int
+    :param size: Sample Size 
+    :type size: int
     '''
 
     pass
 
 
-def cycle_render_slot(reverse=False):
+def cycle_render_slot(reverse: bool = False):
     '''Cycle through all non-void render slots 
 
     :param reverse: Cycle in Reverse 
-    :type reverse: boolean, (optional)
+    :type reverse: bool
     '''
 
     pass
 
 
-def external_edit(filepath=""):
+def external_edit(filepath: str = ""):
     '''Edit image in an external application 
 
     :param filepath: filepath 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     '''
 
     pass
 
 
-def invert(invert_r=False, invert_g=False, invert_b=False, invert_a=False):
+def invert(invert_r: bool = False,
+           invert_g: bool = False,
+           invert_b: bool = False,
+           invert_a: bool = False):
     '''Invert image’s channels 
 
     :param invert_r: Red, Invert Red Channel 
-    :type invert_r: boolean, (optional)
+    :type invert_r: bool
     :param invert_g: Green, Invert Green Channel 
-    :type invert_g: boolean, (optional)
+    :type invert_g: bool
     :param invert_b: Blue, Invert Blue Channel 
-    :type invert_b: boolean, (optional)
+    :type invert_b: bool
     :param invert_a: Alpha, Invert Alpha Channel 
-    :type invert_a: boolean, (optional)
+    :type invert_a: bool
     '''
 
     pass
@@ -86,118 +96,116 @@ def match_movie_length():
     pass
 
 
-def new(name="Untitled",
-        width=1024,
-        height=1024,
-        color=(0.0, 0.0, 0.0, 1.0),
-        alpha=True,
-        generated_type='BLANK',
-        float=False,
-        use_stereo_3d=False):
+def new(name: str = "Untitled",
+        width: int = 1024,
+        height: int = 1024,
+        color: float = (0.0, 0.0, 0.0, 1.0),
+        alpha: bool = True,
+        generated_type: int = 'BLANK',
+        float: bool = False,
+        use_stereo_3d: bool = False):
     '''Create a new image 
 
     :param name: Name, Image data-block name 
-    :type name: string, (optional, never None)
+    :type name: str
     :param width: Width, Image width 
-    :type width: int in [1, inf], (optional)
+    :type width: int
     :param height: Height, Image height 
-    :type height: int in [1, inf], (optional)
+    :type height: int
     :param color: Color, Default fill color 
-    :type color: float array of 4 items in [0, inf], (optional)
+    :type color: float
     :param alpha: Alpha, Create an image with an alpha channel 
-    :type alpha: boolean, (optional)
+    :type alpha: bool
     :param generated_type: Generated Type, Fill the image with a grid for UV map testingBLANK Blank, Generate a blank image.UV_GRID UV Grid, Generated grid to test UV mappings.COLOR_GRID Color Grid, Generated improved UV grid to test UV mappings. 
-    :type generated_type: enum in ['BLANK', 'UV_GRID', 'COLOR_GRID'], (optional)
+    :type generated_type: int
     :param float: 32 bit Float, Create image with 32 bit floating point bit depth 
-    :type float: boolean, (optional)
+    :type float: bool
     :param use_stereo_3d: Stereo 3D, Create an image with left and right views 
-    :type use_stereo_3d: boolean, (optional)
+    :type use_stereo_3d: bool
     '''
 
     pass
 
 
-def open(filepath="",
-         directory="",
-         files=None,
-         filter_blender=False,
-         filter_backup=False,
-         filter_image=True,
-         filter_movie=True,
-         filter_python=False,
-         filter_font=False,
-         filter_sound=False,
-         filter_text=False,
-         filter_btx=False,
-         filter_collada=False,
-         filter_alembic=False,
-         filter_folder=True,
-         filter_blenlib=False,
-         filemode=9,
-         relative_path=True,
-         show_multiview=False,
-         use_multiview=False,
-         display_type='DEFAULT',
-         sort_method='FILE_SORT_ALPHA',
-         use_sequence_detection=True):
+def open(filepath: str = "",
+         directory: str = "",
+         files: typing.List['bpy.types.OperatorFileListElement'] = None,
+         filter_blender: bool = False,
+         filter_backup: bool = False,
+         filter_image: bool = True,
+         filter_movie: bool = True,
+         filter_python: bool = False,
+         filter_font: bool = False,
+         filter_sound: bool = False,
+         filter_text: bool = False,
+         filter_btx: bool = False,
+         filter_collada: bool = False,
+         filter_alembic: bool = False,
+         filter_folder: bool = True,
+         filter_blenlib: bool = False,
+         filemode: int = 9,
+         relative_path: bool = True,
+         show_multiview: bool = False,
+         use_multiview: bool = False,
+         display_type: int = 'DEFAULT',
+         sort_method: int = 'FILE_SORT_ALPHA',
+         use_sequence_detection: bool = True):
     '''Open image 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param directory: Directory, Directory of the file 
-    :type directory: string, (optional, never None)
+    :type directory: str
     :param files: Files 
-    :type files: bpy_prop_collection of OperatorFileListElement, (optional)
+    :type files: typing.List['bpy.types.OperatorFileListElement']
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     :param use_sequence_detection: Detect Sequences, Automatically detect animated sequences in selected images (based on file names) 
-    :type use_sequence_detection: boolean, (optional)
+    :type use_sequence_detection: bool
     '''
 
     pass
 
 
-def pack(as_png=False):
+def pack():
     '''Pack an image as embedded data into the .blend file 
 
-    :param as_png: Pack As PNG, Pack image as lossless PNG 
-    :type as_png: boolean, (optional)
     '''
 
     pass
@@ -213,14 +221,6 @@ def project_apply():
 
 def project_edit():
     '''Edit a snapshot of the view-port in an external image editor 
-
-    '''
-
-    pass
-
-
-def properties():
-    '''Toggle the properties region visibility 
 
     '''
 
@@ -251,112 +251,122 @@ def remove_render_slot():
     pass
 
 
-def render_border(xmin=0, xmax=0, ymin=0, ymax=0, wait_for_input=True):
-    '''Set the boundaries of the border render and enable border render 
+def render_border(xmin: int = 0,
+                  xmax: int = 0,
+                  ymin: int = 0,
+                  ymax: int = 0,
+                  wait_for_input: bool = True):
+    '''Set the boundaries of the render region and enable render region 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
+    :type wait_for_input: bool
     '''
 
     pass
 
 
-def replace(filepath="",
-            filter_blender=False,
-            filter_backup=False,
-            filter_image=True,
-            filter_movie=True,
-            filter_python=False,
-            filter_font=False,
-            filter_sound=False,
-            filter_text=False,
-            filter_btx=False,
-            filter_collada=False,
-            filter_alembic=False,
-            filter_folder=True,
-            filter_blenlib=False,
-            filemode=9,
-            relative_path=True,
-            show_multiview=False,
-            use_multiview=False,
-            display_type='DEFAULT',
-            sort_method='FILE_SORT_ALPHA'):
+def replace(filepath: str = "",
+            filter_blender: bool = False,
+            filter_backup: bool = False,
+            filter_image: bool = True,
+            filter_movie: bool = True,
+            filter_python: bool = False,
+            filter_font: bool = False,
+            filter_sound: bool = False,
+            filter_text: bool = False,
+            filter_btx: bool = False,
+            filter_collada: bool = False,
+            filter_alembic: bool = False,
+            filter_folder: bool = True,
+            filter_blenlib: bool = False,
+            filemode: int = 9,
+            relative_path: bool = True,
+            show_multiview: bool = False,
+            use_multiview: bool = False,
+            display_type: int = 'DEFAULT',
+            sort_method: int = 'FILE_SORT_ALPHA'):
     '''Replace current image by another one from disk 
 
     :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
+    :type filter_blender: bool
     :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
+    :type filter_backup: bool
     :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
+    :type filter_image: bool
     :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
+    :type filter_movie: bool
     :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
+    :type filter_python: bool
     :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
+    :type filter_font: bool
     :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
+    :type filter_sound: bool
     :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
+    :type filter_text: bool
     :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
+    :type filter_btx: bool
     :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
+    :type filter_collada: bool
     :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
+    :type filter_alembic: bool
     :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
+    :type filter_folder: bool
     :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
+    :type filter_blenlib: bool
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
+    :type filemode: int
     :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
+    :type relative_path: bool
     :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
+    :type show_multiview: bool
     :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
+    :type use_multiview: bool
     :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
+    :type display_type: int
     :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
+    :type sort_method: int
     '''
 
     pass
 
 
-def sample():
+def sample(size: int = 1):
     '''Use mouse to sample a color in current image 
 
+    :param size: Sample Size 
+    :type size: int
     '''
 
     pass
 
 
-def sample_line(xstart=0, xend=0, ystart=0, yend=0, cursor=1002):
+def sample_line(xstart: int = 0,
+                xend: int = 0,
+                ystart: int = 0,
+                yend: int = 0,
+                cursor: int = 1002):
     '''Sample a line and show it in Scope panels 
 
     :param xstart: X Start 
-    :type xstart: int in [-inf, inf], (optional)
+    :type xstart: int
     :param xend: X End 
-    :type xend: int in [-inf, inf], (optional)
+    :type xend: int
     :param ystart: Y Start 
-    :type ystart: int in [-inf, inf], (optional)
+    :type ystart: int
     :param yend: Y End 
-    :type yend: int in [-inf, inf], (optional)
+    :type yend: int
     :param cursor: Cursor, Mouse cursor style to use during the modal operator 
-    :type cursor: int in [0, inf], (optional)
+    :type cursor: int
     '''
 
     pass
@@ -370,85 +380,85 @@ def save():
     pass
 
 
-def save_as(save_as_render=False,
-            copy=False,
-            filepath="",
-            check_existing=True,
-            filter_blender=False,
-            filter_backup=False,
-            filter_image=True,
-            filter_movie=True,
-            filter_python=False,
-            filter_font=False,
-            filter_sound=False,
-            filter_text=False,
-            filter_btx=False,
-            filter_collada=False,
-            filter_alembic=False,
-            filter_folder=True,
-            filter_blenlib=False,
-            filemode=9,
-            relative_path=True,
-            show_multiview=False,
-            use_multiview=False,
-            display_type='DEFAULT',
-            sort_method='FILE_SORT_ALPHA'):
-    '''Save the image with another name and/or settings 
+def save_all_modified():
+    '''Save all modified images 
 
-    :param save_as_render: Save As Render, Apply render part of display transform when saving byte image 
-    :type save_as_render: boolean, (optional)
-    :param copy: Copy, Create a new image file without modifying the current image in blender 
-    :type copy: boolean, (optional)
-    :param filepath: File Path, Path to file 
-    :type filepath: string, (optional, never None)
-    :param check_existing: Check Existing, Check and warn on overwriting existing files 
-    :type check_existing: boolean, (optional)
-    :param filter_blender: Filter .blend files 
-    :type filter_blender: boolean, (optional)
-    :param filter_backup: Filter .blend files 
-    :type filter_backup: boolean, (optional)
-    :param filter_image: Filter image files 
-    :type filter_image: boolean, (optional)
-    :param filter_movie: Filter movie files 
-    :type filter_movie: boolean, (optional)
-    :param filter_python: Filter python files 
-    :type filter_python: boolean, (optional)
-    :param filter_font: Filter font files 
-    :type filter_font: boolean, (optional)
-    :param filter_sound: Filter sound files 
-    :type filter_sound: boolean, (optional)
-    :param filter_text: Filter text files 
-    :type filter_text: boolean, (optional)
-    :param filter_btx: Filter btx files 
-    :type filter_btx: boolean, (optional)
-    :param filter_collada: Filter COLLADA files 
-    :type filter_collada: boolean, (optional)
-    :param filter_alembic: Filter Alembic files 
-    :type filter_alembic: boolean, (optional)
-    :param filter_folder: Filter folders 
-    :type filter_folder: boolean, (optional)
-    :param filter_blenlib: Filter Blender IDs 
-    :type filter_blenlib: boolean, (optional)
-    :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
-    :type filemode: int in [1, 9], (optional)
-    :param relative_path: Relative Path, Select the file relative to the blend file 
-    :type relative_path: boolean, (optional)
-    :param show_multiview: Enable Multi-View 
-    :type show_multiview: boolean, (optional)
-    :param use_multiview: Use Multi-View 
-    :type use_multiview: boolean, (optional)
-    :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
-    :type display_type: enum in ['DEFAULT', 'LIST_SHORT', 'LIST_LONG', 'THUMBNAIL'], (optional)
-    :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
-    :type sort_method: enum in ['FILE_SORT_ALPHA', 'FILE_SORT_EXTENSION', 'FILE_SORT_TIME', 'FILE_SORT_SIZE'], (optional)
     '''
 
     pass
 
 
-def save_dirty():
-    '''Save all modified textures 
+def save_as(save_as_render: bool = False,
+            copy: bool = False,
+            filepath: str = "",
+            check_existing: bool = True,
+            filter_blender: bool = False,
+            filter_backup: bool = False,
+            filter_image: bool = True,
+            filter_movie: bool = True,
+            filter_python: bool = False,
+            filter_font: bool = False,
+            filter_sound: bool = False,
+            filter_text: bool = False,
+            filter_btx: bool = False,
+            filter_collada: bool = False,
+            filter_alembic: bool = False,
+            filter_folder: bool = True,
+            filter_blenlib: bool = False,
+            filemode: int = 9,
+            relative_path: bool = True,
+            show_multiview: bool = False,
+            use_multiview: bool = False,
+            display_type: int = 'DEFAULT',
+            sort_method: int = 'FILE_SORT_ALPHA'):
+    '''Save the image with another name and/or settings 
 
+    :param save_as_render: Save As Render, Apply render part of display transform when saving byte image 
+    :type save_as_render: bool
+    :param copy: Copy, Create a new image file without modifying the current image in blender 
+    :type copy: bool
+    :param filepath: File Path, Path to file 
+    :type filepath: str
+    :param check_existing: Check Existing, Check and warn on overwriting existing files 
+    :type check_existing: bool
+    :param filter_blender: Filter .blend files 
+    :type filter_blender: bool
+    :param filter_backup: Filter .blend files 
+    :type filter_backup: bool
+    :param filter_image: Filter image files 
+    :type filter_image: bool
+    :param filter_movie: Filter movie files 
+    :type filter_movie: bool
+    :param filter_python: Filter python files 
+    :type filter_python: bool
+    :param filter_font: Filter font files 
+    :type filter_font: bool
+    :param filter_sound: Filter sound files 
+    :type filter_sound: bool
+    :param filter_text: Filter text files 
+    :type filter_text: bool
+    :param filter_btx: Filter btx files 
+    :type filter_btx: bool
+    :param filter_collada: Filter COLLADA files 
+    :type filter_collada: bool
+    :param filter_alembic: Filter Alembic files 
+    :type filter_alembic: bool
+    :param filter_folder: Filter folders 
+    :type filter_folder: bool
+    :param filter_blenlib: Filter Blender IDs 
+    :type filter_blenlib: bool
+    :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file 
+    :type filemode: int
+    :param relative_path: Relative Path, Select the file relative to the blend file 
+    :type relative_path: bool
+    :param show_multiview: Enable Multi-View 
+    :type show_multiview: bool
+    :param use_multiview: Use Multi-View 
+    :type use_multiview: bool
+    :param display_type: Display TypeDEFAULT Default, Automatically determine display type for files.LIST_SHORT Short List, Display files as short list.LIST_LONG Long List, Display files as a detailed list.THUMBNAIL Thumbnails, Display files as thumbnails. 
+    :type display_type: int
+    :param sort_method: File sorting modeFILE_SORT_ALPHA Sort alphabetically, Sort the file list alphabetically.FILE_SORT_EXTENSION Sort by extension, Sort the file list by extension/type.FILE_SORT_TIME Sort by time, Sort files by modification time.FILE_SORT_SIZE Sort by size, Sort files by size. 
+    :type sort_method: int
     '''
 
     pass
@@ -462,31 +472,23 @@ def save_sequence():
     pass
 
 
-def toolshelf():
-    '''Toggles tool shelf display 
-
-    '''
-
-    pass
-
-
-def unpack(method='USE_LOCAL', id=""):
+def unpack(method: int = 'USE_LOCAL', id: str = ""):
     '''Save an image packed in the .blend file to disk 
 
     :param method: Method, How to unpack 
-    :type method: enum in ['USE_LOCAL', 'WRITE_LOCAL', 'USE_ORIGINAL', 'WRITE_ORIGINAL'], (optional)
+    :type method: int
     :param id: Image Name, Image data-block name to unpack 
-    :type id: string, (optional, never None)
+    :type id: str
     '''
 
     pass
 
 
-def view_all(fit_view=False):
+def view_all(fit_view: bool = False):
     '''View the entire image 
 
     :param fit_view: Fit View, Fit frame to the viewport 
-    :type fit_view: boolean, (optional)
+    :type fit_view: bool
     '''
 
     pass
@@ -500,11 +502,11 @@ def view_ndof():
     pass
 
 
-def view_pan(offset=(0.0, 0.0)):
+def view_pan(offset: float = (0.0, 0.0)):
     '''Pan the view 
 
     :param offset: Offset, Offset in floating point units, 1.0 is the width and height of the image 
-    :type offset: float array of 2 items in [-inf, inf], (optional)
+    :type offset: float
     '''
 
     pass
@@ -518,66 +520,68 @@ def view_selected():
     pass
 
 
-def view_zoom(factor=0.0):
+def view_zoom(factor: float = 0.0, use_cursor_init: bool = True):
     '''Zoom in/out the image 
 
     :param factor: Factor, Zoom factor, values higher than 1.0 zoom in, lower values zoom out 
-    :type factor: float in [-inf, inf], (optional)
+    :type factor: float
+    :param use_cursor_init: Cursor Init, Use initial cursor position 
+    :type use_cursor_init: bool
     '''
 
     pass
 
 
-def view_zoom_border(xmin=0,
-                     xmax=0,
-                     ymin=0,
-                     ymax=0,
-                     wait_for_input=True,
-                     zoom_out=False):
+def view_zoom_border(xmin: int = 0,
+                     xmax: int = 0,
+                     ymin: int = 0,
+                     ymax: int = 0,
+                     wait_for_input: bool = True,
+                     zoom_out: bool = False):
     '''Zoom in the view to the nearest item contained in the border 
 
     :param xmin: X Min 
-    :type xmin: int in [-inf, inf], (optional)
+    :type xmin: int
     :param xmax: X Max 
-    :type xmax: int in [-inf, inf], (optional)
+    :type xmax: int
     :param ymin: Y Min 
-    :type ymin: int in [-inf, inf], (optional)
+    :type ymin: int
     :param ymax: Y Max 
-    :type ymax: int in [-inf, inf], (optional)
+    :type ymax: int
     :param wait_for_input: Wait for Input 
-    :type wait_for_input: boolean, (optional)
+    :type wait_for_input: bool
     :param zoom_out: Zoom Out 
-    :type zoom_out: boolean, (optional)
+    :type zoom_out: bool
     '''
 
     pass
 
 
-def view_zoom_in(location=(0.0, 0.0)):
+def view_zoom_in(location: float = (0.0, 0.0)):
     '''Zoom in the image (centered around 2D cursor) 
 
     :param location: Location, Cursor location in screen coordinates 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def view_zoom_out(location=(0.0, 0.0)):
+def view_zoom_out(location: float = (0.0, 0.0)):
     '''Zoom out the image (centered around 2D cursor) 
 
     :param location: Location, Cursor location in screen coordinates 
-    :type location: float array of 2 items in [-inf, inf], (optional)
+    :type location: float
     '''
 
     pass
 
 
-def view_zoom_ratio(ratio=0.0):
+def view_zoom_ratio(ratio: float = 0.0):
     '''Set zoom ratio of the view 
 
     :param ratio: Ratio, Zoom ratio, 1.0 is 1:1, higher is zoomed in, lower is zoomed out 
-    :type ratio: float in [-inf, inf], (optional)
+    :type ratio: float
     '''
 
     pass

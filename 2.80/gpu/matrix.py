@@ -1,4 +1,9 @@
-def get_model_view_matrix():
+import sys
+import typing
+import mathutils
+
+
+def get_model_view_matrix() -> 'mathutils.Matrix':
     '''Return a copy of the model-view matrix. 
 
     :return:  A 4x4 view matrix. 
@@ -7,7 +12,7 @@ def get_model_view_matrix():
     pass
 
 
-def get_normal_matrix():
+def get_normal_matrix() -> 'mathutils.Matrix':
     '''Return a copy of the normal matrix. 
 
     :return:  A 3x3 normal matrix. 
@@ -16,7 +21,7 @@ def get_normal_matrix():
     pass
 
 
-def get_projection_matrix():
+def get_projection_matrix() -> 'mathutils.Matrix':
     '''Return a copy of the projection matrix. 
 
     :return:  A 4x4 projection matrix. 
@@ -33,31 +38,31 @@ def load_identity():
     pass
 
 
-def load_matrix(matrix):
+def load_matrix(matrix: 'mathutils.Matrix'):
     '''Load a matrix into the stack. 
 
     :param matrix: A 4x4 matrix. 
-    :type matrix: mathutils.Matrix
+    :type matrix: 'mathutils.Matrix'
     '''
 
     pass
 
 
-def load_projection_matrix(matrix):
+def load_projection_matrix(matrix: 'mathutils.Matrix'):
     '''Load a projection matrix into the stack. 
 
     :param matrix: A 4x4 matrix. 
-    :type matrix: mathutils.Matrix
+    :type matrix: 'mathutils.Matrix'
     '''
 
     pass
 
 
-def multiply_matrix(matrix):
+def multiply_matrix(matrix: 'mathutils.Matrix'):
     '''Multiply the current stack matrix. 
 
     :param matrix: A 4x4 matrix. 
-    :type matrix: mathutils.Matrix
+    :type matrix: 'mathutils.Matrix'
     '''
 
     pass
@@ -123,13 +128,12 @@ def scale(scale):
     '''Scale the current stack matrix. 
 
     :param scale: Scale the current stack matrix. 
-    :type scale: sequence of 2 or 3 floats
     '''
 
     pass
 
 
-def scale_uniform(scale):
+def scale_uniform(scale: float):
     '''
 
     :param scale: Scale the current stack matrix. 
@@ -143,7 +147,6 @@ def translate(offset):
     '''Scale the current stack matrix. 
 
     :param offset: Translate the current stack matrix. 
-    :type offset: sequence of 2 or 3 floats
     '''
 
     pass

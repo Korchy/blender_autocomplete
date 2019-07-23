@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def cancel_stroke():
     '''Cancel the current sketch stroke 
 
@@ -22,21 +26,21 @@ def delete():
     pass
 
 
-def draw_preview(snap=False):
+def draw_preview(snap: bool = False):
     '''Draw preview of current sketch stroke (internal use) 
 
     :param snap: Snap 
-    :type snap: boolean, (optional)
+    :type snap: bool
     '''
 
     pass
 
 
-def draw_stroke(snap=False):
+def draw_stroke(snap: bool = False):
     '''Start to draw a sketch stroke 
 
     :param snap: Snap 
-    :type snap: boolean, (optional)
+    :type snap: bool
     '''
 
     pass
@@ -50,11 +54,11 @@ def finish_stroke():
     pass
 
 
-def gesture(snap=False):
+def gesture(snap: bool = False):
     '''Start to draw a gesture stroke 
 
     :param snap: Snap 
-    :type snap: boolean, (optional)
+    :type snap: bool
     '''
 
     pass

@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def add():
     '''Add a new workspace by duplicating the current one or appending one from the user configuration 
 
@@ -6,13 +10,13 @@ def add():
     pass
 
 
-def append_activate(idname="", filepath=""):
+def append_activate(idname: str = "", filepath: str = ""):
     '''Append a workspace and make it the active one in the current window 
 
     :param idname: Identifier, Name of the workspace to append and activate 
-    :type idname: string, (optional, never None)
+    :type idname: str
     :param filepath: Filepath, Path to the library 
-    :type filepath: string, (optional, never None)
+    :type filepath: str
     '''
 
     pass

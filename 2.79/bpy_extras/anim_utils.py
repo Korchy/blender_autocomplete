@@ -1,14 +1,19 @@
-def bake_action(frame_start,
-                frame_end,
-                frame_step=1,
-                only_selected=False,
-                do_pose=True,
-                do_object=True,
-                do_visual_keying=True,
-                do_constraint_clear=False,
-                do_parents_clear=False,
-                do_clean=False,
-                action=None):
+import sys
+import typing
+import bpy
+
+
+def bake_action(frame_start: int,
+                frame_end: int,
+                frame_step: int = 1,
+                only_selected: bool = False,
+                do_pose: bool = True,
+                do_object: bool = True,
+                do_visual_keying: bool = True,
+                do_constraint_clear: bool = False,
+                do_parents_clear: bool = False,
+                do_clean: bool = False,
+                action: 'bpy.types.Action' = None) -> 'bpy.types.Action':
     '''Return an image from the file path with options to search multiple paths and return a placeholder if its not found. 
 
     :param frame_start: First frame to bake. 
@@ -32,7 +37,7 @@ def bake_action(frame_start,
     :param do_clean: Remove redundant keyframes after baking. 
     :type do_clean: bool
     :param action: An action to bake the data into, or None for a new action to be created. 
-    :type action: bpy.types.Action or None
+    :type action: 'bpy.types.Action'
     :return:  an action or None 
     '''
 

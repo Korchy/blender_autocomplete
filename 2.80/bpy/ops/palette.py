@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def color_add():
     '''Add new color to active palette 
 

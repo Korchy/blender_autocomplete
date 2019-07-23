@@ -1,3 +1,9 @@
+import sys
+import typing
+import bpy
+import mathutils
+
+
 class BMDeformVert:
     def clear(self):
         '''Clears all weights. 
@@ -5,36 +11,36 @@ class BMDeformVert:
         '''
         pass
 
-    def get(self, key, default=None):
+    def get(self, key: int, default=None):
         '''Returns the deform weight matching the key or default when not found (matches pythons dictionary function of the same name). 
 
         :param key: The key associated with deform weight. 
         :type key: int
         :param default: Optional argument for the value to return if key is not found. 
-        :type default: Undefined
+        :type default: 
         '''
         pass
 
-    def items(self):
+    def items(self) -> list:
         '''Return (group, weight) pairs for this vertex (matching pythons dict.items() functionality). 
 
-        :rtype: list of tuples 
+        :rtype: list
         :return:  (key, value) pairs for each deform weight of this vertex. 
         '''
         pass
 
-    def keys(self):
+    def keys(self) -> list:
         '''Return the group indices used by this vertex (matching pythons dict.keys() functionality). 
 
-        :rtype: list of ints 
+        :rtype: list
         :return:  the deform group this vertex uses 
         '''
         pass
 
-    def values(self):
+    def values(self) -> list:
         '''Return the weights of the deform vertex (matching pythons dict.values() functionality). 
 
-        :rtype: list of floats 
+        :rtype: list
         :return:  The weights that influence this vertex 
         '''
         pass
@@ -43,130 +49,130 @@ class BMDeformVert:
 class BMEdge:
     '''The BMesh edge connecting 2 verts '''
 
-    hide = None
+    hide: bool = None
     '''Hidden state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    index = None
+    index: int = None
     '''Index of this element. 
 
-    :type:  int 
+    :type: int
     '''
 
-    is_boundary = None
+    is_boundary: bool = None
     '''True when this edge is at the boundary of a face (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_contiguous = None
+    is_contiguous: bool = None
     '''True when this edge is manifold, between two faces with the same winding (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_convex = None
+    is_convex: bool = None
     '''True when this edge joins two convex faces, depends on a valid face normal (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_manifold = None
+    is_manifold: bool = None
     '''True when this edge is manifold (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_valid = None
+    is_valid: bool = None
     '''True when this element is valid (hasn’t been removed). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wire = None
+    is_wire: bool = None
     '''True when this edge is not connected to any faces (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    link_faces = None
+    link_faces: 'BMFace' = None
     '''Faces connected to this edge, (read-only). 
 
-    :type:  BMElemSeq of BMFace 
+    :type: 'BMFace'
     '''
 
-    link_loops = None
+    link_loops: 'BMLoop' = None
     '''Loops connected to this edge, (read-only). 
 
-    :type:  BMElemSeq of BMLoop 
+    :type: 'BMLoop'
     '''
 
-    seam = None
+    seam: bool = None
     '''Seam for UV unwrapping. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    select = None
+    select: bool = None
     '''Selected state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    smooth = None
+    smooth: bool = None
     '''Smooth state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    tag = None
+    tag: bool = None
     '''Generic attribute scripts can use for own logic 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    verts = None
+    verts: 'BMVert' = None
     '''Verts this edge uses (always 2), (read-only). 
 
-    :type:  BMElemSeq of BMVert 
+    :type: 'BMVert'
     '''
 
-    def calc_face_angle(self, fallback=None):
+    def calc_face_angle(self, fallback=None) -> float:
         '''
 
         :param fallback: return this when the edge doesn’t have 2 faces (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: float 
+        :type fallback: 
+        :rtype: float
         :return:  The angle between 2 connected faces in radians. 
         '''
         pass
 
-    def calc_face_angle_signed(self, fallback=None):
+    def calc_face_angle_signed(self, fallback=None) -> float:
         '''
 
         :param fallback: return this when the edge doesn’t have 2 faces (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: float 
+        :type fallback: 
+        :rtype: float
         :return:  The angle between 2 connected faces in radians (negative for concave join). 
         '''
         pass
 
-    def calc_length(self):
+    def calc_length(self) -> float:
         '''
 
-        :rtype: float 
+        :rtype: float
         :return:  The length between both verts. 
         '''
         pass
 
-    def calc_tangent(self, loop):
+    def calc_tangent(self, loop: 'BMLoop') -> 'mathutils.Vector':
         '''Return the tangent at this edge relative to a face (pointing inward into the face). This uses the face normal for calculation. 
 
         :param loop: The loop used for tangent calculation. 
-        :type loop: BMLoop
-        :rtype: mathutils.Vector 
+        :type loop: 'BMLoop'
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
@@ -177,11 +183,11 @@ class BMEdge:
         '''
         pass
 
-    def hide_set(self, hide):
+    def hide_set(self, hide: bool):
         '''Set the hide state. This is different from the hide attribute because it updates the selection and hide state of associated geometry. 
 
         :param hide: Hidden or visible. 
-        :type hide: boolean
+        :type hide: bool
         '''
         pass
 
@@ -191,30 +197,30 @@ class BMEdge:
         '''
         pass
 
-    def other_vert(self, vert):
+    def other_vert(self, vert: 'BMVert') -> 'BMVert':
         '''Return the other vertex on this edge or None if the vertex is not used by this edge. 
 
         :param vert: a vert in this edge. 
-        :type vert: BMVert
-        :rtype: BMVert or None 
+        :type vert: 'BMVert'
+        :rtype: 'BMVert'
         :return:  The edges other vert. 
         '''
         pass
 
-    def select_set(self, select):
+    def select_set(self, select: bool):
         '''Set the selection. This is different from the select attribute because it updates the selection state of associated geometry. 
 
         :param select: Select or de-select. 
-        :type select: boolean
+        :type select: bool
         '''
         pass
 
 
 class BMEdgeSeq:
-    layers = None
+    layers: 'BMLayerAccessEdge' = None
     '''custom-data layers (read-only). 
 
-    :type:  BMLayerAccessEdge 
+    :type: 'BMLayerAccessEdge'
     '''
 
     def ensure_lookup_table(self):
@@ -223,14 +229,14 @@ class BMEdgeSeq:
         '''
         pass
 
-    def get(self, verts, fallback=None):
+    def get(self, verts: 'BMVert', fallback=None) -> 'BMEdge':
         '''Return an edge which uses the verts passed. 
 
         :param verts: Sequence of verts. 
-        :type verts: BMVert
+        :type verts: 'BMVert'
         :param fallback: Return this value if nothing is found. 
         :type fallback: 
-        :rtype: BMEdge 
+        :rtype: 'BMEdge'
         :return:  The edge found or None 
         '''
         pass
@@ -241,14 +247,14 @@ class BMEdgeSeq:
         '''
         pass
 
-    def new(self, verts, example=None):
+    def new(self, verts: 'BMVert', example: 'BMEdge' = None) -> 'BMEdge':
         '''Create a new edge from a given pair of verts. 
 
         :param verts: Vertex pair. 
-        :type verts: pair of BMVert
+        :type verts: 'BMVert'
         :param example: Existing edge to initialize settings (optional argument). 
-        :type example: BMEdge
-        :rtype: BMEdge 
+        :type example: 'BMEdge'
+        :rtype: 'BMEdge'
         :return:  The newly created edge. 
         '''
         pass
@@ -275,10 +281,10 @@ class BMEditSelIter:
 
 
 class BMEditSelSeq:
-    active = None
+    active: 'BMVert' = None
     '''The last selected element or None (read-only). 
 
-    :type:  BMVert, BMEdge or BMFace 
+    :type: 'BMVert'
     '''
 
     def add(self, element):
@@ -325,152 +331,152 @@ class BMElemSeq:
 class BMFace:
     '''The BMesh face with 3 or more sides '''
 
-    edges = None
+    edges: 'BMEdge' = None
     '''Edges of this face, (read-only). 
 
-    :type:  BMElemSeq of BMEdge 
+    :type: 'BMEdge'
     '''
 
-    hide = None
+    hide: bool = None
     '''Hidden state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    index = None
+    index: int = None
     '''Index of this element. 
 
-    :type:  int 
+    :type: int
     '''
 
-    is_valid = None
+    is_valid: bool = None
     '''True when this element is valid (hasn’t been removed). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    loops = None
+    loops: 'BMLoop' = None
     '''Loops of this face, (read-only). 
 
-    :type:  BMElemSeq of BMLoop 
+    :type: 'BMLoop'
     '''
 
-    material_index = None
+    material_index: int = None
     '''The face’s material index. 
 
-    :type:  int 
+    :type: int
     '''
 
-    normal = None
+    normal: 'mathutils.Vector' = None
     '''The normal for this face as a 3D, wrapped vector. 
 
-    :type:  mathutils.Vector 
+    :type: 'mathutils.Vector'
     '''
 
-    select = None
+    select: bool = None
     '''Selected state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    smooth = None
+    smooth: bool = None
     '''Smooth state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    tag = None
+    tag: bool = None
     '''Generic attribute scripts can use for own logic 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    verts = None
+    verts: 'BMVert' = None
     '''Verts of this face, (read-only). 
 
-    :type:  BMElemSeq of BMVert 
+    :type: 'BMVert'
     '''
 
-    def calc_area(self):
+    def calc_area(self) -> float:
         '''Return the area of the face. 
 
-        :rtype: float 
+        :rtype: float
         :return:  Return the area of the face. 
         '''
         pass
 
-    def calc_center_bounds(self):
+    def calc_center_bounds(self) -> 'mathutils.Vector':
         '''Return bounds center of the face. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a 3D vector. 
         '''
         pass
 
-    def calc_center_median(self):
+    def calc_center_median(self) -> 'mathutils.Vector':
         '''Return median center of the face. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a 3D vector. 
         '''
         pass
 
-    def calc_center_median_weighted(self):
+    def calc_center_median_weighted(self) -> 'mathutils.Vector':
         '''Return median center of the face weighted by edge lengths. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a 3D vector. 
         '''
         pass
 
-    def calc_perimeter(self):
+    def calc_perimeter(self) -> float:
         '''Return the perimeter of the face. 
 
-        :rtype: float 
+        :rtype: float
         :return:  Return the perimeter of the face. 
         '''
         pass
 
-    def calc_tangent_edge(self):
+    def calc_tangent_edge(self) -> 'mathutils.Vector':
         '''Return face tangent based on longest edge. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
 
-    def calc_tangent_edge_diagonal(self):
+    def calc_tangent_edge_diagonal(self) -> 'mathutils.Vector':
         '''Return face tangent based on the edge farthest from any vertex. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
 
-    def calc_tangent_edge_pair(self):
+    def calc_tangent_edge_pair(self) -> 'mathutils.Vector':
         '''Return face tangent based on the two longest disconnected edges. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
 
-    def calc_tangent_vert_diagonal(self):
+    def calc_tangent_vert_diagonal(self) -> 'mathutils.Vector':
         '''Return face tangent based on the two most distent vertices. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
 
-    def copy(self, verts=True, edges=True):
+    def copy(self, verts: bool = True, edges: bool = True) -> 'BMFace':
         '''Make a copy of this face. 
 
         :param verts: When set, the faces verts will be duplicated too. 
-        :type verts: boolean
+        :type verts: bool
         :param edges: When set, the faces edges will be duplicated too. 
-        :type edges: boolean
-        :rtype: BMFace 
+        :type edges: bool
+        :rtype: 'BMFace'
         :return:  The newly created face. 
         '''
         pass
@@ -481,21 +487,21 @@ class BMFace:
         '''
         pass
 
-    def copy_from_face_interp(self, face, vert=True):
+    def copy_from_face_interp(self, face: 'BMFace', vert: bool = True):
         '''Interpolate the customdata from another face onto this one (faces should overlap). 
 
         :param face: The face to interpolate data from. 
-        :type face: BMFace
+        :type face: 'BMFace'
         :param vert: When True, also copy vertex data. 
-        :type vert: boolean
+        :type vert: bool
         '''
         pass
 
-    def hide_set(self, hide):
+    def hide_set(self, hide: bool):
         '''Set the hide state. This is different from the hide attribute because it updates the selection and hide state of associated geometry. 
 
         :param hide: Hidden or visible. 
-        :type hide: boolean
+        :type hide: bool
         '''
         pass
 
@@ -511,26 +517,26 @@ class BMFace:
         '''
         pass
 
-    def select_set(self, select):
+    def select_set(self, select: bool):
         '''Set the selection. This is different from the select attribute because it updates the selection state of associated geometry. 
 
         :param select: Select or de-select. 
-        :type select: boolean
+        :type select: bool
         '''
         pass
 
 
 class BMFaceSeq:
-    active = None
+    active: 'BMFace' = None
     '''active face. 
 
-    :type:  BMFace or None 
+    :type: 'BMFace'
     '''
 
-    layers = None
+    layers: 'BMLayerAccessFace' = None
     '''custom-data layers (read-only). 
 
-    :type:  BMLayerAccessFace 
+    :type: 'BMLayerAccessFace'
     '''
 
     def ensure_lookup_table(self):
@@ -539,14 +545,14 @@ class BMFaceSeq:
         '''
         pass
 
-    def get(self, verts, fallback=None):
+    def get(self, verts: 'BMVert', fallback=None) -> 'BMFace':
         '''Return a face which uses the verts passed. 
 
         :param verts: Sequence of verts. 
-        :type verts: BMVert
+        :type verts: 'BMVert'
         :param fallback: Return this value if nothing is found. 
         :type fallback: 
-        :rtype: BMFace 
+        :rtype: 'BMFace'
         :return:  The face found or None 
         '''
         pass
@@ -557,14 +563,14 @@ class BMFaceSeq:
         '''
         pass
 
-    def new(self, verts, example=None):
+    def new(self, verts: 'BMVert', example: 'BMFace' = None) -> 'BMFace':
         '''Create a new face from a given set of verts. 
 
         :param verts: Sequence of 3 or more verts. 
-        :type verts: BMVert
+        :type verts: 'BMVert'
         :param example: Existing face to initialize settings (optional argument). 
-        :type example: BMFace
-        :rtype: BMFace 
+        :type example: 'BMFace'
+        :rtype: 'BMFace'
         :return:  The newly created face. 
         '''
         pass
@@ -595,16 +601,16 @@ class BMIter:
 class BMLayerAccessEdge:
     '''Exposes custom-data layer attributes. '''
 
-    bevel_weight = None
+    bevel_weight: 'BMLayerCollection' = None
     '''Bevel weight float in [0 - 1]. 
 
-    :type:  BMLayerCollection 
+    :type: 'BMLayerCollection'
     '''
 
-    crease = None
+    crease: 'BMLayerCollection' = None
     '''Edge crease for subsurf - float in [0 - 1]. 
 
-    :type:  BMLayerCollection 
+    :type: 'BMLayerCollection'
     '''
 
     float = None
@@ -661,10 +667,10 @@ class BMLayerAccessLoop:
 class BMLayerAccessVert:
     '''Exposes custom-data layer attributes. '''
 
-    bevel_weight = None
+    bevel_weight: 'BMLayerCollection' = None
     '''Bevel weight float in [0 - 1]. 
 
-    :type:  BMLayerCollection 
+    :type: 'BMLayerCollection'
     '''
 
     deform = None
@@ -679,10 +685,10 @@ class BMLayerAccessVert:
     paint_mask = None
     '''type: BMLayerCollection '''
 
-    shape = None
+    shape: 'BMLayerCollection' = None
     '''Vertex shapekey absolute location (as a 3D Vector). 
 
-    :type:  BMLayerCollection 
+    :type: 'BMLayerCollection'
     '''
 
     skin = None
@@ -695,74 +701,74 @@ class BMLayerAccessVert:
 class BMLayerCollection:
     '''Gives access to a collection of custom-data layers of the same type and behaves like python dictionaries, except for the ability to do list like index access. '''
 
-    active = None
+    active: 'BMLayerItem' = None
     '''The active layer of this type (read-only). 
 
-    :type:  BMLayerItem 
+    :type: 'BMLayerItem'
     '''
 
-    is_singleton = None
+    is_singleton: bool = None
     '''True if there can exists only one layer of this type (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    def get(self, key, default=None):
+    def get(self, key: str, default=None):
         '''Returns the value of the layer matching the key or default when not found (matches pythons dictionary function of the same name). 
 
         :param key: The key associated with the layer. 
-        :type key: string
+        :type key: str
         :param default: Optional argument for the value to return if key is not found. 
-        :type default: Undefined
+        :type default: 
         '''
         pass
 
-    def items(self):
+    def items(self) -> list:
         '''Return the identifiers of collection members (matching pythons dict.items() functionality). 
 
-        :rtype: list of tuples 
+        :rtype: list
         :return:  (key, value) pairs for each member of this collection. 
         '''
         pass
 
-    def keys(self):
+    def keys(self) -> list:
         '''Return the identifiers of collection members (matching pythons dict.keys() functionality). 
 
-        :rtype: list of strings 
+        :rtype: list
         :return:  the identifiers for each member of this collection. 
         '''
         pass
 
-    def new(self, name):
+    def new(self, name: str) -> 'BMLayerItem':
         '''Create a new layer 
 
         :param name: Optional name argument (will be made unique). 
-        :type name: string
-        :rtype: BMLayerItem 
+        :type name: str
+        :rtype: 'BMLayerItem'
         :return:  The newly created layer. 
         '''
         pass
 
-    def remove(self, layer):
+    def remove(self, layer: 'BMLayerItem'):
         '''Remove a layer 
 
         :param layer: The layer to remove. 
-        :type layer: BMLayerItem
+        :type layer: 'BMLayerItem'
         '''
         pass
 
-    def values(self):
+    def values(self) -> list:
         '''Return the values of collection (matching pythons dict.values() functionality). 
 
-        :rtype: list 
+        :rtype: list
         :return:  the members of this collection. 
         '''
         pass
 
-    def verify(self):
+    def verify(self) -> 'BMLayerItem':
         '''Create a new layer or return an existing active layer 
 
-        :rtype: BMLayerItem 
+        :rtype: 'BMLayerItem'
         :return:  The newly verified layer. 
         '''
         pass
@@ -771,10 +777,10 @@ class BMLayerCollection:
 class BMLayerItem:
     '''Exposes a single custom data layer, their main purpose is for use as item accessors to custom-data when used with vert/edge/face/loop data. '''
 
-    name = None
+    name: str = None
     '''The layers unique name (read-only). 
 
-    :type:  string 
+    :type: str
     '''
 
     def copy_from(self, other):
@@ -791,98 +797,98 @@ class BMLayerItem:
 class BMLoop:
     '''This is normally accessed from BMFace.loops where each face loop represents a corner of the face. '''
 
-    edge = None
+    edge: 'BMEdge' = None
     '''The loop’s edge (between this loop and the next), (read-only). 
 
-    :type:  BMEdge 
+    :type: 'BMEdge'
     '''
 
-    face = None
+    face: 'BMFace' = None
     '''The face this loop makes (read-only). 
 
-    :type:  BMFace 
+    :type: 'BMFace'
     '''
 
-    index = None
+    index: int = None
     '''Index of this element. 
 
-    :type:  int 
+    :type: int
     '''
 
-    is_convex = None
+    is_convex: bool = None
     '''True when this loop is at the convex corner of a face, depends on a valid face normal (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_valid = None
+    is_valid: bool = None
     '''True when this element is valid (hasn’t been removed). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    link_loop_next = None
+    link_loop_next: 'BMLoop' = None
     '''The next face corner (read-only). 
 
-    :type:  BMLoop 
+    :type: 'BMLoop'
     '''
 
-    link_loop_prev = None
+    link_loop_prev: 'BMLoop' = None
     '''The previous face corner (read-only). 
 
-    :type:  BMLoop 
+    :type: 'BMLoop'
     '''
 
-    link_loop_radial_next = None
+    link_loop_radial_next: 'BMLoop' = None
     '''The next loop around the edge (read-only). 
 
-    :type:  BMLoop 
+    :type: 'BMLoop'
     '''
 
-    link_loop_radial_prev = None
+    link_loop_radial_prev: 'BMLoop' = None
     '''The previous loop around the edge (read-only). 
 
-    :type:  BMLoop 
+    :type: 'BMLoop'
     '''
 
-    link_loops = None
+    link_loops: 'BMLoop' = None
     '''Loops connected to this loop, (read-only). 
 
-    :type:  BMElemSeq of BMLoop 
+    :type: 'BMLoop'
     '''
 
-    tag = None
+    tag: bool = None
     '''Generic attribute scripts can use for own logic 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    vert = None
+    vert: 'BMVert' = None
     '''The loop’s vertex (read-only). 
 
-    :type:  BMVert 
+    :type: 'BMVert'
     '''
 
-    def calc_angle(self):
+    def calc_angle(self) -> float:
         '''Return the angle at this loops corner of the face. This is calculated so sharper corners give lower angles. 
 
-        :rtype: float 
+        :rtype: float
         :return:  The angle in radians. 
         '''
         pass
 
-    def calc_normal(self):
+    def calc_normal(self) -> 'mathutils.Vector':
         '''Return normal at this loops corner of the face. Falls back to the face normal for straight lines. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
 
-    def calc_tangent(self):
+    def calc_tangent(self) -> 'mathutils.Vector':
         '''Return the tangent at this loops corner of the face (pointing inward into the face). Falls back to the face normal for straight lines. 
 
-        :rtype: mathutils.Vector 
+        :rtype: 'mathutils.Vector'
         :return:  a normalized vector. 
         '''
         pass
@@ -893,148 +899,151 @@ class BMLoop:
         '''
         pass
 
-    def copy_from_face_interp(self, face, vert=True, multires=True):
+    def copy_from_face_interp(self,
+                              face: 'BMFace',
+                              vert: bool = True,
+                              multires: bool = True):
         '''Interpolate the customdata from a face onto this loop (the loops vert should overlap the face). 
 
         :param face: The face to interpolate data from. 
-        :type face: BMFace
+        :type face: 'BMFace'
         :param vert: When enabled, interpolate the loops vertex data (optional). 
-        :type vert: boolean
+        :type vert: bool
         :param multires: When enabled, interpolate the loops multires data (optional). 
-        :type multires: boolean
+        :type multires: bool
         '''
         pass
 
 
 class BMLoopSeq:
-    layers = None
+    layers: 'BMLayerAccessLoop' = None
     '''custom-data layers (read-only). 
 
-    :type:  BMLayerAccessLoop 
+    :type: 'BMLayerAccessLoop'
     '''
 
 
 class BMLoopUV:
-    pin_uv = None
+    pin_uv: bool = None
     '''UV pin state. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    select = None
+    select: bool = None
     '''UV select state. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    select_edge = None
+    select_edge: bool = None
     '''UV edge select state. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    uv = None
+    uv: 'mathutils.Vector' = None
     '''Loops UV (as a 2D Vector). 
 
-    :type:  mathutils.Vector 
+    :type: 'mathutils.Vector'
     '''
 
 
 class BMVert:
     '''The BMesh vertex type '''
 
-    co = None
+    co: 'mathutils.Vector' = None
     '''The coordinates for this vertex as a 3D, wrapped vector. 
 
-    :type:  mathutils.Vector 
+    :type: 'mathutils.Vector'
     '''
 
-    hide = None
+    hide: bool = None
     '''Hidden state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    index = None
+    index: int = None
     '''Index of this element. 
 
-    :type:  int 
+    :type: int
     '''
 
-    is_boundary = None
+    is_boundary: bool = None
     '''True when this vertex is connected to boundary edges (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_manifold = None
+    is_manifold: bool = None
     '''True when this vertex is manifold (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_valid = None
+    is_valid: bool = None
     '''True when this element is valid (hasn’t been removed). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wire = None
+    is_wire: bool = None
     '''True when this vertex is not connected to any faces (read-only). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    link_edges = None
+    link_edges: 'BMEdge' = None
     '''Edges connected to this vertex (read-only). 
 
-    :type:  BMElemSeq of BMEdge 
+    :type: 'BMEdge'
     '''
 
-    link_faces = None
+    link_faces: 'BMFace' = None
     '''Faces connected to this vertex (read-only). 
 
-    :type:  BMElemSeq of BMFace 
+    :type: 'BMFace'
     '''
 
-    link_loops = None
+    link_loops: 'BMLoop' = None
     '''Loops that use this vertex (read-only). 
 
-    :type:  BMElemSeq of BMLoop 
+    :type: 'BMLoop'
     '''
 
-    normal = None
+    normal: 'mathutils.Vector' = None
     '''The normal for this vertex as a 3D, wrapped vector. 
 
-    :type:  mathutils.Vector 
+    :type: 'mathutils.Vector'
     '''
 
-    select = None
+    select: bool = None
     '''Selected state of this element. 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    tag = None
+    tag: bool = None
     '''Generic attribute scripts can use for own logic 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    def calc_edge_angle(self, fallback=None):
+    def calc_edge_angle(self, fallback=None) -> float:
         '''Return the angle between this vert’s two connected edges. 
 
         :param fallback: return this when the vert doesn’t have 2 edges (instead of raising a ValueError). 
-        :type fallback: any
-        :rtype: float 
+        :type fallback: 
+        :rtype: float
         :return:  Angle between edges in radians. 
         '''
         pass
 
-    def calc_shell_factor(self):
+    def calc_shell_factor(self) -> float:
         '''Return a multiplier calculated based on the sharpness of the vertex. Where a flat surface gives 1.0, and higher values sharper edges. This is used to maintain shell thickness when offsetting verts along their normals. 
 
-        :rtype: float 
+        :rtype: float
         :return:  offset multiplier 
         '''
         pass
@@ -1045,27 +1054,27 @@ class BMVert:
         '''
         pass
 
-    def copy_from_face_interp(self, face):
+    def copy_from_face_interp(self, face: 'BMFace'):
         '''Interpolate the customdata from a face onto this loop (the loops vert should overlap the face). 
 
         :param face: The face to interpolate data from. 
-        :type face: BMFace
+        :type face: 'BMFace'
         '''
         pass
 
-    def copy_from_vert_interp(self, vert_pair, fac):
+    def copy_from_vert_interp(self, vert_pair: 'BMVert', fac):
         '''Interpolate the customdata from a vert between 2 other verts. 
 
         :param vert_pair: The vert to interpolate data from. 
-        :type vert_pair: BMVert
+        :type vert_pair: 'BMVert'
         '''
         pass
 
-    def hide_set(self, hide):
+    def hide_set(self, hide: bool):
         '''Set the hide state. This is different from the hide attribute because it updates the selection and hide state of associated geometry. 
 
         :param hide: Hidden or visible. 
-        :type hide: boolean
+        :type hide: bool
         '''
         pass
 
@@ -1075,20 +1084,20 @@ class BMVert:
         '''
         pass
 
-    def select_set(self, select):
+    def select_set(self, select: bool):
         '''Set the selection. This is different from the select attribute because it updates the selection state of associated geometry. 
 
         :param select: Select or de-select. 
-        :type select: boolean
+        :type select: bool
         '''
         pass
 
 
 class BMVertSeq:
-    layers = None
+    layers: 'BMLayerAccessVert' = None
     '''custom-data layers (read-only). 
 
-    :type:  BMLayerAccessVert 
+    :type: 'BMLayerAccessVert'
     '''
 
     def ensure_lookup_table(self):
@@ -1103,14 +1112,15 @@ class BMVertSeq:
         '''
         pass
 
-    def new(self, co=(0.0, 0.0, 0.0), example=None):
+    def new(self, co: float = (0.0, 0.0, 0.0),
+            example: 'BMVert' = None) -> 'BMVert':
         '''Create a new vertex. 
 
         :param co: The initial location of the vertex (optional argument). 
-        :type co: float triplet
+        :type co: float
         :param example: Existing vert to initialize settings. 
-        :type example: BMVert
-        :rtype: BMVert 
+        :type example: 'BMVert'
+        :rtype: 'BMVert'
         :return:  The newly created edge. 
         '''
         pass
@@ -1135,68 +1145,68 @@ class BMVertSeq:
 class BMesh:
     '''The BMesh data structure '''
 
-    edges = None
+    edges: 'BMEdgeSeq' = None
     '''This meshes edge sequence (read-only). 
 
-    :type:  BMEdgeSeq 
+    :type: 'BMEdgeSeq'
     '''
 
-    faces = None
+    faces: 'BMFaceSeq' = None
     '''This meshes face sequence (read-only). 
 
-    :type:  BMFaceSeq 
+    :type: 'BMFaceSeq'
     '''
 
-    is_valid = None
+    is_valid: bool = None
     '''True when this element is valid (hasn’t been removed). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    is_wrapped = None
+    is_wrapped: bool = None
     '''True when this mesh is owned by blender (typically the editmode BMesh). 
 
-    :type:  boolean 
+    :type: bool
     '''
 
-    loops = None
+    loops: 'BMLoopSeq' = None
     '''This meshes loops (read-only). 
 
-    :type:  BMLoopSeq 
+    :type: 'BMLoopSeq'
     '''
 
-    select_history = None
+    select_history: 'BMEditSelSeq' = None
     '''Sequence of selected items (the last is displayed as active). 
 
-    :type:  BMEditSelSeq 
+    :type: 'BMEditSelSeq'
     '''
 
-    select_mode = None
+    select_mode: set = None
     '''The selection mode, values can be {‘VERT’, ‘EDGE’, ‘FACE’}, can’t be assigned an empty set. 
 
-    :type:  set 
+    :type: set
     '''
 
-    verts = None
+    verts: 'BMVertSeq' = None
     '''This meshes vert sequence (read-only). 
 
-    :type:  BMVertSeq 
+    :type: 'BMVertSeq'
     '''
 
-    def calc_loop_triangles(self):
+    def calc_loop_triangles(self) -> typing.List['BMLoop']:
         '''Calculate triangle tessellation from quads/ngons. 
 
-        :rtype: list of BMLoop tuples 
+        :rtype: typing.List['BMLoop']
         :return:  The triangulated faces. 
         '''
         pass
 
-    def calc_volume(self, signed=False):
+    def calc_volume(self, signed: bool = False) -> float:
         '''Calculate mesh volume based on face normals. 
 
         :param signed: when signed is true, negative values may be returned. 
         :type signed: bool
-        :rtype: float 
+        :rtype: float
         :return:  The volume of the mesh. 
         '''
         pass
@@ -1207,10 +1217,10 @@ class BMesh:
         '''
         pass
 
-    def copy(self):
+    def copy(self) -> 'BMesh':
         '''
 
-        :rtype: BMesh 
+        :rtype: 'BMesh'
         :return:  A copy of this BMesh. 
         '''
         pass
@@ -1222,37 +1232,37 @@ class BMesh:
         pass
 
     def from_mesh(self,
-                  mesh,
+                  mesh: 'bpy.types.Mesh',
                   face_normals=True,
-                  use_shape_key=False,
-                  shape_key_index=0):
+                  use_shape_key: bool = False,
+                  shape_key_index: int = 0):
         '''Initialize this bmesh from existing mesh datablock. 
 
         :param mesh: The mesh data to load. 
-        :type mesh: Mesh
+        :type mesh: 'bpy.types.Mesh'
         :param use_shape_key: Use the locations from a shape key. 
-        :type use_shape_key: boolean
+        :type use_shape_key: bool
         :param shape_key_index: The shape key index to use. 
         :type shape_key_index: int
         '''
         pass
 
     def from_object(self,
-                    object,
+                    object: 'bpy.types.Object',
                     depsgraph,
-                    deform=True,
-                    cage=False,
-                    face_normals=True):
+                    deform: bool = True,
+                    cage: bool = False,
+                    face_normals: bool = True):
         '''Initialize this bmesh from existing object datablock (currently only meshes are supported). 
 
         :param object: The object data to load. 
-        :type object: Object
+        :type object: 'bpy.types.Object'
         :param deform: Apply deformation modifiers. 
-        :type deform: boolean
+        :type deform: bool
         :param cage: Get the mesh as a deformed cage. 
-        :type cage: boolean
+        :type cage: bool
         :param face_normals: Calculate face normals. 
-        :type face_normals: boolean
+        :type face_normals: bool
         '''
         pass
 
@@ -1262,11 +1272,11 @@ class BMesh:
         '''
         pass
 
-    def select_flush(self, select):
+    def select_flush(self, select: bool):
         '''Flush selection, independent of the current selection mode. 
 
         :param select: flush selection or de-selected elements. 
-        :type select: boolean
+        :type select: bool
         '''
         pass
 
@@ -1276,19 +1286,19 @@ class BMesh:
         '''
         pass
 
-    def to_mesh(self, mesh):
+    def to_mesh(self, mesh: 'bpy.types.Mesh'):
         '''Writes this BMesh data into an existing Mesh datablock. 
 
         :param mesh: The mesh data to write into. 
-        :type mesh: Mesh
+        :type mesh: 'bpy.types.Mesh'
         '''
         pass
 
-    def transform(self, matrix, filter=None):
+    def transform(self, matrix: 'mathutils.Matrix', filter: set = None):
         '''Transform the mesh (optionally filtering flagged data only). 
 
         :param matrix: transform matrix. 
-        :type matrix: 4x4 mathutils.Matrix
+        :type matrix: 'mathutils.Matrix'
         :param filter: set of values in (‘SELECT’, ‘HIDE’, ‘SEAM’, ‘SMOOTH’, ‘TAG’). 
         :type filter: set
         '''

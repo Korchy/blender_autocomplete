@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def add():
     '''Add new cache 
 
@@ -6,21 +10,21 @@ def add():
     pass
 
 
-def bake(bake=False):
+def bake(bake: bool = False):
     '''Bake physics 
 
     :param bake: Bake 
-    :type bake: boolean, (optional)
+    :type bake: bool
     '''
 
     pass
 
 
-def bake_all(bake=True):
+def bake_all(bake: bool = True):
     '''Bake all physics 
 
     :param bake: Bake 
-    :type bake: boolean, (optional)
+    :type bake: bool
     '''
 
     pass
@@ -35,7 +39,7 @@ def bake_from_cache():
 
 
 def free_bake():
-    '''Free physics bake 
+    '''Delete physics bake 
 
     '''
 
@@ -43,7 +47,7 @@ def free_bake():
 
 
 def free_bake_all():
-    '''Free all baked caches of all objects in the current scene 
+    '''Delete all baked caches of all objects in the current scene 
 
     '''
 

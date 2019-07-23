@@ -1,3 +1,8 @@
+import sys
+import typing
+import freestyle
+
+
 def get_border():
     '''Returns the border. 
 
@@ -7,7 +12,7 @@ def get_border():
     pass
 
 
-def get_canvas_height():
+def get_canvas_height() -> int:
     '''Returns the canvas height. 
 
     :return:  The canvas height. 
@@ -16,7 +21,7 @@ def get_canvas_height():
     pass
 
 
-def get_canvas_width():
+def get_canvas_width() -> int:
     '''Returns the canvas width. 
 
     :return:  The canvas width. 
@@ -25,7 +30,7 @@ def get_canvas_width():
     pass
 
 
-def get_selected_fedge():
+def get_selected_fedge() -> 'freestyle.types.FEdge':
     '''Returns the selected FEdge. 
 
     :return:  The selected FEdge. 
@@ -34,7 +39,7 @@ def get_selected_fedge():
     pass
 
 
-def get_time_stamp():
+def get_time_stamp() -> int:
     '''Returns the system time stamp. 
 
     :return:  The system time stamp. 
@@ -43,7 +48,10 @@ def get_time_stamp():
     pass
 
 
-def load_map(file_name, map_name, num_levels=4, sigma=1.0):
+def load_map(file_name: str,
+             map_name: str,
+             num_levels: int = 4,
+             sigma: float = 1.0):
     '''Loads an image map for further reading. 
 
     :param file_name: The name of the image file. 
@@ -59,7 +67,7 @@ def load_map(file_name, map_name, num_levels=4, sigma=1.0):
     pass
 
 
-def read_complete_view_map_pixel(level, x, y):
+def read_complete_view_map_pixel(level: int, x: int, y: int) -> float:
     '''Reads a pixel in the complete view map. 
 
     :param level: The level of the pyramid in which we wish to read the pixel. 
@@ -74,7 +82,8 @@ def read_complete_view_map_pixel(level, x, y):
     pass
 
 
-def read_directional_view_map_pixel(orientation, level, x, y):
+def read_directional_view_map_pixel(orientation: int, level: int, x: int,
+                                    y: int) -> float:
     '''Reads a pixel in one of the oriented view map images. 
 
     :param orientation: The number telling which orientation we want to check. 
@@ -91,7 +100,7 @@ def read_directional_view_map_pixel(orientation, level, x, y):
     pass
 
 
-def read_map_pixel(map_name, level, x, y):
+def read_map_pixel(map_name: str, level: int, x: int, y: int) -> float:
     '''Reads a pixel in a user-defined map. 
 
     :param map_name: The name of the map. 

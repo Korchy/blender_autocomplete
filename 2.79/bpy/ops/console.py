@@ -1,3 +1,7 @@
+import sys
+import typing
+
+
 def autocomplete():
     '''Evaluate the namespace up until the cursor and give a list of options or complete the name if there is only one 
 
@@ -14,13 +18,13 @@ def banner():
     pass
 
 
-def clear(scrollback=True, history=False):
+def clear(scrollback: bool = True, history: bool = False):
     '''Clear text by type 
 
     :param scrollback: Scrollback, Clear the scrollback history 
-    :type scrollback: boolean, (optional)
+    :type scrollback: bool
     :param history: History, Clear the command history 
-    :type history: boolean, (optional)
+    :type history: bool
     '''
 
     pass
@@ -50,45 +54,47 @@ def copy_as_script():
     pass
 
 
-def delete(type='NEXT_CHARACTER'):
+def delete(type: int = 'NEXT_CHARACTER'):
     '''Delete text by cursor position 
 
     :param type: Type, Which part of the text to delete 
-    :type type: enum in ['NEXT_CHARACTER', 'PREVIOUS_CHARACTER', 'NEXT_WORD', 'PREVIOUS_WORD'], (optional)
+    :type type: int
     '''
 
     pass
 
 
-def execute(interactive=False):
+def execute(interactive: bool = False):
     '''Execute the current console line as a python expression 
 
     :param interactive: interactive 
-    :type interactive: boolean, (optional)
+    :type interactive: bool
     '''
 
     pass
 
 
-def history_append(text="", current_character=0, remove_duplicates=False):
+def history_append(text: str = "",
+                   current_character: int = 0,
+                   remove_duplicates: bool = False):
     '''Append history at cursor position 
 
     :param text: Text, Text to insert at the cursor position 
-    :type text: string, (optional, never None)
+    :type text: str
     :param current_character: Cursor, The index of the cursor 
-    :type current_character: int in [0, inf], (optional)
+    :type current_character: int
     :param remove_duplicates: Remove Duplicates, Remove duplicate items in the history 
-    :type remove_duplicates: boolean, (optional)
+    :type remove_duplicates: bool
     '''
 
     pass
 
 
-def history_cycle(reverse=False):
+def history_cycle(reverse: bool = False):
     '''Cycle through history 
 
     :param reverse: Reverse, Reverse cycle history 
-    :type reverse: boolean, (optional)
+    :type reverse: bool
     '''
 
     pass
@@ -102,31 +108,31 @@ def indent():
     pass
 
 
-def insert(text=""):
+def insert(text: str = ""):
     '''Insert text at cursor position 
 
     :param text: Text, Text to insert at the cursor position 
-    :type text: string, (optional, never None)
+    :type text: str
     '''
 
     pass
 
 
-def language(language=""):
+def language(language: str = ""):
     '''Set the current language for this console 
 
     :param language: Language 
-    :type language: string, (optional, never None)
+    :type language: str
     '''
 
     pass
 
 
-def move(type='LINE_BEGIN'):
+def move(type: int = 'LINE_BEGIN'):
     '''Move cursor position 
 
     :param type: Type, Where to move cursor to 
-    :type type: enum in ['LINE_BEGIN', 'LINE_END', 'PREVIOUS_CHARACTER', 'NEXT_CHARACTER', 'PREVIOUS_WORD', 'NEXT_WORD'], (optional)
+    :type type: int
     '''
 
     pass
@@ -140,13 +146,13 @@ def paste():
     pass
 
 
-def scrollback_append(text="", type='OUTPUT'):
+def scrollback_append(text: str = "", type: int = 'OUTPUT'):
     '''Append scrollback text by type 
 
     :param text: Text, Text to insert at the cursor position 
-    :type text: string, (optional, never None)
+    :type text: str
     :param type: Type, Console output type 
-    :type type: enum in ['OUTPUT', 'INPUT', 'INFO', 'ERROR'], (optional)
+    :type type: int
     '''
 
     pass

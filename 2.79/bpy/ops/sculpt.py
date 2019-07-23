@@ -1,12 +1,19 @@
-def brush_stroke(stroke=None, mode='NORMAL', ignore_background_click=False):
+import sys
+import typing
+import bpy
+
+
+def brush_stroke(stroke: typing.List['bpy.types.OperatorStrokeElement'] = None,
+                 mode: int = 'NORMAL',
+                 ignore_background_click: bool = False):
     '''Sculpt a stroke into the geometry 
 
     :param stroke: Stroke 
-    :type stroke: bpy_prop_collection of OperatorStrokeElement, (optional)
+    :type stroke: typing.List['bpy.types.OperatorStrokeElement']
     :param mode: Stroke Mode, Action taken when a paint stroke is madeNORMAL Normal, Apply brush normally.INVERT Invert, Invert action of brush for duration of stroke.SMOOTH Smooth, Switch brush to smooth mode for duration of stroke. 
-    :type mode: enum in ['NORMAL', 'INVERT', 'SMOOTH'], (optional)
+    :type mode: int
     :param ignore_background_click: Ignore Background Click, Clicks on the background do not start the stroke 
-    :type ignore_background_click: boolean, (optional)
+    :type ignore_background_click: bool
     '''
 
     pass
@@ -36,11 +43,11 @@ def optimize():
     pass
 
 
-def sample_detail_size(location=(0, 0)):
+def sample_detail_size(location: int = (0, 0)):
     '''Sample the mesh detail on clicked point 
 
     :param location: Location, Screen Coordinates of sampling 
-    :type location: int array of 2 items in [0, 32767], (optional)
+    :type location: int
     '''
 
     pass
@@ -78,11 +85,11 @@ def symmetrize():
     pass
 
 
-def uv_sculpt_stroke(mode='NORMAL'):
+def uv_sculpt_stroke(mode: int = 'NORMAL'):
     '''Sculpt UVs using a brush 
 
     :param mode: Mode, Stroke ModeNORMAL Normal, Apply brush normally.INVERT Invert, Invert action of brush for duration of stroke.RELAX Relax, Switch brush to relax mode for duration of stroke. 
-    :type mode: enum in ['NORMAL', 'INVERT', 'RELAX'], (optional)
+    :type mode: int
     '''
 
     pass

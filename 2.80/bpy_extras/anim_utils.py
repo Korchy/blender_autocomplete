@@ -1,34 +1,40 @@
-def bake_action(obj, *, action, frames, **kwargs):
+import sys
+import typing
+import bpy
+
+
+def bake_action(obj: 'bpy.types.Object', *, action: 'bpy.types.Action',
+                frames: int, **kwargs) -> 'bpy.types.Action':
     '''
 
     :param obj: Object to bake. 
-    :type obj: bpy.types.Object
+    :type obj: 'bpy.types.Object'
     :param action: An action to bake the data into, or None for a new action to be created. 
-    :type action: bpy.types.Action or None
+    :type action: 'bpy.types.Action'
     :param frames: Frames to bake. 
-    :type frames: iterable of int
+    :type frames: int
     :return:  an action or None 
     '''
 
     pass
 
 
-def bake_action_iter(obj,
+def bake_action_iter(obj: 'bpy.types.Object',
                      *,
-                     action,
-                     only_selected=False,
-                     do_pose=True,
-                     do_object=True,
-                     do_visual_keying=True,
-                     do_constraint_clear=False,
-                     do_parents_clear=False,
-                     do_clean=False):
+                     action: 'bpy.types.Action',
+                     only_selected: bool = False,
+                     do_pose: bool = True,
+                     do_object: bool = True,
+                     do_visual_keying: bool = True,
+                     do_constraint_clear: bool = False,
+                     do_parents_clear: bool = False,
+                     do_clean: bool = False) -> 'bpy.types.Action':
     '''An coroutine that bakes action for a single object. 
 
     :param obj: Object to bake. 
-    :type obj: bpy.types.Object
+    :type obj: 'bpy.types.Object'
     :param action: An action to bake the data into, or None for a new action to be created. 
-    :type action: bpy.types.Action or None
+    :type action: 'bpy.types.Action'
     :param only_selected: Only bake selected bones. 
     :type only_selected: bool
     :param do_pose: Bake pose channels. 
@@ -49,22 +55,24 @@ def bake_action_iter(obj,
     pass
 
 
-def bake_action_objects(object_action_pairs, *, frames, **kwargs):
+def bake_action_objects(object_action_pairs, *, frames: int,
+                        **kwargs) -> 'bpy.types.Action':
     '''A version of bake_action_objects_iter() that takes frames and returns the output. 
 
     :param frames: Frames to bake. 
-    :type frames: iterable of int
+    :type frames: int
     :return:  A sequence of Action or None types (aligned with object_action_pairs) 
     '''
 
     pass
 
 
-def bake_action_objects_iter(object_action_pairs, **kwargs):
+def bake_action_objects_iter(object_action_pairs: 'bpy.types.Action',
+                             **kwargs):
     '''An coroutine that bakes actions for multiple objects. 
 
     :param object_action_pairs: Sequence of object action tuples, action is the destination for the baked data. When None a new action will be created. 
-    :type object_action_pairs: Sequence of (bpy.types.Object, bpy.types.Action)
+    :type object_action_pairs: 'bpy.types.Action'
     '''
 
     pass

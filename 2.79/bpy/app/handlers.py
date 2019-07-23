@@ -1,3 +1,5 @@
+import sys
+import typing
 frame_change_post = None
 '''on frame change for playback and rendering (after) '''
 
@@ -15,6 +17,9 @@ load_post = None
 
 load_pre = None
 '''on loading a new blend file (before) '''
+
+persistent = None
+'''Function decorator for callback functions not to be removed when loading new files '''
 
 render_cancel = None
 '''on canceling a render job '''
@@ -51,6 +56,3 @@ scene_update_pre = None
 
 version_update = None
 '''on ending the versioning code '''
-
-persistent = None
-'''Function decorator for callback functions not to be removed when loading new files '''
