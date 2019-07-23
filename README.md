@@ -21,3 +21,5 @@ https://b3d.interplanety.org/en/using-microsoft-visual-studio-code-as-external-i
 Source
 -
 https://github.com/nutti/fake-bpy-module
+
+Last release page: https://github.com/nutti/fake-bpy-module/releases
