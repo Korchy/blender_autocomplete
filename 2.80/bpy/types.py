@@ -2,7 +2,7 @@ import sys
 import typing
 import bpy
 import mathutils
-
+from mathutils import Matrix
 
 class Action:
     '''A collection of F-Curves for animation '''
@@ -55413,10 +55413,10 @@ class TransformConstraint:
 
 
 class TransformOrientation:
-    matrix: float = None
+    matrix: Matrix = None
     '''
 
-    :type: float
+    :type: Matrix
     '''
 
     name: str = None
@@ -55939,7 +55939,7 @@ class UILayout:
                  text: str = "",
                  text_ctxt: str = "",
                  translate: bool = True,
-                 icon: int = 'NONE',
+                 icon: str = 'NONE',
                  emboss: bool = True,
                  depress: bool = False,
                  icon_value: int = 0) -> 'OperatorProperties':

@@ -76,7 +76,7 @@ def CollectionProperty(type=None,
     pass
 
 
-def EnumProperty(items: str,
+def EnumProperty(items: list,
                  name: str = "",
                  description: str = "",
                  default: typing.Set[str] = None,
@@ -87,7 +87,7 @@ def EnumProperty(items: str,
     '''Returns a new enumerator property definition. 
 
     :param items: sequence of enum items formatted: [(identifier, name, description, icon, number), ...].The first three elements of the tuples are mandatory.identifierThe identifier is used for Python access.nameName for the interace.descriptionUsed for documentation and tooltips.iconAn icon string identifier or integer icon value (e.g. returned by bpy.types.UILayout.icon)numberUnique value used as the identifier for this item (stored in file data). Use when the identifier may need to change. If the ENUM_FLAG option is used, the values are bitmasks and should be powers of two.When an item only contains 4 items they define (identifier, name, description, number).For dynamic values a callback can be passed which returns a list in the same format as the static list. This function must take 2 arguments (self, context), context may be None.There is a known bug with using a callback, Python must keep a reference to the strings returned or Blender will misbehave or even crash. 
-    :type items: str
+    :type items: list
     :param name: Name used in the user interface. 
     :type name: str
     :param description: Text used for the tooltip and api documentation. 

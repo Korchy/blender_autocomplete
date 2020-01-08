@@ -1066,11 +1066,11 @@ def metaball_add(
     pass
 
 
-def mode_set(mode: int = 'OBJECT', toggle: bool = False):
+def mode_set(mode: str = 'OBJECT', toggle: bool = False):
     '''Sets the object interaction mode 
 
     :param mode: ModeOBJECT Object Mode.EDIT Edit Mode.POSE Pose Mode.SCULPT Sculpt Mode.VERTEX_PAINT Vertex Paint.WEIGHT_PAINT Weight Paint.TEXTURE_PAINT Texture Paint.PARTICLE_EDIT Particle Edit.GPENCIL_EDIT Edit Strokes, Edit Grease Pencil Strokes. 
-    :type mode: int
+    :type mode: str
     :param toggle: Toggle 
     :type toggle: bool
     '''

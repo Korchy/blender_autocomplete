@@ -91,13 +91,13 @@ def area_options():
     pass
 
 
-def area_split(direction: int = 'HORIZONTAL',
+def area_split(direction: str = 'HORIZONTAL',
                factor: float = 0.5,
                cursor: int = (0, 0)):
     '''Split selected area into new windows 
 
     :param direction: Direction 
-    :type direction: int
+    :type direction: str
     :param factor: Factor 
     :type factor: float
     :param cursor: Cursor 

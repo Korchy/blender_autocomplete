@@ -85,7 +85,7 @@ def CollectionProperty(type=None,
     pass
 
 
-def EnumProperty(items: str,
+def EnumProperty(items: list,
                  name: str = "",
                  description: str = "",
                  default: typing.Set[str] = None,

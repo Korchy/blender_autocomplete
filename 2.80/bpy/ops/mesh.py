@@ -297,11 +297,11 @@ def decimate(ratio: float = 1.0,
     pass
 
 
-def delete(type: int = 'VERT'):
+def delete(type: str = 'VERT'):
     '''Delete selected vertices, edges or faces 
 
     :param type: Type, Method used for deleting mesh data 
-    :type type: int
+    :type type: str
     '''
 
     pass
