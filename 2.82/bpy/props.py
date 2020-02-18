@@ -86,10 +86,10 @@ def CollectionProperty(type=None,
     pass
 
 
-def EnumProperty(items: typing.List[typing.Tuple[str, str, str]],
+def EnumProperty(items: typing.List[str],
                  name: str = "",
                  description: str = "",
-                 default: str = None,
+                 default: typing.Set[str] = None,
                  options: set = {'ANIMATABLE'},
                  tags: set = {},
                  update=None,
