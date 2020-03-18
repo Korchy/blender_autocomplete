@@ -7187,7 +7187,7 @@ class ColorMapping:
 
 
 class ColorMixSequence:
-    '''Color Mix Sequence '''
+    """Color Mix Sequence """
 
     blend_effect: typing.Union[int, str] = None
     '''Method for controlling how the strip combines with other strips 
@@ -7221,7 +7221,7 @@ class ColorMixSequence:
 
 
 class ColorRamp:
-    '''Color ramp mapping a scalar value to a color '''
+    """Color ramp mapping a scalar value to a color """
 
     color_mode: typing.Union[int, str] = None
     '''Set color mode to use for interpolation 
@@ -63770,4 +63770,8 @@ class WORLD_PT_custom_props(Panel):
 
 
 class WORLD_PT_viewport_display(Panel):
+    pass
+
+
+class bpy_prop_array:
     pass

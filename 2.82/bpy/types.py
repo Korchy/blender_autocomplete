@@ -60101,8 +60101,12 @@ class WorldMistSettings:
     '''
 
 
+class bpy_prop_array:
+    pass
+
+
 class bpy_prop_collection:
-    '''built-in class used for all collections. '''
+    """built-in class used for all collections. """
 
     def find(self, key: str) -> int:
         '''Returns the index of a key in a collection or -1 when not found (matches Python’s string find function of the same name). 
