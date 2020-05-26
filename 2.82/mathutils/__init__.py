@@ -2009,3 +2009,15 @@ class Vector:
 
         '''
         pass
+
+    def __sub__(self, other):
+        '''
+
+        '''
+        pass
+
+    def __add__(self, other):
+        '''
+
+        '''
+        pass
