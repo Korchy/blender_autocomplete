@@ -2021,3 +2021,9 @@ class Vector:
 
         '''
         pass
+
+    def __setitem__(self, key, value):
+        '''
+
+        '''
+        pass

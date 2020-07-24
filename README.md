@@ -3,10 +3,11 @@ Autocomplete modules for Blender python API.
 
 This modules getted from nutti fake-bpy-modules. Only files, without pip instalation.
 
-- 2.79 -  2019.07.18
-- 2.80 -  2019.07.18
-- 2.81a -  2020.01.11
-- 2.82 - 2020.02.02.18
+- 2.79 - 2019.07.18
+- 2.80 - 2019.07.18
+- 2.81a - 2020.01.11
+- 2.82 - 2020.02.18
+- 2.83 - 2020.07.24
 
 Installation and usage:
 -
