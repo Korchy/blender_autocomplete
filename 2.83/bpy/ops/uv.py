@@ -3,11 +3,11 @@ import typing
 import bpy.types
 
 
-def align(axis: typing.Union[str, int] = 'ALIGN_AUTO'):
+def align(axis: typing.Union[int, str] = 'ALIGN_AUTO'):
     ''' Align selected UV vertices to an axis
 
     :param axis: Axis, Axis to align UV locations on * ALIGN_S Straighten, Align UVs along the line defined by the endpoints. * ALIGN_T Straighten X, Align UVs along the line defined by the endpoints along the X axis. * ALIGN_U Straighten Y, Align UVs along the line defined by the endpoints along the Y axis. * ALIGN_AUTO Align Auto, Automatically choose the axis on which there is most alignment already. * ALIGN_X Align X, Align UVs on X axis. * ALIGN_Y Align Y, Align UVs on Y axis.
-    :type axis: typing.Union[str, int]
+    :type axis: typing.Union[int, str]
     '''
 
     pass
@@ -50,8 +50,8 @@ def cursor_set(location: typing.List[float] = (0.0, 0.0)):
     pass
 
 
-def cylinder_project(direction: typing.Union[str, int] = 'VIEW_ON_EQUATOR',
-                     align: typing.Union[str, int] = 'POLAR_ZX',
+def cylinder_project(direction: typing.Union[int, str] = 'VIEW_ON_EQUATOR',
+                     align: typing.Union[int, str] = 'POLAR_ZX',
                      radius: float = 1.0,
                      correct_aspect: bool = True,
                      clip_to_bounds: bool = False,
@@ -59,9 +59,9 @@ def cylinder_project(direction: typing.Union[str, int] = 'VIEW_ON_EQUATOR',
     ''' Project the UV vertices of the mesh over the curved wall of a cylinder
 
     :param direction: Direction, Direction of the sphere or cylinder * VIEW_ON_EQUATOR View on Equator, 3D view is on the equator. * VIEW_ON_POLES View on Poles, 3D view is on the poles. * ALIGN_TO_OBJECT Align to Object, Align according to object transform.
-    :type direction: typing.Union[str, int]
+    :type direction: typing.Union[int, str]
     :param align: Align, How to determine rotation around the pole * POLAR_ZX Polar ZX, Polar 0 is X. * POLAR_ZY Polar ZY, Polar 0 is Y.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param radius: Radius, Radius of the sphere or cylinder
     :type radius: float
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account
@@ -78,7 +78,7 @@ def cylinder_project(direction: typing.Union[str, int] = 'VIEW_ON_EQUATOR',
 def export_layout(filepath: str = "",
                   export_all: bool = False,
                   modified: bool = False,
-                  mode: typing.Union[str, int] = 'PNG',
+                  mode: typing.Union[int, str] = 'PNG',
                   size: typing.List[int] = (1024, 1024),
                   opacity: float = 0.25,
                   check_existing: bool = True):
@@ -91,7 +91,7 @@ def export_layout(filepath: str = "",
     :param modified: Modified, Exports UVs from the modified mesh
     :type modified: bool
     :param mode: Format, File format to export the UV layout to * SVG Scalable Vector Graphic (.svg), Export the UV layout to a vector SVG file. * EPS Encapsulate PostScript (.eps), Export the UV layout to a vector EPS file. * PNG PNG Image (.png), Export the UV layout to a bitmap image.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     :param size: size, Dimensions of the exported file
     :type size: typing.List[int]
     :param opacity: Fill Opacity, Set amount of opacity for exported UV layout
@@ -103,11 +103,11 @@ def export_layout(filepath: str = "",
     pass
 
 
-def follow_active_quads(mode: typing.Union[str, int] = 'LENGTH_AVERAGE'):
+def follow_active_quads(mode: typing.Union[int, str] = 'LENGTH_AVERAGE'):
     ''' Follow UVs from active quads along continuous face loops
 
     :param mode: Edge Length Mode, Method to space UV edge loops * EVEN Even, Space all UVs evenly. * LENGTH Length, Average space UVs edge length of each loop. * LENGTH_AVERAGE Length Average, Average space UVs edge length of each loop.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -123,7 +123,7 @@ def hide(unselected: bool = False):
     pass
 
 
-def lightmap_pack(PREF_CONTEXT: typing.Union[str, int] = 'SEL_FACES',
+def lightmap_pack(PREF_CONTEXT: typing.Union[int, str] = 'SEL_FACES',
                   PREF_PACK_IN_ONE: bool = True,
                   PREF_NEW_UVLAYER: bool = False,
                   PREF_APPLY_IMAGE: bool = False,
@@ -133,7 +133,7 @@ def lightmap_pack(PREF_CONTEXT: typing.Union[str, int] = 'SEL_FACES',
     ''' Pack each faces UV's into the UV bounds
 
     :param PREF_CONTEXT: Selection * SEL_FACES Selected Faces, Space all UVs evenly. * ALL_FACES All Faces, Average space UVs edge length of each loop.
-    :type PREF_CONTEXT: typing.Union[str, int]
+    :type PREF_CONTEXT: typing.Union[int, str]
     :param PREF_PACK_IN_ONE: Share Tex Space, Objects Share texture space, map all objects into 1 uvmap
     :type PREF_PACK_IN_ONE: bool
     :param PREF_NEW_UVLAYER: New UV Map, Create a new UV map for every mesh packed
@@ -279,11 +279,11 @@ def select(extend: bool = False,
     pass
 
 
-def select_all(action: typing.Union[str, int] = 'TOGGLE'):
+def select_all(action: typing.Union[int, str] = 'TOGGLE'):
     ''' Change selection of all UV vertices
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -295,7 +295,7 @@ def select_box(pinned: bool = False,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[str, int] = 'SET'):
+               mode: typing.Union[int, str] = 'SET'):
     ''' Select UV vertices using box selection
 
     :param pinned: Pinned, Border select pinned UVs only
@@ -311,7 +311,7 @@ def select_box(pinned: bool = False,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -321,7 +321,7 @@ def select_circle(x: int = 0,
                   y: int = 0,
                   radius: int = 25,
                   wait_for_input: bool = True,
-                  mode: typing.Union[str, int] = 'SET'):
+                  mode: typing.Union[int, str] = 'SET'):
     ''' Select UV vertices using circle selection
 
     :param x: X
@@ -333,7 +333,7 @@ def select_circle(x: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -341,13 +341,13 @@ def select_circle(x: int = 0,
 
 def select_lasso(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
                                     'bpy_prop_collection'] = None,
-                 mode: typing.Union[str, int] = 'SET'):
+                 mode: typing.Union[int, str] = 'SET'):
     ''' Select UVs using lasso selection
 
     :param path: Path
     :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -454,37 +454,37 @@ def smart_project(angle_limit: float = 66.0,
     pass
 
 
-def snap_cursor(target: typing.Union[str, int] = 'PIXELS'):
+def snap_cursor(target: typing.Union[int, str] = 'PIXELS'):
     ''' Snap cursor to target type
 
     :param target: Target, Target to snap the selected UVs to
-    :type target: typing.Union[str, int]
+    :type target: typing.Union[int, str]
     '''
 
     pass
 
 
-def snap_selected(target: typing.Union[str, int] = 'PIXELS'):
+def snap_selected(target: typing.Union[int, str] = 'PIXELS'):
     ''' Snap selected UV vertices to target type
 
     :param target: Target, Target to snap the selected UVs to
-    :type target: typing.Union[str, int]
+    :type target: typing.Union[int, str]
     '''
 
     pass
 
 
-def sphere_project(direction: typing.Union[str, int] = 'VIEW_ON_EQUATOR',
-                   align: typing.Union[str, int] = 'POLAR_ZX',
+def sphere_project(direction: typing.Union[int, str] = 'VIEW_ON_EQUATOR',
+                   align: typing.Union[int, str] = 'POLAR_ZX',
                    correct_aspect: bool = True,
                    clip_to_bounds: bool = False,
                    scale_to_bounds: bool = False):
     ''' Project the UV vertices of the mesh over the curved surface of a sphere
 
     :param direction: Direction, Direction of the sphere or cylinder * VIEW_ON_EQUATOR View on Equator, 3D view is on the equator. * VIEW_ON_POLES View on Poles, 3D view is on the poles. * ALIGN_TO_OBJECT Align to Object, Align according to object transform.
-    :type direction: typing.Union[str, int]
+    :type direction: typing.Union[int, str]
     :param align: Align, How to determine rotation around the pole * POLAR_ZX Polar ZX, Polar 0 is X. * POLAR_ZY Polar ZY, Polar 0 is Y.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account
     :type correct_aspect: bool
     :param clip_to_bounds: Clip to Bounds, Clip UV coordinates to bounds after unwrapping
@@ -503,8 +503,8 @@ def stitch(use_limit: bool = False,
            active_object_index: int = 0,
            midpoint_snap: bool = False,
            clear_seams: bool = True,
-           mode: typing.Union[str, int] = 'VERTEX',
-           stored_mode: typing.Union[str, int] = 'VERTEX',
+           mode: typing.Union[int, str] = 'VERTEX',
+           stored_mode: typing.Union[int, str] = 'VERTEX',
            selection: typing.Union[typing.List['bpy.types.SelectedUvElement'],
                                    'bpy_prop_collection'] = None,
            objects_selection_count: typing.List[int] = (0, 0, 0, 0, 0, 0)):
@@ -525,9 +525,9 @@ def stitch(use_limit: bool = False,
     :param clear_seams: Clear Seams, Clear seams of stitched edges
     :type clear_seams: bool
     :param mode: Operation Mode, Use vertex or edge stitching
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     :param stored_mode: Stored Operation Mode, Use vertex or edge stitching
-    :type stored_mode: typing.Union[str, int]
+    :type stored_mode: typing.Union[int, str]
     :param selection: Selection
     :type selection: typing.Union[typing.List['bpy.types.SelectedUvElement'], 'bpy_prop_collection']
     :param objects_selection_count: Objects Selection Count
@@ -537,7 +537,7 @@ def stitch(use_limit: bool = False,
     pass
 
 
-def unwrap(method: typing.Union[str, int] = 'ANGLE_BASED',
+def unwrap(method: typing.Union[int, str] = 'ANGLE_BASED',
            fill_holes: bool = True,
            correct_aspect: bool = True,
            use_subsurf_data: bool = False,
@@ -545,7 +545,7 @@ def unwrap(method: typing.Union[str, int] = 'ANGLE_BASED',
     ''' Unwrap the mesh of the object being edited
 
     :param method: Method, Unwrapping method (Angle Based usually gives better results than Conformal, while being somewhat slower)
-    :type method: typing.Union[str, int]
+    :type method: typing.Union[int, str]
     :param fill_holes: Fill Holes, Virtual fill holes in mesh before unwrapping, to better avoid overlaps and preserve symmetry
     :type fill_holes: bool
     :param correct_aspect: Correct Aspect, Map UVs taking image aspect ratio into account

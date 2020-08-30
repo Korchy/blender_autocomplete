@@ -94,11 +94,11 @@ def feather_weight_clear():
     pass
 
 
-def handle_type_set(type: typing.Union[str, int] = 'AUTO'):
+def handle_type_set(type: typing.Union[int, str] = 'AUTO'):
     ''' Set type of handles for selected control points
 
     :param type: Type, Spline type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -124,11 +124,11 @@ def hide_view_set(unselected: bool = False):
     pass
 
 
-def layer_move(direction: typing.Union[str, int] = 'UP'):
+def layer_move(direction: typing.Union[int, str] = 'UP'):
     ''' Move the active layer up/down in the list
 
     :param direction: Direction, Direction to move the active layer
-    :type direction: typing.Union[str, int]
+    :type direction: typing.Union[int, str]
     '''
 
     pass
@@ -242,11 +242,11 @@ def select(extend: bool = False,
     pass
 
 
-def select_all(action: typing.Union[str, int] = 'TOGGLE'):
+def select_all(action: typing.Union[int, str] = 'TOGGLE'):
     ''' Change selection of all curve points
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -257,7 +257,7 @@ def select_box(xmin: int = 0,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[str, int] = 'SET'):
+               mode: typing.Union[int, str] = 'SET'):
     ''' Select curve points using box selection
 
     :param xmin: X Min
@@ -271,7 +271,7 @@ def select_box(xmin: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -281,7 +281,7 @@ def select_circle(x: int = 0,
                   y: int = 0,
                   radius: int = 25,
                   wait_for_input: bool = True,
-                  mode: typing.Union[str, int] = 'SET'):
+                  mode: typing.Union[int, str] = 'SET'):
     ''' Select curve points using circle selection
 
     :param x: X
@@ -293,7 +293,7 @@ def select_circle(x: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -301,13 +301,13 @@ def select_circle(x: int = 0,
 
 def select_lasso(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
                                     'bpy_prop_collection'] = None,
-                 mode: typing.Union[str, int] = 'SET'):
+                 mode: typing.Union[int, str] = 'SET'):
     ''' Select curve points using lasso selection
 
     :param path: Path
     :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass

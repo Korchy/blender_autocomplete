@@ -34,7 +34,7 @@ def addon_expand(module: str = ""):
 
 
 def addon_install(overwrite: bool = True,
-                  target: typing.Union[str, int] = 'DEFAULT',
+                  target: typing.Union[int, str] = 'DEFAULT',
                   filepath: str = "",
                   filter_folder: bool = True,
                   filter_python: bool = True,
@@ -44,7 +44,7 @@ def addon_install(overwrite: bool = True,
     :param overwrite: Overwrite, Remove existing add-ons with the same ID
     :type overwrite: bool
     :param target: Target Path
-    :type target: typing.Union[str, int]
+    :type target: typing.Union[int, str]
     :param filepath: filepath
     :type filepath: str
     :param filter_folder: Filter folders
@@ -245,7 +245,7 @@ def studiolight_install(
         directory: str = "",
         filter_folder: bool = True,
         filter_glob: str = "*.png;*.jpg;*.hdr;*.exr",
-        type: typing.Union[str, int] = 'MATCAP'):
+        type: typing.Union[int, str] = 'MATCAP'):
     ''' Install a user defined studio light
 
     :param files: File Path
@@ -257,7 +257,7 @@ def studiolight_install(
     :param filter_glob: filter_glob
     :type filter_glob: str
     :param type: type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass

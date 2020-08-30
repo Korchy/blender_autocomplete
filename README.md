@@ -8,6 +8,7 @@ This modules getted from nutti fake-bpy-modules. Only files, without pip instala
 - 2.81a - 2020.01.11
 - 2.82 - 2020.02.18
 - 2.83 - 2020.07.24
+- 2.90 - 2020.08.12
 
 Installation and usage:
 -

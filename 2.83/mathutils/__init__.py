@@ -1,10 +1,10 @@
 import sys
 import typing
-from . import kdtree
-from . import noise
-from . import geometry
-from . import bvhtree
 from . import interpolate
+from . import kdtree
+from . import geometry
+from . import noise
+from . import bvhtree
 
 
 class Color:
@@ -84,7 +84,7 @@ class Color:
         '''
         pass
 
-    def __init__(self, val):
+    def __init__(self, rgb=(0.0, 0.0, 0.0)):
         ''' 
 
         '''
@@ -156,11 +156,11 @@ class Euler:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Matrix', 'Euler', 'Quaternion']):
+    def rotate(self, other: typing.Union['Quaternion', 'Matrix', 'Euler']):
         ''' Rotates the euler by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Matrix', 'Euler', 'Quaternion']
+        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
         '''
         pass
 
@@ -196,7 +196,7 @@ class Euler:
         '''
         pass
 
-    def __init__(self, val):
+    def __init__(self, angles=(0.0, 0.0, 0.0), order='XYZ'):
         ''' 
 
         '''
@@ -473,11 +473,11 @@ class Matrix:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Matrix', 'Euler', 'Quaternion']):
+    def rotate(self, other: typing.Union['Quaternion', 'Matrix', 'Euler']):
         ''' Rotates the matrix by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Matrix', 'Euler', 'Quaternion']
+        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
         '''
         pass
 
@@ -561,7 +561,9 @@ class Matrix:
         '''
         pass
 
-    def __init__(self, val):
+    def __init__(self,
+                 rows=((1.0, 0.0, 0.0, 0.0), (0.0, 1.0, 0.0, 0.0),
+                       (0.0, 0.0, 1.0, 0.0), (0.0, 0.0, 0.0, 1.0))):
         ''' 
 
         '''
@@ -733,11 +735,11 @@ class Quaternion:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Matrix', 'Euler', 'Quaternion']):
+    def rotate(self, other: typing.Union['Quaternion', 'Matrix', 'Euler']):
         ''' Rotates the quaternion by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Matrix', 'Euler', 'Quaternion']
+        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
         '''
         pass
 
@@ -811,7 +813,7 @@ class Quaternion:
         '''
         pass
 
-    def __init__(self, val):
+    def __init__(self, seq=(1.0, 0.0, 0.0, 0.0)):
         ''' 
 
         '''
@@ -2092,11 +2094,11 @@ class Vector:
         pass
 
     @staticmethod
-    def rotate(other: typing.Union['Matrix', 'Euler', 'Quaternion']):
+    def rotate(other: typing.Union['Quaternion', 'Matrix', 'Euler']):
         ''' Rotate the vector by a rotation value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Matrix', 'Euler', 'Quaternion']
+        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
         '''
         pass
 
@@ -2178,7 +2180,7 @@ class Vector:
         '''
         pass
 
-    def __init__(self, val):
+    def __init__(self, seq=(0.0, 0.0, 0.0)):
         ''' 
 
         '''

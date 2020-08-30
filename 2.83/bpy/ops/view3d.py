@@ -27,8 +27,8 @@ def background_image_add(
         relative_path: bool = True,
         show_multiview: bool = False,
         use_multiview: bool = False,
-        display_type: typing.Union[str, int] = 'DEFAULT',
-        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
+        display_type: typing.Union[int, str] = 'DEFAULT',
+        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
     ''' Add a new background image
 
     :param name: Name, Image name to assign
@@ -78,9 +78,9 @@ def background_image_add(
     :param use_multiview: Use Multi-View
     :type use_multiview: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     '''
 
     pass
@@ -151,13 +151,13 @@ def copybuffer():
 
 
 def cursor3d(use_depth: bool = True,
-             orientation: typing.Union[str, int] = 'VIEW'):
+             orientation: typing.Union[int, str] = 'VIEW'):
     ''' Set the location of the 3D cursor
 
     :param use_depth: Surface Project, Project onto the surface
     :type use_depth: bool
     :param orientation: Orientation, Preset viewpoint to use * NONE None, Leave orientation unchanged. * VIEW View, Orient to the viewport. * XFORM Transform, Orient to the current transform setting. * GEOM Geometry, Match the surface normal.
-    :type orientation: typing.Union[str, int]
+    :type orientation: typing.Union[int, str]
     '''
 
     pass
@@ -394,7 +394,7 @@ def select_box(xmin: int = 0,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[str, int] = 'SET'):
+               mode: typing.Union[int, str] = 'SET'):
     ''' Select items using box selection
 
     :param xmin: X Min
@@ -408,7 +408,7 @@ def select_box(xmin: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection. * XOR Difference, Inverts existing selection. * AND Intersect, Intersect existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -418,7 +418,7 @@ def select_circle(x: int = 0,
                   y: int = 0,
                   radius: int = 25,
                   wait_for_input: bool = True,
-                  mode: typing.Union[str, int] = 'SET'):
+                  mode: typing.Union[int, str] = 'SET'):
     ''' Select items using circle selection
 
     :param x: X
@@ -430,7 +430,7 @@ def select_circle(x: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -438,26 +438,26 @@ def select_circle(x: int = 0,
 
 def select_lasso(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
                                     'bpy_prop_collection'] = None,
-                 mode: typing.Union[str, int] = 'SET'):
+                 mode: typing.Union[int, str] = 'SET'):
     ''' Select items using lasso selection
 
     :param path: Path
     :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection. * XOR Difference, Inverts existing selection. * AND Intersect, Intersect existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
 
 
-def select_menu(name: typing.Union[str, int] = '',
+def select_menu(name: typing.Union[int, str] = '',
                 extend: bool = False,
                 deselect: bool = False,
                 toggle: bool = False):
     ''' Menu object selection
 
     :param name: Object Name
-    :type name: typing.Union[str, int]
+    :type name: typing.Union[int, str]
     :param extend: Extend
     :type extend: bool
     :param deselect: Deselect
@@ -543,11 +543,11 @@ def toggle_matcap_flip():
     pass
 
 
-def toggle_shading(type: typing.Union[str, int] = 'WIREFRAME'):
+def toggle_shading(type: typing.Union[int, str] = 'WIREFRAME'):
     ''' Toggle shading type in 3D viewport
 
     :param type: Type, Shading type to toggle * WIREFRAME Wireframe, Toggle wireframe shading. * SOLID Solid, Toggle solid shading. * MATERIAL LookDev, Toggle lookdev shading. * RENDERED Rendered, Toggle rendered shading.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -563,13 +563,13 @@ def toggle_xray():
 
 def transform_gizmo_set(
         extend: bool = False,
-        type: typing.Union[typing.Set[str], typing.Set[int]] = {}):
+        type: typing.Union[typing.Set[int], typing.Set[str]] = {}):
     ''' Set the current transform gizmo
 
     :param extend: extend
     :type extend: bool
     :param type: type
-    :type type: typing.Union[typing.Set[str], typing.Set[int]]
+    :type type: typing.Union[typing.Set[int], typing.Set[str]]
     '''
 
     pass
@@ -587,13 +587,13 @@ def view_all(use_all_regions: bool = False, center: bool = False):
     pass
 
 
-def view_axis(type: typing.Union[str, int] = 'LEFT',
+def view_axis(type: typing.Union[int, str] = 'LEFT',
               align_active: bool = False,
               relative: bool = False):
     ''' Use a preset viewpoint
 
     :param type: View, Preset viewpoint to use * LEFT Left, View From the Left. * RIGHT Right, View From the Right. * BOTTOM Bottom, View From the Bottom. * TOP Top, View From the Top. * FRONT Front, View From the Front. * BACK Back, View From the Back.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param align_active: Align Active, Align to the active object's axis
     :type align_active: bool
     :param relative: Relative, Rotate relative to the current orientation
@@ -659,23 +659,23 @@ def view_lock_to_active():
     pass
 
 
-def view_orbit(angle: float = 0.0, type: typing.Union[str, int] = 'ORBITLEFT'):
+def view_orbit(angle: float = 0.0, type: typing.Union[int, str] = 'ORBITLEFT'):
     ''' Orbit the view
 
     :param angle: Roll
     :type angle: float
     :param type: Orbit, Direction of View Orbit * ORBITLEFT Orbit Left, Orbit the view around to the Left. * ORBITRIGHT Orbit Right, Orbit the view around to the Right. * ORBITUP Orbit Up, Orbit the view Up. * ORBITDOWN Orbit Down, Orbit the view Down.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
 
 
-def view_pan(type: typing.Union[str, int] = 'PANLEFT'):
+def view_pan(type: typing.Union[int, str] = 'PANLEFT'):
     ''' Pan the view in a given direction
 
     :param type: Pan, Direction of View Pan * PANLEFT Pan Left, Pan the view to the Left. * PANRIGHT Pan Right, Pan the view to the Right. * PANUP Pan Up, Pan the view Up. * PANDOWN Pan Down, Pan the view Down.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -689,13 +689,13 @@ def view_persportho():
     pass
 
 
-def view_roll(angle: float = 0.0, type: typing.Union[str, int] = 'ANGLE'):
+def view_roll(angle: float = 0.0, type: typing.Union[int, str] = 'ANGLE'):
     ''' Roll the view
 
     :param angle: Roll
     :type angle: float
     :param type: Roll Angle Source, How roll angle is calculated * ANGLE Roll Angle, Roll the view using an angle value. * LEFT Roll Left, Roll the view around to the Left. * RIGHT Roll Right, Roll the view around to the Right.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass

@@ -1,9 +1,9 @@
 import sys
 import typing
 from . import icons
-from . import translations
-from . import handlers
 from . import timers
+from . import handlers
+from . import translations
 
 alembic = None
 ''' constant value bpy.app.alembic(supported=True, version=(1, 7, 12), version_string=' 1, 7, 12')

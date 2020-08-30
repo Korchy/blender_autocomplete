@@ -85,13 +85,13 @@ def cursor_set(frame: float = 0.0, value: float = 0.0):
     pass
 
 
-def decimate(mode: typing.Union[str, int] = 'RATIO',
+def decimate(mode: typing.Union[int, str] = 'RATIO',
              remove_ratio: float = 0.333333,
              remove_error_margin: float = 0.0):
     ''' Decimate F-Curves by removing keyframes that influence the curve shape the least
 
     :param mode: Mode, Which mode to use for decimation * RATIO Ratio, Use a percentage to specify how many keyframes you want to remove. * ERROR Error Margin, Use an error margin to specify how much the curve is allowed to deviate from the original path.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     :param remove_ratio: Remove, The percentage of keyframes to remove
     :type remove_ratio: float
     :param remove_error_margin: Max Error Margin, How much the new decimated curve is allowed to deviate from the original
@@ -135,11 +135,11 @@ def driver_variables_paste(replace: bool = False):
     pass
 
 
-def duplicate(mode: typing.Union[str, int] = 'TRANSLATION'):
+def duplicate(mode: typing.Union[int, str] = 'TRANSLATION'):
     ''' Make a copy of all selected keyframes
 
     :param mode: Mode
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -155,11 +155,11 @@ def duplicate_move(GRAPH_OT_duplicate=None, TRANSFORM_OT_transform=None):
     pass
 
 
-def easing_type(type: typing.Union[str, int] = 'AUTO'):
+def easing_type(type: typing.Union[int, str] = 'AUTO'):
     ''' Set easing type for the F-Curve segments starting from the selected keyframes
 
     :param type: Type * AUTO Automatic Easing, Easing type is chosen automatically based on what the type of interpolation used (e.g. 'Ease In' for transitional types, and 'Ease Out' for dynamic effects). * EASE_IN Ease In, Only on the end closest to the next keyframe. * EASE_OUT Ease Out, Only on the end closest to the first keyframe. * EASE_IN_OUT Ease In and Out, Segment between both keyframes.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -173,22 +173,22 @@ def euler_filter():
     pass
 
 
-def extrapolation_type(type: typing.Union[str, int] = 'CONSTANT'):
+def extrapolation_type(type: typing.Union[int, str] = 'CONSTANT'):
     ''' Set extrapolation mode for selected F-Curves
 
     :param type: Type * CONSTANT Constant Extrapolation, Values on endpoint keyframes are held. * LINEAR Linear Extrapolation, Straight-line slope of end segments are extended past the endpoint keyframes. * MAKE_CYCLIC Make Cyclic (F-Modifier), Add Cycles F-Modifier if one doesn't exist already. * CLEAR_CYCLIC Clear Cyclic (F-Modifier), Remove Cycles F-Modifier if not needed anymore.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
 
 
-def fmodifier_add(type: typing.Union[str, int] = 'NULL',
+def fmodifier_add(type: typing.Union[int, str] = 'NULL',
                   only_active: bool = True):
     ''' Add F-Modifier to the active/selected F-Curves
 
     :param type: Type * NULL Invalid. * GENERATOR Generator, Generate a curve using a factorized or expanded polynomial. * FNGENERATOR Built-In Function, Generate a curve using standard math functions such as sin and cos. * ENVELOPE Envelope, Reshape F-Curve values - e.g. change amplitude of movements. * CYCLES Cycles, Cyclic extend/repeat keyframe sequence. * NOISE Noise, Add pseudo-random noise on top of F-Curves. * LIMITS Limits, Restrict maximum and minimum values of F-Curve. * STEPPED Stepped Interpolation, Snap values to nearest grid-step - e.g. for a stop-motion look.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param only_active: Only Active, Only add F-Modifier to active F-Curve
     :type only_active: bool
     '''
@@ -240,11 +240,11 @@ def ghost_curves_create():
     pass
 
 
-def handle_type(type: typing.Union[str, int] = 'FREE'):
+def handle_type(type: typing.Union[int, str] = 'FREE'):
     ''' Set type of handle for selected keyframes
 
     :param type: Type * FREE Free, Completely independent manually set handle. * ALIGNED Aligned, Manually set handle with rotation locked together with its pair. * VECTOR Vector, Automatic handles that create straight lines. * AUTO Automatic, Automatic handles that create smooth curves. * AUTO_CLAMPED Auto Clamped, Automatic handles that create smooth curves which only change direction at keyframes.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -260,45 +260,45 @@ def hide(unselected: bool = False):
     pass
 
 
-def interpolation_type(type: typing.Union[str, int] = 'CONSTANT'):
+def interpolation_type(type: typing.Union[int, str] = 'CONSTANT'):
     ''' Set interpolation mode for the F-Curve segments starting from the selected keyframes
 
     :param type: Type * CONSTANT Constant, No interpolation, value of A gets held until B is encountered. * LINEAR Linear, Straight-line interpolation between A and B (i.e. no ease in/out). * BEZIER Bezier, Smooth interpolation between A and B, with some control over curve shape. * SINE Sinusoidal, Sinusoidal easing (weakest, almost linear but with a slight curvature). * QUAD Quadratic, Quadratic easing. * CUBIC Cubic, Cubic easing. * QUART Quartic, Quartic easing. * QUINT Quintic, Quintic easing. * EXPO Exponential, Exponential easing (dramatic). * CIRC Circular, Circular easing (strongest and most dynamic). * BACK Back, Cubic easing with overshoot and settle. * BOUNCE Bounce, Exponentially decaying parabolic bounce, like when objects collide. * ELASTIC Elastic, Exponentially decaying sine wave, like an elastic band.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
 
 
-def keyframe_insert(type: typing.Union[str, int] = 'ALL'):
+def keyframe_insert(type: typing.Union[int, str] = 'ALL'):
     ''' Insert keyframes for the specified channels
 
     :param type: Type * ALL All Channels, Insert a keyframe on all visible and editable F-Curves using each curve's current value. * SEL Only Selected Channels, Insert a keyframe on selected F-Curves using each curve's current value. * CURSOR_ACTIVE Active Channels At Cursor, Insert a keyframe for the active F-Curve at the cursor point. * CURSOR_SEL Selected Channels At Cursor, Insert a keyframe for selected F-Curves at the cursor point.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
 
 
-def mirror(type: typing.Union[str, int] = 'CFRA'):
+def mirror(type: typing.Union[int, str] = 'CFRA'):
     ''' Flip selected keyframes over the selected mirror line
 
     :param type: Type * CFRA By Times Over Current Frame, Flip times of selected keyframes using the current frame as the mirror line. * VALUE By Values Over Cursor Value, Flip values of selected keyframes using the cursor value (Y/Horizontal component) as the mirror line. * YAXIS By Times Over Time=0, Flip times of selected keyframes, effectively reversing the order they appear in. * XAXIS By Values Over Value=0, Flip values of selected keyframes (i.e. negative values become positive, and vice versa). * MARKER By Times Over First Selected Marker, Flip times of selected keyframes using the first selected marker as the reference point.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
 
 
-def paste(offset: typing.Union[str, int] = 'START',
-          merge: typing.Union[str, int] = 'MIX',
+def paste(offset: typing.Union[int, str] = 'START',
+          merge: typing.Union[int, str] = 'MIX',
           flipped: bool = False):
     ''' Paste keyframes from copy/paste buffer for the selected channels, starting on the current frame
 
     :param offset: Offset, Paste time offset of keys * START Frame Start, Paste keys starting at current frame. * END Frame End, Paste keys ending at current frame. * RELATIVE Frame Relative, Paste keys relative to the current frame when copying. * NONE No Offset, Paste keys from original time.
-    :type offset: typing.Union[str, int]
+    :type offset: typing.Union[int, str]
     :param merge: Type, Method of merging pasted keys and existing * MIX Mix, Overlay existing with new keys. * OVER_ALL Overwrite All, Replace all keys. * OVER_RANGE Overwrite Range, Overwrite keys in pasted range. * OVER_RANGE_ALL Overwrite Entire Range, Overwrite keys in pasted range, using the range of all copied keys.
-    :type merge: typing.Union[str, int]
+    :type merge: typing.Union[int, str]
     :param flipped: Flipped, Paste keyframes from mirrored bones if they exist
     :type flipped: bool
     '''
@@ -332,11 +332,11 @@ def sample():
     pass
 
 
-def select_all(action: typing.Union[str, int] = 'TOGGLE'):
+def select_all(action: typing.Union[int, str] = 'TOGGLE'):
     ''' Toggle selection of all keyframes
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -350,7 +350,7 @@ def select_box(axis_range: bool = False,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[str, int] = 'SET'):
+               mode: typing.Union[int, str] = 'SET'):
     ''' Select all keyframes within the specified region
 
     :param axis_range: Axis Range
@@ -370,7 +370,7 @@ def select_box(axis_range: bool = False,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -380,7 +380,7 @@ def select_circle(x: int = 0,
                   y: int = 0,
                   radius: int = 25,
                   wait_for_input: bool = True,
-                  mode: typing.Union[str, int] = 'SET'):
+                  mode: typing.Union[int, str] = 'SET'):
     ''' Select keyframe points using circle selection
 
     :param x: X
@@ -392,17 +392,17 @@ def select_circle(x: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
 
 
-def select_column(mode: typing.Union[str, int] = 'KEYS'):
+def select_column(mode: typing.Union[int, str] = 'KEYS'):
     ''' Select all keyframes on the specified frame(s)
 
     :param mode: Mode
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -410,24 +410,24 @@ def select_column(mode: typing.Union[str, int] = 'KEYS'):
 
 def select_lasso(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
                                     'bpy_prop_collection'] = None,
-                 mode: typing.Union[str, int] = 'SET'):
+                 mode: typing.Union[int, str] = 'SET'):
     ''' Select keyframe points using lasso selection
 
     :param path: Path
     :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
 
 
-def select_leftright(mode: typing.Union[str, int] = 'CHECK',
+def select_leftright(mode: typing.Union[int, str] = 'CHECK',
                      extend: bool = False):
     ''' Select keyframes to the left or the right of the current frame
 
     :param mode: Mode
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     :param extend: Extend Select
     :type extend: bool
     '''
@@ -467,11 +467,11 @@ def smooth():
     pass
 
 
-def snap(type: typing.Union[str, int] = 'CFRA'):
+def snap(type: typing.Union[int, str] = 'CFRA'):
     ''' Snap selected keyframes to the chosen times/values
 
     :param type: Type * CFRA Current Frame, Snap selected keyframes to the current frame. * VALUE Cursor Value, Set values of selected keyframes to the cursor value (Y/Horizontal component). * NEAREST_FRAME Nearest Frame, Snap selected keyframes to the nearest (whole) frame (use to fix accidental sub-frame offsets). * NEAREST_SECOND Nearest Second, Snap selected keyframes to the nearest second. * NEAREST_MARKER Nearest Marker, Snap selected keyframes to the nearest marker. * HORIZONTAL Flatten Handles, Flatten handles for a smoother transition.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -497,8 +497,8 @@ def sound_bake(filepath: str = "",
                filemode: int = 9,
                show_multiview: bool = False,
                use_multiview: bool = False,
-               display_type: typing.Union[str, int] = 'DEFAULT',
-               sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+               display_type: typing.Union[int, str] = 'DEFAULT',
+               sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                low: float = 0.0,
                high: float = 100000.0,
                attack: float = 0.005,
@@ -551,9 +551,9 @@ def sound_bake(filepath: str = "",
     :param use_multiview: Use Multi-View
     :type use_multiview: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param low: Lowest frequency, Cutoff frequency of a high-pass filter that is applied to the audio data
     :type low: float
     :param high: Highest frequency, Cutoff frequency of a low-pass filter that is applied to the audio data

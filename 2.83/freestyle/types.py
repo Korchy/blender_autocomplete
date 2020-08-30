@@ -755,11 +755,11 @@ class Interface0DIterator:
         pass
 
     def __init__(self, it: typing.Union[
-            'SVertexIterator', 'StrokeVertexIterator', 'CurvePointIterator']):
+            'StrokeVertexIterator', 'CurvePointIterator', 'SVertexIterator']):
         ''' Construct a nested Interface0DIterator that can be the argument of a Function0D.
 
         :param it: An iterator object to be nested.
-        :type it: typing.Union['SVertexIterator', 'StrokeVertexIterator', 'CurvePointIterator']
+        :type it: typing.Union['StrokeVertexIterator', 'CurvePointIterator', 'SVertexIterator']
         '''
         pass
 

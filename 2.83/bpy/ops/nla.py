@@ -32,11 +32,11 @@ def action_unlink(force_delete: bool = False):
     pass
 
 
-def actionclip_add(action: typing.Union[str, int] = ''):
+def actionclip_add(action: typing.Union[int, str] = ''):
     ''' Add an Action-Clip strip (i.e. an NLA Strip referencing an Action) to the active track
 
     :param action: Action
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -59,7 +59,7 @@ def bake(
         clear_constraints: bool = False,
         clear_parents: bool = False,
         use_current_action: bool = False,
-        bake_types: typing.Union[typing.Set[str], typing.Set[int]] = {'POSE'}):
+        bake_types: typing.Union[typing.Set[int], typing.Set[str]] = {'POSE'}):
     ''' Bake all selected objects loc/scale/rotation animation to an action
 
     :param frame_start: Start Frame, Start frame for baking
@@ -79,7 +79,7 @@ def bake(
     :param use_current_action: Overwrite Current Action, Bake animation into current action, instead of creating a new one (useful for baking only part of bones in an armature)
     :type use_current_action: bool
     :param bake_types: Bake Data, Which data's transformations to bake * POSE Pose, Bake bones transformations. * OBJECT Object, Bake object transformations.
-    :type bake_types: typing.Union[typing.Set[str], typing.Set[int]]
+    :type bake_types: typing.Union[typing.Set[int], typing.Set[str]]
     '''
 
     pass
@@ -134,24 +134,24 @@ def delete():
 
 
 def duplicate(linked: bool = False,
-              mode: typing.Union[str, int] = 'TRANSLATION'):
+              mode: typing.Union[int, str] = 'TRANSLATION'):
     ''' Duplicate selected NLA-Strips, adding the new strips in new tracks above the originals
 
     :param linked: Linked, When duplicating strips, assign new copies of the actions they use
     :type linked: bool
     :param mode: Mode
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
 
 
-def fmodifier_add(type: typing.Union[str, int] = 'NULL',
+def fmodifier_add(type: typing.Union[int, str] = 'NULL',
                   only_active: bool = True):
     ''' Add F-Modifier to the active/selected NLA-Strips
 
     :param type: Type * NULL Invalid. * GENERATOR Generator, Generate a curve using a factorized or expanded polynomial. * FNGENERATOR Built-In Function, Generate a curve using standard math functions such as sin and cos. * ENVELOPE Envelope, Reshape F-Curve values - e.g. change amplitude of movements. * CYCLES Cycles, Cyclic extend/repeat keyframe sequence. * NOISE Noise, Add pseudo-random noise on top of F-Curves. * LIMITS Limits, Restrict maximum and minimum values of F-Curve. * STEPPED Stepped Interpolation, Snap values to nearest grid-step - e.g. for a stop-motion look.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param only_active: Only Active, Only add a F-Modifier of the specified type to the active strip
     :type only_active: bool
     '''
@@ -235,11 +235,11 @@ def previewrange_set():
     pass
 
 
-def select_all(action: typing.Union[str, int] = 'TOGGLE'):
+def select_all(action: typing.Union[int, str] = 'TOGGLE'):
     ''' Select or deselect all NLA-Strips
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -252,7 +252,7 @@ def select_box(axis_range: bool = False,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[str, int] = 'SET'):
+               mode: typing.Union[int, str] = 'SET'):
     ''' Use box selection to grab NLA-Strips
 
     :param axis_range: Axis Range
@@ -270,18 +270,18 @@ def select_box(axis_range: bool = False,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
 
 
-def select_leftright(mode: typing.Union[str, int] = 'CHECK',
+def select_leftright(mode: typing.Union[int, str] = 'CHECK',
                      extend: bool = False):
     ''' Select strips to the left or the right of the current frame
 
     :param mode: Mode
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     :param extend: Extend Select
     :type extend: bool
     '''
@@ -297,11 +297,11 @@ def selected_objects_add():
     pass
 
 
-def snap(type: typing.Union[str, int] = 'CFRA'):
+def snap(type: typing.Union[int, str] = 'CFRA'):
     ''' Move start of strips to specified time
 
     :param type: Type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass

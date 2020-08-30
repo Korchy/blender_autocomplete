@@ -2,8 +2,8 @@ import sys
 import typing
 import bpy.types
 import mathutils
-import bpy
 import bpy.context
+import bpy
 
 
 class AddObjectHelper:
@@ -46,7 +46,7 @@ def object_add_grid_scale_apply_operator(operator, context):
 
 
 def object_data_add(context: 'bpy.types.Context',
-                    obdata: typing.Union['bpy.data', 'bpy.context.object'],
+                    obdata: typing.Union['bpy.context.object', 'bpy.data'],
                     operator: 'bpy.types.Operator' = None,
                     name: str = None) -> 'bpy.types.Object':
     ''' Add an object using the view context and preference to initialize the location, rotation and layer.
@@ -54,7 +54,7 @@ def object_data_add(context: 'bpy.types.Context',
     :param context: The context to use.
     :type context: 'bpy.types.Context'
     :param obdata: the data used for the new object.
-    :type obdata: typing.Union['bpy.data', 'bpy.context.object']
+    :type obdata: typing.Union['bpy.context.object', 'bpy.data']
     :param operator: The operator, checked for location and rotation properties.
     :type operator: 'bpy.types.Operator'
     :param name: Optional name

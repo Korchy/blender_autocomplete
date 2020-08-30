@@ -90,7 +90,7 @@ def change_frame(frame: int = 0):
 
 def clean_tracks(frames: int = 0,
                  error: float = 0.0,
-                 action: typing.Union[str, int] = 'SELECT'):
+                 action: typing.Union[int, str] = 'SELECT'):
     ''' Clean tracks with high error values or few frames
 
     :param frames: Tracked Frames, Effect on tracks which are tracked less than specified amount of frames
@@ -98,7 +98,7 @@ def clean_tracks(frames: int = 0,
     :param error: Reprojection Error, Effect on tracks which have got larger re-projection error
     :type error: float
     :param action: Action, Cleanup action to execute * SELECT Select, Select unclean tracks. * DELETE_TRACK Delete Track, Delete unclean tracks. * DELETE_SEGMENTS Delete Segments, Delete unclean segments of tracks.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -112,12 +112,12 @@ def clear_solution():
     pass
 
 
-def clear_track_path(action: typing.Union[str, int] = 'REMAINED',
+def clear_track_path(action: typing.Union[int, str] = 'REMAINED',
                      clear_active: bool = False):
     ''' Clear tracks after/before current position or clear the whole track
 
     :param action: Action, Clear action to execute * UPTO Clear up-to, Clear path up to current frame. * REMAINED Clear remained, Clear path at remaining frames (after current). * ALL Clear all, Clear the whole path.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     :param clear_active: Clear Active, Clear active track only instead of all selected tracks
     :type clear_active: bool
     '''
@@ -183,14 +183,14 @@ def delete_track():
     pass
 
 
-def detect_features(placement: typing.Union[str, int] = 'FRAME',
+def detect_features(placement: typing.Union[int, str] = 'FRAME',
                     margin: int = 16,
                     threshold: float = 0.5,
                     min_distance: int = 120):
     ''' Automatically detect features and place markers to track
 
     :param placement: Placement, Placement for detected features * FRAME Whole Frame, Place markers across the whole frame. * INSIDE_GPENCIL Inside Grease Pencil, Place markers only inside areas outlined with Grease Pencil. * OUTSIDE_GPENCIL Outside Grease Pencil, Place markers only outside areas outlined with Grease Pencil.
-    :type placement: typing.Union[str, int]
+    :type placement: typing.Union[int, str]
     :param margin: Margin, Only features further than margin pixels from the image edges are considered
     :type margin: int
     :param threshold: Threshold, Threshold level to consider feature good enough for tracking
@@ -202,11 +202,11 @@ def detect_features(placement: typing.Union[str, int] = 'FRAME',
     pass
 
 
-def disable_markers(action: typing.Union[str, int] = 'DISABLE'):
+def disable_markers(action: typing.Union[int, str] = 'DISABLE'):
     ''' Disable/enable selected markers
 
     :param action: Action, Disable action to execute * DISABLE Disable, Disable selected markers. * ENABLE Enable, Enable selected markers. * TOGGLE Toggle, Toggle disabled flag for selected markers.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -243,11 +243,11 @@ def filter_tracks(track_threshold: float = 5.0):
     pass
 
 
-def frame_jump(position: typing.Union[str, int] = 'PATHSTART'):
+def frame_jump(position: typing.Union[int, str] = 'PATHSTART'):
     ''' Jump to special frame
 
     :param position: Position, Position to jump to * PATHSTART Path Start, Jump to start of current path. * PATHEND Path End, Jump to end of current path. * FAILEDPREV Previous Failed, Jump to previous failed frame. * FAILNEXT Next Failed, Jump to next failed frame.
-    :type position: typing.Union[str, int]
+    :type position: typing.Union[int, str]
     '''
 
     pass
@@ -277,11 +277,11 @@ def graph_delete_knot():
     pass
 
 
-def graph_disable_markers(action: typing.Union[str, int] = 'DISABLE'):
+def graph_disable_markers(action: typing.Union[int, str] = 'DISABLE'):
     ''' Disable/enable selected markers
 
     :param action: Action, Disable action to execute * DISABLE Disable, Disable selected markers. * ENABLE Enable, Enable selected markers. * TOGGLE Toggle, Toggle disabled flag for selected markers.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -300,11 +300,11 @@ def graph_select(location: typing.List[float] = (0.0, 0.0),
     pass
 
 
-def graph_select_all_markers(action: typing.Union[str, int] = 'TOGGLE'):
+def graph_select_all_markers(action: typing.Union[int, str] = 'TOGGLE'):
     ''' Change selection of all markers of active track
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -396,21 +396,21 @@ def lock_selection_toggle():
     pass
 
 
-def lock_tracks(action: typing.Union[str, int] = 'LOCK'):
+def lock_tracks(action: typing.Union[int, str] = 'LOCK'):
     ''' Lock/unlock selected tracks
 
     :param action: Action, Lock action to execute * LOCK Lock, Lock selected tracks. * UNLOCK Unlock, Unlock selected tracks. * TOGGLE Toggle, Toggle locked flag for selected tracks.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
 
 
-def mode_set(mode: typing.Union[str, int] = 'TRACKING'):
+def mode_set(mode: typing.Union[int, str] = 'TRACKING'):
     ''' Set the clip interaction mode
 
     :param mode: Mode * TRACKING Tracking, Show tracking and solving tools. * MASK Mask, Show mask editing tools.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -440,8 +440,8 @@ def open(directory: str = "",
          relative_path: bool = True,
          show_multiview: bool = False,
          use_multiview: bool = False,
-         display_type: typing.Union[str, int] = 'DEFAULT',
-         sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
+         display_type: typing.Union[int, str] = 'DEFAULT',
+         sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
     ''' Load a sequence of frames or a movie file
 
     :param directory: Directory, Directory of the file
@@ -491,9 +491,9 @@ def open(directory: str = "",
     :param use_multiview: Use Multi-View
     :type use_multiview: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     '''
 
     pass
@@ -557,11 +557,11 @@ def select(extend: bool = False,
     pass
 
 
-def select_all(action: typing.Union[str, int] = 'TOGGLE'):
+def select_all(action: typing.Union[int, str] = 'TOGGLE'):
     ''' Change selection of all tracking markers
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -572,7 +572,7 @@ def select_box(xmin: int = 0,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[str, int] = 'SET'):
+               mode: typing.Union[int, str] = 'SET'):
     ''' Select markers using box selection
 
     :param xmin: X Min
@@ -586,7 +586,7 @@ def select_box(xmin: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -596,7 +596,7 @@ def select_circle(x: int = 0,
                   y: int = 0,
                   radius: int = 25,
                   wait_for_input: bool = True,
-                  mode: typing.Union[str, int] = 'SET'):
+                  mode: typing.Union[int, str] = 'SET'):
     ''' Select markers using circle selection
 
     :param x: X
@@ -608,17 +608,17 @@ def select_circle(x: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
 
 
-def select_grouped(group: typing.Union[str, int] = 'ESTIMATED'):
+def select_grouped(group: typing.Union[int, str] = 'ESTIMATED'):
     ''' Select all tracks from specified group
 
     :param group: Action, Clear action to execute * KEYFRAMED Keyframed tracks, Select all keyframed tracks. * ESTIMATED Estimated tracks, Select all estimated tracks. * TRACKED Tracked tracks, Select all tracked tracks. * LOCKED Locked tracks, Select all locked tracks. * DISABLED Disabled tracks, Select all disabled tracks. * COLOR Tracks with same color, Select all tracks with same color as active track. * FAILED Failed Tracks, Select all tracks which failed to be reconstructed.
-    :type group: typing.Union[str, int]
+    :type group: typing.Union[int, str]
     '''
 
     pass
@@ -626,13 +626,13 @@ def select_grouped(group: typing.Union[str, int] = 'ESTIMATED'):
 
 def select_lasso(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
                                     'bpy_prop_collection'] = None,
-                 mode: typing.Union[str, int] = 'SET'):
+                 mode: typing.Union[int, str] = 'SET'):
     ''' Select markers using lasso selection
 
     :param path: Path
     :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -646,11 +646,11 @@ def set_active_clip():
     pass
 
 
-def set_axis(axis: typing.Union[str, int] = 'X'):
+def set_axis(axis: typing.Union[int, str] = 'X'):
     ''' Set direction of scene axis rotating camera (or its parent if present) and assume selected track lies on real axis, joining it with the origin
 
     :param axis: Axis, Axis to use to align bundle along * X X, Align bundle align X axis. * Y Y, Align bundle align Y axis.
-    :type axis: typing.Union[str, int]
+    :type axis: typing.Union[int, str]
     '''
 
     pass
@@ -674,11 +674,11 @@ def set_origin(use_median: bool = False):
     pass
 
 
-def set_plane(plane: typing.Union[str, int] = 'FLOOR'):
+def set_plane(plane: typing.Union[int, str] = 'FLOOR'):
     ''' Set plane based on 3 selected bundles by moving camera (or its parent if present) in 3D space
 
     :param plane: Plane, Plane to be used for orientation * FLOOR Floor, Set floor plane. * WALL Wall, Set wall plane.
-    :type plane: typing.Union[str, int]
+    :type plane: typing.Union[int, str]
     '''
 
     pass
@@ -712,11 +712,11 @@ def set_solution_scale(distance: float = 0.0):
     pass
 
 
-def set_solver_keyframe(keyframe: typing.Union[str, int] = 'KEYFRAME_A'):
+def set_solver_keyframe(keyframe: typing.Union[int, str] = 'KEYFRAME_A'):
     ''' Set keyframe used by solver
 
     :param keyframe: Keyframe, Keyframe to set
-    :type keyframe: typing.Union[str, int]
+    :type keyframe: typing.Union[int, str]
     '''
 
     pass

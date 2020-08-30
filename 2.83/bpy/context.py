@@ -102,7 +102,7 @@ mesh: 'bpy.types.Mesh' = None
 
 meta_ball: 'bpy.types.MetaBall' = None
 
-mode: typing.Union[str, int] = None
+mode: typing.Union[int, str] = None
 
 object: 'bpy.types.Object' = None
 

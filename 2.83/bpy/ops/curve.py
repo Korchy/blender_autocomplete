@@ -3,11 +3,11 @@ import typing
 import bpy.types
 
 
-def cyclic_toggle(direction: typing.Union[str, int] = 'CYCLIC_U'):
+def cyclic_toggle(direction: typing.Union[int, str] = 'CYCLIC_U'):
     ''' Make active spline closed/opened loop
 
     :param direction: Direction, Direction to make surface cyclic in
-    :type direction: typing.Union[str, int]
+    :type direction: typing.Union[int, str]
     '''
 
     pass
@@ -39,11 +39,11 @@ def decimate(ratio: float = 1.0):
     pass
 
 
-def delete(type: typing.Union[str, int] = 'VERT'):
+def delete(type: typing.Union[int, str] = 'VERT'):
     ''' Delete selected control points or segments
 
     :param type: Type, Which elements to delete
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -58,7 +58,7 @@ def dissolve_verts():
 
 
 def draw(error_threshold: float = 0.0,
-         fit_method: typing.Union[str, int] = 'REFIT',
+         fit_method: typing.Union[int, str] = 'REFIT',
          corner_angle: float = 1.22173,
          use_cyclic: bool = True,
          stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'],
@@ -69,7 +69,7 @@ def draw(error_threshold: float = 0.0,
     :param error_threshold: Error, Error distance threshold (in object units)
     :type error_threshold: float
     :param fit_method: Fit Method * REFIT Refit, Incrementally re-fit the curve (high quality). * SPLIT Split, Split the curve until the tolerance is met (fast).
-    :type fit_method: typing.Union[str, int]
+    :type fit_method: typing.Union[int, str]
     :param corner_angle: Corner Angle
     :type corner_angle: float
     :param use_cyclic: Cyclic
@@ -101,11 +101,11 @@ def duplicate_move(CURVE_OT_duplicate=None, TRANSFORM_OT_translate=None):
     pass
 
 
-def extrude(mode: typing.Union[str, int] = 'TRANSLATION'):
+def extrude(mode: typing.Union[int, str] = 'TRANSLATION'):
     ''' Extrude selected control point(s)
 
     :param mode: Mode
-    :type mode: typing.Union[str, int]
+    :type mode: typing.Union[int, str]
     '''
 
     pass
@@ -121,11 +121,11 @@ def extrude_move(CURVE_OT_extrude=None, TRANSFORM_OT_translate=None):
     pass
 
 
-def handle_type_set(type: typing.Union[str, int] = 'AUTOMATIC'):
+def handle_type_set(type: typing.Union[int, str] = 'AUTOMATIC'):
     ''' Set type of handles for selected control points
 
     :param type: Type, Spline type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -169,7 +169,7 @@ def normals_make_consistent(calc_length: bool = False):
 
 def primitive_bezier_circle_add(radius: float = 1.0,
                                 enter_editmode: bool = False,
-                                align: typing.Union[str, int] = 'WORLD',
+                                align: typing.Union[int, str] = 'WORLD',
                                 location: typing.List[float] = (0.0, 0.0, 0.0),
                                 rotation: typing.List[float] = (0.0, 0.0,
                                                                 0.0)):
@@ -180,7 +180,7 @@ def primitive_bezier_circle_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -192,7 +192,7 @@ def primitive_bezier_circle_add(radius: float = 1.0,
 
 def primitive_bezier_curve_add(radius: float = 1.0,
                                enter_editmode: bool = False,
-                               align: typing.Union[str, int] = 'WORLD',
+                               align: typing.Union[int, str] = 'WORLD',
                                location: typing.List[float] = (0.0, 0.0, 0.0),
                                rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Construct a Bezier Curve
@@ -202,7 +202,7 @@ def primitive_bezier_curve_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -214,7 +214,7 @@ def primitive_bezier_curve_add(radius: float = 1.0,
 
 def primitive_nurbs_circle_add(radius: float = 1.0,
                                enter_editmode: bool = False,
-                               align: typing.Union[str, int] = 'WORLD',
+                               align: typing.Union[int, str] = 'WORLD',
                                location: typing.List[float] = (0.0, 0.0, 0.0),
                                rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Construct a Nurbs Circle
@@ -224,7 +224,7 @@ def primitive_nurbs_circle_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -236,7 +236,7 @@ def primitive_nurbs_circle_add(radius: float = 1.0,
 
 def primitive_nurbs_curve_add(radius: float = 1.0,
                               enter_editmode: bool = False,
-                              align: typing.Union[str, int] = 'WORLD',
+                              align: typing.Union[int, str] = 'WORLD',
                               location: typing.List[float] = (0.0, 0.0, 0.0),
                               rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Construct a Nurbs Curve
@@ -246,7 +246,7 @@ def primitive_nurbs_curve_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -258,7 +258,7 @@ def primitive_nurbs_curve_add(radius: float = 1.0,
 
 def primitive_nurbs_path_add(radius: float = 1.0,
                              enter_editmode: bool = False,
-                             align: typing.Union[str, int] = 'WORLD',
+                             align: typing.Union[int, str] = 'WORLD',
                              location: typing.List[float] = (0.0, 0.0, 0.0),
                              rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Construct a Path
@@ -268,7 +268,7 @@ def primitive_nurbs_path_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[str, int]
+    :type align: typing.Union[int, str]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -298,11 +298,11 @@ def reveal(select: bool = True):
     pass
 
 
-def select_all(action: typing.Union[str, int] = 'TOGGLE'):
+def select_all(action: typing.Union[int, str] = 'TOGGLE'):
     ''' (De)select all control points
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -374,7 +374,7 @@ def select_previous():
 
 def select_random(percent: float = 50.0,
                   seed: int = 0,
-                  action: typing.Union[str, int] = 'SELECT'):
+                  action: typing.Union[int, str] = 'SELECT'):
     ''' Randomly select some control points
 
     :param percent: Percent, Percentage of objects to select randomly
@@ -382,7 +382,7 @@ def select_random(percent: float = 50.0,
     :param seed: Random Seed, Seed for the random number generator
     :type seed: int
     :param action: Action, Selection action to execute * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements.
-    :type action: typing.Union[str, int]
+    :type action: typing.Union[int, str]
     '''
 
     pass
@@ -396,15 +396,15 @@ def select_row():
     pass
 
 
-def select_similar(type: typing.Union[str, int] = 'WEIGHT',
-                   compare: typing.Union[str, int] = 'EQUAL',
+def select_similar(type: typing.Union[int, str] = 'WEIGHT',
+                   compare: typing.Union[int, str] = 'EQUAL',
                    threshold: float = 0.1):
     ''' Select similar curve points by property type
 
     :param type: Type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param compare: Compare
-    :type compare: typing.Union[str, int]
+    :type compare: typing.Union[int, str]
     :param threshold: Threshold
     :type threshold: float
     '''
@@ -489,12 +489,12 @@ def spin(center: typing.List[float] = (0.0, 0.0, 0.0),
     pass
 
 
-def spline_type_set(type: typing.Union[str, int] = 'POLY',
+def spline_type_set(type: typing.Union[int, str] = 'POLY',
                     use_handles: bool = False):
     ''' Set type of active spline
 
     :param type: Type, Spline type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param use_handles: Handles, Use handles when converting bezier curves into polygons
     :type use_handles: bool
     '''

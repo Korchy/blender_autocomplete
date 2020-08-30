@@ -23,8 +23,8 @@ def alembic_export(filepath: str = "",
                    filter_folder: bool = True,
                    filter_blenlib: bool = False,
                    filemode: int = 8,
-                   display_type: typing.Union[str, int] = 'DEFAULT',
-                   sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+                   display_type: typing.Union[int, str] = 'DEFAULT',
+                   sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                    start: int = -2147483648,
                    end: int = -2147483648,
                    xsamples: int = 1,
@@ -43,11 +43,11 @@ def alembic_export(filepath: str = "",
                    subdiv_schema: bool = False,
                    apply_subdiv: bool = False,
                    curves_as_mesh: bool = False,
-                   compression_type: typing.Union[str, int] = 'OGAWA',
+                   compression_type: typing.Union[int, str] = 'OGAWA',
                    global_scale: float = 1.0,
                    triangulate: bool = False,
-                   quad_method: typing.Union[str, int] = 'SHORTEST_DIAGONAL',
-                   ngon_method: typing.Union[str, int] = 'BEAUTY',
+                   quad_method: typing.Union[int, str] = 'SHORTEST_DIAGONAL',
+                   ngon_method: typing.Union[int, str] = 'BEAUTY',
                    export_hair: bool = True,
                    export_particles: bool = True,
                    as_background_job: bool = False,
@@ -93,9 +93,9 @@ def alembic_export(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param start: Start Frame, Start frame of the export, use the default value to take the start frame of the current scene
     :type start: int
     :param end: End Frame, End frame of the export, use the default value to take the end frame of the current scene
@@ -133,15 +133,15 @@ def alembic_export(filepath: str = "",
     :param curves_as_mesh: Curves as Mesh, Export curves and NURBS surfaces as meshes
     :type curves_as_mesh: bool
     :param compression_type: Compression
-    :type compression_type: typing.Union[str, int]
+    :type compression_type: typing.Union[int, str]
     :param global_scale: Scale, Value by which to enlarge or shrink the objects with respect to the world's origin
     :type global_scale: float
     :param triangulate: Triangulate, Export Polygons (Quads & NGons) as Triangles
     :type triangulate: bool
     :param quad_method: Quad Method, Method for splitting the quads into triangles * BEAUTY Beauty , Split the quads in nice triangles, slower method. * FIXED Fixed, Split the quads on the first and third vertices. * FIXED_ALTERNATE Fixed Alternate, Split the quads on the 2nd and 4th vertices. * SHORTEST_DIAGONAL Shortest Diagonal, Split the quads based on the distance between the vertices.
-    :type quad_method: typing.Union[str, int]
+    :type quad_method: typing.Union[int, str]
     :param ngon_method: Polygon Method, Method for splitting the polygons into triangles * BEAUTY Beauty , Split the quads in nice triangles, slower method. * FIXED Fixed, Split the quads on the first and third vertices. * FIXED_ALTERNATE Fixed Alternate, Split the quads on the 2nd and 4th vertices. * SHORTEST_DIAGONAL Shortest Diagonal, Split the quads based on the distance between the vertices.
-    :type ngon_method: typing.Union[str, int]
+    :type ngon_method: typing.Union[int, str]
     :param export_hair: Export Hair, Exports hair particle systems as animated curves
     :type export_hair: bool
     :param export_particles: Export Particles, Exports non-hair particle systems
@@ -174,8 +174,8 @@ def alembic_import(filepath: str = "",
                    filter_blenlib: bool = False,
                    filemode: int = 8,
                    relative_path: bool = True,
-                   display_type: typing.Union[str, int] = 'DEFAULT',
-                   sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+                   display_type: typing.Union[int, str] = 'DEFAULT',
+                   sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                    scale: float = 1.0,
                    set_frame_range: bool = True,
                    validate_meshes: bool = False,
@@ -224,9 +224,9 @@ def alembic_import(filepath: str = "",
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param scale: Scale, Value by which to enlarge or shrink the objects with respect to the world's origin
     :type scale: float
     :param set_frame_range: Set Frame Range, If checked, update scene's start and end frame to match those of the Alembic archive
@@ -265,8 +265,8 @@ def append(
         filter_folder: bool = True,
         filter_blenlib: bool = True,
         filemode: int = 1,
-        display_type: typing.Union[str, int] = 'DEFAULT',
-        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+        display_type: typing.Union[int, str] = 'DEFAULT',
+        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
         link: bool = False,
         autoselect: bool = True,
         active_collection: bool = True,
@@ -318,9 +318,9 @@ def append(
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param link: Link, Link the objects or data-blocks rather than appending
     :type link: bool
     :param autoselect: Select, Select new objects
@@ -339,16 +339,16 @@ def append(
 
 
 def batch_rename(
-        data_type: typing.Union[str, int] = 'OBJECT',
-        data_source: typing.Union[str, int] = 'SELECT',
+        data_type: typing.Union[int, str] = 'OBJECT',
+        data_source: typing.Union[int, str] = 'SELECT',
         actions: typing.Union[typing.List['bl_operators.wm.BatchRenameAction'],
                               'bpy_prop_collection'] = None):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param data_type: Type, Type of data to rename
-    :type data_type: typing.Union[str, int]
+    :type data_type: typing.Union[int, str]
     :param data_source: Source
-    :type data_source: typing.Union[str, int]
+    :type data_source: typing.Union[int, str]
     :param actions: actions
     :type actions: typing.Union[typing.List['bl_operators.wm.BatchRenameAction'], 'bpy_prop_collection']
     '''
@@ -416,14 +416,14 @@ def collada_export(
         filter_folder: bool = True,
         filter_blenlib: bool = False,
         filemode: int = 8,
-        display_type: typing.Union[str, int] = 'DEFAULT',
-        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
-        prop_bc_export_ui_section: typing.Union[str, int] = 'main',
+        display_type: typing.Union[int, str] = 'DEFAULT',
+        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+        prop_bc_export_ui_section: typing.Union[int, str] = 'main',
         apply_modifiers: bool = False,
         export_mesh_type: int = 0,
-        export_mesh_type_selection: typing.Union[str, int] = 'view',
-        export_global_forward_selection: typing.Union[str, int] = 'Y',
-        export_global_up_selection: typing.Union[str, int] = 'Z',
+        export_mesh_type_selection: typing.Union[int, str] = 'view',
+        export_global_forward_selection: typing.Union[int, str] = 'Y',
+        export_global_up_selection: typing.Union[int, str] = 'Z',
         apply_global_orientation: bool = False,
         selected: bool = False,
         include_children: bool = False,
@@ -432,7 +432,7 @@ def collada_export(
         deform_bones_only: bool = False,
         include_animations: bool = True,
         include_all_actions: bool = True,
-        export_animation_type_selection: typing.Union[str, int] = 'sample',
+        export_animation_type_selection: typing.Union[int, str] = 'sample',
         sampling_rate: int = 1,
         keep_smooth_curves: bool = False,
         keep_keyframes: bool = False,
@@ -445,10 +445,10 @@ def collada_export(
         sort_by_name: bool = False,
         export_object_transformation_type: int = 0,
         export_object_transformation_type_selection: typing.
-        Union[str, int] = 'matrix',
+        Union[int, str] = 'matrix',
         export_animation_transformation_type: int = 0,
         export_animation_transformation_type_selection: typing.
-        Union[str, int] = 'matrix',
+        Union[int, str] = 'matrix',
         open_sim: bool = False,
         limit_precision: bool = False,
         keep_bind_info: bool = False):
@@ -493,21 +493,21 @@ def collada_export(
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param prop_bc_export_ui_section: Export Section, Only for User Interface organization * main Main, Data Export Section. * geometry Geom, Geometry Export Section. * armature Arm, Armature Export Section. * animation Anim, Animation Export Section. * collada Extra, Collada Export Section.
-    :type prop_bc_export_ui_section: typing.Union[str, int]
+    :type prop_bc_export_ui_section: typing.Union[int, str]
     :param apply_modifiers: Apply Modifiers, Apply modifiers to exported mesh (non destructive))
     :type apply_modifiers: bool
     :param export_mesh_type: Resolution, Modifier resolution for export
     :type export_mesh_type: int
     :param export_mesh_type_selection: Resolution, Modifier resolution for export * view View, Apply modifier's view settings. * render Render, Apply modifier's render settings.
-    :type export_mesh_type_selection: typing.Union[str, int]
+    :type export_mesh_type_selection: typing.Union[int, str]
     :param export_global_forward_selection: Global Forward Axis, Global Forward axis for export * X X Forward, Global Forward is positive X Axis. * Y Y Forward, Global Forward is positive Y Axis. * Z Z Forward, Global Forward is positive Z Axis. * -X -X Forward, Global Forward is negative X Axis. * -Y -Y Forward, Global Forward is negative Y Axis. * -Z -Z Forward, Global Forward is negative Z Axis.
-    :type export_global_forward_selection: typing.Union[str, int]
+    :type export_global_forward_selection: typing.Union[int, str]
     :param export_global_up_selection: Global Up Axis, Global Up axis for export * X X Up, Global UP is positive X Axis. * Y Y Up, Global UP is positive Y Axis. * Z Z Up, Global UP is positive Z Axis. * -X -X Up, Global UP is negative X Axis. * -Y -Y Up, Global UP is negative Y Axis. * -Z -Z Up, Global UP is negative Z Axis.
-    :type export_global_up_selection: typing.Union[str, int]
+    :type export_global_up_selection: typing.Union[int, str]
     :param apply_global_orientation: Apply Global Orientation, Rotate all root objects to match the global orientation settings otherwise set the global orientation per Collada asset
     :type apply_global_orientation: bool
     :param selected: Selection Only, Export only selected elements
@@ -525,7 +525,7 @@ def collada_export(
     :param include_all_actions: Include all Actions, Export also unassigned actions (this allows you to export entire animation libraries for your character(s))
     :type include_all_actions: bool
     :param export_animation_type_selection: Key Type, Type for exported animations (use sample keys or Curve keys) * sample Samples, Export Sampled points guided by sampling rate. * keys Curves, Export Curves (note: guided by curve keys).
-    :type export_animation_type_selection: typing.Union[str, int]
+    :type export_animation_type_selection: typing.Union[int, str]
     :param sampling_rate: Sampling Rate, The distance between 2 keyframes (1 to key every frame)
     :type sampling_rate: int
     :param keep_smooth_curves: Keep Smooth curves, Export also the curve handles (if available) (this does only work when the inverse parent matrix is the unity matrix, otherwise you may end up with odd results)
@@ -549,11 +549,11 @@ def collada_export(
     :param export_object_transformation_type: Transform, Object Transformation type for translation, scale and rotation
     :type export_object_transformation_type: int
     :param export_object_transformation_type_selection: Transform, Object Transformation type for translation, scale and rotation * matrix Matrix, Use <matrix> representation for exported transformations. * decomposed Decomposed, Use <rotate>, <translate> and <scale> representation for exported transformations.
-    :type export_object_transformation_type_selection: typing.Union[str, int]
+    :type export_object_transformation_type_selection: typing.Union[int, str]
     :param export_animation_transformation_type: Transform, Transformation type for translation, scale and rotation. Note: The Animation transformation type in the Anim Tab is always equal to the Object transformation type in the Geom tab
     :type export_animation_transformation_type: int
     :param export_animation_transformation_type_selection: Transform, Transformation type for translation, scale and rotation. Note: The Animation transformation type in the Anim Tab is always equal to the Object transformation type in the Geom tab * matrix Matrix, Use <matrix> representation for exported transformations. * decomposed Decomposed, Use <rotate>, <translate> and <scale> representation for exported transformations.
-    :type export_animation_transformation_type_selection: typing.Union[str, int]
+    :type export_animation_transformation_type_selection: typing.Union[int, str]
     :param open_sim: Export to SL/OpenSim, Compatibility mode for SL, OpenSim and other compatible online worlds
     :type open_sim: bool
     :param limit_precision: Limit Precision, Reduce the precision of the exported data to 6 digits
@@ -583,8 +583,8 @@ def collada_import(filepath: str = "",
                    filter_folder: bool = True,
                    filter_blenlib: bool = False,
                    filemode: int = 8,
-                   display_type: typing.Union[str, int] = 'DEFAULT',
-                   sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+                   display_type: typing.Union[int, str] = 'DEFAULT',
+                   sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                    import_units: bool = False,
                    fix_orientation: bool = False,
                    find_chains: bool = False,
@@ -630,9 +630,9 @@ def collada_import(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param import_units: Import Units, If disabled match import to Blender's current Unit settings, otherwise use the settings from the Imported scene
     :type import_units: bool
     :param fix_orientation: Fix Leaf Bones, Fix Orientation of Leaf Bones (Collada does only support Joints)
@@ -652,7 +652,7 @@ def collada_import(filepath: str = "",
 
 def context_collection_boolean_set(data_path_iter: str = "",
                                    data_path_item: str = "",
-                                   type: typing.Union[str, int] = 'TOGGLE'):
+                                   type: typing.Union[int, str] = 'TOGGLE'):
     ''' Set boolean values for a collection of items
 
     :param data_path_iter: data_path_iter, The data path relative to the context, must point to an iterable
@@ -660,7 +660,7 @@ def context_collection_boolean_set(data_path_iter: str = "",
     :param data_path_item: data_path_item, The data path from each iterable to the value (int or float)
     :type data_path_item: str
     :param type: Type
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
@@ -1006,8 +1006,8 @@ def lib_reload(library: str = "",
                filter_blenlib: bool = False,
                filemode: int = 8,
                relative_path: bool = True,
-               display_type: typing.Union[str, int] = 'DEFAULT',
-               sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
+               display_type: typing.Union[int, str] = 'DEFAULT',
+               sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
     ''' Reload the given library
 
     :param library: Library, Library to reload
@@ -1057,9 +1057,9 @@ def lib_reload(library: str = "",
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     '''
 
     pass
@@ -1091,8 +1091,8 @@ def lib_relocate(
         filter_blenlib: bool = False,
         filemode: int = 8,
         relative_path: bool = True,
-        display_type: typing.Union[str, int] = 'DEFAULT',
-        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
+        display_type: typing.Union[int, str] = 'DEFAULT',
+        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
     ''' Relocate the given library to one or several others
 
     :param library: Library, Library to relocate
@@ -1144,9 +1144,9 @@ def lib_relocate(
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     '''
 
     pass
@@ -1175,8 +1175,8 @@ def link(filepath: str = "",
          filter_blenlib: bool = True,
          filemode: int = 1,
          relative_path: bool = True,
-         display_type: typing.Union[str, int] = 'DEFAULT',
-         sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+         display_type: typing.Union[int, str] = 'DEFAULT',
+         sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
          link: bool = True,
          autoselect: bool = True,
          active_collection: bool = True,
@@ -1228,9 +1228,9 @@ def link(filepath: str = "",
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param link: Link, Link the objects or data-blocks rather than appending
     :type link: bool
     :param autoselect: Select, Select new objects
@@ -1271,8 +1271,8 @@ def open_mainfile(filepath: str = "",
                   filter_folder: bool = True,
                   filter_blenlib: bool = False,
                   filemode: int = 8,
-                  display_type: typing.Union[str, int] = 'DEFAULT',
-                  sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+                  display_type: typing.Union[int, str] = 'DEFAULT',
+                  sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                   load_ui: bool = True,
                   use_scripts: bool = True,
                   display_file_selector: bool = True,
@@ -1318,9 +1318,9 @@ def open_mainfile(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param load_ui: Load UI, Load user interface setup in the .blend file
     :type load_ui: bool
     :param use_scripts: Trusted Source, Allow .blend file to execute scripts automatically, default available from system preferences
@@ -1490,11 +1490,11 @@ def previews_batch_generate(
 
 
 def previews_clear(
-        id_type: typing.Union[typing.Set[str], typing.Set[int]] = {}):
+        id_type: typing.Union[typing.Set[int], typing.Set[str]] = {}):
     ''' Clear data-block previews (only for some types like objects, materials, textures, etc.)
 
     :param id_type: Data-Block Type, Which data-block previews to clear * ALL All Types. * GEOMETRY All Geometry Types, Clear previews for scenes, collections and objects. * SHADING All Shading Types, Clear previews for materials, lights, worlds, textures and images. * SCENE Scenes. * COLLECTION Collections. * OBJECT Objects. * MATERIAL Materials. * LIGHT Lights. * WORLD Worlds. * TEXTURE Textures. * IMAGE Images.
-    :type id_type: typing.Union[typing.Set[str], typing.Set[int]]
+    :type id_type: typing.Union[typing.Set[int], typing.Set[str]]
     '''
 
     pass
@@ -1539,7 +1539,7 @@ def properties_edit(data_path: str = "",
                     soft_min: float = -10000,
                     soft_max: float = 10000.0,
                     description: str = "",
-                    subtype: typing.Union[str, int] = ''):
+                    subtype: typing.Union[int, str] = ''):
     ''' Edit the attributes of the property
 
     :param data_path: Property Edit, Property data_path edit
@@ -1565,7 +1565,7 @@ def properties_edit(data_path: str = "",
     :param description: Tooltip
     :type description: str
     :param subtype: Subtype
-    :type subtype: typing.Union[str, int]
+    :type subtype: typing.Union[int, str]
     '''
 
     pass
@@ -1707,8 +1707,8 @@ def recover_auto_save(filepath: str = "",
                       filter_folder: bool = False,
                       filter_blenlib: bool = False,
                       filemode: int = 8,
-                      display_type: typing.Union[str, int] = 'LIST_VERTICAL',
-                      sort_method: typing.Union[str, int] = 'FILE_SORT_TIME'):
+                      display_type: typing.Union[int, str] = 'LIST_VERTICAL',
+                      sort_method: typing.Union[int, str] = 'FILE_SORT_TIME'):
     ''' Open an automatically saved file to recover it
 
     :param filepath: File Path, Path to file
@@ -1750,9 +1750,9 @@ def recover_auto_save(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     '''
 
     pass
@@ -1766,13 +1766,13 @@ def recover_last_session():
     pass
 
 
-def redraw_timer(type: typing.Union[str, int] = 'DRAW',
+def redraw_timer(type: typing.Union[int, str] = 'DRAW',
                  iterations: int = 10,
                  time_limit: float = 0.0):
     ''' Simple redraw timer to test the speed of updating the interface
 
     :param type: Type * DRAW Draw Region, Draw Region. * DRAW_SWAP Draw Region + Swap, Draw Region and Swap. * DRAW_WIN Draw Window, Draw Window. * DRAW_WIN_SWAP Draw Window + Swap, Draw Window and Swap. * ANIM_STEP Anim Step, Animation Steps. * ANIM_PLAY Anim Play, Animation Playback. * UNDO Undo/Redo, Undo/Redo.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param iterations: Iterations, Number of times to redraw
     :type iterations: int
     :param time_limit: Time Limit, Seconds to run the test for (override iterations)
@@ -1812,8 +1812,8 @@ def save_as_mainfile(filepath: str = "",
                      filter_folder: bool = True,
                      filter_blenlib: bool = False,
                      filemode: int = 8,
-                     display_type: typing.Union[str, int] = 'DEFAULT',
-                     sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+                     display_type: typing.Union[int, str] = 'DEFAULT',
+                     sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                      compress: bool = False,
                      relative_remap: bool = True,
                      copy: bool = False):
@@ -1860,9 +1860,9 @@ def save_as_mainfile(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param compress: Compress, Write compressed .blend file
     :type compress: bool
     :param relative_remap: Remap Relative, Remap relative paths when saving to a different directory
@@ -1902,8 +1902,8 @@ def save_mainfile(filepath: str = "",
                   filter_folder: bool = True,
                   filter_blenlib: bool = False,
                   filemode: int = 8,
-                  display_type: typing.Union[str, int] = 'DEFAULT',
-                  sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+                  display_type: typing.Union[int, str] = 'DEFAULT',
+                  sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                   compress: bool = False,
                   relative_remap: bool = False,
                   exit: bool = False):
@@ -1950,9 +1950,9 @@ def save_mainfile(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param compress: Compress, Write compressed .blend file
     :type compress: bool
     :param relative_remap: Remap Relative, Remap relative paths when saving to a different directory
@@ -1972,29 +1972,29 @@ def save_userpref():
     pass
 
 
-def search_menu(type: typing.Union[str, int] = 'OPERATOR'):
+def search_menu(type: typing.Union[int, str] = 'OPERATOR'):
     ''' Pop-up a search menu over all available operators in current context
 
     :param type: Type * OPERATOR Operator, Search all operators. * MENU Menu, Search active menu items.
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     '''
 
     pass
 
 
-def set_stereo_3d(display_mode: typing.Union[str, int] = 'ANAGLYPH',
-                  anaglyph_type: typing.Union[str, int] = 'RED_CYAN',
-                  interlace_type: typing.Union[str, int] = 'ROW_INTERLEAVED',
+def set_stereo_3d(display_mode: typing.Union[int, str] = 'ANAGLYPH',
+                  anaglyph_type: typing.Union[int, str] = 'RED_CYAN',
+                  interlace_type: typing.Union[int, str] = 'ROW_INTERLEAVED',
                   use_interlace_swap: bool = False,
                   use_sidebyside_crosseyed: bool = False):
     ''' Toggle 3D stereo support for current window (or change the display mode)
 
     :param display_mode: Display Mode * ANAGLYPH Anaglyph, Render views for left and right eyes as two differently filtered colors in a single image (anaglyph glasses are required). * INTERLACE Interlace, Render views for left and right eyes interlaced in a single image (3D-ready monitor is required). * TIMESEQUENTIAL Time Sequential, Render alternate eyes (also known as page flip, quad buffer support in the graphic card is required). * SIDEBYSIDE Side-by-Side, Render views for left and right eyes side-by-side. * TOPBOTTOM Top-Bottom, Render views for left and right eyes one above another.
-    :type display_mode: typing.Union[str, int]
+    :type display_mode: typing.Union[int, str]
     :param anaglyph_type: Anaglyph Type
-    :type anaglyph_type: typing.Union[str, int]
+    :type anaglyph_type: typing.Union[int, str]
     :param interlace_type: Interlace Type
-    :type interlace_type: typing.Union[str, int]
+    :type interlace_type: typing.Union[int, str]
     :param use_interlace_swap: Swap Left/Right, Swap left and right stereo channels
     :type use_interlace_swap: bool
     :param use_sidebyside_crosseyed: Cross-Eyed, Right eye should see left image and vice-versa
@@ -2025,7 +2025,7 @@ def sysinfo(filepath: str = ""):
 def tool_set_by_id(name: str = "",
                    cycle: bool = False,
                    as_fallback: bool = False,
-                   space_type: typing.Union[str, int] = 'EMPTY'):
+                   space_type: typing.Union[int, str] = 'EMPTY'):
     ''' Set the tool by name (for keymaps)
 
     :param name: Identifier, Identifier of the tool
@@ -2035,7 +2035,7 @@ def tool_set_by_id(name: str = "",
     :param as_fallback: Set Fallback, Set the fallback tool instead of the primary tool
     :type as_fallback: bool
     :param space_type: Type
-    :type space_type: typing.Union[str, int]
+    :type space_type: typing.Union[int, str]
     '''
 
     pass
@@ -2045,7 +2045,7 @@ def tool_set_by_index(index: int = 0,
                       cycle: bool = False,
                       expand: bool = True,
                       as_fallback: bool = False,
-                      space_type: typing.Union[str, int] = 'EMPTY'):
+                      space_type: typing.Union[int, str] = 'EMPTY'):
     ''' Set the tool by index (for keymaps)
 
     :param index: Index in toolbar
@@ -2057,7 +2057,7 @@ def tool_set_by_index(index: int = 0,
     :param as_fallback: Set Fallback, Set the fallback tool instead of the primary
     :type as_fallback: bool
     :param space_type: Type
-    :type space_type: typing.Union[str, int]
+    :type space_type: typing.Union[int, str]
     '''
 
     pass
@@ -2097,11 +2097,11 @@ def url_open(url: str = ""):
     pass
 
 
-def url_open_preset(type: typing.Union[str, int] = '', id: str = ""):
+def url_open_preset(type: typing.Union[int, str] = '', id: str = ""):
     ''' Open a preset website in the web-browser
 
     :param type: Site
-    :type type: typing.Union[str, int]
+    :type type: typing.Union[int, str]
     :param id: Identifier, Optional identifier
     :type id: str
     '''
@@ -2128,8 +2128,8 @@ def usd_export(filepath: str = "",
                filter_folder: bool = True,
                filter_blenlib: bool = False,
                filemode: int = 8,
-               display_type: typing.Union[str, int] = 'DEFAULT',
-               sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
+               display_type: typing.Union[int, str] = 'DEFAULT',
+               sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
                selected_objects_only: bool = False,
                export_animation: bool = False,
                export_hair: bool = False,
@@ -2137,7 +2137,7 @@ def usd_export(filepath: str = "",
                export_normals: bool = True,
                export_materials: bool = True,
                use_instancing: bool = False,
-               evaluation_mode: typing.Union[str, int] = 'RENDER'):
+               evaluation_mode: typing.Union[int, str] = 'RENDER'):
     ''' Export current scene in a USD archive
 
     :param filepath: File Path, Path to file
@@ -2179,9 +2179,9 @@ def usd_export(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[str, int]
+    :type display_type: typing.Union[int, str]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[str, int]
+    :type sort_method: typing.Union[int, str]
     :param selected_objects_only: Selection Only, Only selected objects are exported. Unselected parents of selected objects are exported as empty transform
     :type selected_objects_only: bool
     :param export_animation: Animation, When checked, the render frame range is exported. When false, only the current frame is exported
@@ -2197,7 +2197,7 @@ def usd_export(filepath: str = "",
     :param use_instancing: Instancing, When checked, instanced objects are exported as references in USD. When unchecked, instanced objects are exported as real objects
     :type use_instancing: bool
     :param evaluation_mode: Use Settings for, Determines visibility of objects, modifier settings, and other areas where there are different settings for viewport and rendering * RENDER Render, Use Render settings for object visibility, modifier settings, etc. * VIEWPORT Viewport, Use Viewport settings for object visibility, modifier settings, etc.
-    :type evaluation_mode: typing.Union[str, int]
+    :type evaluation_mode: typing.Union[int, str]
     '''
 
     pass

@@ -217,11 +217,11 @@ class GPUVertBuf:
     ''' Contains a VBO. :param len: Amount of vertices that will fit into this buffer. :type type: int :param format: Vertex format. :type buf: gpu.types.GPUVertFormat
     '''
 
-    def attr_fill(self, id: typing.Union[str, int], data: list):
+    def attr_fill(self, id: typing.Union[int, str], data: list):
         ''' Insert data into the buffer for a single attribute.
 
         :param id: 
-        :type id: typing.Union[str, int]
+        :type id: typing.Union[int, str]
         :param data: 
         :type data: list
         '''
