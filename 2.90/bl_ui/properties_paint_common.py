@@ -597,6 +597,9 @@ class StrokePanel(BrushPanel, UnifiedPaintPanel):
     bl_options = None
     ''' '''
 
+    bl_ui_units_x = None
+    ''' '''
+
     def draw(self, context):
         ''' 
 

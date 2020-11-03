@@ -11,7 +11,7 @@ class GPUBatch:
     def draw(self, program: 'GPUShader' = None):
         ''' Run the drawing program with the parameters assigned to the batch.
 
-        :param program: 
+        :param program: Program that performs the drawing operations. If None is passed, the last program set to this batch will run.
         :type program: 'GPUShader'
         '''
         pass
@@ -19,7 +19,7 @@ class GPUBatch:
     def program_set(self, program: 'GPUShader'):
         ''' Assign a shader to this batch that will be used for drawing when not overwritten later. Note: This method has to be called in the draw context that the batch will be drawn in. This function does not need to be called when you always set the shader when calling batch.draw .
 
-        :param program: 
+        :param program: The program/shader the batch will use in future draw calls.
         :type program: 'GPUShader'
         '''
         pass
@@ -27,7 +27,7 @@ class GPUBatch:
     def vertbuf_add(self, buf: 'GPUVertBuf'):
         ''' Add another vertex buffer to the Batch. It is not possible to add more vertices to the batch using this method. Instead it can be used to add more attributes to the existing vertices. A good use case would be when you have a separate vertex buffer for vertex positions and vertex normals. Current a batch can have at most 6 vertex buffers.
 
-        :param buf: 
+        :param buf: The vertex buffer that will be added to the batch.
         :type buf: 'GPUVertBuf'
         '''
         pass
@@ -120,7 +120,7 @@ class GPUShader:
     def attr_from_name(self, name: str) -> int:
         ''' Get attribute location by name.
 
-        :param name: 
+        :param name: The name of the attribute variable whose location is to be queried.
         :type name: str
         :rtype: int
         :return: The location of an attribute variable.
@@ -144,7 +144,7 @@ class GPUShader:
     def uniform_block_from_name(self, name: str) -> int:
         ''' Get uniform block location by name.
 
-        :param name: 
+        :param name: Name of the uniform block variable whose location is to be queried.
         :type name: str
         :rtype: int
         :return: The location of the uniform block variable.
@@ -154,9 +154,9 @@ class GPUShader:
     def uniform_bool(self, name: str, seq: list):
         ''' Specify the value of a uniform variable for the current program object.
 
-        :param name: 
+        :param name: Name of the uniform variable whose value is to be changed.
         :type name: str
-        :param seq: 
+        :param seq: Value that will be used to update the specified uniform variable.
         :type seq: list
         '''
         pass
@@ -164,9 +164,9 @@ class GPUShader:
     def uniform_float(self, name: str, value: list):
         ''' Specify the value of a uniform variable for the current program object.
 
-        :param name: 
+        :param name: Name of the uniform variable whose value is to be changed.
         :type name: str
-        :param value: 
+        :param value: Value that will be used to update the specified uniform variable.
         :type value: list
         '''
         pass
@@ -174,7 +174,7 @@ class GPUShader:
     def uniform_from_name(self, name: str) -> int:
         ''' Get uniform location by name.
 
-        :param name: 
+        :param name: Name of the uniform variable whose location is to be queried.
         :type name: str
         :rtype: int
         :return: Location of the uniform variable.
@@ -184,9 +184,9 @@ class GPUShader:
     def uniform_int(self, name: str, seq: list):
         ''' Specify the value of a uniform variable for the current program object.
 
-        :param name: 
+        :param name: name of the uniform variable whose value is to be changed.
         :type name: str
-        :param seq: 
+        :param seq: Value that will be used to update the specified uniform variable.
         :type seq: list
         '''
         pass
@@ -195,13 +195,13 @@ class GPUShader:
                              count: int):
         ''' Set the buffer to fill the uniform.
 
-        :param location: 
+        :param location: Location of the uniform variable to be modified.
         :type location: int
-        :param buffer: 
+        :param buffer: The data that should be set. Can support the buffer protocol.
         :type buffer: list
-        :param length: 
+        :param length: - 1: float - 2: vec2 or float[2] - 3: vec3 or float[3] - 4: vec4 or float[4] - 9: mat3 - 16: mat4
         :type length: int
-        :param count: 
+        :param count: Specifies the number of elements, vector or matrices that are to be modified.
         :type count: int
         '''
         pass
@@ -220,9 +220,9 @@ class GPUVertBuf:
     def attr_fill(self, id: typing.Union[int, str], data: list):
         ''' Insert data into the buffer for a single attribute.
 
-        :param id: 
+        :param id: Either the name or the id of the attribute.
         :type id: typing.Union[int, str]
-        :param data: 
+        :param data: Sequence of data that should be stored in the buffer
         :type data: list
         '''
         pass
@@ -235,13 +235,13 @@ class GPUVertFormat:
     def attr_add(self, id: str, comp_type: str, len: int, fetch_mode: str):
         ''' Add a new attribute to the format.
 
-        :param id: 
+        :param id: Name the attribute. Often position , normal , ...
         :type id: str
-        :param comp_type: 
+        :param comp_type: The data type that will be used store the value in memory. Possible values are I8 , U8 , I16 , U16 , I32 , U32 , F32 and I10 .
         :type comp_type: str
-        :param len: 
+        :param len: How many individual values the attribute consists of (e.g. 2 for uv coordinates).
         :type len: int
-        :param fetch_mode: 
+        :param fetch_mode: How values from memory will be converted when used in the shader. This is mainly useful for memory optimizations when you want to store values with reduced precision. E.g. you can store a float in only 1 byte but it will be converted to a normal 4 byte float when used. Possible values are FLOAT , INT , INT_TO_FLOAT_UNIT and INT_TO_FLOAT .
         :type fetch_mode: str
         '''
         pass

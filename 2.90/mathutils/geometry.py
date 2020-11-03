@@ -97,9 +97,21 @@ def convex_hull_2d(points: list) -> list:
     pass
 
 
-def delaunay_2d_cdt(vert_coords, edges, faces, output_type, epsilon):
-    ''' 
+def delaunay_2d_cdt(
+        vert_coords: typing.List['mathutils.Vector'], edges: typing.List[int],
+        faces: typing.List[int], output_type, epsilon: float
+) -> typing.Union[typing.List[int], typing.List['mathutils.Vector']]:
+    ''' Computes the Constrained Delaunay Triangulation of a set of vertices, with edges and faces that must appear in the triangulation. Some triangles may be eaten away, or combined with other triangles, according to output type. The returned verts may be in a different order from input verts, may be moved slightly, and may be merged with other nearby verts. The three returned orig lists give, for each of verts, edges, and faces, the list of input element indices corresponding to the positionally same output element. For edges, the orig indices start with the input edges and then continue with the edges implied by each of the faces (n of them for an n-gon).
 
+    :param vert_coords: Vertex coordinates (2d)
+    :type vert_coords: typing.List['mathutils.Vector']
+    :param edges: Edges, as pairs of indices in vert_coords
+    :type edges: typing.List[int]
+    :param faces: Faces, each sublist is a face, as indices in vert_coords (CCW oriented)
+    :type faces: typing.List[int]
+    :param output_type: What output looks like. 0 => triangles with convex hull. 1 => triangles inside constraints. 2 => the input constraints, intersected. 3 => like 2 but with extra edges to make valid BMesh faces.
+    :type epsilon: float
+    :return: Output tuple, (vert_coords, edges, faces, orig_verts, orig_edges, orig_faces)
     '''
 
     pass

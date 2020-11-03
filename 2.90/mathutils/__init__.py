@@ -1,8 +1,8 @@
 import sys
 import typing
-from . import interpolate
-from . import kdtree
 from . import geometry
+from . import kdtree
+from . import interpolate
 from . import noise
 from . import bvhtree
 
@@ -156,11 +156,11 @@ class Euler:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Quaternion', 'Matrix', 'Euler']):
+    def rotate(self, other: typing.Union['Euler', 'Quaternion', 'Matrix']):
         ''' Rotates the euler by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
+        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
         '''
         pass
 
@@ -473,11 +473,11 @@ class Matrix:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Quaternion', 'Matrix', 'Euler']):
+    def rotate(self, other: typing.Union['Euler', 'Quaternion', 'Matrix']):
         ''' Rotates the matrix by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
+        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
         '''
         pass
 
@@ -735,11 +735,11 @@ class Quaternion:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Quaternion', 'Matrix', 'Euler']):
+    def rotate(self, other: typing.Union['Euler', 'Quaternion', 'Matrix']):
         ''' Rotates the quaternion by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
+        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
         '''
         pass
 
@@ -788,7 +788,7 @@ class Quaternion:
         pass
 
     def to_exponential_map(self) -> 'Vector':
-        ''' Return the exponential map representation of the quaternion. This representation consist of the rotation axis multiplied by the rotation angle. Such a representation is useful for interpolation between multiple orientations.
+        ''' Return the exponential map representation of the quaternion. This representation consist of the rotation axis multiplied by the rotation angle. Such a representation is useful for interpolation between multiple orientations. To convert back to a quaternion, pass it to the Quaternion constructor.
 
         :rtype: 'Vector'
         :return: exponential map.
@@ -2094,11 +2094,11 @@ class Vector:
         pass
 
     @staticmethod
-    def rotate(other: typing.Union['Quaternion', 'Matrix', 'Euler']):
+    def rotate(other: typing.Union['Euler', 'Quaternion', 'Matrix']):
         ''' Rotate the vector by a rotation value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Quaternion', 'Matrix', 'Euler']
+        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
         '''
         pass
 

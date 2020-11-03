@@ -113,7 +113,7 @@ def integrate(func: 'freestyle.types.UnaryFunction0D',
               it: 'freestyle.types.Interface0DIterator',
               it_end: 'freestyle.types.Interface0DIterator',
               integration_type: 'freestyle.types.IntegrationType'
-              ) -> typing.Union[int, float]:
+              ) -> typing.Union[float, int]:
     ''' Returns a single value from a set of values evaluated at each 0D element of this 1D element.
 
     :param func: The UnaryFunction0D used to compute a value at each Interface0D.

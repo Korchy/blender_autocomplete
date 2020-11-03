@@ -2848,6 +2848,9 @@ class VIEW3D_PT_tools_grease_pencil_brush_advanced(
     bl_space_type = None
     ''' '''
 
+    bl_ui_units_x = None
+    ''' '''
+
     id_data = None
     ''' '''
 
@@ -4392,6 +4395,9 @@ class VIEW3D_PT_tools_grease_pencil_brush_stroke(View3DPanel, bpy_types.Panel,
     bl_space_type = None
     ''' '''
 
+    bl_ui_units_x = None
+    ''' '''
+
     id_data = None
     ''' '''
 
@@ -4959,6 +4965,9 @@ class VIEW3D_PT_tools_grease_pencil_paint_appearance(
     ''' '''
 
     bl_space_type = None
+    ''' '''
+
+    bl_ui_units_x = None
     ''' '''
 
     id_data = None
@@ -8884,6 +8893,9 @@ class VIEW3D_PT_sculpt_options(
     bl_space_type = None
     ''' '''
 
+    bl_ui_units_x = None
+    ''' '''
+
     id_data = None
     ''' '''
 
@@ -10924,6 +10936,9 @@ class VIEW3D_PT_tools_brush_stroke(
     ''' '''
 
     bl_space_type = None
+    ''' '''
+
+    bl_ui_units_x = None
     ''' '''
 
     id_data = None
@@ -15005,6 +15020,9 @@ class VIEW3D_PT_tools_brush_display(
     bl_space_type = None
     ''' '''
 
+    bl_ui_units_x = None
+    ''' '''
+
     id_data = None
     ''' '''
 
@@ -15674,6 +15692,9 @@ class VIEW3D_PT_tools_brush_settings_advanced(
     ''' '''
 
     bl_space_type = None
+    ''' '''
+
+    bl_ui_units_x = None
     ''' '''
 
     id_data = None

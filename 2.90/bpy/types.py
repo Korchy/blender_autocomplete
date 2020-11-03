@@ -2,81 +2,81 @@ import sys
 import typing
 import bpy.context
 import mathutils
-import bl_ui.properties_data_camera
-import bl_ui.space_console
-import bl_ui.properties_data_shaderfx
-import bl_ui.space_filebrowser
-import bl_ui.properties_data_lattice
-import bl_ui.properties_data_empty
-import bl_ui.space_image
-import bl_ui.properties_physics_softbody
-import bl_ui.properties_workspace
-import bl_operators.userpref
-import bl_ui.space_view3d
-import bl_ui.space_nla
-import bl_operators.file
-import bl_ui.space_statusbar
-import bl_ui.space_graph
-import bl_ui.properties_data_curve
-import bl_ui.space_node
-import bl_ui.space_userpref
-import bl_ui.properties_data_modifier
-import bl_ui.space_topbar
-import bl_ui.properties_data_light
-import bl_ui.properties_data_gpencil
-import bl_ui.properties_physics_rigidbody_constraint
-import bl_ui.properties_world
-import bl_ui.properties_data_armature
-import bl_ui.properties_mask_common
-import bl_ui.properties_freestyle
-import bl_operators.wm
-import bl_ui.space_info
-import bl_ui.space_time
-import bl_ui.space_clip
-import bl_ui.properties_texture
-import bl_ui.space_text
-import bl_operators.presets
-import bl_ui.properties_output
-import bl_operators.view3d
-import bl_ui.properties_render
-import bl_operators.node
-import bl_ui.properties_data_volume
-import bl_ui.properties_particle
 import bl_ui.properties_physics_fluid
-import bl_ui.space_view3d_toolbar
-import bl_operators.clip
-import bl_ui.properties_view_layer
-import bl_ui.properties_data_bone
+import bl_ui.properties_data_shaderfx
+import bl_ui.space_time
+import bl_ui.properties_data_light
+import bl_ui.properties_data_camera
+import bl_ui.properties_workspace
+import bl_ui.space_info
+import bl_operators.anim
+import bl_ui.space_nla
+import bl_ui.properties_data_gpencil
+import bl_ui.properties_texture
+import bl_operators.view3d
+import bl_ui.space_graph
+import bl_ui.space_clip
+import bl_ui.space_userpref
+import bl_ui.space_view3d
 import bl_ui.space_toolsystem_toolbar
-import bl_ui.properties_physics_field
-import bl_ui
-import bl_ui.properties_data_lightprobe
-import bl_ui.properties_data_mesh
-import bl_operators.gpencil_mesh_bake
-import bl_operators.object
-import bl_ui.properties_physics_rigidbody
-import bl_ui.space_sequencer
-import bl_ui.properties_data_metaball
 import bl_ui.properties_physics_common
 import bl_ui.properties_physics_dynamicpaint
-import bl_ui.properties_material
-import bl_ui.properties_grease_pencil_common
+import bl_ui.properties_constraint
+import bl_ui.properties_freestyle
+import bl_ui
+import bl_ui.properties_data_lightprobe
+import bl_ui.space_toolsystem_common
+import bl_ui.properties_material_gpencil
+import bl_operators.clip
+import bl_ui.space_properties
+import bl_ui.properties_particle
+import bl_ui.properties_data_empty
+import bl_operators.gpencil_mesh_bake
+import bl_ui.properties_data_bone
+import bl_ui.properties_output
+import bl_operators.presets
+import bl_operators.node
+import bl_ui.properties_data_metaball
+import bl_ui.properties_physics_rigidbody_constraint
+import bl_ui.space_text
 import bl_ui.properties_physics_cloth
 import bl_ui.space_outliner
-import bl_ui.properties_material_gpencil
-import bl_operators.anim
-import bl_operators.constraint
+import bl_ui.space_view3d_toolbar
+import bl_ui.properties_view_layer
+import bl_ui.properties_grease_pencil_common
+import bl_ui.properties_physics_softbody
+import bl_ui.properties_data_lattice
 import bl_ui.properties_paint_common
-import bl_ui.space_dopesheet
-import bl_ui.properties_constraint
-import bl_operators.freestyle
-import bl_ui.properties_scene
+import bl_ui.properties_render
 import bl_ui.properties_data_pointcloud
-import bl_ui.space_properties
+import bl_ui.properties_mask_common
+import bl_ui.properties_world
+import bl_ui.space_sequencer
+import bl_ui.space_console
+import bl_ui.space_node
 import bl_ui.properties_data_speaker
-import bl_ui.space_toolsystem_common
-import bl_ui.properties_data_hair
+import bl_ui.space_topbar
+import bl_operators.constraint
+import bl_ui.properties_scene
+import bl_ui.properties_data_curve
 import bl_ui.properties_object
+import bl_ui.space_image
+import bl_ui.properties_data_modifier
+import bl_ui.properties_data_volume
+import bl_ui.properties_data_mesh
+import bl_ui.space_dopesheet
+import bl_ui.properties_material
+import bl_ui.properties_physics_rigidbody
+import bl_ui.space_statusbar
+import bl_operators.userpref
+import bl_operators.freestyle
+import bl_operators.object
+import bl_ui.properties_data_armature
+import bl_ui.properties_data_hair
+import bl_ui.properties_physics_field
+import bl_operators.wm
+import bl_operators.file
+import bl_ui.space_filebrowser
 
 
 class bpy_prop_collection:
@@ -255,7 +255,7 @@ class bpy_struct:
                         frame: float = 'bpy.context.scene.frame_current',
                         group: str = "",
                         options='set()') -> bool:
-        ''' Insert a keyframe on the property given, adding fcurves and animation data when necessary. Note that when keying data paths which contain nested properties this must be done from the ID subclass, in this case the Armature rather than the bone.
+        ''' Insert a keyframe on the property given, adding fcurves and animation data when necessary. This is the most simple example of inserting a keyframe from python. Note that when keying data paths which contain nested properties this must be done from the ID subclass, in this case the Armature rather than the bone.
 
         :param data_path: path to the property to key, analogous to the fcurve's data path.
         :type data_path: str
@@ -1695,13 +1695,6 @@ class BlendData(bpy_struct):
     :type: typing.Union[typing.List['GreasePencil'], 'bpy_prop_collection', 'BlendDataGreasePencils']
     '''
 
-    hairs: typing.Union[typing.List['Hair'], 'bpy_prop_collection',
-                        'BlendDataHairs'] = None
-    ''' Hair data-blocks
-
-    :type: typing.Union[typing.List['Hair'], 'bpy_prop_collection', 'BlendDataHairs']
-    '''
-
     images: typing.Union[typing.List['Image'], 'bpy_prop_collection',
                          'BlendDataImages'] = None
     ''' Image data-blocks
@@ -1828,13 +1821,6 @@ class BlendData(bpy_struct):
     :type: typing.Union[typing.List['ParticleSettings'], 'bpy_prop_collection', 'BlendDataParticles']
     '''
 
-    pointclouds: typing.Union[typing.List['PointCloud'], 'bpy_prop_collection',
-                              'BlendDataPointClouds'] = None
-    ''' Point cloud data-blocks
-
-    :type: typing.Union[typing.List['PointCloud'], 'bpy_prop_collection', 'BlendDataPointClouds']
-    '''
-
     scenes: typing.Union[typing.List['Scene'], 'bpy_prop_collection',
                          'BlendDataScenes'] = None
     ''' Scene data-blocks
@@ -1853,13 +1839,6 @@ class BlendData(bpy_struct):
     ''' Shape Key data-blocks
 
     :type: typing.Union[typing.List['Key'], 'bpy_prop_collection']
-    '''
-
-    simulations: typing.Union[typing.List['Simulation'], 'bpy_prop_collection',
-                              'BlendDataSimulations'] = None
-    ''' Simulation data-blocks
-
-    :type: typing.Union[typing.List['Simulation'], 'bpy_prop_collection', 'BlendDataSimulations']
     '''
 
     sounds: typing.Union[typing.List['Sound'], 'bpy_prop_collection',
@@ -2504,68 +2483,6 @@ class BlendDataGreasePencils(bpy_struct):
         :type do_id_user: bool
         :param do_ui_user: Make sure interface does not reference this grease pencil
         :type do_ui_user: bool
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
-class BlendDataHairs(bpy_struct):
-    ''' Collection of hairs
-    '''
-
-    def new(self, name: str) -> 'Hair':
-        ''' Add a new hair to the main database
-
-        :param name: New name for the data-block
-        :type name: str
-        :rtype: 'Hair'
-        :return: New hair data-block
-        '''
-        pass
-
-    def remove(self,
-               hair: 'Hair',
-               do_unlink: bool = True,
-               do_id_user: bool = True,
-               do_ui_user: bool = True):
-        ''' Remove a hair from the current blendfile
-
-        :param hair: Hair to remove
-        :type hair: 'Hair'
-        :param do_unlink: Unlink all usages of this hair before deleting it (WARNING: will also delete objects instancing that hair data)
-        :type do_unlink: bool
-        :param do_id_user: Decrement user counter of all datablocks used by this hair data
-        :type do_id_user: bool
-        :param do_ui_user: Make sure interface does not reference this hair data
-        :type do_ui_user: bool
-        '''
-        pass
-
-    def tag(self, value: bool):
-        ''' tag
-
-        :param value: Value
-        :type value: bool
         '''
         pass
 
@@ -3591,68 +3508,6 @@ class BlendDataParticles(bpy_struct):
         pass
 
 
-class BlendDataPointClouds(bpy_struct):
-    ''' Collection of point clouds
-    '''
-
-    def new(self, name: str) -> 'PointCloud':
-        ''' Add a new point cloud to the main database
-
-        :param name: New name for the data-block
-        :type name: str
-        :rtype: 'PointCloud'
-        :return: New point cloud data-block
-        '''
-        pass
-
-    def remove(self,
-               pointcloud: 'PointCloud',
-               do_unlink: bool = True,
-               do_id_user: bool = True,
-               do_ui_user: bool = True):
-        ''' Remove a point cloud from the current blendfile
-
-        :param pointcloud: Point cloud to remove
-        :type pointcloud: 'PointCloud'
-        :param do_unlink: Unlink all usages of this point cloud before deleting it (WARNING: will also delete objects instancing that point cloud data)
-        :type do_unlink: bool
-        :param do_id_user: Decrement user counter of all datablocks used by this point cloud data
-        :type do_id_user: bool
-        :param do_ui_user: Make sure interface does not reference this point cloud data
-        :type do_ui_user: bool
-        '''
-        pass
-
-    def tag(self, value: bool):
-        ''' tag
-
-        :param value: Value
-        :type value: bool
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
 class BlendDataProbes(bpy_struct):
     ''' Collection of light probes
     '''
@@ -3774,68 +3629,6 @@ class BlendDataScenes(bpy_struct):
 class BlendDataScreens(bpy_struct):
     ''' Collection of screens
     '''
-
-    def tag(self, value: bool):
-        ''' tag
-
-        :param value: Value
-        :type value: bool
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
-class BlendDataSimulations(bpy_struct):
-    ''' Collection of simulations
-    '''
-
-    def new(self, name: str) -> 'Simulation':
-        ''' Add a new simulation to the main database
-
-        :param name: New name for the data-block
-        :type name: str
-        :rtype: 'Simulation'
-        :return: New simulation data-block
-        '''
-        pass
-
-    def remove(self,
-               simulation: 'Simulation',
-               do_unlink: bool = True,
-               do_id_user: bool = True,
-               do_ui_user: bool = True):
-        ''' Remove a simulation from the current blendfile
-
-        :param simulation: Simulation to remove
-        :type simulation: 'Simulation'
-        :param do_unlink: Unlink all usages of this simulation before deleting it
-        :type do_unlink: bool
-        :param do_id_user: Decrement user counter of all datablocks used by this simulation data
-        :type do_id_user: bool
-        :param do_ui_user: Make sure interface does not reference this simulation data
-        :type do_ui_user: bool
-        '''
-        pass
 
     def tag(self, value: bool):
         ''' tag
@@ -15981,101 +15774,6 @@ class GreasePencilMaskLayers(bpy_struct):
         pass
 
 
-class HairCurve(bpy_struct):
-    ''' Hair curve
-    '''
-
-    first_point_index: int = None
-    ''' Index of the first loop of this polygon
-
-    :type: int
-    '''
-
-    index: int = None
-    ''' Index of this curve
-
-    :type: int
-    '''
-
-    num_points: int = None
-    ''' Number of loops used by this polygon
-
-    :type: int
-    '''
-
-    points: typing.Union[typing.
-                         List['HairPoint'], 'bpy_prop_collection'] = None
-    ''' Control points of the curve
-
-    :type: typing.Union[typing.List['HairPoint'], 'bpy_prop_collection']
-    '''
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
-class HairPoint(bpy_struct):
-    ''' Hair curve control point
-    '''
-
-    co: typing.List[float] = None
-    ''' 
-
-    :type: typing.List[float]
-    '''
-
-    index: int = None
-    ''' Index of this points
-
-    :type: int
-    '''
-
-    radius: float = None
-    ''' 
-
-    :type: float
-    '''
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
 class Header(bpy_struct):
     ''' Editor header containing UI elements
     '''
@@ -27160,50 +26858,6 @@ class PathCompareCollection(bpy_struct):
         pass
 
 
-class Point(bpy_struct):
-    ''' Point in a point cloud
-    '''
-
-    co: typing.List[float] = None
-    ''' 
-
-    :type: typing.List[float]
-    '''
-
-    index: int = None
-    ''' Index of this points
-
-    :type: int
-    '''
-
-    radius: float = None
-    ''' 
-
-    :type: float
-    '''
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
 class PointCache(bpy_struct):
     ''' Active point cache for physics simulations
     '''
@@ -35071,13 +34725,13 @@ class Space(bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -35088,9 +34742,9 @@ class Space(bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -53136,59 +52790,6 @@ class GreasePencil(ID, bpy_struct):
         pass
 
 
-class Hair(ID, bpy_struct):
-    ''' Hair data-block for hair curves
-    '''
-
-    animation_data: 'AnimData' = None
-    ''' Animation data for this data-block
-
-    :type: 'AnimData'
-    '''
-
-    curves: typing.Union[typing.
-                         List['HairCurve'], 'bpy_prop_collection'] = None
-    ''' All hair curves
-
-    :type: typing.Union[typing.List['HairCurve'], 'bpy_prop_collection']
-    '''
-
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
-                            'IDMaterials'] = None
-    ''' 
-
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
-    '''
-
-    points: typing.Union[typing.
-                         List['HairPoint'], 'bpy_prop_collection'] = None
-    ''' Control points of all hair curves
-
-    :type: typing.Union[typing.List['HairPoint'], 'bpy_prop_collection']
-    '''
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
 class Image(ID, bpy_struct):
     ''' Image data-block referencing an external or packed image
     '''
@@ -57205,51 +56806,6 @@ class ParticleSettings(ID, bpy_struct):
         pass
 
 
-class PointCloud(ID, bpy_struct):
-    ''' Point cloud data-block
-    '''
-
-    animation_data: 'AnimData' = None
-    ''' Animation data for this data-block
-
-    :type: 'AnimData'
-    '''
-
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
-                            'IDMaterials'] = None
-    ''' 
-
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
-    '''
-
-    points: typing.Union[typing.List['Point'], 'bpy_prop_collection'] = None
-    ''' 
-
-    :type: typing.Union[typing.List['Point'], 'bpy_prop_collection']
-    '''
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
 class Scene(ID, bpy_struct):
     ''' Scene data-block, consisting in objects and defining time and render related settings
     '''
@@ -57579,6 +57135,16 @@ class Scene(ID, bpy_struct):
     :type: 'World'
     '''
 
+    def statistics(self, view_layer: 'ViewLayer') -> str:
+        ''' statistics
+
+        :param view_layer: View Layer
+        :type view_layer: 'ViewLayer'
+        :rtype: str
+        :return: Statistics
+        '''
+        pass
+
     def frame_set(self, frame: int, subframe: float = 0.0):
         ''' Set scene frame updating all objects immediately
 
@@ -57832,44 +57398,6 @@ class Screen(ID, bpy_struct):
         :return: Status Bar Info
         '''
         pass
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
-class Simulation(ID, bpy_struct):
-    ''' Simulation data-block
-    '''
-
-    animation_data: 'AnimData' = None
-    ''' Animation data for this data-block
-
-    :type: 'AnimData'
-    '''
-
-    node_tree: 'NodeTree' = None
-    ''' Node tree defining the simulation
-
-    :type: 'NodeTree'
-    '''
 
     @classmethod
     def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
@@ -62277,41 +61805,6 @@ class SimpleDeformModifier(Modifier, bpy_struct):
     ''' Vertex group name
 
     :type: str
-    '''
-
-    @classmethod
-    def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :rtype: 'Struct'
-        :return: The RNA type or default when not found.
-        '''
-        pass
-
-    @classmethod
-    def bl_rna_get_subclass_py(cls, id: str, default=None):
-        ''' 
-
-        :param id: The RNA type identifier.
-        :type id: str
-        :return: The class or default when not found.
-        '''
-        pass
-
-
-class SimulationModifier(Modifier, bpy_struct):
-    data_path: str = None
-    ''' Identifier of the simulation component that should be accessed
-
-    :type: str
-    '''
-
-    simulation: 'Simulation' = None
-    ''' Simulation to access
-
-    :type: 'Simulation'
     '''
 
     @classmethod
@@ -67369,13 +66862,13 @@ class SpaceClipEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67386,9 +66879,9 @@ class SpaceClipEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67467,13 +66960,13 @@ class SpaceConsole(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67484,9 +66977,9 @@ class SpaceConsole(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67659,13 +67152,13 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67676,9 +67169,9 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67795,13 +67288,13 @@ class SpaceFileBrowser(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67812,9 +67305,9 @@ class SpaceFileBrowser(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67981,13 +67474,13 @@ class SpaceGraphEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67998,9 +67491,9 @@ class SpaceGraphEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68215,13 +67708,13 @@ class SpaceImageEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68232,9 +67725,9 @@ class SpaceImageEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68299,13 +67792,13 @@ class SpaceInfo(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68316,9 +67809,9 @@ class SpaceInfo(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68401,13 +67894,13 @@ class SpaceNLA(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68418,9 +67911,9 @@ class SpaceNLA(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68527,12 +68020,6 @@ class SpaceNodeEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    simulation: 'Simulation' = None
-    ''' Simulation that is being edited
-
-    :type: 'Simulation'
-    '''
-
     texture_type: typing.Union[int, str] = None
     ''' Type of data to take texture from * WORLD World, Edit texture nodes from World. * BRUSH Brush, Edit texture nodes from Brush. * LINESTYLE Line Style, Edit texture nodes from Line Style.
 
@@ -68592,13 +68079,13 @@ class SpaceNodeEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68609,9 +68096,9 @@ class SpaceNodeEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68802,13 +68289,13 @@ class SpaceOutliner(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68819,9 +68306,9 @@ class SpaceOutliner(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68868,13 +68355,13 @@ class SpacePreferences(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68885,9 +68372,9 @@ class SpacePreferences(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68940,13 +68427,13 @@ class SpaceProperties(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68957,9 +68444,9 @@ class SpaceProperties(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -69144,13 +68631,13 @@ class SpaceSequenceEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -69161,9 +68648,9 @@ class SpaceSequenceEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -69337,13 +68824,13 @@ class SpaceTextEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -69354,9 +68841,9 @@ class SpaceTextEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -69890,13 +69377,13 @@ class SpaceView3D(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -69907,9 +69394,9 @@ class SpaceView3D(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass

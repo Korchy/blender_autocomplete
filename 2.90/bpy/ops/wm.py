@@ -354,7 +354,7 @@ def batch_rename(
 
 
 def blend_strings_utf8_validate():
-    ''' Check and fix all strings in current .blend file to be valid UTF-8 Unicode (needed for some old, 2.4x area files)
+    ''' Check and fix all strings in current .blend file to be valid UTF-8 Unicode (needed for some old, 2.4x area files) :file: startup/bl_operators/file.py\:294 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/file.py$294> _
 
     '''
 
@@ -1332,7 +1332,7 @@ def open_mainfile(filepath: str = "",
 
 
 def operator_cheat_sheet():
-    ''' List all the Operators in a text-block, useful for scripting
+    ''' List all the Operators in a text-block, useful for scripting :file: startup/bl_operators/wm.py\:1612 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/wm.py$1612> _
 
     '''
 
@@ -2075,7 +2075,7 @@ def tool_set_by_index(index: int = 0,
 
 
 def toolbar():
-    ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
+    ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __. :file: startup/bl_operators/wm.py\:1816 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/wm.py$1816> _
 
     '''
 
@@ -2083,7 +2083,7 @@ def toolbar():
 
 
 def toolbar_fallback_pie():
-    ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
+    ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __. :file: startup/bl_operators/wm.py\:1840 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/wm.py$1840> _
 
     '''
 
@@ -2091,7 +2091,7 @@ def toolbar_fallback_pie():
 
 
 def toolbar_prompt():
-    ''' Leader key like functionality for accessing tools
+    ''' Leader key like functionality for accessing tools :file: startup/bl_operators/wm.py\:1940 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/wm.py$1940> _
 
     '''
 

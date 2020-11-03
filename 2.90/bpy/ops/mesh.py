@@ -2011,7 +2011,7 @@ def select_more(use_face_step: bool = True):
 
 
 def select_next_item():
-    ''' Select the next element (using selection order)
+    ''' Select the next element (using selection order) :file: startup/bl_operators/mesh.py\:215 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/mesh.py$215> _
 
     '''
 
@@ -2058,7 +2058,7 @@ def select_nth(skip: int = 1, nth: int = 1, offset: int = 0):
 
 
 def select_prev_item():
-    ''' Select the previous element (using selection order)
+    ''' Select the previous element (using selection order) :file: startup/bl_operators/mesh.py\:240 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/mesh.py$240> _
 
     '''
 

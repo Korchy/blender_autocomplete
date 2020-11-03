@@ -11,7 +11,7 @@ def clear_by_owner(owner):
 
 
 def publish_rna(key):
-    ''' 
+    ''' Notify subscribers of changes to this property (this typically doesn't need to be called explicitly since changes will automatically publish updates). In some cases it may be useful to publish changes explicitly using more general keys.
 
     :param key: Represents the type of data being subscribed to Arguments include - bpy.types.Property instance. - bpy.types.Struct type. - ( bpy.types.Struct , str) type and property name.
     '''

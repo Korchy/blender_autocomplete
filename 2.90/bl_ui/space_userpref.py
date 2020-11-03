@@ -57,6 +57,12 @@ class ExperimentalPanel:
     url_prefix = None
     ''' '''
 
+    def poll(self, context):
+        ''' 
+
+        '''
+        pass
+
 
 class FilePathsPanel:
     bl_context = None
@@ -4272,6 +4278,12 @@ class USERPREF_PT_experimental_debugging(ExperimentalPanel, bpy_types.Panel,
         '''
         pass
 
+    def poll(self, context):
+        ''' 
+
+        '''
+        pass
+
     def pop(self):
         ''' 
 
@@ -4452,6 +4464,12 @@ class USERPREF_PT_experimental_new_features(ExperimentalPanel, bpy_types.Panel,
         '''
         pass
 
+    def poll(self, context):
+        ''' 
+
+        '''
+        pass
+
     def pop(self):
         ''' 
 
@@ -4627,6 +4645,12 @@ class USERPREF_PT_experimental_prototypes(ExperimentalPanel, bpy_types.Panel,
         pass
 
     def path_resolve(self):
+        ''' 
+
+        '''
+        pass
+
+    def poll(self, context):
         ''' 
 
         '''

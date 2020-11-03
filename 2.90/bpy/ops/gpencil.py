@@ -1308,7 +1308,7 @@ def stroke_trim():
 
 
 def tint_flip():
-    ''' Switch Tint colors
+    ''' Switch Tint colors :file: startup/bl_ui/properties_grease_pencil_common.py\:894 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_ui/properties_grease_pencil_common.py$894> _
 
     '''
 

@@ -7730,6 +7730,9 @@ class IMAGE_PT_paint_stroke(BrushButtonsPanel, bpy_types.Panel,
     bl_space_type = None
     ''' '''
 
+    bl_ui_units_x = None
+    ''' '''
+
     id_data = None
     ''' '''
 
@@ -8188,6 +8191,9 @@ class IMAGE_PT_tools_brush_display(
     ''' '''
 
     bl_space_type = None
+    ''' '''
+
+    bl_ui_units_x = None
     ''' '''
 
     id_data = None
@@ -8868,6 +8874,9 @@ class IMAGE_PT_tools_mask_texture(
     ''' '''
 
     bl_space_type = None
+    ''' '''
+
+    bl_ui_units_x = None
     ''' '''
 
     id_data = None
@@ -9912,6 +9921,9 @@ class IMAGE_PT_paint_settings_advanced(ImagePaintPanel, bpy_types.Panel,
     ''' '''
 
     bl_space_type = None
+    ''' '''
+
+    bl_ui_units_x = None
     ''' '''
 
     id_data = None

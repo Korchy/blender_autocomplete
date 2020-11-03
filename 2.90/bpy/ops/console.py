@@ -3,7 +3,7 @@ import typing
 
 
 def autocomplete():
-    ''' Evaluate the namespace up until the cursor and give a list of options or complete the name if there is only one
+    ''' Evaluate the namespace up until the cursor and give a list of options or complete the name if there is only one :file: startup/bl_operators/console.py\:72 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/console.py$72> _
 
     '''
 
@@ -11,7 +11,7 @@ def autocomplete():
 
 
 def banner():
-    ''' Print a message when the terminal initializes
+    ''' Print a message when the terminal initializes :file: startup/bl_operators/console.py\:117 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/console.py$117> _
 
     '''
 
@@ -47,7 +47,7 @@ def copy():
 
 
 def copy_as_script():
-    ''' Copy the console contents for use in a script
+    ''' Copy the console contents for use in a script :file: startup/bl_operators/console.py\:94 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/console.py$94> _
 
     '''
 

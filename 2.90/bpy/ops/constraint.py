@@ -3,7 +3,7 @@ import typing
 
 
 def add_target():
-    ''' Add a target to the constraint
+    ''' Add a target to the constraint :file: startup/bl_operators/constraint.py\:35 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/constraint.py$35> _
 
     '''
 
@@ -53,7 +53,7 @@ def delete(constraint: str = "",
 
 
 def disable_keep_transform():
-    ''' Set the influence of this constraint to zero while trying to maintain the object's transformation. Other active constraints can still influence the final transformation
+    ''' Set the influence of this constraint to zero while trying to maintain the object's transformation. Other active constraints can still influence the final transformation :file: startup/bl_operators/constraint.py\:85 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/constraint.py$85> _
 
     '''
 
@@ -133,7 +133,7 @@ def move_up(constraint: str = "", owner: typing.Union[int, str] = 'OBJECT'):
 
 
 def normalize_target_weights():
-    ''' Normalize weights of all target bones
+    ''' Normalize weights of all target bones :file: startup/bl_operators/constraint.py\:60 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/constraint.py$60> _
 
     '''
 

@@ -3,7 +3,7 @@ import typing
 
 
 def add_aov():
-    ''' Add an AOV pass
+    ''' Add an AOV pass :file: addons/cycles/operators.py\:52 <https://developer.blender.org/diffusion/BA/addons/cycles/operators.py$52> _
 
     '''
 
@@ -39,7 +39,7 @@ def merge_images(input_filepath1: str = "",
 
 
 def remove_aov():
-    ''' Remove an AOV pass
+    ''' Remove an AOV pass :file: addons/cycles/operators.py\:67 <https://developer.blender.org/diffusion/BA/addons/cycles/operators.py$67> _
 
     '''
 
@@ -47,7 +47,7 @@ def remove_aov():
 
 
 def use_shading_nodes():
-    ''' Enable nodes on a material, world or light
+    ''' Enable nodes on a material, world or light :file: addons/cycles/operators.py\:36 <https://developer.blender.org/diffusion/BA/addons/cycles/operators.py$36> _
 
     '''
 

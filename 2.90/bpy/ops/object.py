@@ -63,7 +63,7 @@ def align(bb_quality: bool = True,
 
 
 def anim_transforms_to_deltas():
-    ''' Convert object animation for normal transforms to delta transforms
+    ''' Convert object animation for normal transforms to delta transforms :file: startup/bl_operators/object.py\:783 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$783> _
 
     '''
 
@@ -800,7 +800,7 @@ def hide_collection(collection_index: int = -1, toggle: bool = False):
 
 
 def hide_render_clear_all():
-    ''' Reveal all render objects by setting the hide render flag
+    ''' Reveal all render objects by setting the hide render flag :file: startup/bl_operators/object.py\:690 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$690> _
 
     '''
 
@@ -896,7 +896,7 @@ def hook_select(modifier: typing.Union[int, str] = ''):
 
 
 def instance_offset_from_cursor():
-    ''' Set offset used for collection instances based on cursor position
+    ''' Set offset used for collection instances based on cursor position :file: startup/bl_operators/object.py\:872 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$872> _
 
     '''
 
@@ -904,7 +904,7 @@ def instance_offset_from_cursor():
 
 
 def isolate_type_render():
-    ''' Hide unselected render objects of same type as active by setting the hide render flag
+    ''' Hide unselected render objects of same type as active by setting the hide render flag :file: startup/bl_operators/object.py\:670 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$670> _
 
     '''
 
@@ -928,7 +928,7 @@ def join_shapes():
 
 
 def join_uvs():
-    ''' Transfer UV Maps from active to selected objects (needs matching geometry)
+    ''' Transfer UV Maps from active to selected objects (needs matching geometry) :file: startup/bl_operators/object.py\:584 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$584> _
 
     '''
 
@@ -1063,7 +1063,7 @@ def location_clear(clear_delta: bool = False):
 
 
 def make_dupli_face():
-    ''' Convert objects into instanced faces
+    ''' Convert objects into instanced faces :file: startup/bl_operators/object.py\:658 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$658> _
 
     '''
 

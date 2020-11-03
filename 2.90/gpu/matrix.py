@@ -41,6 +41,7 @@ def load_identity():
 def load_matrix(matrix: 'mathutils.Matrix'):
     ''' Load a matrix into the stack.
 
+    :param matrix: A 4x4 matrix.
     :type matrix: 'mathutils.Matrix'
     '''
 
@@ -50,6 +51,7 @@ def load_matrix(matrix: 'mathutils.Matrix'):
 def load_projection_matrix(matrix: 'mathutils.Matrix'):
     ''' Load a projection matrix into the stack.
 
+    :param matrix: A 4x4 matrix.
     :type matrix: 'mathutils.Matrix'
     '''
 
@@ -59,6 +61,7 @@ def load_projection_matrix(matrix: 'mathutils.Matrix'):
 def multiply_matrix(matrix: 'mathutils.Matrix'):
     ''' Multiply the current stack matrix.
 
+    :param matrix: A 4x4 matrix.
     :type matrix: 'mathutils.Matrix'
     '''
 
@@ -124,6 +127,7 @@ def reset():
 def scale(scale: list):
     ''' Scale the current stack matrix.
 
+    :param scale: Scale the current stack matrix.
     :type scale: list
     '''
 
@@ -133,6 +137,7 @@ def scale(scale: list):
 def scale_uniform(scale: float):
     ''' 
 
+    :param scale: Scale the current stack matrix.
     :type scale: float
     '''
 
@@ -142,6 +147,7 @@ def scale_uniform(scale: float):
 def translate(offset: list):
     ''' Scale the current stack matrix.
 
+    :param offset: Translate the current stack matrix.
     :type offset: list
     '''
 

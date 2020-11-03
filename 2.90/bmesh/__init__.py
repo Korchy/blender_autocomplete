@@ -3,10 +3,10 @@ import typing
 import bpy.types
 import bmesh.types
 
+from . import types
+from . import geometry
 from . import utils
 from . import ops
-from . import geometry
-from . import types
 
 
 def from_edit_mesh(mesh: 'bpy.types.Mesh') -> 'bmesh.types.BMesh':

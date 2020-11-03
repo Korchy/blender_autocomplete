@@ -183,7 +183,7 @@ def dolly(mx: int = 0,
 
 
 def edit_mesh_extrude_individual_move():
-    ''' Extrude each individual face separately along local normals
+    ''' Extrude each individual face separately along local normals :file: startup/bl_operators/view3d.py\:39 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/view3d.py$39> _
 
     '''
 
@@ -191,7 +191,7 @@ def edit_mesh_extrude_individual_move():
 
 
 def edit_mesh_extrude_manifold_normal():
-    ''' Extrude manifold region along normals
+    ''' Extrude manifold region along normals :file: startup/bl_operators/view3d.py\:172 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/view3d.py$172> _
 
     '''
 
@@ -209,7 +209,7 @@ def edit_mesh_extrude_move_normal(dissolve_and_intersect: bool = False):
 
 
 def edit_mesh_extrude_move_shrink_fatten():
-    ''' Extrude region together along local normals
+    ''' Extrude region together along local normals :file: startup/bl_operators/view3d.py\:155 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/view3d.py$155> _
 
     '''
 

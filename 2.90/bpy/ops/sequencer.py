@@ -116,7 +116,7 @@ def copy():
 
 
 def crossfade_sounds():
-    ''' Do cross-fading volume animation of two selected sound strips
+    ''' Do cross-fading volume animation of two selected sound strips :file: startup/bl_operators/sequencer.py\:45 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/sequencer.py$45> _
 
     '''
 
@@ -124,7 +124,7 @@ def crossfade_sounds():
 
 
 def deinterlace_selected_movies():
-    ''' Deinterlace all selected movie sources
+    ''' Deinterlace all selected movie sources :file: startup/bl_operators/sequencer.py\:135 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/sequencer.py$135> _
 
     '''
 
@@ -294,7 +294,7 @@ def fades_add(duration_seconds: float = 1.0,
 
 
 def fades_clear():
-    ''' Removes fade animation from selected sequences
+    ''' Removes fade animation from selected sequences :file: startup/bl_operators/sequencer.py\:153 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/sequencer.py$153> _
 
     '''
 

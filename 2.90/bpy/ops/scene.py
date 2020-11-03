@@ -11,7 +11,7 @@ def delete():
 
 
 def freestyle_add_edge_marks_to_keying_set():
-    ''' Add the data paths to the Freestyle Edge Mark property of selected edges to the active keying set
+    ''' Add the data paths to the Freestyle Edge Mark property of selected edges to the active keying set :file: startup/bl_operators/freestyle.py\:146 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/freestyle.py$146> _
 
     '''
 
@@ -19,7 +19,7 @@ def freestyle_add_edge_marks_to_keying_set():
 
 
 def freestyle_add_face_marks_to_keying_set():
-    ''' Add the data paths to the Freestyle Face Mark property of selected polygons to the active keying set
+    ''' Add the data paths to the Freestyle Face Mark property of selected polygons to the active keying set :file: startup/bl_operators/freestyle.py\:177 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/freestyle.py$177> _
 
     '''
 

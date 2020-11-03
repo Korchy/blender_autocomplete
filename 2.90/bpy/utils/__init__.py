@@ -3,8 +3,8 @@ import typing
 import bpy.types
 import bpy.context
 
-from . import previews
 from . import units
+from . import previews
 
 
 def app_template_paths(subdir: str = None):
@@ -154,7 +154,7 @@ def refresh_script_paths():
 
 
 def register_class(cls):
-    ''' Register a subclass of a blender type in ( bpy.types.Panel ,
+    ''' Register a subclass of a blender type in ( bpy.types.Panel , bpy.types.UIList , bpy.types.Menu , bpy.types.Header , bpy.types.Operator , bpy.types.KeyingSetInfo , bpy.types.RenderEngine ). If the class has a *register* class method it will be called before registration.
 
     '''
 
@@ -275,12 +275,12 @@ def smpte_from_frame(frame: int, fps=None, fps_base=None) -> str:
     pass
 
 
-def smpte_from_seconds(time: typing.Union[int, float], fps=None,
+def smpte_from_seconds(time: typing.Union[float, int], fps=None,
                        fps_base=None) -> str:
     ''' Returns an SMPTE formatted string from the *time*: HH:MM:SS:FF . If *fps* and *fps_base* are not given the current scene is used.
 
     :param time: time in seconds.
-    :type time: typing.Union[int, float]
+    :type time: typing.Union[float, int]
     :return: the frame string.
     '''
 

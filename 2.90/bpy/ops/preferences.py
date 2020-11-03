@@ -59,7 +59,7 @@ def addon_install(overwrite: bool = True,
 
 
 def addon_refresh():
-    ''' Scan add-on directories for new modules
+    ''' Scan add-on directories for new modules :file: startup/bl_operators/userpref.py\:581 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$581> _
 
     '''
 
@@ -124,7 +124,7 @@ def autoexec_path_remove(index: int = 0):
 
 
 def copy_prev():
-    ''' Copy settings from previous version
+    ''' Copy settings from previous version :file: startup/bl_operators/userpref.py\:164 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$164> _
 
     '''
 
@@ -186,7 +186,7 @@ def keyconfig_import(filepath: str = "keymap.py",
 
 
 def keyconfig_remove():
-    ''' Remove key config
+    ''' Remove key config :file: startup/bl_operators/userpref.py\:429 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$429> _
 
     '''
 
@@ -194,7 +194,7 @@ def keyconfig_remove():
 
 
 def keyconfig_test():
-    ''' Test key-config for conflicts
+    ''' Test key-config for conflicts :file: startup/bl_operators/userpref.py\:188 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$188> _
 
     '''
 
@@ -202,7 +202,7 @@ def keyconfig_test():
 
 
 def keyitem_add():
-    ''' Add key map item
+    ''' Add key map item :file: startup/bl_operators/userpref.py\:377 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$377> _
 
     '''
 
@@ -222,7 +222,7 @@ def keyitem_remove(item_id: int = 0):
 def keyitem_restore(item_id: int = 0):
     ''' Restore key map item
 
-    :param item_id: Item Identifier, Identifier of the item to remove
+    :param item_id: Item Identifier, Identifier of the item to restore
     :type item_id: int
     '''
 
@@ -292,7 +292,7 @@ def studiolight_new(filename: str = "StudioLight"):
 
 
 def studiolight_show():
-    ''' Show light preferences
+    ''' Show light preferences :file: startup/bl_operators/userpref.py\:1136 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$1136> _
 
     '''
 

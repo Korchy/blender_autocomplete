@@ -114,7 +114,7 @@ class CurveNatureF1D:
 
     def __call__(self, inter: 'freestyle.types.Interface1D'
                  ) -> 'freestyle.types.Nature':
-        ''' Returns the nature of the Interface1D (silhouette, ridge, crease, and so on). Except if the Interface1D is a
+        ''' Returns the nature of the Interface1D (silhouette, ridge, crease, and so on). Except if the Interface1D is a freestyle.types.ViewEdge , this result might be ambiguous. Indeed, the Interface1D might result from the gathering of several 1D elements, each one being of a different nature. An integration method, such as the MEAN, might give, in this case, irrelevant results.
 
         :param inter: An Interface1D object.
         :type inter: 'freestyle.types.Interface1D'
@@ -137,7 +137,7 @@ class DensityF0D:
         pass
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator') -> float:
-        ''' Returns the density of the (result) image evaluated at the
+        ''' Returns the density of the (result) image evaluated at the freestyle.types.Interface0D pointed by the Interface0DIterator. This density is evaluated using a pixels square window around the evaluation point and integrating these values using a gaussian.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -168,7 +168,7 @@ class DensityF1D:
         pass
 
     def __call__(self, inter: 'freestyle.types.Interface1D') -> float:
-        ''' Returns the density evaluated for an Interface1D. The density is evaluated for a set of points along the Interface1D (using the
+        ''' Returns the density evaluated for an Interface1D. The density is evaluated for a set of points along the Interface1D (using the freestyle.functions.DensityF0D functor) with a user-defined sampling and then integrated into a single value using a user-defined integration method.
 
         :param inter: An Interface1D object.
         :type inter: 'freestyle.types.Interface1D'
@@ -199,7 +199,7 @@ class GetCompleteViewMapDensityF1D:
         pass
 
     def __call__(self, inter: 'freestyle.types.Interface1D') -> float:
-        ''' Returns the density evaluated for an Interface1D in the complete viewmap image. The density is evaluated for a set of points along the Interface1D (using the
+        ''' Returns the density evaluated for an Interface1D in the complete viewmap image. The density is evaluated for a set of points along the Interface1D (using the freestyle.functions.ReadCompleteViewMapPixelF0D functor) and then integrated into a single value using a user-defined integration method.
 
         :param inter: An Interface1D object.
         :type inter: 'freestyle.types.Interface1D'
@@ -220,7 +220,7 @@ class GetCurvilinearAbscissaF0D:
         pass
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator') -> float:
-        ''' Returns the curvilinear abscissa of the
+        ''' Returns the curvilinear abscissa of the freestyle.types.Interface0D pointed by the Interface0DIterator in the context of its 1D element.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -254,7 +254,7 @@ class GetDirectionalViewMapDensityF1D:
         pass
 
     def __call__(self, inter: 'freestyle.types.Interface1D') -> float:
-        ''' Returns the density evaluated for an Interface1D in of the steerable viewmaps image. The direction telling which Directional map to choose is explicitly specified by the user. The density is evaluated for a set of points along the Interface1D (using the
+        ''' Returns the density evaluated for an Interface1D in of the steerable viewmaps image. The direction telling which Directional map to choose is explicitly specified by the user. The density is evaluated for a set of points along the Interface1D (using the freestyle.functions.ReadSteerableViewMapPixelF0D functor) and then integrated into a single value using a user-defined integration method.
 
         :param inter: An Interface1D object.
         :type inter: 'freestyle.types.Interface1D'
@@ -320,7 +320,7 @@ class GetOccludersF0D:
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator'
                  ) -> 'freestyle.types.ViewShape':
-        ''' Returns a list of freestyle.types.ViewShape objects occluding the
+        ''' Returns a list of freestyle.types.ViewShape objects occluding the freestyle.types.Interface0D pointed by the Interface0DIterator.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -810,7 +810,7 @@ class LocalAverageDepthF0D:
         pass
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator') -> float:
-        ''' Returns the average depth around the
+        ''' Returns the average depth around the freestyle.types.Interface0D pointed by the Interface0DIterator. The result is obtained by querying the depth buffer on a window around that point.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -860,7 +860,7 @@ class MaterialF0D:
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator'
                  ) -> 'freestyle.types.Material':
-        ''' Returns the material of the object evaluated at the
+        ''' Returns the material of the object evaluated at the freestyle.types.Interface0D pointed by the Interface0DIterator. This evaluation can be ambiguous (in the case of a freestyle.types.TVertex for example. This functor tries to remove this ambiguity using the context offered by the 1D element to which the Interface0DIterator belongs to and by arbitrary choosing the material of the face that lies on its left when following the 1D element if there are two different materials on each side of the point. However, there still can be problematic cases, and the user willing to deal with this cases in a specific way should implement its own getMaterial functor.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -981,7 +981,7 @@ class QuantitativeInvisibilityF0D:
         pass
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator') -> int:
-        ''' Returns the quantitative invisibility of the
+        ''' Returns the quantitative invisibility of the freestyle.types.Interface0D pointed by the Interface0DIterator. This evaluation can be ambiguous (in the case of a freestyle.types.TVertex for example). This functor tries to remove this ambiguity using the context offered by the 1D element to which the Interface0D belongs to. However, there still can be problematic cases, and the user willing to deal with this cases in a specific way should implement its own getQIF0D functor.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -1101,7 +1101,7 @@ class ShapeIdF0D:
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator'
                  ) -> 'freestyle.types.Id':
-        ''' Returns the freestyle.types.Id of the Shape the
+        ''' Returns the freestyle.types.Id of the Shape the freestyle.types.Interface0D pointed by the Interface0DIterator belongs to. This evaluation can be ambiguous (in the case of a freestyle.types.TVertex for example). This functor tries to remove this ambiguity using the context offered by the 1D element to which the Interface0DIterator belongs to. However, there still can be problematic cases, and the user willing to deal with this cases in a specific way should implement its own getShapeIdF0D functor.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'
@@ -1185,7 +1185,7 @@ class ZDiscontinuityF0D:
         pass
 
     def __call__(self, it: 'freestyle.types.Interface0DIterator') -> float:
-        ''' Returns a real value giving the distance between the
+        ''' Returns a real value giving the distance between the freestyle.types.Interface0D pointed by the Interface0DIterator and the shape that lies behind (occludee). This distance is evaluated in the camera space and normalized between 0 and 1. Therefore, if no object is occluded by the shape to which the Interface0D belongs to, 1 is returned.
 
         :param it: An Interface0DIterator object.
         :type it: 'freestyle.types.Interface0DIterator'

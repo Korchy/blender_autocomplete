@@ -527,11 +527,11 @@ def glCreateProgram() -> int:
 
 def glCreateShader(
         shaderType: typing.
-        Union['GL_GEOMETRY_SHADER', 'GL_FRAGMENT_SHADER', 'GL_VERTEX_SHADER']
+        Union['GL_GEOMETRY_SHADER', 'GL_VERTEX_SHADER', 'GL_FRAGMENT_SHADER']
 ) -> int:
     ''' Creates a shader object.
 
-    :type shaderType: typing.Union['GL_GEOMETRY_SHADER', 'GL_FRAGMENT_SHADER', 'GL_VERTEX_SHADER']
+    :type shaderType: typing.Union['GL_GEOMETRY_SHADER', 'GL_VERTEX_SHADER', 'GL_FRAGMENT_SHADER']
     :return: 0 if an error occurs.
     '''
 

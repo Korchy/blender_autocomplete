@@ -82,8 +82,6 @@ gpencil_data: 'bpy.types.GreasePencil' = None
 
 gpencil_data_owner: 'bpy.types.ID' = None
 
-hair: 'bpy.types.Hair' = None
-
 image_paint_object: 'bpy.types.Object' = None
 
 lattice: 'bpy.types.Lattice' = None
@@ -119,8 +117,6 @@ particle_settings: 'bpy.types.ParticleSettings' = None
 particle_system: 'bpy.types.ParticleSystem' = None
 
 particle_system_editable: 'bpy.types.ParticleSystem' = None
-
-pointcloud: 'bpy.types.PointCloud' = None
 
 pose_bone: 'bpy.types.PoseBone' = None
 

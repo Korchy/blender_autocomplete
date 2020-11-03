@@ -84,7 +84,7 @@ def object_remove():
 
 
 def object_settings_copy():
-    ''' Copy Rigid Body settings from active object to selected
+    ''' Copy Rigid Body settings from active object to selected :file: startup/bl_operators/rigidbody.py\:61 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/rigidbody.py$61> _
 
     '''
 

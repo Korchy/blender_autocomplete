@@ -52,7 +52,7 @@ def apply_solution_scale(distance: float = 0.0):
 
 
 def bundles_to_mesh():
-    ''' Create vertex cloud using coordinates of reconstructed tracks
+    ''' Create vertex cloud using coordinates of reconstructed tracks :file: startup/bl_operators/clip.py\:299 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$299> _
 
     '''
 
@@ -126,7 +126,7 @@ def clear_track_path(action: typing.Union[int, str] = 'REMAINED',
 
 
 def constraint_to_fcurve():
-    ''' Create F-Curves for object which will copy object's movement caused by this constraint
+    ''' Create F-Curves for object which will copy object's movement caused by this constraint :file: startup/bl_operators/clip.py\:543 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$543> _
 
     '''
 
@@ -168,7 +168,7 @@ def delete_marker():
 
 
 def delete_proxy():
-    ''' Delete movie clip proxy files from the hard drive
+    ''' Delete movie clip proxy files from the hard drive :file: startup/bl_operators/clip.py\:369 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$369> _
 
     '''
 
@@ -639,7 +639,7 @@ def select_lasso(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
 
 
 def set_active_clip():
-    ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
+    ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __. :file: startup/bl_operators/clip.py\:228 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$228> _
 
     '''
 
@@ -723,7 +723,7 @@ def set_solver_keyframe(keyframe: typing.Union[int, str] = 'KEYFRAME_A'):
 
 
 def set_viewport_background():
-    ''' Set current movie clip as a camera background in 3D view-port (works only when a 3D view-port is visible)
+    ''' Set current movie clip as a camera background in 3D view-port (works only when a 3D view-port is visible) :file: startup/bl_operators/clip.py\:433 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$433> _
 
     '''
 
@@ -731,7 +731,7 @@ def set_viewport_background():
 
 
 def setup_tracking_scene():
-    ''' Prepare scene for compositing 3D objects into this footage
+    ''' Prepare scene for compositing 3D objects into this footage :file: startup/bl_operators/clip.py\:997 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$997> _
 
     '''
 
@@ -849,7 +849,7 @@ def track_markers(backwards: bool = False, sequence: bool = False):
 
 
 def track_settings_as_default():
-    ''' Copy tracking settings from active track to default settings
+    ''' Copy tracking settings from active track to default settings :file: startup/bl_operators/clip.py\:1028 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$1028> _
 
     '''
 
@@ -857,7 +857,7 @@ def track_settings_as_default():
 
 
 def track_settings_to_track():
-    ''' Copy tracking settings from active track to selected tracks
+    ''' Copy tracking settings from active track to selected tracks :file: startup/bl_operators/clip.py\:1076 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$1076> _
 
     '''
 
@@ -865,7 +865,7 @@ def track_settings_to_track():
 
 
 def track_to_empty():
-    ''' Create an Empty object which will be copying movement of active track
+    ''' Create an Empty object which will be copying movement of active track :file: startup/bl_operators/clip.py\:275 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/clip.py$275> _
 
     '''
 

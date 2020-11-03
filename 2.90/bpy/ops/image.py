@@ -232,7 +232,7 @@ def pack():
 
 
 def project_apply():
-    ''' Project edited image back onto the object
+    ''' Project edited image back onto the object :file: startup/bl_operators/image.py\:197 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/image.py$197> _
 
     '''
 
@@ -240,7 +240,7 @@ def project_apply():
 
 
 def project_edit():
-    ''' Edit a snapshot of the view-port in an external image editor
+    ''' Edit a snapshot of the view-port in an external image editor :file: startup/bl_operators/image.py\:126 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/image.py$126> _
 
     '''
 

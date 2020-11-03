@@ -237,7 +237,7 @@ def clipboard_paste():
 
 
 def collapse_hide_unused_toggle():
-    ''' Toggle collapsed nodes and hide unused sockets
+    ''' Toggle collapsed nodes and hide unused sockets :file: startup/bl_operators/node.py\:267 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/node.py$267> _
 
     '''
 
@@ -802,7 +802,7 @@ def translate_attach_remove_on_cancel(TRANSFORM_OT_translate=None,
 
 
 def tree_path_parent():
-    ''' Go to parent node tree
+    ''' Go to parent node tree :file: startup/bl_operators/node.py\:297 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/node.py$297> _
 
     '''
 

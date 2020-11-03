@@ -28,7 +28,7 @@ def cloth_filter(type: typing.Union[int, str] = 'GRAVITY',
                  use_face_sets: bool = False):
     ''' Applies a cloth simulation deformation to the entire mesh
 
-    :param type: Filter type, Operation that is going to be applied to the mesh * GRAVITY Gravity, Applies gravity to the simulation. * INFLATE Inflate, Inflates the cloth. * EXPAND Expand, Expands the cloth's dimensions. * PINCH Pinch, Pinches the cloth to the point were the cursor was when the filter started.
+    :param type: Filter type, Operation that is going to be applied to the mesh * GRAVITY Gravity, Applies gravity to the simulation. * INFLATE Inflate, Inflates the cloth. * EXPAND Expand, Expands the cloth's dimensions. * PINCH Pinch, Pinches the cloth to the point where the cursor was when the filter started.
     :type type: typing.Union[int, str]
     :param strength: Strength, Filter Strength
     :type strength: float
