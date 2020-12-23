@@ -3,13 +3,14 @@ import typing
 import bpy.types
 
 
-def brush_edit(
-        stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'],
-                             'bpy_prop_collection'] = None):
+def brush_edit(stroke: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.
+        List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection'] = None
+               ):
     ''' Apply a stroke of brush to the particles
 
     :param stroke: Stroke
-    :type stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
+    :type stroke: typing.Union[typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
     '''
 
     pass
@@ -25,13 +26,13 @@ def connect_hair(all: bool = False):
     pass
 
 
-def copy_particle_systems(space: typing.Union[int, str] = 'OBJECT',
+def copy_particle_systems(space: typing.Union[str, int] = 'OBJECT',
                           remove_target_particles: bool = True,
                           use_active: bool = False):
     ''' Copy particle systems from the active object to selected objects
 
     :param space: Space, Space transform for copying from one object to another * OBJECT Object, Copy inside each object's local space. * WORLD World, Copy in world space.
-    :type space: typing.Union[int, str]
+    :type space: typing.Union[str, int]
     :param remove_target_particles: Remove Target Particles, Remove particle systems on the target objects
     :type remove_target_particles: bool
     :param use_active: Use Active, Use the active particle system from the context
@@ -41,11 +42,11 @@ def copy_particle_systems(space: typing.Union[int, str] = 'OBJECT',
     pass
 
 
-def delete(type: typing.Union[int, str] = 'PARTICLE'):
+def delete(type: typing.Union[str, int] = 'PARTICLE'):
     ''' Delete selected particles or keys
 
     :param type: Type, Delete a full particle or only keys
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -207,11 +208,11 @@ def reveal(select: bool = True):
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' (De)select all particles' keys
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -256,8 +257,8 @@ def select_more():
 
 def select_random(percent: float = 50.0,
                   seed: int = 0,
-                  action: typing.Union[int, str] = 'SELECT',
-                  type: typing.Union[int, str] = 'HAIR'):
+                  action: typing.Union[str, int] = 'SELECT',
+                  type: typing.Union[str, int] = 'HAIR'):
     ''' Select a randomly distributed set of hair or points
 
     :param percent: Percent, Percentage of objects to select randomly
@@ -265,29 +266,29 @@ def select_random(percent: float = 50.0,
     :param seed: Random Seed, Seed for the random number generator
     :type seed: int
     :param action: Action, Selection action to execute * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     :param type: Type, Select either hair or points
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_roots(action: typing.Union[int, str] = 'SELECT'):
+def select_roots(action: typing.Union[str, int] = 'SELECT'):
     ''' Select roots of all visible particles
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_tips(action: typing.Union[int, str] = 'SELECT'):
+def select_tips(action: typing.Union[str, int] = 'SELECT'):
     ''' Select tips of all visible particles
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass

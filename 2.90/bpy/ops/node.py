@@ -7,8 +7,10 @@ import bpy.types
 def add_and_link_node(
         type: str = "",
         use_transform: bool = False,
-        settings: typing.Union[typing.List['bl_operators.node.NodeSetting'],
-                               'bpy_prop_collection'] = None,
+        settings: typing.
+        Union[typing.Dict[str, 'bl_operators.node.NodeSetting'], typing.
+              List['bl_operators.node.NodeSetting'],
+              'bpy_prop_collection'] = None,
         link_socket_index: int = 0):
     ''' Add a node to the active tree and link to an existing socket
 
@@ -17,7 +19,7 @@ def add_and_link_node(
     :param use_transform: Use Transform, Start transform operator after inserting the node
     :type use_transform: bool
     :param settings: Settings, Settings to be applied on the newly created node
-    :type settings: typing.Union[typing.List['bl_operators.node.NodeSetting'], 'bpy_prop_collection']
+    :type settings: typing.Union[typing.Dict[str, 'bl_operators.node.NodeSetting'], typing.List['bl_operators.node.NodeSetting'], 'bpy_prop_collection']
     :param link_socket_index: Link Socket Index, Index of the socket to link
     :type link_socket_index: int
     '''
@@ -47,8 +49,8 @@ def add_file(filepath: str = "",
              relative_path: bool = True,
              show_multiview: bool = False,
              use_multiview: bool = False,
-             display_type: typing.Union[int, str] = 'DEFAULT',
-             sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+             display_type: typing.Union[str, int] = 'DEFAULT',
+             sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
              name: str = "Image"):
     ''' Add a file node to the current node editor
 
@@ -97,9 +99,9 @@ def add_file(filepath: str = "",
     :param use_multiview: Use Multi-View
     :type use_multiview: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param name: Name, Data-block name to assign
     :type name: str
     '''
@@ -117,11 +119,12 @@ def add_mask(name: str = "Mask"):
     pass
 
 
-def add_node(
-        type: str = "",
-        use_transform: bool = False,
-        settings: typing.Union[typing.List['bl_operators.node.NodeSetting'],
-                               'bpy_prop_collection'] = None):
+def add_node(type: str = "",
+             use_transform: bool = False,
+             settings: typing.
+             Union[typing.Dict[str, 'bl_operators.node.NodeSetting'], typing.
+                   List['bl_operators.node.NodeSetting'],
+                   'bpy_prop_collection'] = None):
     ''' Add a node to the active tree
 
     :param type: Node Type, Node type
@@ -129,19 +132,20 @@ def add_node(
     :param use_transform: Use Transform, Start transform operator after inserting the node
     :type use_transform: bool
     :param settings: Settings, Settings to be applied on the newly created node
-    :type settings: typing.Union[typing.List['bl_operators.node.NodeSetting'], 'bpy_prop_collection']
+    :type settings: typing.Union[typing.Dict[str, 'bl_operators.node.NodeSetting'], typing.List['bl_operators.node.NodeSetting'], 'bpy_prop_collection']
     '''
 
     pass
 
 
-def add_reroute(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
-                                   'bpy_prop_collection'] = None,
+def add_reroute(path: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.
+        List['bpy.types.OperatorMousePath'], 'bpy_prop_collection'] = None,
                 cursor: int = 8):
     ''' Add a reroute node
 
     :param path: Path
-    :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
+    :type path: typing.Union[typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param cursor: Cursor
     :type cursor: int
     '''
@@ -149,12 +153,13 @@ def add_reroute(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
     pass
 
 
-def add_search(
-        type: str = "",
-        use_transform: bool = False,
-        settings: typing.Union[typing.List['bl_operators.node.NodeSetting'],
-                               'bpy_prop_collection'] = None,
-        node_item: typing.Union[int, str] = ''):
+def add_search(type: str = "",
+               use_transform: bool = False,
+               settings: typing.
+               Union[typing.Dict[str, 'bl_operators.node.NodeSetting'], typing.
+                     List['bl_operators.node.NodeSetting'],
+                     'bpy_prop_collection'] = None,
+               node_item: typing.Union[str, int] = ''):
     ''' Add a node to the active tree
 
     :param type: Node Type, Node type
@@ -162,9 +167,9 @@ def add_search(
     :param use_transform: Use Transform, Start transform operator after inserting the node
     :type use_transform: bool
     :param settings: Settings, Settings to be applied on the newly created node
-    :type settings: typing.Union[typing.List['bl_operators.node.NodeSetting'], 'bpy_prop_collection']
+    :type settings: typing.Union[typing.Dict[str, 'bl_operators.node.NodeSetting'], typing.List['bl_operators.node.NodeSetting'], 'bpy_prop_collection']
     :param node_item: Node Type, Node type
-    :type node_item: typing.Union[int, str]
+    :type node_item: typing.Union[str, int]
     '''
 
     pass
@@ -364,11 +369,11 @@ def group_make():
     pass
 
 
-def group_separate(type: typing.Union[int, str] = 'COPY'):
+def group_separate(type: typing.Union[str, int] = 'COPY'):
     ''' Separate selected nodes from the node group
 
     :param type: Type * COPY Copy, Copy to parent node tree, keep group intact. * MOVE Move, Move to parent node tree, remove from group.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -442,13 +447,14 @@ def link_viewer():
     pass
 
 
-def links_cut(path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
-                                 'bpy_prop_collection'] = None,
+def links_cut(path: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.
+        List['bpy.types.OperatorMousePath'], 'bpy_prop_collection'] = None,
               cursor: int = 12):
     ''' Use the mouse to cut (remove) some links
 
     :param path: Path
-    :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
+    :type path: typing.Union[typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param cursor: Cursor
     :type cursor: int
     '''
@@ -496,11 +502,11 @@ def mute_toggle():
     pass
 
 
-def new_node_tree(type: typing.Union[int, str] = '', name: str = "NodeTree"):
+def new_node_tree(type: typing.Union[str, int] = '', name: str = "NodeTree"):
     ''' Create a new node tree
 
     :param type: Tree Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param name: Name
     :type name: str
     '''
@@ -550,11 +556,11 @@ def output_file_add_socket(file_path: str = "Image"):
     pass
 
 
-def output_file_move_active_socket(direction: typing.Union[int, str] = 'DOWN'):
+def output_file_move_active_socket(direction: typing.Union[str, int] = 'DOWN'):
     ''' Move the active input of a file output node up or down the list
 
     :param direction: Direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -633,11 +639,11 @@ def select(wait_to_deselect_others: bool = False,
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' (De)select all nodes
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -649,7 +655,7 @@ def select_box(tweak: bool = False,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[int, str] = 'SET'):
+               mode: typing.Union[str, int] = 'SET'):
     ''' Use box selection to select nodes
 
     :param tweak: Tweak, Only activate when mouse is not over a node - useful for tweak gesture
@@ -665,7 +671,7 @@ def select_box(tweak: bool = False,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -675,7 +681,7 @@ def select_circle(x: int = 0,
                   y: int = 0,
                   radius: int = 25,
                   wait_for_input: bool = True,
-                  mode: typing.Union[int, str] = 'SET'):
+                  mode: typing.Union[str, int] = 'SET'):
     ''' Use circle selection to select nodes
 
     :param x: X
@@ -687,37 +693,39 @@ def select_circle(x: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
 
 
 def select_grouped(extend: bool = False,
-                   type: typing.Union[int, str] = 'TYPE'):
+                   type: typing.Union[str, int] = 'TYPE'):
     ''' Select nodes with similar properties
 
     :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_lasso(tweak: bool = False,
-                 path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
-                                    'bpy_prop_collection'] = None,
-                 mode: typing.Union[int, str] = 'SET'):
+def select_lasso(
+        tweak: bool = False,
+        path: typing.Union[
+            typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.
+            List['bpy.types.OperatorMousePath'], 'bpy_prop_collection'] = None,
+        mode: typing.Union[str, int] = 'SET'):
     ''' Select nodes using lasso selection
 
     :param tweak: Tweak, Only activate when mouse is not over a node - useful for tweak gesture
     :type tweak: bool
     :param path: Path
-    :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
+    :type path: typing.Union[typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -809,21 +817,21 @@ def tree_path_parent():
     pass
 
 
-def tree_socket_add(in_out: typing.Union[int, str] = 'IN'):
+def tree_socket_add(in_out: typing.Union[str, int] = 'IN'):
     ''' Add an input or output socket to the current node tree
 
     :param in_out: Socket Type
-    :type in_out: typing.Union[int, str]
+    :type in_out: typing.Union[str, int]
     '''
 
     pass
 
 
-def tree_socket_move(direction: typing.Union[int, str] = 'UP'):
+def tree_socket_move(direction: typing.Union[str, int] = 'UP'):
     ''' Move a socket up or down in the current node tree's sockets stack
 
     :param direction: Direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass

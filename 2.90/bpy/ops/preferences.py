@@ -34,7 +34,7 @@ def addon_expand(module: str = ""):
 
 
 def addon_install(overwrite: bool = True,
-                  target: typing.Union[int, str] = 'DEFAULT',
+                  target: typing.Union[str, int] = 'DEFAULT',
                   filepath: str = "",
                   filter_folder: bool = True,
                   filter_python: bool = True,
@@ -44,7 +44,7 @@ def addon_install(overwrite: bool = True,
     :param overwrite: Overwrite, Remove existing add-ons with the same ID
     :type overwrite: bool
     :param target: Target Path
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param filepath: filepath
     :type filepath: str
     :param filter_folder: Filter folders
@@ -258,16 +258,18 @@ def studiolight_copy_settings(index: int = 0):
 
 
 def studiolight_install(
-        files: typing.Union[typing.List['bpy.types.OperatorFileListElement'],
-                            'bpy_prop_collection'] = None,
+        files: typing.
+        Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.
+              List['bpy.types.OperatorFileListElement'],
+              'bpy_prop_collection'] = None,
         directory: str = "",
         filter_folder: bool = True,
         filter_glob: str = "*.png;*.jpg;*.hdr;*.exr",
-        type: typing.Union[int, str] = 'MATCAP'):
+        type: typing.Union[str, int] = 'MATCAP'):
     ''' Install a user defined studio light
 
     :param files: File Path
-    :type files: typing.Union[typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
+    :type files: typing.Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
     :param directory: directory
     :type directory: str
     :param filter_folder: Filter folders
@@ -275,7 +277,7 @@ def studiolight_install(
     :param filter_glob: filter_glob
     :type filter_glob: str
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

@@ -62,14 +62,14 @@ def channels_delete():
     pass
 
 
-def channels_editable_toggle(mode: typing.Union[int, str] = 'TOGGLE',
-                             type: typing.Union[int, str] = 'PROTECT'):
+def channels_editable_toggle(mode: typing.Union[str, int] = 'TOGGLE',
+                             type: typing.Union[str, int] = 'PROTECT'):
     ''' Toggle editability of selected channels
 
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -113,11 +113,11 @@ def channels_group(name: str = "New Group"):
     pass
 
 
-def channels_move(direction: typing.Union[int, str] = 'DOWN'):
+def channels_move(direction: typing.Union[str, int] = 'DOWN'):
     ''' Rearrange selected animation channels
 
     :param direction: Direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -131,11 +131,11 @@ def channels_rename():
     pass
 
 
-def channels_select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def channels_select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Toggle selection of all animation channels
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -169,40 +169,40 @@ def channels_select_box(xmin: int = 0,
     pass
 
 
-def channels_setting_disable(mode: typing.Union[int, str] = 'DISABLE',
-                             type: typing.Union[int, str] = 'PROTECT'):
+def channels_setting_disable(mode: typing.Union[str, int] = 'DISABLE',
+                             type: typing.Union[str, int] = 'PROTECT'):
     ''' Disable specified setting on all selected animation channels
 
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def channels_setting_enable(mode: typing.Union[int, str] = 'ENABLE',
-                            type: typing.Union[int, str] = 'PROTECT'):
+def channels_setting_enable(mode: typing.Union[str, int] = 'ENABLE',
+                            type: typing.Union[str, int] = 'PROTECT'):
     ''' Enable specified setting on all selected animation channels
 
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def channels_setting_toggle(mode: typing.Union[int, str] = 'TOGGLE',
-                            type: typing.Union[int, str] = 'PROTECT'):
+def channels_setting_toggle(mode: typing.Union[str, int] = 'TOGGLE',
+                            type: typing.Union[str, int] = 'PROTECT'):
     ''' Toggle specified setting on all selected animation channels
 
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -286,12 +286,12 @@ def keyframe_clear_v3d():
     pass
 
 
-def keyframe_delete(type: typing.Union[int, str] = 'DEFAULT',
+def keyframe_delete(type: typing.Union[str, int] = 'DEFAULT',
                     confirm_success: bool = True):
     ''' Delete keyframes on the current frame for all properties in the specified Keying Set
 
     :param type: Keying Set, The Keying Set to use
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param confirm_success: Confirm Successful Delete, Show a popup when the keyframes get successfully removed
     :type confirm_success: bool
     '''
@@ -328,12 +328,12 @@ def keyframe_delete_v3d():
     pass
 
 
-def keyframe_insert(type: typing.Union[int, str] = 'DEFAULT',
+def keyframe_insert(type: typing.Union[str, int] = 'DEFAULT',
                     confirm_success: bool = True):
     ''' Insert keyframes on the current frame for all properties in the specified Keying Set
 
     :param type: Keying Set, The Keying Set to use
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param confirm_success: Confirm Successful Insert, Show a popup when the keyframes get successfully added
     :type confirm_success: bool
     '''
@@ -362,13 +362,13 @@ def keyframe_insert_by_name(type: str = "Type", confirm_success: bool = True):
     pass
 
 
-def keyframe_insert_menu(type: typing.Union[int, str] = 'DEFAULT',
+def keyframe_insert_menu(type: typing.Union[str, int] = 'DEFAULT',
                          confirm_success: bool = False,
                          always_prompt: bool = False):
     ''' Insert Keyframes for specified Keying Set, with menu of available Keying Sets if undefined
 
     :param type: Keying Set, The Keying Set to use
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param confirm_success: Confirm Successful Insert, Show a popup when the keyframes get successfully added
     :type confirm_success: bool
     :param always_prompt: Always Show Menu
@@ -378,11 +378,11 @@ def keyframe_insert_menu(type: typing.Union[int, str] = 'DEFAULT',
     pass
 
 
-def keying_set_active_set(type: typing.Union[int, str] = 'DEFAULT'):
+def keying_set_active_set(type: typing.Union[str, int] = 'DEFAULT'):
     ''' Select a new keying set as the active one
 
     :param type: Keying Set, The Keying Set to use
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

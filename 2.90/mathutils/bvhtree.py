@@ -45,7 +45,7 @@ class BVHTree:
     def FromPolygons(cls,
                      vertices: typing.List[float],
                      polygons: typing.
-                     Union['bpy.context.sequences', 'bpy.types.Sequence'],
+                     Union['bpy.types.Sequence', 'bpy.context.sequences'],
                      all_triangles: bool = False,
                      epsilon: float = 0.0):
         ''' BVH tree constructed geometry passed in as arguments.
@@ -53,7 +53,7 @@ class BVHTree:
         :param vertices: float triplets each representing (x, y, z)
         :type vertices: typing.List[float]
         :param polygons: Sequence of polyugons, each containing indices to the vertices argument.
-        :type polygons: typing.Union['bpy.context.sequences', 'bpy.types.Sequence']
+        :type polygons: typing.Union['bpy.types.Sequence', 'bpy.context.sequences']
         :param all_triangles: Use when all **polygons** are triangles for more efficient conversion.
         :type all_triangles: bool
         :param epsilon: Increase the threshold for detecting overlap and raycast hits.

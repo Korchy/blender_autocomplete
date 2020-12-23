@@ -2,11 +2,11 @@ import sys
 import typing
 
 
-def case_set(case: typing.Union[int, str] = 'LOWER'):
+def case_set(case: typing.Union[str, int] = 'LOWER'):
     ''' Set font case
 
     :param case: Case, Lower or upper case
-    :type case: typing.Union[int, str]
+    :type case: typing.Union[str, int]
     '''
 
     pass
@@ -40,11 +40,11 @@ def change_spacing(delta: int = 1):
     pass
 
 
-def delete(type: typing.Union[int, str] = 'PREVIOUS_CHARACTER'):
+def delete(type: typing.Union[str, int] = 'PREVIOUS_CHARACTER'):
     ''' Delete text by cursor position
 
     :param type: Type, Which part of the text to delete
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -58,21 +58,21 @@ def line_break():
     pass
 
 
-def move(type: typing.Union[int, str] = 'LINE_BEGIN'):
+def move(type: typing.Union[str, int] = 'LINE_BEGIN'):
     ''' Move cursor to position type
 
     :param type: Type, Where to move cursor to
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def move_select(type: typing.Union[int, str] = 'LINE_BEGIN'):
+def move_select(type: typing.Union[str, int] = 'LINE_BEGIN'):
     ''' Move the cursor while selecting
 
     :param type: Type, Where to move cursor to, to make a selection
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -98,8 +98,8 @@ def open(filepath: str = "",
          filter_blenlib: bool = False,
          filemode: int = 9,
          relative_path: bool = True,
-         display_type: typing.Union[int, str] = 'DEFAULT',
-         sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
+         display_type: typing.Union[str, int] = 'DEFAULT',
+         sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
     ''' Load a new font from a file
 
     :param filepath: File Path, Path to file
@@ -143,9 +143,9 @@ def open(filepath: str = "",
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     '''
 
     pass
@@ -159,11 +159,11 @@ def select_all():
     pass
 
 
-def style_set(style: typing.Union[int, str] = 'BOLD', clear: bool = False):
+def style_set(style: typing.Union[str, int] = 'BOLD', clear: bool = False):
     ''' Set font style
 
     :param style: Style, Style to set selection to
-    :type style: typing.Union[int, str]
+    :type style: typing.Union[str, int]
     :param clear: Clear, Clear style rather than setting it
     :type clear: bool
     '''
@@ -171,11 +171,11 @@ def style_set(style: typing.Union[int, str] = 'BOLD', clear: bool = False):
     pass
 
 
-def style_toggle(style: typing.Union[int, str] = 'BOLD'):
+def style_toggle(style: typing.Union[str, int] = 'BOLD'):
     ''' Toggle font style
 
     :param style: Style, Style to set selection to
-    :type style: typing.Union[int, str]
+    :type style: typing.Union[str, int]
     '''
 
     pass
@@ -237,8 +237,8 @@ def text_paste_from_file(
         filter_folder: bool = True,
         filter_blenlib: bool = False,
         filemode: int = 9,
-        display_type: typing.Union[int, str] = 'DEFAULT',
-        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
+        display_type: typing.Union[str, int] = 'DEFAULT',
+        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
     ''' Paste contents from file
 
     :param filepath: File Path, Path to file
@@ -280,9 +280,9 @@ def text_paste_from_file(
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     '''
 
     pass

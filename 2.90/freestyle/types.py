@@ -269,19 +269,19 @@ class Curve:
         '''
         pass
 
-    def push_vertex_back(self, vertex: typing.Union['CurvePoint', 'SVertex']):
+    def push_vertex_back(self, vertex: typing.Union['SVertex', 'CurvePoint']):
         ''' Adds a single vertex at the end of the Curve.
 
         :param vertex: A vertex object.
-        :type vertex: typing.Union['CurvePoint', 'SVertex']
+        :type vertex: typing.Union['SVertex', 'CurvePoint']
         '''
         pass
 
-    def push_vertex_front(self, vertex: typing.Union['CurvePoint', 'SVertex']):
+    def push_vertex_front(self, vertex: typing.Union['SVertex', 'CurvePoint']):
         ''' Adds a single vertex at the front of the Curve.
 
         :param vertex: A vertex object.
-        :type vertex: typing.Union['CurvePoint', 'SVertex']
+        :type vertex: typing.Union['SVertex', 'CurvePoint']
         '''
         pass
 
@@ -755,11 +755,11 @@ class Interface0DIterator:
         pass
 
     def __init__(self, it: typing.Union[
-            'StrokeVertexIterator', 'SVertexIterator', 'CurvePointIterator']):
+            'CurvePointIterator', 'SVertexIterator', 'StrokeVertexIterator']):
         ''' Construct a nested Interface0DIterator that can be the argument of a Function0D.
 
         :param it: An iterator object to be nested.
-        :type it: typing.Union['StrokeVertexIterator', 'SVertexIterator', 'CurvePointIterator']
+        :type it: typing.Union['CurvePointIterator', 'SVertexIterator', 'StrokeVertexIterator']
         '''
         pass
 

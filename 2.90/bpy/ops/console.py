@@ -54,11 +54,11 @@ def copy_as_script():
     pass
 
 
-def delete(type: typing.Union[int, str] = 'NEXT_CHARACTER'):
+def delete(type: typing.Union[str, int] = 'NEXT_CHARACTER'):
     ''' Delete text by cursor position
 
     :param type: Type, Which part of the text to delete
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -136,11 +136,11 @@ def language(language: str = ""):
     pass
 
 
-def move(type: typing.Union[int, str] = 'LINE_BEGIN'):
+def move(type: typing.Union[str, int] = 'LINE_BEGIN'):
     ''' Move cursor position
 
     :param type: Type, Where to move cursor to
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -154,13 +154,13 @@ def paste():
     pass
 
 
-def scrollback_append(text: str = "", type: typing.Union[int, str] = 'OUTPUT'):
+def scrollback_append(text: str = "", type: typing.Union[str, int] = 'OUTPUT'):
     ''' Append scrollback text by type
 
     :param text: Text, Text to insert at the cursor position
     :type text: str
     :param type: Type, Console output type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

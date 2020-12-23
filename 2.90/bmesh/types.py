@@ -282,10 +282,10 @@ class BMEditSelIter:
 
 
 class BMEditSelSeq:
-    active: typing.Union['BMFace', 'BMVert', 'BMEdge'] = None
+    active: typing.Union['BMVert', 'BMEdge', 'BMFace'] = None
     ''' The last selected element or None (read-only).
 
-    :type: typing.Union['BMFace', 'BMVert', 'BMEdge']
+    :type: typing.Union['BMVert', 'BMEdge', 'BMFace']
     '''
 
     def add(self, element):

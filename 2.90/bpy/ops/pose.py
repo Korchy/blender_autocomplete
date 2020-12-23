@@ -12,11 +12,11 @@ def armature_apply(selected: bool = False):
     pass
 
 
-def autoside_names(axis: typing.Union[int, str] = 'XAXIS'):
+def autoside_names(axis: typing.Union[str, int] = 'XAXIS'):
     ''' Automatically renames the selected bones according to which side of the target axis they fall on
 
     :param axis: Axis, Axis tag names with * XAXIS X-Axis, Left/Right. * YAXIS Y-Axis, Front/Back. * ZAXIS Z-Axis, Top/Bottom.
-    :type axis: typing.Union[int, str]
+    :type axis: typing.Union[str, int]
     '''
 
     pass
@@ -41,8 +41,8 @@ def bone_layers(
 def breakdown(percentage: float = 0.5,
               prev_frame: int = 0,
               next_frame: int = 0,
-              channels: typing.Union[int, str] = 'ALL',
-              axis_lock: typing.Union[int, str] = 'FREE'):
+              channels: typing.Union[str, int] = 'ALL',
+              axis_lock: typing.Union[str, int] = 'FREE'):
     ''' Create a suitable breakdown pose on the current frame
 
     :param percentage: Percentage, Weighting factor for which keyframe is favored more
@@ -52,29 +52,29 @@ def breakdown(percentage: float = 0.5,
     :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
     :type next_frame: int
     :param channels: Channels, Set of properties that are affected * ALL All Properties, All properties, including transforms, bendy bone shape, and custom properties. * LOC Location, Location only. * ROT Rotation, Rotation only. * SIZE Scale, Scale only. * BBONE Bendy Bone, Bendy Bone shape properties. * CUSTOM Custom Properties, Custom properties.
-    :type channels: typing.Union[int, str]
+    :type channels: typing.Union[str, int]
     :param axis_lock: Axis Lock, Transform axis to restrict effects to * FREE Free, All axes are affected. * X X, Only X-axis transforms are affected. * Y Y, Only Y-axis transforms are affected. * Z Z, Only Z-axis transforms are affected.
-    :type axis_lock: typing.Union[int, str]
+    :type axis_lock: typing.Union[str, int]
     '''
 
     pass
 
 
-def constraint_add(type: typing.Union[int, str] = ''):
+def constraint_add(type: typing.Union[str, int] = ''):
     ''' Add a constraint to the active bone
 
     :param type: Type * CAMERA_SOLVER Camera Solver. * FOLLOW_TRACK Follow Track. * OBJECT_SOLVER Object Solver. * COPY_LOCATION Copy Location, Copy the location of a target (with an optional offset), so that they move together. * COPY_ROTATION Copy Rotation, Copy the rotation of a target (with an optional offset), so that they rotate together. * COPY_SCALE Copy Scale, Copy the scale factors of a target (with an optional offset), so that they are scaled by the same amount. * COPY_TRANSFORMS Copy Transforms, Copy all the transformations of a target, so that they move together. * LIMIT_DISTANCE Limit Distance, Restrict movements to within a certain distance of a target (at the time of constraint evaluation only). * LIMIT_LOCATION Limit Location, Restrict movement along each axis within given ranges. * LIMIT_ROTATION Limit Rotation, Restrict rotation along each axis within given ranges. * LIMIT_SCALE Limit Scale, Restrict scaling along each axis with given ranges. * MAINTAIN_VOLUME Maintain Volume, Compensate for scaling one axis by applying suitable scaling to the other two axes. * TRANSFORM Transformation, Use one transform property from target to control another (or same) property on owner. * TRANSFORM_CACHE Transform Cache, Look up the transformation matrix from an external file. * CLAMP_TO Clamp To, Restrict movements to lie along a curve by remapping location along curve's longest axis. * DAMPED_TRACK Damped Track, Point towards a target by performing the smallest rotation necessary. * IK Inverse Kinematics, Control a chain of bones by specifying the endpoint target (Bones only). * LOCKED_TRACK Locked Track, Rotate around the specified ('locked') axis to point towards a target. * SPLINE_IK Spline IK, Align chain of bones along a curve (Bones only). * STRETCH_TO Stretch To, Stretch along Y-Axis to point towards a target. * TRACK_TO Track To, Legacy tracking constraint prone to twisting artifacts. * ACTION Action, Use transform property of target to look up pose for owner from an Action. * ARMATURE Armature, Apply weight-blended transformation from multiple bones like the Armature modifier. * CHILD_OF Child Of, Make target the 'detachable' parent of owner. * FLOOR Floor, Use position (and optionally rotation) of target to define a 'wall' or 'floor' that the owner can not cross. * FOLLOW_PATH Follow Path, Use to animate an object/bone following a path. * PIVOT Pivot, Change pivot point for transforms (buggy). * SHRINKWRAP Shrinkwrap, Restrict movements to surface of target mesh.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def constraint_add_with_targets(type: typing.Union[int, str] = ''):
+def constraint_add_with_targets(type: typing.Union[str, int] = ''):
     ''' Add a constraint to the active bone, with target (where applicable) set to the selected Objects/Bones
 
     :param type: Type * CAMERA_SOLVER Camera Solver. * FOLLOW_TRACK Follow Track. * OBJECT_SOLVER Object Solver. * COPY_LOCATION Copy Location, Copy the location of a target (with an optional offset), so that they move together. * COPY_ROTATION Copy Rotation, Copy the rotation of a target (with an optional offset), so that they rotate together. * COPY_SCALE Copy Scale, Copy the scale factors of a target (with an optional offset), so that they are scaled by the same amount. * COPY_TRANSFORMS Copy Transforms, Copy all the transformations of a target, so that they move together. * LIMIT_DISTANCE Limit Distance, Restrict movements to within a certain distance of a target (at the time of constraint evaluation only). * LIMIT_LOCATION Limit Location, Restrict movement along each axis within given ranges. * LIMIT_ROTATION Limit Rotation, Restrict rotation along each axis within given ranges. * LIMIT_SCALE Limit Scale, Restrict scaling along each axis with given ranges. * MAINTAIN_VOLUME Maintain Volume, Compensate for scaling one axis by applying suitable scaling to the other two axes. * TRANSFORM Transformation, Use one transform property from target to control another (or same) property on owner. * TRANSFORM_CACHE Transform Cache, Look up the transformation matrix from an external file. * CLAMP_TO Clamp To, Restrict movements to lie along a curve by remapping location along curve's longest axis. * DAMPED_TRACK Damped Track, Point towards a target by performing the smallest rotation necessary. * IK Inverse Kinematics, Control a chain of bones by specifying the endpoint target (Bones only). * LOCKED_TRACK Locked Track, Rotate around the specified ('locked') axis to point towards a target. * SPLINE_IK Spline IK, Align chain of bones along a curve (Bones only). * STRETCH_TO Stretch To, Stretch along Y-Axis to point towards a target. * TRACK_TO Track To, Legacy tracking constraint prone to twisting artifacts. * ACTION Action, Use transform property of target to look up pose for owner from an Action. * ARMATURE Armature, Apply weight-blended transformation from multiple bones like the Armature modifier. * CHILD_OF Child Of, Make target the 'detachable' parent of owner. * FLOOR Floor, Use position (and optionally rotation) of target to define a 'wall' or 'floor' that the owner can not cross. * FOLLOW_PATH Follow Path, Use to animate an object/bone following a path. * PIVOT Pivot, Change pivot point for transforms (buggy). * SHRINKWRAP Shrinkwrap, Restrict movements to surface of target mesh.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -140,11 +140,11 @@ def group_deselect():
     pass
 
 
-def group_move(direction: typing.Union[int, str] = 'UP'):
+def group_move(direction: typing.Union[str, int] = 'UP'):
     ''' Change position of active Bone Group in list of Bone Groups
 
     :param direction: Direction, Direction to move the active Bone Group towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -232,7 +232,7 @@ def paste(flipped: bool = False, selected_mask: bool = False):
 
 def paths_calculate(start_frame: int = 1,
                     end_frame: int = 250,
-                    bake_location: typing.Union[int, str] = 'HEADS'):
+                    bake_location: typing.Union[str, int] = 'HEADS'):
     ''' Calculate paths for the selected bones
 
     :param start_frame: Start, First frame to calculate bone paths on
@@ -240,7 +240,7 @@ def paths_calculate(start_frame: int = 1,
     :param end_frame: End, Last frame to calculate bone paths on
     :type end_frame: int
     :param bake_location: Bake Location, Which point on the bones is used when calculating paths * HEADS Heads, Calculate bone paths from heads. * TAILS Tails, Calculate bone paths from tails.
-    :type bake_location: typing.Union[int, str]
+    :type bake_location: typing.Union[str, int]
     '''
 
     pass
@@ -272,12 +272,12 @@ def paths_update():
     pass
 
 
-def propagate(mode: typing.Union[int, str] = 'WHILE_HELD',
+def propagate(mode: typing.Union[str, int] = 'WHILE_HELD',
               end_frame: float = 250.0):
     ''' Copy selected aspects of the current pose to subsequent poses already keyframed
 
     :param mode: Terminate Mode, Method used to determine when to stop propagating pose to keyframes * WHILE_HELD While Held, Propagate pose to all keyframes after current frame that don't change (Default behavior). * NEXT_KEY To Next Keyframe, Propagate pose to first keyframe following the current frame only. * LAST_KEY To Last Keyframe, Propagate pose to the last keyframe only (i.e. making action cyclic). * BEFORE_FRAME Before Frame, Propagate pose to all keyframes between current frame and 'Frame' property. * BEFORE_END Before Last Keyframe, Propagate pose to all keyframes from current frame until no more are found. * SELECTED_KEYS On Selected Keyframes, Propagate pose to all selected keyframes. * SELECTED_MARKERS On Selected Markers, Propagate pose to all keyframes occurring on frames with Scene Markers after the current frame.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param end_frame: End Frame, Frame to stop propagating frames to (for 'Before Frame' mode)
     :type end_frame: float
     '''
@@ -288,8 +288,8 @@ def propagate(mode: typing.Union[int, str] = 'WHILE_HELD',
 def push(percentage: float = 0.5,
          prev_frame: int = 0,
          next_frame: int = 0,
-         channels: typing.Union[int, str] = 'ALL',
-         axis_lock: typing.Union[int, str] = 'FREE'):
+         channels: typing.Union[str, int] = 'ALL',
+         axis_lock: typing.Union[str, int] = 'FREE'):
     ''' Exaggerate the current pose in regards to the breakdown pose
 
     :param percentage: Percentage, Weighting factor for which keyframe is favored more
@@ -299,9 +299,9 @@ def push(percentage: float = 0.5,
     :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
     :type next_frame: int
     :param channels: Channels, Set of properties that are affected * ALL All Properties, All properties, including transforms, bendy bone shape, and custom properties. * LOC Location, Location only. * ROT Rotation, Rotation only. * SIZE Scale, Scale only. * BBONE Bendy Bone, Bendy Bone shape properties. * CUSTOM Custom Properties, Custom properties.
-    :type channels: typing.Union[int, str]
+    :type channels: typing.Union[str, int]
     :param axis_lock: Axis Lock, Transform axis to restrict effects to * FREE Free, All axes are affected. * X X, Only X-axis transforms are affected. * Y Y, Only Y-axis transforms are affected. * Z Z, Only Z-axis transforms are affected.
-    :type axis_lock: typing.Union[int, str]
+    :type axis_lock: typing.Union[str, int]
     '''
 
     pass
@@ -310,8 +310,8 @@ def push(percentage: float = 0.5,
 def push_rest(percentage: float = 0.5,
               prev_frame: int = 0,
               next_frame: int = 0,
-              channels: typing.Union[int, str] = 'ALL',
-              axis_lock: typing.Union[int, str] = 'FREE'):
+              channels: typing.Union[str, int] = 'ALL',
+              axis_lock: typing.Union[str, int] = 'FREE'):
     ''' Push the current pose further away from the rest pose
 
     :param percentage: Percentage, Weighting factor for which keyframe is favored more
@@ -321,9 +321,9 @@ def push_rest(percentage: float = 0.5,
     :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
     :type next_frame: int
     :param channels: Channels, Set of properties that are affected * ALL All Properties, All properties, including transforms, bendy bone shape, and custom properties. * LOC Location, Location only. * ROT Rotation, Rotation only. * SIZE Scale, Scale only. * BBONE Bendy Bone, Bendy Bone shape properties. * CUSTOM Custom Properties, Custom properties.
-    :type channels: typing.Union[int, str]
+    :type channels: typing.Union[str, int]
     :param axis_lock: Axis Lock, Transform axis to restrict effects to * FREE Free, All axes are affected. * X X, Only X-axis transforms are affected. * Y Y, Only Y-axis transforms are affected. * Z Z, Only Z-axis transforms are affected.
-    :type axis_lock: typing.Union[int, str]
+    :type axis_lock: typing.Union[str, int]
     '''
 
     pass
@@ -340,8 +340,8 @@ def quaternions_flip():
 def relax(percentage: float = 0.5,
           prev_frame: int = 0,
           next_frame: int = 0,
-          channels: typing.Union[int, str] = 'ALL',
-          axis_lock: typing.Union[int, str] = 'FREE'):
+          channels: typing.Union[str, int] = 'ALL',
+          axis_lock: typing.Union[str, int] = 'FREE'):
     ''' Make the current pose more similar to its breakdown pose
 
     :param percentage: Percentage, Weighting factor for which keyframe is favored more
@@ -351,9 +351,9 @@ def relax(percentage: float = 0.5,
     :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
     :type next_frame: int
     :param channels: Channels, Set of properties that are affected * ALL All Properties, All properties, including transforms, bendy bone shape, and custom properties. * LOC Location, Location only. * ROT Rotation, Rotation only. * SIZE Scale, Scale only. * BBONE Bendy Bone, Bendy Bone shape properties. * CUSTOM Custom Properties, Custom properties.
-    :type channels: typing.Union[int, str]
+    :type channels: typing.Union[str, int]
     :param axis_lock: Axis Lock, Transform axis to restrict effects to * FREE Free, All axes are affected. * X X, Only X-axis transforms are affected. * Y Y, Only Y-axis transforms are affected. * Z Z, Only Z-axis transforms are affected.
-    :type axis_lock: typing.Union[int, str]
+    :type axis_lock: typing.Union[str, int]
     '''
 
     pass
@@ -362,8 +362,8 @@ def relax(percentage: float = 0.5,
 def relax_rest(percentage: float = 0.5,
                prev_frame: int = 0,
                next_frame: int = 0,
-               channels: typing.Union[int, str] = 'ALL',
-               axis_lock: typing.Union[int, str] = 'FREE'):
+               channels: typing.Union[str, int] = 'ALL',
+               axis_lock: typing.Union[str, int] = 'FREE'):
     ''' Make the current pose more similar to the rest pose
 
     :param percentage: Percentage, Weighting factor for which keyframe is favored more
@@ -373,9 +373,9 @@ def relax_rest(percentage: float = 0.5,
     :param next_frame: Next Keyframe, Frame number of keyframe immediately after the current frame
     :type next_frame: int
     :param channels: Channels, Set of properties that are affected * ALL All Properties, All properties, including transforms, bendy bone shape, and custom properties. * LOC Location, Location only. * ROT Rotation, Rotation only. * SIZE Scale, Scale only. * BBONE Bendy Bone, Bendy Bone shape properties. * CUSTOM Custom Properties, Custom properties.
-    :type channels: typing.Union[int, str]
+    :type channels: typing.Union[str, int]
     :param axis_lock: Axis Lock, Transform axis to restrict effects to * FREE Free, All axes are affected. * X X, Only X-axis transforms are affected. * Y Y, Only Y-axis transforms are affected. * Z Z, Only Z-axis transforms are affected.
-    :type axis_lock: typing.Union[int, str]
+    :type axis_lock: typing.Union[str, int]
     '''
 
     pass
@@ -399,11 +399,11 @@ def rot_clear():
     pass
 
 
-def rotation_mode_set(type: typing.Union[int, str] = 'QUATERNION'):
+def rotation_mode_set(type: typing.Union[str, int] = 'QUATERNION'):
     ''' Set the rotation representation used by selected bones
 
     :param type: Rotation Mode * QUATERNION Quaternion (WXYZ), No Gimbal Lock. * XYZ XYZ Euler, XYZ Rotation Order - prone to Gimbal Lock (default). * XZY XZY Euler, XZY Rotation Order - prone to Gimbal Lock. * YXZ YXZ Euler, YXZ Rotation Order - prone to Gimbal Lock. * YZX YZX Euler, YZX Rotation Order - prone to Gimbal Lock. * ZXY ZXY Euler, ZXY Rotation Order - prone to Gimbal Lock. * ZYX ZYX Euler, ZYX Rotation Order - prone to Gimbal Lock. * AXIS_ANGLE Axis Angle, Axis Angle (W+XYZ), defines a rotation around some axis defined by 3D-Vector.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -417,11 +417,11 @@ def scale_clear():
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Toggle selection status of all bones
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -436,24 +436,24 @@ def select_constraint_target():
 
 
 def select_grouped(extend: bool = False,
-                   type: typing.Union[int, str] = 'LAYER'):
+                   type: typing.Union[str, int] = 'LAYER'):
     ''' Select all visible bones grouped by similar properties
 
     :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
     :param type: Type * LAYER Layer, Shared layers. * GROUP Group, Shared group. * KEYINGSET Keying Set, All bones affected by active Keying Set.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_hierarchy(direction: typing.Union[int, str] = 'PARENT',
+def select_hierarchy(direction: typing.Union[str, int] = 'PARENT',
                      extend: bool = False):
     ''' Select immediate parent/children of selected bones
 
     :param direction: Direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     :param extend: Extend, Extend the selection
     :type extend: bool
     '''

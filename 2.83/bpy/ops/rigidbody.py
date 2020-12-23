@@ -18,27 +18,27 @@ def bake_to_keyframes(frame_start: int = 1,
     pass
 
 
-def connect(con_type: typing.Union[int, str] = 'FIXED',
-            pivot_type: typing.Union[int, str] = 'CENTER',
-            connection_pattern: typing.Union[int, str] = 'SELECTED_TO_ACTIVE'):
+def connect(con_type: typing.Union[str, int] = 'FIXED',
+            pivot_type: typing.Union[str, int] = 'CENTER',
+            connection_pattern: typing.Union[str, int] = 'SELECTED_TO_ACTIVE'):
     ''' Create rigid body constraints between selected rigid bodies
 
     :param con_type: Type, Type of generated constraint * FIXED Fixed, Glue rigid bodies together. * POINT Point, Constrain rigid bodies to move around common pivot point. * HINGE Hinge, Restrict rigid body rotation to one axis. * SLIDER Slider, Restrict rigid body translation to one axis. * PISTON Piston, Restrict rigid body translation and rotation to one axis. * GENERIC Generic, Restrict translation and rotation to specified axes. * GENERIC_SPRING Generic Spring, Restrict translation and rotation to specified axes with springs. * MOTOR Motor, Drive rigid body around or along an axis.
-    :type con_type: typing.Union[int, str]
+    :type con_type: typing.Union[str, int]
     :param pivot_type: Location, Constraint pivot location * CENTER Center, Pivot location is between the constrained rigid bodies. * ACTIVE Active, Pivot location is at the active object position. * SELECTED Selected, Pivot location is at the selected object position.
-    :type pivot_type: typing.Union[int, str]
+    :type pivot_type: typing.Union[str, int]
     :param connection_pattern: Connection Pattern, Pattern used to connect objects * SELECTED_TO_ACTIVE Selected to Active, Connect selected objects to the active object. * CHAIN_DISTANCE Chain by Distance, Connect objects as a chain based on distance, starting at the active object.
-    :type connection_pattern: typing.Union[int, str]
+    :type connection_pattern: typing.Union[str, int]
     '''
 
     pass
 
 
-def constraint_add(type: typing.Union[int, str] = 'FIXED'):
+def constraint_add(type: typing.Union[str, int] = 'FIXED'):
     ''' Add Rigid Body Constraint to active object
 
     :param type: Rigid Body Constraint Type * FIXED Fixed, Glue rigid bodies together. * POINT Point, Constrain rigid bodies to move around common pivot point. * HINGE Hinge, Restrict rigid body rotation to one axis. * SLIDER Slider, Restrict rigid body translation to one axis. * PISTON Piston, Restrict rigid body translation and rotation to one axis. * GENERIC Generic, Restrict translation and rotation to specified axes. * GENERIC_SPRING Generic Spring, Restrict translation and rotation to specified axes with springs. * MOTOR Motor, Drive rigid body around or along an axis.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -52,12 +52,12 @@ def constraint_remove():
     pass
 
 
-def mass_calculate(material: typing.Union[int, str] = 'DEFAULT',
+def mass_calculate(material: typing.Union[str, int] = 'DEFAULT',
                    density: float = 1.0):
     ''' Automatically calculate mass values for Rigid Body Objects based on volume
 
     :param material: Material Preset, Type of material that objects are made of (determines material density)
-    :type material: typing.Union[int, str]
+    :type material: typing.Union[str, int]
     :param density: Density, Custom density value (kg/m^3) to use instead of material preset
     :type density: float
     '''
@@ -65,11 +65,11 @@ def mass_calculate(material: typing.Union[int, str] = 'DEFAULT',
     pass
 
 
-def object_add(type: typing.Union[int, str] = 'ACTIVE'):
+def object_add(type: typing.Union[str, int] = 'ACTIVE'):
     ''' Add active object as Rigid Body
 
     :param type: Rigid Body Type * ACTIVE Active, Object is directly controlled by simulation results. * PASSIVE Passive, Object is directly controlled by animation system.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -84,18 +84,18 @@ def object_remove():
 
 
 def object_settings_copy():
-    ''' Copy Rigid Body settings from active object to selected
+    ''' Copy Rigid Body settings from active object to selected :file: startup/bl_operators/rigidbody.py\:61 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/rigidbody.py$61> _
 
     '''
 
     pass
 
 
-def objects_add(type: typing.Union[int, str] = 'ACTIVE'):
+def objects_add(type: typing.Union[str, int] = 'ACTIVE'):
     ''' Add selected objects as Rigid Bodies
 
     :param type: Rigid Body Type * ACTIVE Active, Object is directly controlled by simulation results. * PASSIVE Passive, Object is directly controlled by animation system.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -109,11 +109,11 @@ def objects_remove():
     pass
 
 
-def shape_change(type: typing.Union[int, str] = 'MESH'):
+def shape_change(type: typing.Union[str, int] = 'MESH'):
     ''' Change collision shapes for selected Rigid Body Objects
 
     :param type: Rigid Body Shape * BOX Box, Box-like shapes (i.e. cubes), including planes (i.e. ground planes). * SPHERE Sphere. * CAPSULE Capsule. * CYLINDER Cylinder. * CONE Cone. * CONVEX_HULL Convex Hull, A mesh-like surface encompassing (i.e. shrinkwrap over) all vertices (best results with fewer vertices). * MESH Mesh, Mesh consisting of triangles only, allowing for more detailed interactions than convex hulls.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

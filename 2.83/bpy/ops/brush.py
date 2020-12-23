@@ -18,11 +18,11 @@ def add_gpencil():
     pass
 
 
-def curve_preset(shape: typing.Union[int, str] = 'SMOOTH'):
+def curve_preset(shape: typing.Union[str, int] = 'SMOOTH'):
     ''' Set brush shape
 
     :param shape: Mode
-    :type shape: typing.Union[int, str]
+    :type shape: typing.Union[str, int]
     '''
 
     pass
@@ -46,14 +46,14 @@ def scale_size(scalar: float = 1.0):
     pass
 
 
-def stencil_control(mode: typing.Union[int, str] = 'TRANSLATION',
-                    texmode: typing.Union[int, str] = 'PRIMARY'):
+def stencil_control(mode: typing.Union[str, int] = 'TRANSLATION',
+                    texmode: typing.Union[str, int] = 'PRIMARY'):
     ''' Control the stencil brush
 
     :param mode: Tool
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param texmode: Tool
-    :type texmode: typing.Union[int, str]
+    :type texmode: typing.Union[str, int]
     '''
 
     pass

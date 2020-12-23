@@ -222,7 +222,7 @@ class QuantitativeInvisibilityUP1D:
         pass
 
     def __call__(self, inter: 'freestyle.types.Interface1D') -> bool:
-        ''' Returns true if the Quantitative Invisibility evaluated at an Interface1D, using the
+        ''' Returns true if the Quantitative Invisibility evaluated at an Interface1D, using the freestyle.functions.QuantitativeInvisibilityF1D functor, equals a certain user-defined value.
 
         :param inter: An Interface1D object.
         :type inter: 'freestyle.types.Interface1D'

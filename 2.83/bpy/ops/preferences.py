@@ -34,7 +34,7 @@ def addon_expand(module: str = ""):
 
 
 def addon_install(overwrite: bool = True,
-                  target: typing.Union[int, str] = 'DEFAULT',
+                  target: typing.Union[str, int] = 'DEFAULT',
                   filepath: str = "",
                   filter_folder: bool = True,
                   filter_python: bool = True,
@@ -44,7 +44,7 @@ def addon_install(overwrite: bool = True,
     :param overwrite: Overwrite, Remove existing add-ons with the same ID
     :type overwrite: bool
     :param target: Target Path
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param filepath: filepath
     :type filepath: str
     :param filter_folder: Filter folders
@@ -59,7 +59,7 @@ def addon_install(overwrite: bool = True,
 
 
 def addon_refresh():
-    ''' Scan add-on directories for new modules
+    ''' Scan add-on directories for new modules :file: startup/bl_operators/userpref.py\:569 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$569> _
 
     '''
 
@@ -106,7 +106,7 @@ def app_template_install(overwrite: bool = True,
 
 
 def copy_prev():
-    ''' Copy settings from previous version
+    ''' Copy settings from previous version :file: startup/bl_operators/userpref.py\:152 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$152> _
 
     '''
 
@@ -168,7 +168,7 @@ def keyconfig_import(filepath: str = "keymap.py",
 
 
 def keyconfig_remove():
-    ''' Remove key config
+    ''' Remove key config :file: startup/bl_operators/userpref.py\:417 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$417> _
 
     '''
 
@@ -176,7 +176,7 @@ def keyconfig_remove():
 
 
 def keyconfig_test():
-    ''' Test key-config for conflicts
+    ''' Test key-config for conflicts :file: startup/bl_operators/userpref.py\:176 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$176> _
 
     '''
 
@@ -184,7 +184,7 @@ def keyconfig_test():
 
 
 def keyitem_add():
-    ''' Add key map item
+    ''' Add key map item :file: startup/bl_operators/userpref.py\:365 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$365> _
 
     '''
 
@@ -240,16 +240,18 @@ def studiolight_copy_settings(index: int = 0):
 
 
 def studiolight_install(
-        files: typing.Union[typing.List['bpy.types.OperatorFileListElement'],
-                            'bpy_prop_collection'] = None,
+        files: typing.
+        Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.
+              List['bpy.types.OperatorFileListElement'],
+              'bpy_prop_collection'] = None,
         directory: str = "",
         filter_folder: bool = True,
         filter_glob: str = "*.png;*.jpg;*.hdr;*.exr",
-        type: typing.Union[int, str] = 'MATCAP'):
+        type: typing.Union[str, int] = 'MATCAP'):
     ''' Install a user defined studio light
 
     :param files: File Path
-    :type files: typing.Union[typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
+    :type files: typing.Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
     :param directory: directory
     :type directory: str
     :param filter_folder: Filter folders
@@ -257,7 +259,7 @@ def studiolight_install(
     :param filter_glob: filter_glob
     :type filter_glob: str
     :param type: type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -274,7 +276,7 @@ def studiolight_new(filename: str = "StudioLight"):
 
 
 def studiolight_show():
-    ''' Show light preferences
+    ''' Show light preferences :file: startup/bl_operators/userpref.py\:1123 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/userpref.py$1123> _
 
     '''
 

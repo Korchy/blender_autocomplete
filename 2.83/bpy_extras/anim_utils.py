@@ -69,12 +69,12 @@ def bake_action_objects(object_action_pairs, *, frames: int,
 
 def bake_action_objects_iter(
         object_action_pairs: typing.
-        Union['bpy.types.Object', 'bpy.types.Action', 'bpy.types.Sequence'],
+        Union['bpy.types.Object', 'bpy.types.Sequence', 'bpy.types.Action'],
         **kwargs):
     ''' An coroutine that bakes actions for multiple objects.
 
     :param object_action_pairs: Sequence of object action tuples, action is the destination for the baked data. When None a new action will be created.
-    :type object_action_pairs: typing.Union['bpy.types.Object', 'bpy.types.Action', 'bpy.types.Sequence']
+    :type object_action_pairs: typing.Union['bpy.types.Object', 'bpy.types.Sequence', 'bpy.types.Action']
     '''
 
     pass

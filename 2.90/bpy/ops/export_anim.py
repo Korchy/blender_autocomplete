@@ -8,7 +8,7 @@ def bvh(filepath: str = "",
         global_scale: float = 1.0,
         frame_start: int = 0,
         frame_end: int = 0,
-        rotate_mode: typing.Union[int, str] = 'NATIVE',
+        rotate_mode: typing.Union[str, int] = 'NATIVE',
         root_transform_only: bool = False):
     ''' Save a BVH motion capture file from an armature
 
@@ -25,7 +25,7 @@ def bvh(filepath: str = "",
     :param frame_end: End Frame, End frame to export
     :type frame_end: int
     :param rotate_mode: Rotation, Rotation conversion * NATIVE Euler (Native), Use the rotation order defined in the BVH file. * XYZ Euler (XYZ), Convert rotations to euler XYZ. * XZY Euler (XZY), Convert rotations to euler XZY. * YXZ Euler (YXZ), Convert rotations to euler YXZ. * YZX Euler (YZX), Convert rotations to euler YZX. * ZXY Euler (ZXY), Convert rotations to euler ZXY. * ZYX Euler (ZYX), Convert rotations to euler ZYX.
-    :type rotate_mode: typing.Union[int, str]
+    :type rotate_mode: typing.Union[str, int]
     :param root_transform_only: Root Translation Only, Only write out translation channels for the root bone
     :type root_transform_only: bool
     '''

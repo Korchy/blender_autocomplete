@@ -1,8 +1,8 @@
 import sys
 import typing
+from . import interpolate
 from . import geometry
 from . import kdtree
-from . import interpolate
 from . import noise
 from . import bvhtree
 
@@ -156,11 +156,11 @@ class Euler:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Euler', 'Quaternion', 'Matrix']):
+    def rotate(self, other: typing.Union['Quaternion', 'Euler', 'Matrix']):
         ''' Rotates the euler by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
+        :type other: typing.Union['Quaternion', 'Euler', 'Matrix']
         '''
         pass
 
@@ -473,11 +473,11 @@ class Matrix:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Euler', 'Quaternion', 'Matrix']):
+    def rotate(self, other: typing.Union['Quaternion', 'Euler', 'Matrix']):
         ''' Rotates the matrix by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
+        :type other: typing.Union['Quaternion', 'Euler', 'Matrix']
         '''
         pass
 
@@ -735,11 +735,11 @@ class Quaternion:
         '''
         pass
 
-    def rotate(self, other: typing.Union['Euler', 'Quaternion', 'Matrix']):
+    def rotate(self, other: typing.Union['Quaternion', 'Euler', 'Matrix']):
         ''' Rotates the quaternion by another mathutils value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
+        :type other: typing.Union['Quaternion', 'Euler', 'Matrix']
         '''
         pass
 
@@ -2094,11 +2094,11 @@ class Vector:
         pass
 
     @staticmethod
-    def rotate(other: typing.Union['Euler', 'Quaternion', 'Matrix']):
+    def rotate(other: typing.Union['Quaternion', 'Euler', 'Matrix']):
         ''' Rotate the vector by a rotation value.
 
         :param other: rotation component of mathutils value
-        :type other: typing.Union['Euler', 'Quaternion', 'Matrix']
+        :type other: typing.Union['Quaternion', 'Euler', 'Matrix']
         '''
         pass
 

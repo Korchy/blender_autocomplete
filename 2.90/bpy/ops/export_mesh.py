@@ -12,8 +12,8 @@ def ply(filepath: str = "",
         use_uv_coords: bool = True,
         use_colors: bool = True,
         global_scale: float = 1.0,
-        axis_forward: typing.Union[int, str] = 'Y',
-        axis_up: typing.Union[int, str] = 'Z'):
+        axis_forward: typing.Union[str, int] = 'Y',
+        axis_up: typing.Union[str, int] = 'Z'):
     ''' Export as a Stanford PLY with normals, vertex colors and texture coordinates
 
     :param filepath: File Path, Filepath used for exporting the file
@@ -37,9 +37,9 @@ def ply(filepath: str = "",
     :param global_scale: Scale
     :type global_scale: float
     :param axis_forward: Forward
-    :type axis_forward: typing.Union[int, str]
+    :type axis_forward: typing.Union[str, int]
     :param axis_up: Up
-    :type axis_up: typing.Union[int, str]
+    :type axis_up: typing.Union[str, int]
     '''
 
     pass
@@ -53,9 +53,9 @@ def stl(filepath: str = "",
         use_scene_unit: bool = False,
         ascii: bool = False,
         use_mesh_modifiers: bool = True,
-        batch_mode: typing.Union[int, str] = 'OFF',
-        axis_forward: typing.Union[int, str] = 'Y',
-        axis_up: typing.Union[int, str] = 'Z'):
+        batch_mode: typing.Union[str, int] = 'OFF',
+        axis_forward: typing.Union[str, int] = 'Y',
+        axis_up: typing.Union[str, int] = 'Z'):
     ''' Save STL triangle mesh data
 
     :param filepath: File Path, Filepath used for exporting the file
@@ -75,11 +75,11 @@ def stl(filepath: str = "",
     :param use_mesh_modifiers: Apply Modifiers, Apply the modifiers before saving
     :type use_mesh_modifiers: bool
     :param batch_mode: Batch Mode * OFF Off, All data in one file. * OBJECT Object, Each object as a file.
-    :type batch_mode: typing.Union[int, str]
+    :type batch_mode: typing.Union[str, int]
     :param axis_forward: Forward
-    :type axis_forward: typing.Union[int, str]
+    :type axis_forward: typing.Union[str, int]
     :param axis_up: Up
-    :type axis_up: typing.Union[int, str]
+    :type axis_up: typing.Union[str, int]
     '''
 
     pass

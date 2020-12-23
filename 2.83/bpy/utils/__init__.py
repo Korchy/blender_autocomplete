@@ -3,8 +3,8 @@ import typing
 import bpy.types
 import bpy.context
 
-from . import previews
 from . import units
+from . import previews
 
 
 def app_template_paths(subdir: str = None):
@@ -154,7 +154,7 @@ def refresh_script_paths():
 
 
 def register_class(cls):
-    ''' Register a subclass of a blender type in ( bpy.types.Panel ,
+    ''' Register a subclass of a blender type in ( bpy.types.Panel , bpy.types.UIList , bpy.types.Menu , bpy.types.Header , bpy.types.Operator , bpy.types.KeyingSetInfo , bpy.types.RenderEngine ). If the class has a *register* class method it will be called before registration.
 
     '''
 

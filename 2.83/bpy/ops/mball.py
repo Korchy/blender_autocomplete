@@ -49,11 +49,11 @@ def reveal_metaelems(select: bool = True):
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Change selection of all meta elements
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -61,7 +61,7 @@ def select_all(action: typing.Union[int, str] = 'TOGGLE'):
 
 def select_random_metaelems(percent: float = 50.0,
                             seed: int = 0,
-                            action: typing.Union[int, str] = 'SELECT'):
+                            action: typing.Union[str, int] = 'SELECT'):
     ''' Randomly select metaelements
 
     :param percent: Percent, Percentage of objects to select randomly
@@ -69,18 +69,18 @@ def select_random_metaelems(percent: float = 50.0,
     :param seed: Random Seed, Seed for the random number generator
     :type seed: int
     :param action: Action, Selection action to execute * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_similar(type: typing.Union[int, str] = 'TYPE',
+def select_similar(type: typing.Union[str, int] = 'TYPE',
                    threshold: float = 0.1):
     ''' Select similar metaballs by property types
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param threshold: Threshold
     :type threshold: float
     '''

@@ -127,21 +127,21 @@ def eyedropper_depth():
     pass
 
 
-def eyedropper_driver(mapping_type: typing.Union[int, str] = 'SINGLE_MANY'):
+def eyedropper_driver(mapping_type: typing.Union[str, int] = 'SINGLE_MANY'):
     ''' Pick a property to use as a driver target
 
     :param mapping_type: Mapping Type, Method used to match target and driven properties * SINGLE_MANY All from Target, Drive all components of this property using the target picked. * DIRECT Single from Target, Drive this component of this property using the target picked. * MATCH Match Indices, Create drivers for each pair of corresponding elements. * NONE_ALL Manually Create Later, Create drivers for all properties without assigning any targets yet. * NONE_SINGLE Manually Create Later (Single), Create driver for this property only and without assigning any targets yet.
-    :type mapping_type: typing.Union[int, str]
+    :type mapping_type: typing.Union[str, int]
     '''
 
     pass
 
 
-def eyedropper_gpencil_color(mode: typing.Union[int, str] = 'MATERIAL'):
+def eyedropper_gpencil_color(mode: typing.Union[str, int] = 'MATERIAL'):
     ''' Sample a color from the Blender Window and create Grease Pencil material
 
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -174,13 +174,13 @@ def override_remove_button(all: bool = True):
 
 
 def override_type_set_button(all: bool = True,
-                             type: typing.Union[int, str] = 'REPLACE'):
+                             type: typing.Union[str, int] = 'REPLACE'):
     ''' Create an override operation, or set the type of an existing one
 
     :param all: All, Reset to default values all elements of the array
     :type all: bool
     :param type: Type, Type of override operation * NOOP NoOp, 'No-Operation', place holder preventing automatic override to ever affect the property. * REPLACE Replace, Completely replace value from linked data by local one. * DIFFERENCE Difference, Store difference to linked data value. * FACTOR Factor, Store factor to linked data value (useful e.g. for scale).
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

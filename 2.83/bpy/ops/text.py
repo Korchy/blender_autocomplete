@@ -10,21 +10,21 @@ def autocomplete():
     pass
 
 
-def comment_toggle(type: typing.Union[int, str] = 'TOGGLE'):
+def comment_toggle(type: typing.Union[str, int] = 'TOGGLE'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Type, Add or remove comments
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def convert_whitespace(type: typing.Union[int, str] = 'SPACES'):
+def convert_whitespace(type: typing.Union[str, int] = 'SPACES'):
     ''' Convert whitespaces by type
 
     :param type: Type, Type of whitespace to convert to
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -58,11 +58,11 @@ def cut():
     pass
 
 
-def delete(type: typing.Union[int, str] = 'NEXT_CHARACTER'):
+def delete(type: typing.Union[str, int] = 'NEXT_CHARACTER'):
     ''' Delete text by cursor position
 
     :param type: Type, Which part of the text to delete
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -152,31 +152,31 @@ def make_internal():
     pass
 
 
-def move(type: typing.Union[int, str] = 'LINE_BEGIN'):
+def move(type: typing.Union[str, int] = 'LINE_BEGIN'):
     ''' Move cursor to position type
 
     :param type: Type, Where to move cursor to
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def move_lines(direction: typing.Union[int, str] = 'DOWN'):
+def move_lines(direction: typing.Union[str, int] = 'DOWN'):
     ''' Move the currently selected line(s) up/down
 
     :param direction: Direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
 
 
-def move_select(type: typing.Union[int, str] = 'LINE_BEGIN'):
+def move_select(type: typing.Union[str, int] = 'LINE_BEGIN'):
     ''' Move the cursor while selecting
 
     :param type: Type, Where to move cursor to, to make a selection
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -209,8 +209,8 @@ def open(filepath: str = "",
          filter_folder: bool = True,
          filter_blenlib: bool = False,
          filemode: int = 9,
-         display_type: typing.Union[int, str] = 'DEFAULT',
-         sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+         display_type: typing.Union[str, int] = 'DEFAULT',
+         sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
          internal: bool = False):
     ''' Open a new text data-block
 
@@ -253,9 +253,9 @@ def open(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param internal: Make internal, Make text file internal after loading
     :type internal: bool
     '''
@@ -313,11 +313,11 @@ def replace_set_selected():
     pass
 
 
-def resolve_conflict(resolution: typing.Union[int, str] = 'IGNORE'):
+def resolve_conflict(resolution: typing.Union[str, int] = 'IGNORE'):
     ''' When external text is out of sync, resolve the conflict
 
     :param resolution: Resolution, How to solve conflict due to differences in internal and external text
-    :type resolution: typing.Union[int, str]
+    :type resolution: typing.Union[str, int]
     '''
 
     pass
@@ -359,8 +359,8 @@ def save_as(filepath: str = "",
             filter_folder: bool = True,
             filter_blenlib: bool = False,
             filemode: int = 9,
-            display_type: typing.Union[int, str] = 'DEFAULT',
-            sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
+            display_type: typing.Union[str, int] = 'DEFAULT',
+            sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
     ''' Save active text file with options
 
     :param filepath: File Path, Path to file
@@ -404,9 +404,9 @@ def save_as(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     '''
 
     pass

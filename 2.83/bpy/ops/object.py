@@ -4,9 +4,9 @@ import bpy.types
 
 
 def add(radius: float = 1.0,
-        type: typing.Union[int, str] = 'EMPTY',
+        type: typing.Union[str, int] = 'EMPTY',
         enter_editmode: bool = False,
-        align: typing.Union[int, str] = 'WORLD',
+        align: typing.Union[str, int] = 'WORLD',
         location: typing.List[float] = (0.0, 0.0, 0.0),
         rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add an object to the scene
@@ -14,11 +14,11 @@ def add(radius: float = 1.0,
     :param radius: Radius
     :type radius: float
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -41,26 +41,26 @@ def add_named(linked: bool = False, name: str = ""):
 
 
 def align(bb_quality: bool = True,
-          align_mode: typing.Union[int, str] = 'OPT_2',
-          relative_to: typing.Union[int, str] = 'OPT_4',
-          align_axis: typing.Union[typing.Set[int], typing.Set[str]] = {}):
+          align_mode: typing.Union[str, int] = 'OPT_2',
+          relative_to: typing.Union[str, int] = 'OPT_4',
+          align_axis: typing.Union[typing.Set[str], typing.Set[int]] = {}):
     ''' Align Objects
 
     :param bb_quality: High Quality, Enables high quality calculation of the bounding box for perfect results on complex shape meshes with rotation/scale (Slow)
     :type bb_quality: bool
     :param align_mode: Align Mode:, Side of object to use for alignment
-    :type align_mode: typing.Union[int, str]
+    :type align_mode: typing.Union[str, int]
     :param relative_to: Relative To:, Reference location to align to * OPT_1 Scene Origin, Use the Scene Origin as the position for the selected objects to align to. * OPT_2 3D Cursor, Use the 3D cursor as the position for the selected objects to align to. * OPT_3 Selection, Use the selected objects as the position for the selected objects to align to. * OPT_4 Active, Use the active object as the position for the selected objects to align to.
-    :type relative_to: typing.Union[int, str]
+    :type relative_to: typing.Union[str, int]
     :param align_axis: Align, Align to axis
-    :type align_axis: typing.Union[typing.Set[int], typing.Set[str]]
+    :type align_axis: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     pass
 
 
 def anim_transforms_to_deltas():
-    ''' Convert object animation for normal transforms to delta transforms
+    ''' Convert object animation for normal transforms to delta transforms :file: startup/bl_operators/object.py\:782 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$782> _
 
     '''
 
@@ -69,7 +69,7 @@ def anim_transforms_to_deltas():
 
 def armature_add(radius: float = 1.0,
                  enter_editmode: bool = False,
-                 align: typing.Union[int, str] = 'WORLD',
+                 align: typing.Union[str, int] = 'WORLD',
                  location: typing.List[float] = (0.0, 0.0, 0.0),
                  rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add an armature object to the scene
@@ -79,7 +79,7 @@ def armature_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -102,8 +102,8 @@ def assign_property_defaults(process_data: bool = True,
     pass
 
 
-def bake(type: typing.Union[int, str] = 'COMBINED',
-         pass_filter: typing.Union[typing.Set[int], typing.Set[str]] = {},
+def bake(type: typing.Union[str, int] = 'COMBINED',
+         pass_filter: typing.Union[typing.Set[str], typing.Set[int]] = {},
          filepath: str = "",
          width: int = 512,
          height: int = 512,
@@ -111,11 +111,11 @@ def bake(type: typing.Union[int, str] = 'COMBINED',
          use_selected_to_active: bool = False,
          cage_extrusion: float = 0.0,
          cage_object: str = "",
-         normal_space: typing.Union[int, str] = 'TANGENT',
-         normal_r: typing.Union[int, str] = 'POS_X',
-         normal_g: typing.Union[int, str] = 'POS_Y',
-         normal_b: typing.Union[int, str] = 'POS_Z',
-         save_mode: typing.Union[int, str] = 'INTERNAL',
+         normal_space: typing.Union[str, int] = 'TANGENT',
+         normal_r: typing.Union[str, int] = 'POS_X',
+         normal_g: typing.Union[str, int] = 'POS_Y',
+         normal_b: typing.Union[str, int] = 'POS_Z',
+         save_mode: typing.Union[str, int] = 'INTERNAL',
          use_clear: bool = False,
          use_cage: bool = False,
          use_split_materials: bool = False,
@@ -124,9 +124,9 @@ def bake(type: typing.Union[int, str] = 'COMBINED',
     ''' Bake image textures of selected objects
 
     :param type: Type, Type of pass to bake, some of them may not be supported by the current render engine
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param pass_filter: Pass Filter, Filter to combined, diffuse, glossy, transmission and subsurface passes
-    :type pass_filter: typing.Union[typing.Set[int], typing.Set[str]]
+    :type pass_filter: typing.Union[typing.Set[str], typing.Set[int]]
     :param filepath: File Path, Image filepath to use when saving externally
     :type filepath: str
     :param width: Width, Horizontal dimension of the baking map (external only)
@@ -142,15 +142,15 @@ def bake(type: typing.Union[int, str] = 'COMBINED',
     :param cage_object: Cage Object, Object to use as cage, instead of calculating the cage from the active object with cage extrusion
     :type cage_object: str
     :param normal_space: Normal Space, Choose normal space for baking * OBJECT Object, Bake the normals in object space. * TANGENT Tangent, Bake the normals in tangent space.
-    :type normal_space: typing.Union[int, str]
+    :type normal_space: typing.Union[str, int]
     :param normal_r: R, Axis to bake in red channel
-    :type normal_r: typing.Union[int, str]
+    :type normal_r: typing.Union[str, int]
     :param normal_g: G, Axis to bake in green channel
-    :type normal_g: typing.Union[int, str]
+    :type normal_g: typing.Union[str, int]
     :param normal_b: B, Axis to bake in blue channel
-    :type normal_b: typing.Union[int, str]
+    :type normal_b: typing.Union[str, int]
     :param save_mode: Save Mode, Choose how to save the baking map * INTERNAL Internal, Save the baking map in an internal image data-block. * EXTERNAL External, Save the baking map in an external file.
-    :type save_mode: typing.Union[int, str]
+    :type save_mode: typing.Union[str, int]
     :param use_clear: Clear, Clear Images before baking (only for internal saving)
     :type use_clear: bool
     :param use_cage: Cage, Cast rays to active object from a cage
@@ -175,7 +175,7 @@ def bake_image():
 
 
 def camera_add(enter_editmode: bool = False,
-               align: typing.Union[int, str] = 'WORLD',
+               align: typing.Union[str, int] = 'WORLD',
                location: typing.List[float] = (0.0, 0.0, 0.0),
                rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a camera object to the scene
@@ -183,7 +183,7 @@ def camera_add(enter_editmode: bool = False,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -202,8 +202,8 @@ def collection_add():
 
 
 def collection_instance_add(name: str = "Collection",
-                            collection: typing.Union[int, str] = '',
-                            align: typing.Union[int, str] = 'WORLD',
+                            collection: typing.Union[str, int] = '',
+                            align: typing.Union[str, int] = 'WORLD',
                             location: typing.List[float] = (0.0, 0.0, 0.0),
                             rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a collection instance
@@ -211,9 +211,9 @@ def collection_instance_add(name: str = "Collection",
     :param name: Name, Collection name to add
     :type name: str
     :param collection: Collection
-    :type collection: typing.Union[int, str]
+    :type collection: typing.Union[str, int]
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -223,11 +223,11 @@ def collection_instance_add(name: str = "Collection",
     pass
 
 
-def collection_link(collection: typing.Union[int, str] = ''):
+def collection_link(collection: typing.Union[str, int] = ''):
     ''' Add an object to an existing collection
 
     :param collection: Collection
-    :type collection: typing.Union[int, str]
+    :type collection: typing.Union[str, int]
     '''
 
     pass
@@ -257,21 +257,21 @@ def collection_unlink():
     pass
 
 
-def constraint_add(type: typing.Union[int, str] = ''):
+def constraint_add(type: typing.Union[str, int] = ''):
     ''' Add a constraint to the active object
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def constraint_add_with_targets(type: typing.Union[int, str] = ''):
+def constraint_add_with_targets(type: typing.Union[str, int] = ''):
     ''' Add a constraint to the active object, with target (where applicable) set to the selected Objects/Bones
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -293,12 +293,12 @@ def constraints_copy():
     pass
 
 
-def convert(target: typing.Union[int, str] = 'MESH',
+def convert(target: typing.Union[str, int] = 'MESH',
             keep_original: bool = False):
     ''' Convert selected objects to another type
 
     :param target: Target, Type of object to convert to
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param keep_original: Keep Original, Keep original objects instead of replacing them
     :type keep_original: bool
     '''
@@ -318,21 +318,21 @@ def correctivesmooth_bind(modifier: str = ""):
 
 def data_transfer(use_reverse_transfer: bool = False,
                   use_freeze: bool = False,
-                  data_type: typing.Union[int, str] = '',
+                  data_type: typing.Union[str, int] = '',
                   use_create: bool = True,
-                  vert_mapping: typing.Union[int, str] = 'NEAREST',
-                  edge_mapping: typing.Union[int, str] = 'NEAREST',
-                  loop_mapping: typing.Union[int, str] = 'NEAREST_POLYNOR',
-                  poly_mapping: typing.Union[int, str] = 'NEAREST',
+                  vert_mapping: typing.Union[str, int] = 'NEAREST',
+                  edge_mapping: typing.Union[str, int] = 'NEAREST',
+                  loop_mapping: typing.Union[str, int] = 'NEAREST_POLYNOR',
+                  poly_mapping: typing.Union[str, int] = 'NEAREST',
                   use_auto_transform: bool = False,
                   use_object_transform: bool = True,
                   use_max_distance: bool = False,
                   max_distance: float = 1.0,
                   ray_radius: float = 0.0,
                   islands_precision: float = 0.1,
-                  layers_select_src: typing.Union[int, str] = 'ACTIVE',
-                  layers_select_dst: typing.Union[int, str] = 'ACTIVE',
-                  mix_mode: typing.Union[int, str] = 'REPLACE',
+                  layers_select_src: typing.Union[str, int] = 'ACTIVE',
+                  layers_select_dst: typing.Union[str, int] = 'ACTIVE',
+                  mix_mode: typing.Union[str, int] = 'REPLACE',
                   mix_factor: float = 1.0):
     ''' Transfer data layer(s) (weights, edge sharp, ...) from active to selected meshes
 
@@ -341,17 +341,17 @@ def data_transfer(use_reverse_transfer: bool = False,
     :param use_freeze: Freeze Operator, Prevent changes to settings to re-run the operator, handy to change several things at once with heavy geometry
     :type use_freeze: bool
     :param data_type: Data Type, Which data to transfer * VGROUP_WEIGHTS Vertex Group(s), Transfer active or all vertex groups. * BEVEL_WEIGHT_VERT Bevel Weight, Transfer bevel weights. * SHARP_EDGE Sharp, Transfer sharp mark. * SEAM UV Seam, Transfer UV seam mark. * CREASE Subsurf Crease, Transfer crease values. * BEVEL_WEIGHT_EDGE Bevel Weight, Transfer bevel weights. * FREESTYLE_EDGE Freestyle Mark, Transfer Freestyle edge mark. * CUSTOM_NORMAL Custom Normals, Transfer custom normals. * VCOL VCol, Vertex (face corners) colors. * UV UVs, Transfer UV layers. * SMOOTH Smooth, Transfer flat/smooth mark. * FREESTYLE_FACE Freestyle Mark, Transfer Freestyle face mark.
-    :type data_type: typing.Union[int, str]
+    :type data_type: typing.Union[str, int]
     :param use_create: Create Data, Add data layers on destination meshes if needed
     :type use_create: bool
     :param vert_mapping: Vertex Mapping, Method used to map source vertices to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * NEAREST Nearest vertex, Copy from closest vertex. * EDGE_NEAREST Nearest Edge Vertex, Copy from closest vertex of closest edge. * EDGEINTERP_NEAREST Nearest Edge Interpolated, Copy from interpolated values of vertices from closest point on closest edge. * POLY_NEAREST Nearest Face Vertex, Copy from closest vertex of closest face. * POLYINTERP_NEAREST Nearest Face Interpolated, Copy from interpolated values of vertices from closest point on closest face. * POLYINTERP_VNORPROJ Projected Face Interpolated, Copy from interpolated values of vertices from point on closest face hit by normal-projection.
-    :type vert_mapping: typing.Union[int, str]
+    :type vert_mapping: typing.Union[str, int]
     :param edge_mapping: Edge Mapping, Method used to map source edges to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * VERT_NEAREST Nearest Vertices, Copy from most similar edge (edge which vertices are the closest of destination edge's ones). * NEAREST Nearest Edge, Copy from closest edge (using midpoints). * POLY_NEAREST Nearest Face Edge, Copy from closest edge of closest face (using midpoints). * EDGEINTERP_VNORPROJ Projected Edge Interpolated, Interpolate all source edges hit by the projection of destination one along its own normal (from vertices).
-    :type edge_mapping: typing.Union[int, str]
+    :type edge_mapping: typing.Union[str, int]
     :param loop_mapping: Face Corner Mapping, Method used to map source faces' corners to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * NEAREST_NORMAL Nearest Corner And Best Matching Normal, Copy from nearest corner which has the best matching normal. * NEAREST_POLYNOR Nearest Corner And Best Matching Face Normal, Copy from nearest corner which has the face with the best matching normal to destination corner's face one. * NEAREST_POLY Nearest Corner Of Nearest Face, Copy from nearest corner of nearest polygon. * POLYINTERP_NEAREST Nearest Face Interpolated, Copy from interpolated corners of the nearest source polygon. * POLYINTERP_LNORPROJ Projected Face Interpolated, Copy from interpolated corners of the source polygon hit by corner normal projection.
-    :type loop_mapping: typing.Union[int, str]
+    :type loop_mapping: typing.Union[str, int]
     :param poly_mapping: Face Mapping, Method used to map source faces to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * NEAREST Nearest Face, Copy from nearest polygon (using center points). * NORMAL Best Normal-Matching, Copy from source polygon which normal is the closest to destination one. * POLYINTERP_PNORPROJ Projected Face Interpolated, Interpolate all source polygons intersected by the projection of destination one along its own normal.
-    :type poly_mapping: typing.Union[int, str]
+    :type poly_mapping: typing.Union[str, int]
     :param use_auto_transform: Auto Transform, Automatically compute transformation to get the best possible match between source and destination meshes (WARNING: results will never be as good as manual matching of objects)
     :type use_auto_transform: bool
     :param use_object_transform: Object Transform, Evaluate source and destination meshes in global space
@@ -365,11 +365,11 @@ def data_transfer(use_reverse_transfer: bool = False,
     :param islands_precision: Islands Precision, Factor controlling precision of islands handling (the higher, the better the results)
     :type islands_precision: float
     :param layers_select_src: Source Layers Selection, Which layers to transfer, in case of multi-layers types * ACTIVE Active Layer, Only transfer active data layer. * ALL All Layers, Transfer all data layers. * BONE_SELECT Selected Pose Bones, Transfer all vertex groups used by selected pose bones. * BONE_DEFORM Deform Pose Bones, Transfer all vertex groups used by deform bones.
-    :type layers_select_src: typing.Union[int, str]
+    :type layers_select_src: typing.Union[str, int]
     :param layers_select_dst: Destination Layers Matching, How to match source and destination layers * ACTIVE Active Layer, Affect active data layer of all targets. * NAME By Name, Match target data layers to affect by name. * INDEX By Order, Match target data layers to affect by order (indices).
-    :type layers_select_dst: typing.Union[int, str]
+    :type layers_select_dst: typing.Union[str, int]
     :param mix_mode: Mix Mode, How to affect destination elements with source values * REPLACE Replace, Overwrite all elements' data. * ABOVE_THRESHOLD Above Threshold, Only replace destination elements where data is above given threshold (exact behavior depends on data type). * BELOW_THRESHOLD Below Threshold, Only replace destination elements where data is below given threshold (exact behavior depends on data type). * MIX Mix, Mix source value into destination one, using given threshold as factor. * ADD Add, Add source value to destination one, using given threshold as factor. * SUB Subtract, Subtract source value to destination one, using given threshold as factor. * MUL Multiply, Multiply source value to destination one, using given threshold as factor.
-    :type mix_mode: typing.Union[int, str]
+    :type mix_mode: typing.Union[str, int]
     :param mix_factor: Mix Factor, Factor to use when applying data to destination (exact behavior depends on mix mode)
     :type mix_factor: float
     '''
@@ -378,22 +378,22 @@ def data_transfer(use_reverse_transfer: bool = False,
 
 
 def datalayout_transfer(modifier: str = "",
-                        data_type: typing.Union[int, str] = '',
+                        data_type: typing.Union[str, int] = '',
                         use_delete: bool = False,
-                        layers_select_src: typing.Union[int, str] = 'ACTIVE',
-                        layers_select_dst: typing.Union[int, str] = 'ACTIVE'):
+                        layers_select_src: typing.Union[str, int] = 'ACTIVE',
+                        layers_select_dst: typing.Union[str, int] = 'ACTIVE'):
     ''' Transfer layout of data layer(s) from active to selected meshes
 
     :param modifier: Modifier, Name of the modifier to edit
     :type modifier: str
     :param data_type: Data Type, Which data to transfer * VGROUP_WEIGHTS Vertex Group(s), Transfer active or all vertex groups. * BEVEL_WEIGHT_VERT Bevel Weight, Transfer bevel weights. * SHARP_EDGE Sharp, Transfer sharp mark. * SEAM UV Seam, Transfer UV seam mark. * CREASE Subsurf Crease, Transfer crease values. * BEVEL_WEIGHT_EDGE Bevel Weight, Transfer bevel weights. * FREESTYLE_EDGE Freestyle Mark, Transfer Freestyle edge mark. * CUSTOM_NORMAL Custom Normals, Transfer custom normals. * VCOL VCol, Vertex (face corners) colors. * UV UVs, Transfer UV layers. * SMOOTH Smooth, Transfer flat/smooth mark. * FREESTYLE_FACE Freestyle Mark, Transfer Freestyle face mark.
-    :type data_type: typing.Union[int, str]
+    :type data_type: typing.Union[str, int]
     :param use_delete: Exact Match, Also delete some data layers from destination if necessary, so that it matches exactly source
     :type use_delete: bool
     :param layers_select_src: Source Layers Selection, Which layers to transfer, in case of multi-layers types * ACTIVE Active Layer, Only transfer active data layer. * ALL All Layers, Transfer all data layers. * BONE_SELECT Selected Pose Bones, Transfer all vertex groups used by selected pose bones. * BONE_DEFORM Deform Pose Bones, Transfer all vertex groups used by deform bones.
-    :type layers_select_src: typing.Union[int, str]
+    :type layers_select_src: typing.Union[str, int]
     :param layers_select_dst: Destination Layers Matching, How to match source and destination layers * ACTIVE Active Layer, Affect active data layer of all targets. * NAME By Name, Match target data layers to affect by name. * INDEX By Order, Match target data layers to affect by order (indices).
-    :type layers_select_dst: typing.Union[int, str]
+    :type layers_select_dst: typing.Union[str, int]
     '''
 
     pass
@@ -414,7 +414,7 @@ def delete(use_global: bool = False, confirm: bool = True):
 def drop_named_image(filepath: str = "",
                      relative_path: bool = True,
                      name: str = "",
-                     align: typing.Union[int, str] = 'WORLD',
+                     align: typing.Union[str, int] = 'WORLD',
                      location: typing.List[float] = (0.0, 0.0, 0.0),
                      rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add an empty image type to scene with data
@@ -426,7 +426,7 @@ def drop_named_image(filepath: str = "",
     :param name: Name, Image name to assign
     :type name: str
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -447,13 +447,13 @@ def drop_named_material(name: str = "Material"):
 
 
 def duplicate(linked: bool = False,
-              mode: typing.Union[int, str] = 'TRANSLATION'):
+              mode: typing.Union[str, int] = 'TRANSLATION'):
     ''' Duplicate selected objects
 
     :param linked: Linked, Duplicate object but not object data, linking to the original data
     :type linked: bool
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -501,22 +501,22 @@ def editmode_toggle():
     pass
 
 
-def effector_add(type: typing.Union[int, str] = 'FORCE',
+def effector_add(type: typing.Union[str, int] = 'FORCE',
                  radius: float = 1.0,
                  enter_editmode: bool = False,
-                 align: typing.Union[int, str] = 'WORLD',
+                 align: typing.Union[str, int] = 'WORLD',
                  location: typing.List[float] = (0.0, 0.0, 0.0),
                  rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add an empty object with a physics effector to the scene
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param radius: Radius
     :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -526,19 +526,19 @@ def effector_add(type: typing.Union[int, str] = 'FORCE',
     pass
 
 
-def empty_add(type: typing.Union[int, str] = 'PLAIN_AXES',
+def empty_add(type: typing.Union[str, int] = 'PLAIN_AXES',
               radius: float = 1.0,
-              align: typing.Union[int, str] = 'WORLD',
+              align: typing.Union[str, int] = 'WORLD',
               location: typing.List[float] = (0.0, 0.0, 0.0),
               rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add an empty object to the scene
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param radius: Radius
     :type radius: float
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -582,11 +582,11 @@ def face_map_deselect():
     pass
 
 
-def face_map_move(direction: typing.Union[int, str] = 'UP'):
+def face_map_move(direction: typing.Union[str, int] = 'UP'):
     ''' Move the active face map up/down in the list
 
     :param direction: Direction, Direction to move, UP or DOWN
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -625,43 +625,43 @@ def forcefield_toggle():
 
 
 def gpencil_add(radius: float = 1.0,
-                align: typing.Union[int, str] = 'WORLD',
+                align: typing.Union[str, int] = 'WORLD',
                 location: typing.List[float] = (0.0, 0.0, 0.0),
                 rotation: typing.List[float] = (0.0, 0.0, 0.0),
-                type: typing.Union[int, str] = 'EMPTY'):
+                type: typing.Union[str, int] = 'EMPTY'):
     ''' Add a Grease Pencil object to the scene
 
     :param radius: Radius
     :type radius: float
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
     :type rotation: typing.List[float]
     :param type: Type * EMPTY Blank, Create an empty grease pencil object. * STROKE Stroke, Create a simple stroke with basic colors. * MONKEY Monkey, Construct a Suzanne grease pencil object.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def gpencil_modifier_add(type: typing.Union[int, str] = 'CURVE'):
+def gpencil_modifier_add(type: typing.Union[str, int] = 'CURVE'):
     ''' Add a procedural operation/effect to the active grease pencil object
 
     :param type: Type * DATA_TRANSFER Data Transfer, Transfer several types of data (vertex groups, UV maps, vertex colors, custom normals) from one mesh to another. * MESH_CACHE Mesh Cache, Deform the mesh using an external frame-by-frame vertex transform cache. * MESH_SEQUENCE_CACHE Mesh Sequence Cache, Deform the mesh or curve using an external mesh cache in Alembic format. * NORMAL_EDIT Normal Edit, Modify the direction of the surface normals. * WEIGHTED_NORMAL Weighted Normal, Modify the direction of the surface normals using a weighting method. * UV_PROJECT UV Project, Project the UV map coordinates from the negative Z axis of another object. * UV_WARP UV Warp, Transform the UV map using the difference between two objects. * VERTEX_WEIGHT_EDIT Vertex Weight Edit, Modify of the weights of a vertex group. * VERTEX_WEIGHT_MIX Vertex Weight Mix, Mix the weights of two vertex groups. * VERTEX_WEIGHT_PROXIMITY Vertex Weight Proximity, Set the vertex group weights based on the distance to another target object. * ARRAY Array, Create copies of the shape with offsets. * BEVEL Bevel, Generate sloped corners by adding geometry to the mesh's edges or vertices. * BOOLEAN Boolean, Use another shape to cut, combine or perform a difference operation. * BUILD Build, Cause the faces of the mesh object to appear or disappear one after the other over time. * DECIMATE Decimate, Reduce the geometry density. * EDGE_SPLIT Edge Split, Split away joined faces at the edges. * MASK Mask, Dynamically hide vertices based on a vertex group or armature. * MIRROR Mirror, Mirror along the local X, Y and/or Z axes, over the object origin. * MULTIRES Multiresolution, Subdivide the mesh in a way that allows editing the higher subdivision levels. * REMESH Remesh, Generate new mesh topology based on the current shape. * SCREW Screw, Lathe around an axis, treating the input mesh as a profile. * SKIN Skin, Create a solid shape from vertices and edges, using the vertex radius to define the thickness. * SOLIDIFY Solidify, Make the surface thick. * SUBSURF Subdivision Surface, Split the faces into smaller parts, giving it a smoother appearance. * TRIANGULATE Triangulate, Convert all polygons to triangles. * WELD Weld, Find groups of vertices closer then dist and merges them together. * WIREFRAME Wireframe, Convert faces into thickened edges. * ARMATURE Armature, Deform the shape using an armature object. * CAST Cast, Shift the shape towards a predefined primitive. * CURVE Curve, Bend the mesh using a curve object. * DISPLACE Displace, Offset vertices based on a texture. * HOOK Hook, Deform specific points using another object. * LAPLACIANDEFORM Laplacian Deform, Deform based a series of anchor points. * LATTICE Lattice, Deform using the shape of a lattice object. * MESH_DEFORM Mesh Deform, Deform using a different mesh, which acts as a deformation cage. * SHRINKWRAP Shrinkwrap, Project the shape onto another object. * SIMPLE_DEFORM Simple Deform, Deform the shape by twisting, bending, tapering or stretching. * SMOOTH Smooth, Smooth the mesh by flattening the angles between adjacent faces. * CORRECTIVE_SMOOTH Smooth Corrective, Smooth the mesh while still preserving the volume. * LAPLACIANSMOOTH Smooth Laplacian, Reduce the noise on a mesh surface with minimal changes to its shape. * SURFACE_DEFORM Surface Deform, Transfer motion from another mesh. * WARP Warp, Warp parts of a mesh to a new location in a very flexible way thanks to 2 specified objects. * WAVE Wave, Adds a ripple-like motion to an object’s geometry. * CLOTH Cloth. * COLLISION Collision. * DYNAMIC_PAINT Dynamic Paint. * EXPLODE Explode, Break apart the mesh faces and let them follow particles. * FLUID Fluid. * OCEAN Ocean, Generate a moving ocean surface. * PARTICLE_INSTANCE Particle Instance. * PARTICLE_SYSTEM Particle System, Spawn particles from the shape. * SOFT_BODY Soft Body. * SURFACE Surface.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def gpencil_modifier_apply(apply_as: typing.Union[int, str] = 'DATA',
+def gpencil_modifier_apply(apply_as: typing.Union[str, int] = 'DATA',
                            modifier: str = ""):
     ''' Apply modifier and remove from the stack
 
     :param apply_as: Apply as, How to apply the modifier to the geometry * DATA Object Data, Apply modifier to the object's data. * SHAPE New Shape, Apply deform-only modifier to a new shape on this object.
-    :type apply_as: typing.Union[int, str]
+    :type apply_as: typing.Union[str, int]
     :param modifier: Modifier, Name of the modifier to edit
     :type modifier: str
     '''
@@ -722,7 +722,7 @@ def hide_collection(collection_index: int = -1, toggle: bool = False):
 
 
 def hide_render_clear_all():
-    ''' Reveal all render objects by setting the hide render flag
+    ''' Reveal all render objects by setting the hide render flag :file: startup/bl_operators/object.py\:689 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$689> _
 
     '''
 
@@ -767,58 +767,58 @@ def hook_add_selob(use_bone: bool = False):
     pass
 
 
-def hook_assign(modifier: typing.Union[int, str] = ''):
+def hook_assign(modifier: typing.Union[str, int] = ''):
     ''' Assign the selected vertices to a hook
 
     :param modifier: Modifier, Modifier number to assign to
-    :type modifier: typing.Union[int, str]
+    :type modifier: typing.Union[str, int]
     '''
 
     pass
 
 
-def hook_recenter(modifier: typing.Union[int, str] = ''):
+def hook_recenter(modifier: typing.Union[str, int] = ''):
     ''' Set hook center to cursor position
 
     :param modifier: Modifier, Modifier number to assign to
-    :type modifier: typing.Union[int, str]
+    :type modifier: typing.Union[str, int]
     '''
 
     pass
 
 
-def hook_remove(modifier: typing.Union[int, str] = ''):
+def hook_remove(modifier: typing.Union[str, int] = ''):
     ''' Remove a hook from the active object
 
     :param modifier: Modifier, Modifier number to remove
-    :type modifier: typing.Union[int, str]
+    :type modifier: typing.Union[str, int]
     '''
 
     pass
 
 
-def hook_reset(modifier: typing.Union[int, str] = ''):
+def hook_reset(modifier: typing.Union[str, int] = ''):
     ''' Recalculate and clear offset transformation
 
     :param modifier: Modifier, Modifier number to assign to
-    :type modifier: typing.Union[int, str]
+    :type modifier: typing.Union[str, int]
     '''
 
     pass
 
 
-def hook_select(modifier: typing.Union[int, str] = ''):
+def hook_select(modifier: typing.Union[str, int] = ''):
     ''' Select affected vertices on mesh
 
     :param modifier: Modifier, Modifier number to remove
-    :type modifier: typing.Union[int, str]
+    :type modifier: typing.Union[str, int]
     '''
 
     pass
 
 
 def instance_offset_from_cursor():
-    ''' Set offset used for collection instances based on cursor position
+    ''' Set offset used for collection instances based on cursor position :file: startup/bl_operators/object.py\:871 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$871> _
 
     '''
 
@@ -826,7 +826,7 @@ def instance_offset_from_cursor():
 
 
 def isolate_type_render():
-    ''' Hide unselected render objects of same type as active by setting the hide render flag
+    ''' Hide unselected render objects of same type as active by setting the hide render flag :file: startup/bl_operators/object.py\:669 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$669> _
 
     '''
 
@@ -850,7 +850,7 @@ def join_shapes():
 
 
 def join_uvs():
-    ''' Transfer UV Maps from active to selected objects (needs matching geometry)
+    ''' Transfer UV Maps from active to selected objects (needs matching geometry) :file: startup/bl_operators/object.py\:583 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$583> _
 
     '''
 
@@ -867,19 +867,19 @@ def laplaciandeform_bind(modifier: str = ""):
     pass
 
 
-def light_add(type: typing.Union[int, str] = 'POINT',
+def light_add(type: typing.Union[str, int] = 'POINT',
               radius: float = 1.0,
-              align: typing.Union[int, str] = 'WORLD',
+              align: typing.Union[str, int] = 'WORLD',
               location: typing.List[float] = (0.0, 0.0, 0.0),
               rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a light object to the scene
 
     :param type: Type * POINT Point, Omnidirectional point light source. * SUN Sun, Constant direction parallel ray light source. * SPOT Spot, Directional cone light source. * AREA Area, Directional area light source.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param radius: Radius
     :type radius: float
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -889,22 +889,22 @@ def light_add(type: typing.Union[int, str] = 'POINT',
     pass
 
 
-def lightprobe_add(type: typing.Union[int, str] = 'CUBEMAP',
+def lightprobe_add(type: typing.Union[str, int] = 'CUBEMAP',
                    radius: float = 1.0,
                    enter_editmode: bool = False,
-                   align: typing.Union[int, str] = 'WORLD',
+                   align: typing.Union[str, int] = 'WORLD',
                    location: typing.List[float] = (0.0, 0.0, 0.0),
                    rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a light probe object
 
     :param type: Type * CUBEMAP Reflection Cubemap, Reflection probe with spherical or cubic attenuation. * PLANAR Reflection Plane, Planar reflection probe. * GRID Irradiance Volume, Irradiance probe to capture diffuse indirect lighting.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param radius: Radius
     :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -979,54 +979,54 @@ def location_clear(clear_delta: bool = False):
 
 
 def make_dupli_face():
-    ''' Convert objects into instanced faces
+    ''' Convert objects into instanced faces :file: startup/bl_operators/object.py\:657 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/object.py$657> _
 
     '''
 
     pass
 
 
-def make_links_data(type: typing.Union[int, str] = 'OBDATA'):
+def make_links_data(type: typing.Union[str, int] = 'OBDATA'):
     ''' Apply active object links to other selected objects
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def make_links_scene(scene: typing.Union[int, str] = ''):
+def make_links_scene(scene: typing.Union[str, int] = ''):
     ''' Link selection to another scene
 
     :param scene: Scene
-    :type scene: typing.Union[int, str]
+    :type scene: typing.Union[str, int]
     '''
 
     pass
 
 
-def make_local(type: typing.Union[int, str] = 'SELECT_OBJECT'):
+def make_local(type: typing.Union[str, int] = 'SELECT_OBJECT'):
     ''' Make library linked data-blocks local to this file
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def make_override_library(object: typing.Union[int, str] = 'DEFAULT'):
+def make_override_library(object: typing.Union[str, int] = 'DEFAULT'):
     ''' Make a local override of this library linked data-block
 
     :param object: Override Object, Name of lib-linked/collection object to make an override from
-    :type object: typing.Union[int, str]
+    :type object: typing.Union[str, int]
     '''
 
     pass
 
 
-def make_single_user(type: typing.Union[int, str] = 'SELECTED_OBJECTS',
+def make_single_user(type: typing.Union[str, int] = 'SELECTED_OBJECTS',
                      object: bool = False,
                      obdata: bool = False,
                      material: bool = False,
@@ -1034,7 +1034,7 @@ def make_single_user(type: typing.Union[int, str] = 'SELECTED_OBJECTS',
     ''' Make linked data local to each object
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param object: Object, Make single user objects
     :type object: bool
     :param obdata: Object Data, Make single user object data
@@ -1080,11 +1080,11 @@ def material_slot_deselect():
     pass
 
 
-def material_slot_move(direction: typing.Union[int, str] = 'UP'):
+def material_slot_move(direction: typing.Union[str, int] = 'UP'):
     ''' Move the active material up/down in the list
 
     :param direction: Direction, Direction to move the active material towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -1124,22 +1124,22 @@ def meshdeform_bind(modifier: str = ""):
     pass
 
 
-def metaball_add(type: typing.Union[int, str] = 'BALL',
+def metaball_add(type: typing.Union[str, int] = 'BALL',
                  radius: float = 2.0,
                  enter_editmode: bool = False,
-                 align: typing.Union[int, str] = 'WORLD',
+                 align: typing.Union[str, int] = 'WORLD',
                  location: typing.List[float] = (0.0, 0.0, 0.0),
                  rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add an metaball object to the scene
 
     :param type: Primitive
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param radius: Radius
     :type radius: float
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -1149,11 +1149,11 @@ def metaball_add(type: typing.Union[int, str] = 'BALL',
     pass
 
 
-def mode_set(mode: typing.Union[int, str] = 'OBJECT', toggle: bool = False):
+def mode_set(mode: typing.Union[str, int] = 'OBJECT', toggle: bool = False):
     ''' Sets the object interaction mode
 
     :param mode: Mode * OBJECT Object Mode. * EDIT Edit Mode. * POSE Pose Mode. * SCULPT Sculpt Mode. * VERTEX_PAINT Vertex Paint. * WEIGHT_PAINT Weight Paint. * TEXTURE_PAINT Texture Paint. * PARTICLE_EDIT Particle Edit. * EDIT_GPENCIL Edit Mode, Edit Grease Pencil Strokes. * SCULPT_GPENCIL Sculpt Mode, Sculpt Grease Pencil Strokes. * PAINT_GPENCIL Draw, Paint Grease Pencil Strokes. * VERTEX_GPENCIL Vertex Paint, Grease Pencil Vertex Paint Strokes. * WEIGHT_GPENCIL Weight Paint, Grease Pencil Weight Paint Strokes.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param toggle: Toggle
     :type toggle: bool
     '''
@@ -1162,38 +1162,38 @@ def mode_set(mode: typing.Union[int, str] = 'OBJECT', toggle: bool = False):
 
 
 def mode_set_with_submode(
-        mode: typing.Union[int, str] = 'OBJECT',
+        mode: typing.Union[str, int] = 'OBJECT',
         toggle: bool = False,
-        mesh_select_mode: typing.Union[typing.Set[int], typing.Set[str]] = {}):
+        mesh_select_mode: typing.Union[typing.Set[str], typing.Set[int]] = {}):
     ''' Sets the object interaction mode
 
     :param mode: Mode * OBJECT Object Mode. * EDIT Edit Mode. * POSE Pose Mode. * SCULPT Sculpt Mode. * VERTEX_PAINT Vertex Paint. * WEIGHT_PAINT Weight Paint. * TEXTURE_PAINT Texture Paint. * PARTICLE_EDIT Particle Edit. * EDIT_GPENCIL Edit Mode, Edit Grease Pencil Strokes. * SCULPT_GPENCIL Sculpt Mode, Sculpt Grease Pencil Strokes. * PAINT_GPENCIL Draw, Paint Grease Pencil Strokes. * VERTEX_GPENCIL Vertex Paint, Grease Pencil Vertex Paint Strokes. * WEIGHT_GPENCIL Weight Paint, Grease Pencil Weight Paint Strokes.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param toggle: Toggle
     :type toggle: bool
     :param mesh_select_mode: Mesh Mode * VERT Vertex, Vertex selection mode. * EDGE Edge, Edge selection mode. * FACE Face, Face selection mode.
-    :type mesh_select_mode: typing.Union[typing.Set[int], typing.Set[str]]
+    :type mesh_select_mode: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     pass
 
 
-def modifier_add(type: typing.Union[int, str] = 'SUBSURF'):
+def modifier_add(type: typing.Union[str, int] = 'SUBSURF'):
     ''' Add a procedural operation/effect to the active object
 
     :param type: Type * DATA_TRANSFER Data Transfer, Transfer several types of data (vertex groups, UV maps, vertex colors, custom normals) from one mesh to another. * MESH_CACHE Mesh Cache, Deform the mesh using an external frame-by-frame vertex transform cache. * MESH_SEQUENCE_CACHE Mesh Sequence Cache, Deform the mesh or curve using an external mesh cache in Alembic format. * NORMAL_EDIT Normal Edit, Modify the direction of the surface normals. * WEIGHTED_NORMAL Weighted Normal, Modify the direction of the surface normals using a weighting method. * UV_PROJECT UV Project, Project the UV map coordinates from the negative Z axis of another object. * UV_WARP UV Warp, Transform the UV map using the difference between two objects. * VERTEX_WEIGHT_EDIT Vertex Weight Edit, Modify of the weights of a vertex group. * VERTEX_WEIGHT_MIX Vertex Weight Mix, Mix the weights of two vertex groups. * VERTEX_WEIGHT_PROXIMITY Vertex Weight Proximity, Set the vertex group weights based on the distance to another target object. * ARRAY Array, Create copies of the shape with offsets. * BEVEL Bevel, Generate sloped corners by adding geometry to the mesh's edges or vertices. * BOOLEAN Boolean, Use another shape to cut, combine or perform a difference operation. * BUILD Build, Cause the faces of the mesh object to appear or disappear one after the other over time. * DECIMATE Decimate, Reduce the geometry density. * EDGE_SPLIT Edge Split, Split away joined faces at the edges. * MASK Mask, Dynamically hide vertices based on a vertex group or armature. * MIRROR Mirror, Mirror along the local X, Y and/or Z axes, over the object origin. * MULTIRES Multiresolution, Subdivide the mesh in a way that allows editing the higher subdivision levels. * REMESH Remesh, Generate new mesh topology based on the current shape. * SCREW Screw, Lathe around an axis, treating the input mesh as a profile. * SKIN Skin, Create a solid shape from vertices and edges, using the vertex radius to define the thickness. * SOLIDIFY Solidify, Make the surface thick. * SUBSURF Subdivision Surface, Split the faces into smaller parts, giving it a smoother appearance. * TRIANGULATE Triangulate, Convert all polygons to triangles. * WELD Weld, Find groups of vertices closer then dist and merges them together. * WIREFRAME Wireframe, Convert faces into thickened edges. * ARMATURE Armature, Deform the shape using an armature object. * CAST Cast, Shift the shape towards a predefined primitive. * CURVE Curve, Bend the mesh using a curve object. * DISPLACE Displace, Offset vertices based on a texture. * HOOK Hook, Deform specific points using another object. * LAPLACIANDEFORM Laplacian Deform, Deform based a series of anchor points. * LATTICE Lattice, Deform using the shape of a lattice object. * MESH_DEFORM Mesh Deform, Deform using a different mesh, which acts as a deformation cage. * SHRINKWRAP Shrinkwrap, Project the shape onto another object. * SIMPLE_DEFORM Simple Deform, Deform the shape by twisting, bending, tapering or stretching. * SMOOTH Smooth, Smooth the mesh by flattening the angles between adjacent faces. * CORRECTIVE_SMOOTH Smooth Corrective, Smooth the mesh while still preserving the volume. * LAPLACIANSMOOTH Smooth Laplacian, Reduce the noise on a mesh surface with minimal changes to its shape. * SURFACE_DEFORM Surface Deform, Transfer motion from another mesh. * WARP Warp, Warp parts of a mesh to a new location in a very flexible way thanks to 2 specified objects. * WAVE Wave, Adds a ripple-like motion to an object’s geometry. * CLOTH Cloth. * COLLISION Collision. * DYNAMIC_PAINT Dynamic Paint. * EXPLODE Explode, Break apart the mesh faces and let them follow particles. * FLUID Fluid. * OCEAN Ocean, Generate a moving ocean surface. * PARTICLE_INSTANCE Particle Instance. * PARTICLE_SYSTEM Particle System, Spawn particles from the shape. * SOFT_BODY Soft Body. * SURFACE Surface.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def modifier_apply(apply_as: typing.Union[int, str] = 'DATA',
+def modifier_apply(apply_as: typing.Union[str, int] = 'DATA',
                    modifier: str = ""):
     ''' Apply modifier and remove from the stack
 
     :param apply_as: Apply as, How to apply the modifier to the geometry * DATA Object Data, Apply modifier to the object's data. * SHAPE New Shape, Apply deform-only modifier to a new shape on this object.
-    :type apply_as: typing.Union[int, str]
+    :type apply_as: typing.Union[str, int]
     :param modifier: Modifier, Name of the modifier to edit
     :type modifier: str
     '''
@@ -1307,8 +1307,8 @@ def multires_external_save(
         filter_blenlib: bool = False,
         filemode: int = 9,
         relative_path: bool = True,
-        display_type: typing.Union[int, str] = 'DEFAULT',
-        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+        display_type: typing.Union[str, int] = 'DEFAULT',
+        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
         modifier: str = ""):
     ''' Save displacements to an external file
 
@@ -1355,9 +1355,9 @@ def multires_external_save(
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param modifier: Modifier, Name of the modifier to edit
     :type modifier: str
     '''
@@ -1415,24 +1415,24 @@ def origin_clear():
     pass
 
 
-def origin_set(type: typing.Union[int, str] = 'GEOMETRY_ORIGIN',
-               center: typing.Union[int, str] = 'MEDIAN'):
+def origin_set(type: typing.Union[str, int] = 'GEOMETRY_ORIGIN',
+               center: typing.Union[str, int] = 'MEDIAN'):
     ''' Set the object's origin, by either moving the data, or set to center of data, or use 3D cursor
 
     :param type: Type * GEOMETRY_ORIGIN Geometry to Origin, Move object geometry to object origin. * ORIGIN_GEOMETRY Origin to Geometry, Calculate the center of geometry based on the current pivot point (median, otherwise bounding-box). * ORIGIN_CURSOR Origin to 3D Cursor, Move object origin to position of the 3D cursor. * ORIGIN_CENTER_OF_MASS Origin to Center of Mass (Surface), Calculate the center of mass from the surface area. * ORIGIN_CENTER_OF_VOLUME Origin to Center of Mass (Volume), Calculate the center of mass from the volume (must be manifold geometry with consistent normals).
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param center: Center
-    :type center: typing.Union[int, str]
+    :type center: typing.Union[str, int]
     '''
 
     pass
 
 
-def parent_clear(type: typing.Union[int, str] = 'CLEAR'):
+def parent_clear(type: typing.Union[str, int] = 'CLEAR'):
     ''' Clear the object's parenting
 
     :param type: Type * CLEAR Clear Parent, Completely clear the parenting relationship, including involved modifiers if any. * CLEAR_KEEP_TRANSFORM Clear and Keep Transformation, As 'Clear Parent', but keep the current visual transformations of the object. * CLEAR_INVERSE Clear Parent Inverse, Reset the transform corrections applied to the parenting relationship, does not remove parenting itself.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -1446,13 +1446,13 @@ def parent_no_inverse_set():
     pass
 
 
-def parent_set(type: typing.Union[int, str] = 'OBJECT',
+def parent_set(type: typing.Union[str, int] = 'OBJECT',
                xmirror: bool = False,
                keep_transform: bool = False):
     ''' Set the object's parenting
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param xmirror: X Mirror, Apply weights symmetrically along X axis, for Envelope/Automatic vertex groups creation
     :type xmirror: bool
     :param keep_transform: Keep Transform, Apply transformation before parenting
@@ -1524,11 +1524,11 @@ def posemode_toggle():
     pass
 
 
-def proxy_make(object: typing.Union[int, str] = 'DEFAULT'):
+def proxy_make(object: typing.Union[str, int] = 'DEFAULT'):
     ''' Add empty object to become local replacement data of a library-linked object
 
     :param object: Proxy Object, Name of lib-linked/collection object to make a proxy for
-    :type object: typing.Union[int, str]
+    :type object: typing.Union[str, int]
     '''
 
     pass
@@ -1539,7 +1539,7 @@ def quadriflow_remesh(use_paint_symmetry: bool = True,
                       use_preserve_boundary: bool = False,
                       preserve_paint_mask: bool = False,
                       smooth_normals: bool = False,
-                      mode: typing.Union[int, str] = 'FACES',
+                      mode: typing.Union[str, int] = 'FACES',
                       target_ratio: float = 1.0,
                       target_edge_length: float = 0.1,
                       target_faces: int = 4000,
@@ -1558,7 +1558,7 @@ def quadriflow_remesh(use_paint_symmetry: bool = True,
     :param smooth_normals: Smooth Normals, Set the output mesh normals to smooth
     :type smooth_normals: bool
     :param mode: Mode, How to specify the amount of detail for the new mesh * RATIO Ratio, Specify target number of faces relative to the current mesh. * EDGE Edge Length, Input target edge length in the new mesh. * FACES Faces, Input target number of faces in the new mesh.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param target_ratio: Ratio, Relative number of faces compared to the current mesh
     :type target_ratio: float
     :param target_edge_length: Edge Length, Target edge length in the new mesh
@@ -1574,7 +1574,7 @@ def quadriflow_remesh(use_paint_symmetry: bool = True,
     pass
 
 
-def quick_explode(style: typing.Union[int, str] = 'EXPLODE',
+def quick_explode(style: typing.Union[str, int] = 'EXPLODE',
                   amount: int = 100,
                   frame_duration: int = 50,
                   frame_start: int = 1,
@@ -1584,7 +1584,7 @@ def quick_explode(style: typing.Union[int, str] = 'EXPLODE',
     ''' Make selected objects explode
 
     :param style: Explode Style
-    :type style: typing.Union[int, str]
+    :type style: typing.Union[str, int]
     :param amount: Amount of pieces
     :type amount: int
     :param frame_duration: Duration
@@ -1602,13 +1602,13 @@ def quick_explode(style: typing.Union[int, str] = 'EXPLODE',
     pass
 
 
-def quick_fur(density: typing.Union[int, str] = 'MEDIUM',
+def quick_fur(density: typing.Union[str, int] = 'MEDIUM',
               view_percentage: int = 10,
               length: float = 0.1):
     ''' Add fur setup to the selected objects
 
     :param density: Fur Density
-    :type density: typing.Union[int, str]
+    :type density: typing.Union[str, int]
     :param view_percentage: View %
     :type view_percentage: int
     :param length: Length
@@ -1628,12 +1628,12 @@ def quick_liquid(show_flows: bool = False):
     pass
 
 
-def quick_smoke(style: typing.Union[int, str] = 'SMOKE',
+def quick_smoke(style: typing.Union[str, int] = 'SMOKE',
                 show_flows: bool = False):
     ''' Use selected objects as smoke emitters
 
     :param style: Smoke Style
-    :type style: typing.Union[int, str]
+    :type style: typing.Union[str, int]
     :param show_flows: Render Smoke Objects, Keep the smoke objects visible during rendering
     :type show_flows: bool
     '''
@@ -1695,24 +1695,24 @@ def scale_clear(clear_delta: bool = False):
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Change selection of all visible objects in scene
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
 
 
 def select_by_type(extend: bool = False,
-                   type: typing.Union[int, str] = 'MESH'):
+                   type: typing.Union[str, int] = 'MESH'):
     ''' Select all visible objects that are of a type
 
     :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -1729,24 +1729,24 @@ def select_camera(extend: bool = False):
 
 
 def select_grouped(extend: bool = False,
-                   type: typing.Union[int, str] = 'CHILDREN_RECURSIVE'):
+                   type: typing.Union[str, int] = 'CHILDREN_RECURSIVE'):
     ''' Select all visible objects grouped by various properties
 
     :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
     :param type: Type * CHILDREN_RECURSIVE Children. * CHILDREN Immediate Children. * PARENT Parent. * SIBLINGS Siblings, Shared Parent. * TYPE Type, Shared object type. * COLLECTION Collection, Shared collection. * HOOK Hook. * PASS Pass, Render pass Index. * COLOR Color, Object Color. * KEYINGSET Keying Set, Objects included in active Keying Set. * LIGHT_TYPE Light Type, Matching light types.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_hierarchy(direction: typing.Union[int, str] = 'PARENT',
+def select_hierarchy(direction: typing.Union[str, int] = 'PARENT',
                      extend: bool = False):
     ''' Select object relative to the active object's position in the hierarchy
 
     :param direction: Direction, Direction to select in the hierarchy
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     :param extend: Extend, Extend the existing selection
     :type extend: bool
     '''
@@ -1763,13 +1763,13 @@ def select_less():
 
 
 def select_linked(extend: bool = False,
-                  type: typing.Union[int, str] = 'OBDATA'):
+                  type: typing.Union[str, int] = 'OBDATA'):
     ''' Select all visible objects that are linked
 
     :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -1811,7 +1811,7 @@ def select_pattern(pattern: str = "*",
 
 def select_random(percent: float = 50.0,
                   seed: int = 0,
-                  action: typing.Union[int, str] = 'SELECT'):
+                  action: typing.Union[str, int] = 'SELECT'):
     ''' Set select on random visible objects
 
     :param percent: Percent, Percentage of objects to select randomly
@@ -1819,7 +1819,7 @@ def select_random(percent: float = 50.0,
     :param seed: Random Seed, Seed for the random number generator
     :type seed: int
     :param action: Action, Selection action to execute * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -1851,11 +1851,11 @@ def shade_smooth():
     pass
 
 
-def shaderfx_add(type: typing.Union[int, str] = 'FX_BLUR'):
+def shaderfx_add(type: typing.Union[str, int] = 'FX_BLUR'):
     ''' Add a visual effect to the active object
 
     :param type: Type * FX_BLUR Blur, Apply Gaussian Blur to object. * FX_COLORIZE Colorize, Apply different tint effects. * FX_FLIP Flip, Flip image. * FX_GLOW Glow, Create a glow effect. * FX_PIXEL Pixelate, Pixelate image. * FX_RIM Rim, Add a rim to the image. * FX_SHADOW Shadow, Create a shadow effect. * FX_SWIRL Swirl, Create a rotation distortion. * FX_WAVE Wave Distortion, Apply sinusoidal deformation.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -1919,11 +1919,11 @@ def shape_key_mirror(use_topology: bool = False):
     pass
 
 
-def shape_key_move(type: typing.Union[int, str] = 'TOP'):
+def shape_key_move(type: typing.Union[str, int] = 'TOP'):
     ''' Move the active shape key up/down in the list
 
     :param type: Type * TOP Top, Top of the list. * UP Up. * DOWN Down. * BOTTOM Bottom, Bottom of the list.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -1947,12 +1947,12 @@ def shape_key_retime():
     pass
 
 
-def shape_key_transfer(mode: typing.Union[int, str] = 'OFFSET',
+def shape_key_transfer(mode: typing.Union[str, int] = 'OFFSET',
                        use_clamp: bool = False):
     ''' Copy the active shape key of another selected object to this one
 
     :param mode: Transformation Mode, Relative shape positions to the new shape method * OFFSET Offset, Apply the relative positional offset. * RELATIVE_FACE Relative Face, Calculate relative position (using faces). * RELATIVE_EDGE Relative Edge, Calculate relative position (using edges).
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param use_clamp: Clamp Offset, Clamp the transformation to the distance each vertex moves in the original shape
     :type use_clamp: bool
     '''
@@ -1970,11 +1970,11 @@ def skin_armature_create(modifier: str = ""):
     pass
 
 
-def skin_loose_mark_clear(action: typing.Union[int, str] = 'MARK'):
+def skin_loose_mark_clear(action: typing.Union[str, int] = 'MARK'):
     ''' Mark/clear selected vertices as loose
 
     :param action: Action * MARK Mark, Mark selected vertices as loose. * CLEAR Clear, Set selected vertices as not loose.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -1997,7 +1997,7 @@ def skin_root_mark():
 
 
 def speaker_add(enter_editmode: bool = False,
-                align: typing.Union[int, str] = 'WORLD',
+                align: typing.Union[str, int] = 'WORLD',
                 location: typing.List[float] = (0.0, 0.0, 0.0),
                 rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a speaker object to the scene
@@ -2005,7 +2005,7 @@ def speaker_add(enter_editmode: bool = False,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -2039,7 +2039,7 @@ def surfacedeform_bind(modifier: str = ""):
 
 def text_add(radius: float = 1.0,
              enter_editmode: bool = False,
-             align: typing.Union[int, str] = 'WORLD',
+             align: typing.Union[str, int] = 'WORLD',
              location: typing.List[float] = (0.0, 0.0, 0.0),
              rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a text object to the scene
@@ -2049,7 +2049,7 @@ def text_add(radius: float = 1.0,
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object
     :type enter_editmode: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -2059,21 +2059,21 @@ def text_add(radius: float = 1.0,
     pass
 
 
-def track_clear(type: typing.Union[int, str] = 'CLEAR'):
+def track_clear(type: typing.Union[str, int] = 'CLEAR'):
     ''' Clear tracking constraint or flag from object
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def track_set(type: typing.Union[int, str] = 'DAMPTRACK'):
+def track_set(type: typing.Union[str, int] = 'DAMPTRACK'):
     ''' Make the object track another object, using various methods/constraints
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -2106,12 +2106,12 @@ def transform_axis_target():
     pass
 
 
-def transforms_to_deltas(mode: typing.Union[int, str] = 'ALL',
+def transforms_to_deltas(mode: typing.Union[str, int] = 'ALL',
                          reset_values: bool = True):
     ''' Convert normal object transforms to delta transforms, any existing delta transforms will be included as well
 
     :param mode: Mode, Which transforms to transfer * ALL All Transforms, Transfer location, rotation, and scale transforms. * LOC Location, Transfer location transforms only. * ROT Rotation, Transfer rotation transforms only. * SCALE Scale, Transfer scale transforms only.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param reset_values: Reset Values, Clear transform values after transferring to deltas
     :type reset_values: bool
     '''
@@ -2151,13 +2151,13 @@ def vertex_group_assign_new():
     pass
 
 
-def vertex_group_clean(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_clean(group_select_mode: typing.Union[str, int] = '',
                        limit: float = 0.0,
                        keep_single: bool = False):
     ''' Remove vertex group assignments which are not required
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param limit: Limit, Remove vertices which weight is below or equal to this limit
     :type limit: float
     :param keep_single: Keep Single, Keep verts assigned to at least one group when cleaning
@@ -2215,13 +2215,13 @@ def vertex_group_fix(dist: float = 0.0,
     pass
 
 
-def vertex_group_invert(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_invert(group_select_mode: typing.Union[str, int] = '',
                         auto_assign: bool = True,
                         auto_remove: bool = True):
     ''' Invert active vertex group's weights
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param auto_assign: Add Weights, Add verts from groups that have zero weight before inverting
     :type auto_assign: bool
     :param auto_remove: Remove Weights, Remove verts from groups that have zero weight after inverting
@@ -2231,13 +2231,13 @@ def vertex_group_invert(group_select_mode: typing.Union[int, str] = '',
     pass
 
 
-def vertex_group_levels(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_levels(group_select_mode: typing.Union[str, int] = '',
                         offset: float = 0.0,
                         gain: float = 1.0):
     ''' Add some offset and multiply with some gain the weights of the active vertex group
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param offset: Offset, Value to add to weights
     :type offset: float
     :param gain: Gain, Value to multiply weights by
@@ -2247,12 +2247,12 @@ def vertex_group_levels(group_select_mode: typing.Union[int, str] = '',
     pass
 
 
-def vertex_group_limit_total(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_limit_total(group_select_mode: typing.Union[str, int] = '',
                              limit: int = 4):
     ''' Limit deform weights associated with a vertex to a specified number by removing lowest weights
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param limit: Limit, Maximum number of deform weights
     :type limit: int
     '''
@@ -2260,14 +2260,14 @@ def vertex_group_limit_total(group_select_mode: typing.Union[int, str] = '',
     pass
 
 
-def vertex_group_lock(action: typing.Union[int, str] = 'TOGGLE',
-                      mask: typing.Union[int, str] = 'ALL'):
+def vertex_group_lock(action: typing.Union[str, int] = 'TOGGLE',
+                      mask: typing.Union[str, int] = 'ALL'):
     ''' Change the lock state of all or some vertex groups of active object
 
     :param action: Action, Lock action to execute on vertex groups * TOGGLE Toggle, Unlock all vertex groups if there is at least one locked group, lock all in other case. * LOCK Lock, Lock all vertex groups. * UNLOCK Unlock, Unlock all vertex groups. * INVERT Invert, Invert the lock state of all vertex groups.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     :param mask: Mask, Apply the action based on vertex group selection * ALL All, Apply action to all vertex groups. * SELECTED Selected, Apply to selected vertex groups. * UNSELECTED Unselected, Apply to unselected vertex groups. * INVERT_UNSELECTED Invert Unselected, Apply the opposite of Lock/Unlock to unselected vertex groups.
-    :type mask: typing.Union[int, str]
+    :type mask: typing.Union[str, int]
     '''
 
     pass
@@ -2292,11 +2292,11 @@ def vertex_group_mirror(mirror_weights: bool = True,
     pass
 
 
-def vertex_group_move(direction: typing.Union[int, str] = 'UP'):
+def vertex_group_move(direction: typing.Union[str, int] = 'UP'):
     ''' Move the active vertex group up/down in the list
 
     :param direction: Direction, Direction to move the active vertex group towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -2310,12 +2310,12 @@ def vertex_group_normalize():
     pass
 
 
-def vertex_group_normalize_all(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_normalize_all(group_select_mode: typing.Union[str, int] = '',
                                lock_active: bool = True):
     ''' Normalize all weights of all vertex groups, so that for each vertex, the sum of all weights is 1.0
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param lock_active: Lock Active, Keep the values of the active group while normalizing others
     :type lock_active: bool
     '''
@@ -2323,12 +2323,12 @@ def vertex_group_normalize_all(group_select_mode: typing.Union[int, str] = '',
     pass
 
 
-def vertex_group_quantize(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_quantize(group_select_mode: typing.Union[str, int] = '',
                           steps: int = 4):
     ''' Set weights to a fixed number of steps
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param steps: Steps, Number of steps between 0 and 1
     :type steps: int
     '''
@@ -2369,24 +2369,24 @@ def vertex_group_select():
     pass
 
 
-def vertex_group_set_active(group: typing.Union[int, str] = ''):
+def vertex_group_set_active(group: typing.Union[str, int] = ''):
     ''' Set the active vertex group
 
     :param group: Group, Vertex group to set as active
-    :type group: typing.Union[int, str]
+    :type group: typing.Union[str, int]
     '''
 
     pass
 
 
-def vertex_group_smooth(group_select_mode: typing.Union[int, str] = '',
+def vertex_group_smooth(group_select_mode: typing.Union[str, int] = '',
                         factor: float = 0.5,
                         repeat: int = 1,
                         expand: float = 0.0):
     ''' Smooth weights for selected vertices
 
     :param group_select_mode: Subset, Define which subset of Groups shall be used
-    :type group_select_mode: typing.Union[int, str]
+    :type group_select_mode: typing.Union[str, int]
     :param factor: Factor
     :type factor: float
     :param repeat: Iterations
@@ -2398,11 +2398,11 @@ def vertex_group_smooth(group_select_mode: typing.Union[int, str] = '',
     pass
 
 
-def vertex_group_sort(sort_type: typing.Union[int, str] = 'NAME'):
+def vertex_group_sort(sort_type: typing.Union[str, int] = 'NAME'):
     ''' Sort vertex groups
 
     :param sort_type: Sort type, Sort type
-    :type sort_type: typing.Union[int, str]
+    :type sort_type: typing.Union[str, int]
     '''
 
     pass
@@ -2470,13 +2470,13 @@ def visual_transform_apply():
     pass
 
 
-def volume_add(align: typing.Union[int, str] = 'WORLD',
+def volume_add(align: typing.Union[str, int] = 'WORLD',
                location: typing.List[float] = (0.0, 0.0, 0.0),
                rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Add a volume object to the scene
 
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object
@@ -2489,8 +2489,10 @@ def volume_add(align: typing.Union[int, str] = 'WORLD',
 def volume_import(
         filepath: str = "",
         directory: str = "",
-        files: typing.Union[typing.List['bpy.types.OperatorFileListElement'],
-                            'bpy_prop_collection'] = None,
+        files: typing.
+        Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.
+              List['bpy.types.OperatorFileListElement'],
+              'bpy_prop_collection'] = None,
         hide_props_region: bool = True,
         filter_blender: bool = False,
         filter_backup: bool = False,
@@ -2510,10 +2512,10 @@ def volume_import(
         filter_blenlib: bool = False,
         filemode: int = 9,
         relative_path: bool = True,
-        display_type: typing.Union[int, str] = 'DEFAULT',
-        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+        display_type: typing.Union[str, int] = 'DEFAULT',
+        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
         use_sequence_detection: bool = True,
-        align: typing.Union[int, str] = 'WORLD',
+        align: typing.Union[str, int] = 'WORLD',
         location: typing.List[float] = (0.0, 0.0, 0.0),
         rotation: typing.List[float] = (0.0, 0.0, 0.0)):
     ''' Import OpenVDB volume file
@@ -2523,7 +2525,7 @@ def volume_import(
     :param directory: Directory, Directory of the file
     :type directory: str
     :param files: Files
-    :type files: typing.Union[typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
+    :type files: typing.Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
     :param hide_props_region: Hide Operator Properties, Collapse the region displaying the operator settings
     :type hide_props_region: bool
     :param filter_blender: Filter .blend files
@@ -2563,13 +2565,13 @@ def volume_import(
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param use_sequence_detection: Detect Sequences, Automatically detect animated sequences in selected volume files (based on file names)
     :type use_sequence_detection: bool
     :param align: Align, The alignment of the new object * WORLD World, Align the new object to the world. * VIEW View, Align the new object to the view. * CURSOR 3D Cursor, Use the 3D cursor orientation for the new object.
-    :type align: typing.Union[int, str]
+    :type align: typing.Union[str, int]
     :param location: Location, Location for the newly added object
     :type location: typing.List[float]
     :param rotation: Rotation, Rotation for the newly added object

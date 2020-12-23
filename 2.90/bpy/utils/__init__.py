@@ -3,8 +3,8 @@ import typing
 import bpy.types
 import bpy.context
 
-from . import units
 from . import previews
+from . import units
 
 
 def app_template_paths(subdir: str = None):
@@ -275,12 +275,12 @@ def smpte_from_frame(frame: int, fps=None, fps_base=None) -> str:
     pass
 
 
-def smpte_from_seconds(time: typing.Union[float, int], fps=None,
+def smpte_from_seconds(time: typing.Union[int, float], fps=None,
                        fps_base=None) -> str:
     ''' Returns an SMPTE formatted string from the *time*: HH:MM:SS:FF . If *fps* and *fps_base* are not given the current scene is used.
 
     :param time: time in seconds.
-    :type time: typing.Union[float, int]
+    :type time: typing.Union[int, float]
     :return: the frame string.
     '''
 

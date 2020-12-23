@@ -18,11 +18,11 @@ def color_delete():
     pass
 
 
-def color_move(type: typing.Union[int, str] = 'UP'):
+def color_move(type: typing.Union[str, int] = 'UP'):
     ''' Move the active Color up/down in the list
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -56,11 +56,11 @@ def new():
     pass
 
 
-def sort(type: typing.Union[int, str] = 'HSV'):
+def sort(type: typing.Union[str, int] = 'HSV'):
     ''' Sort Palette Colors
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

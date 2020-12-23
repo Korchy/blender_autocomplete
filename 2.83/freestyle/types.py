@@ -269,19 +269,19 @@ class Curve:
         '''
         pass
 
-    def push_vertex_back(self, vertex: typing.Union['SVertex', 'CurvePoint']):
+    def push_vertex_back(self, vertex: typing.Union['CurvePoint', 'SVertex']):
         ''' Adds a single vertex at the end of the Curve.
 
         :param vertex: A vertex object.
-        :type vertex: typing.Union['SVertex', 'CurvePoint']
+        :type vertex: typing.Union['CurvePoint', 'SVertex']
         '''
         pass
 
-    def push_vertex_front(self, vertex: typing.Union['SVertex', 'CurvePoint']):
+    def push_vertex_front(self, vertex: typing.Union['CurvePoint', 'SVertex']):
         ''' Adds a single vertex at the front of the Curve.
 
         :param vertex: A vertex object.
-        :type vertex: typing.Union['SVertex', 'CurvePoint']
+        :type vertex: typing.Union['CurvePoint', 'SVertex']
         '''
         pass
 
@@ -755,11 +755,11 @@ class Interface0DIterator:
         pass
 
     def __init__(self, it: typing.Union[
-            'StrokeVertexIterator', 'CurvePointIterator', 'SVertexIterator']):
+            'SVertexIterator', 'CurvePointIterator', 'StrokeVertexIterator']):
         ''' Construct a nested Interface0DIterator that can be the argument of a Function0D.
 
         :param it: An iterator object to be nested.
-        :type it: typing.Union['StrokeVertexIterator', 'CurvePointIterator', 'SVertexIterator']
+        :type it: typing.Union['SVertexIterator', 'CurvePointIterator', 'StrokeVertexIterator']
         '''
         pass
 
@@ -988,7 +988,7 @@ class Nature:
 
 
 class Noise:
-    ''' Class to provide Perlin noise functionalities.
+    ''' Class to provide Perlin noise functionalities. Undocumented, consider contributing <https://developer.blender.org/T51061> __. Undocumented, consider contributing <https://developer.blender.org/T51061> __.
     '''
 
     def __init__(self, seed=' -1'):

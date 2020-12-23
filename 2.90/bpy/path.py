@@ -4,12 +4,12 @@ import bpy.types
 
 
 def abspath(path,
-            start: typing.Union[bytes, str] = None,
+            start: typing.Union[str, bytes] = None,
             library: 'bpy.types.Library' = None):
     ''' Returns the absolute path relative to the current blend file using the "//" prefix.
 
     :param start: Relative to this path, when not set the current filename is used.
-    :type start: typing.Union[bytes, str]
+    :type start: typing.Union[str, bytes]
     :param library: The library this path is from. This is only included for convenience, when the library is not None its path replaces *start*.
     :type library: 'bpy.types.Library'
     '''
@@ -69,11 +69,11 @@ def ensure_ext(filepath, ext: str, case_sensitive: bool = False):
     pass
 
 
-def is_subdir(path: typing.Union[bytes, str], directory):
+def is_subdir(path: typing.Union[str, bytes], directory):
     ''' Returns true if *path* in a subdirectory of *directory*. Both paths must be absolute.
 
     :param path: An absolute path.
-    :type path: typing.Union[bytes, str]
+    :type path: typing.Union[str, bytes]
     '''
 
     pass
@@ -111,14 +111,14 @@ def reduce_dirs(dirs: list) -> list:
     pass
 
 
-def relpath(path: typing.Union[bytes, str],
-            start: typing.Union[bytes, str] = None):
+def relpath(path: typing.Union[str, bytes],
+            start: typing.Union[str, bytes] = None):
     ''' Returns the path relative to the current blend file using the "//" prefix.
 
     :param path: An absolute path.
-    :type path: typing.Union[bytes, str]
+    :type path: typing.Union[str, bytes]
     :param start: Relative to this path, when not set the current filename is used.
-    :type start: typing.Union[bytes, str]
+    :type start: typing.Union[str, bytes]
     '''
 
     pass

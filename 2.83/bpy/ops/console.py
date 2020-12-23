@@ -3,7 +3,7 @@ import typing
 
 
 def autocomplete():
-    ''' Evaluate the namespace up until the cursor and give a list of options or complete the name if there is only one
+    ''' Evaluate the namespace up until the cursor and give a list of options or complete the name if there is only one :file: startup/bl_operators/console.py\:72 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/console.py$72> _
 
     '''
 
@@ -11,7 +11,7 @@ def autocomplete():
 
 
 def banner():
-    ''' Print a message when the terminal initializes
+    ''' Print a message when the terminal initializes :file: startup/bl_operators/console.py\:117 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/console.py$117> _
 
     '''
 
@@ -47,18 +47,18 @@ def copy():
 
 
 def copy_as_script():
-    ''' Copy the console contents for use in a script
+    ''' Copy the console contents for use in a script :file: startup/bl_operators/console.py\:94 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/console.py$94> _
 
     '''
 
     pass
 
 
-def delete(type: typing.Union[int, str] = 'NEXT_CHARACTER'):
+def delete(type: typing.Union[str, int] = 'NEXT_CHARACTER'):
     ''' Delete text by cursor position
 
     :param type: Type, Which part of the text to delete
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -136,11 +136,11 @@ def language(language: str = ""):
     pass
 
 
-def move(type: typing.Union[int, str] = 'LINE_BEGIN'):
+def move(type: typing.Union[str, int] = 'LINE_BEGIN'):
     ''' Move cursor position
 
     :param type: Type, Where to move cursor to
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -154,13 +154,13 @@ def paste():
     pass
 
 
-def scrollback_append(text: str = "", type: typing.Union[int, str] = 'OUTPUT'):
+def scrollback_append(text: str = "", type: typing.Union[str, int] = 'OUTPUT'):
     ''' Append scrollback text by type
 
     :param text: Text, Text to insert at the cursor position
     :type text: str
     :param type: Type, Console output type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

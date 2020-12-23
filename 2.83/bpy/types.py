@@ -2,80 +2,80 @@ import sys
 import typing
 import bpy.context
 import mathutils
-import bl_ui.properties_physics_rigidbody
-import bl_ui.space_view3d
-import bl_ui.properties_grease_pencil_common
-import bl_ui
-import bl_ui.properties_texture
-import bl_ui.space_topbar
-import bl_ui.properties_scene
-import bl_ui.space_toolsystem_common
-import bl_ui.properties_object
-import bl_ui.properties_material_gpencil
-import bl_ui.space_clip
-import bl_ui.properties_data_light
-import bl_ui.properties_data_bone
-import bl_operators.userpref
-import bl_ui.space_sequencer
-import bl_ui.properties_mask_common
-import bl_ui.properties_data_volume
-import bl_ui.space_info
-import bl_ui.properties_paint_common
-import bl_ui.space_node
-import bl_ui.properties_data_gpencil
-import bl_ui.space_text
-import bl_operators.object
-import bl_ui.properties_physics_common
-import bl_ui.properties_data_speaker
-import bl_operators.freestyle
-import bl_ui.properties_data_lattice
-import bl_ui.properties_data_curve
-import bl_ui.properties_physics_cloth
-import bl_ui.properties_constraint
-import bl_ui.properties_data_metaball
-import bl_operators.anim
-import bl_ui.space_graph
-import bl_ui.properties_workspace
-import bl_ui.properties_data_modifier
-import bl_ui.properties_data_pointcloud
-import bl_ui.properties_physics_rigidbody_constraint
-import bl_ui.properties_freestyle
-import bl_ui.space_image
-import bl_ui.properties_output
-import bl_ui.properties_view_layer
-import bl_ui.space_filebrowser
-import bl_operators.constraint
-import bl_ui.properties_data_empty
 import bl_ui.properties_data_hair
-import bl_operators.wm
-import bl_ui.properties_physics_fluid
-import bl_ui.space_userpref
-import bl_ui.space_outliner
-import bl_ui.space_time
-import bl_operators.presets
-import bl_operators.view3d
-import bl_ui.properties_data_lightprobe
-import bl_ui.space_properties
 import bl_ui.properties_world
-import bl_ui.properties_material
-import bl_ui.properties_particle
-import bl_ui.space_console
-import bl_operators.clip
+import bl_ui.space_sequencer
 import bl_ui.space_nla
-import bl_ui.properties_render
-import bl_ui.properties_physics_field
+import bl_ui.properties_workspace
+import bl_ui.properties_freestyle
+import bl_ui.space_properties
+import bl_ui.space_userpref
+import bl_ui.space_toolsystem_common
+import bl_ui.properties_physics_common
+import bl_ui.space_topbar
 import bl_ui.space_toolsystem_toolbar
+import bl_ui.space_view3d
 import bl_operators.file
-import bl_ui.properties_physics_softbody
-import bl_ui.properties_data_armature
-import bl_ui.properties_data_camera
-import bl_ui.properties_data_mesh
+import bl_ui.properties_mask_common
 import bl_ui.space_view3d_toolbar
-import bl_operators.node
+import bl_ui.properties_material_gpencil
+import bl_ui.properties_data_gpencil
+import bl_ui.properties_physics_softbody
+import bl_ui.properties_data_light
+import bl_operators.clip
+import bl_ui.space_outliner
+import bl_ui.properties_data_armature
+import bl_ui.space_clip
+import bl_ui.properties_view_layer
+import bl_operators.wm
+import bl_ui.properties_data_speaker
+import bl_ui.properties_data_bone
+import bl_operators.anim
+import bl_ui.properties_data_lattice
+import bl_ui.properties_data_lightprobe
+import bl_operators.userpref
+import bl_ui.properties_particle
+import bl_ui.properties_physics_rigidbody
+import bl_operators.view3d
+import bl_ui.properties_physics_field
+import bl_ui.properties_data_volume
+import bl_ui.space_console
+import bl_ui.properties_constraint
+import bl_ui.properties_data_camera
+import bl_ui.properties_physics_cloth
 import bl_ui.properties_physics_dynamicpaint
-import bl_ui.space_dopesheet
-import bl_ui.properties_data_shaderfx
+import bl_ui.properties_physics_fluid
 import bl_ui.space_statusbar
+import bl_ui.properties_material
+import bl_ui.space_image
+import bl_ui.properties_scene
+import bl_operators.object
+import bl_ui.space_text
+import bl_ui.properties_physics_rigidbody_constraint
+import bl_ui.properties_paint_common
+import bl_ui.space_graph
+import bl_operators.node
+import bl_ui.properties_data_metaball
+import bl_ui.properties_object
+import bl_ui
+import bl_ui.properties_data_empty
+import bl_ui.properties_data_curve
+import bl_ui.properties_grease_pencil_common
+import bl_operators.constraint
+import bl_operators.presets
+import bl_ui.space_filebrowser
+import bl_ui.space_node
+import bl_ui.properties_data_mesh
+import bl_operators.freestyle
+import bl_ui.properties_data_pointcloud
+import bl_ui.properties_output
+import bl_ui.space_dopesheet
+import bl_ui.space_info
+import bl_ui.properties_data_shaderfx
+import bl_ui.space_time
+import bl_ui.properties_data_modifier
+import bl_ui.properties_render
+import bl_ui.properties_texture
 
 
 class bpy_prop_collection:
@@ -254,7 +254,7 @@ class bpy_struct:
                         frame: float = 'bpy.context.scene.frame_current',
                         group: str = "",
                         options='set()') -> bool:
-        ''' Insert a keyframe on the property given, adding fcurves and animation data when necessary. Note that when keying data paths which contain nested properties this must be done from the ID subclass, in this case the Armature rather than the bone.
+        ''' Insert a keyframe on the property given, adding fcurves and animation data when necessary. This is the most simple example of inserting a keyframe from python. Note that when keying data paths which contain nested properties this must be done from the ID subclass, in this case the Armature rather than the bone.
 
         :param data_path: path to the property to key, analogous to the fcurve's data path.
         :type data_path: str
@@ -407,16 +407,17 @@ class ActionGroup(bpy_struct):
     ''' Groups of F-Curves
     '''
 
-    channels: typing.Union[typing.List['FCurve'], 'bpy_prop_collection'] = None
+    channels: typing.Union[typing.Dict[str, 'FCurve'], typing.
+                           List['FCurve'], 'bpy_prop_collection'] = None
     ''' F-Curves in this group
 
-    :type: typing.Union[typing.List['FCurve'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'], 'bpy_prop_collection']
     '''
 
-    color_set: typing.Union[int, str] = None
+    color_set: typing.Union[str, int] = None
     ''' Custom color set to use
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     colors: 'ThemeBoneColorSet' = None
@@ -768,16 +769,16 @@ class AnimData(bpy_struct):
     :type: 'Action'
     '''
 
-    action_blend_type: typing.Union[int, str] = None
+    action_blend_type: typing.Union[str, int] = None
     ''' Method used for combining Active Action's result with result of NLA stack * REPLACE Replace, The strip values replace the accumulated results by amount specified by influence. * COMBINE Combine, The strip values are combined with accumulated results by appropriately using addition, multiplication, or quaternion math, based on channel type. * ADD Add, Weighted result of strip is added to the accumulated results. * SUBTRACT Subtract, Weighted result of strip is removed from the accumulated results. * MULTIPLY Multiply, Weighted result of strip is multiplied with the accumulated results.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    action_extrapolation: typing.Union[int, str] = None
+    action_extrapolation: typing.Union[str, int] = None
     ''' Action to take for gaps past the Active Action's range (when evaluating with NLA) * NOTHING Nothing, Strip has no influence past its extents. * HOLD Hold, Hold the first frame if no previous strips in track, and always hold last frame. * HOLD_FORWARD Hold Forward, Only hold last frame.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     action_influence: float = None
@@ -786,18 +787,19 @@ class AnimData(bpy_struct):
     :type: float
     '''
 
-    drivers: typing.Union[typing.List['FCurve'], 'bpy_prop_collection',
-                          'AnimDataDrivers'] = None
+    drivers: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'],
+                          'bpy_prop_collection', 'AnimDataDrivers'] = None
     ''' The Drivers/Expressions for this data-block
 
-    :type: typing.Union[typing.List['FCurve'], 'bpy_prop_collection', 'AnimDataDrivers']
+    :type: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'], 'bpy_prop_collection', 'AnimDataDrivers']
     '''
 
-    nla_tracks: typing.Union[typing.List['NlaTrack'], 'bpy_prop_collection',
+    nla_tracks: typing.Union[typing.Dict[str, 'NlaTrack'], typing.
+                             List['NlaTrack'], 'bpy_prop_collection',
                              'NlaTracks'] = None
     ''' NLA Tracks (i.e. Animation Layers)
 
-    :type: typing.Union[typing.List['NlaTrack'], 'bpy_prop_collection', 'NlaTracks']
+    :type: typing.Union[typing.Dict[str, 'NlaTrack'], typing.List['NlaTrack'], 'bpy_prop_collection', 'NlaTracks']
     '''
 
     use_nla: bool = None
@@ -957,10 +959,10 @@ class AnimVizMotionPaths(bpy_struct):
     ''' Motion Path settings for animation visualization
     '''
 
-    bake_location: typing.Union[int, str] = None
+    bake_location: typing.Union[str, int] = None
     ''' When calculating Bone Paths, use Head or Tips * HEADS Heads, Calculate bone paths from heads. * TAILS Tails, Calculate bone paths from tails.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     frame_after: int = None
@@ -1023,10 +1025,10 @@ class AnimVizMotionPaths(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of range to show for Motion Paths * CURRENT_FRAME Around Frame, Display Paths of poses within a fixed number of frames around the current frame. * RANGE In Range, Display Paths of poses within specified range.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -1087,10 +1089,11 @@ class Area(bpy_struct):
     :type: int
     '''
 
-    regions: typing.Union[typing.List['Region'], 'bpy_prop_collection'] = None
+    regions: typing.Union[typing.Dict[str, 'Region'], typing.
+                          List['Region'], 'bpy_prop_collection'] = None
     ''' Regions this area is subdivided in
 
-    :type: typing.Union[typing.List['Region'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Region'], typing.List['Region'], 'bpy_prop_collection']
     '''
 
     show_menus: bool = None
@@ -1099,23 +1102,23 @@ class Area(bpy_struct):
     :type: bool
     '''
 
-    spaces: typing.Union[typing.List['Space'], 'bpy_prop_collection',
-                         'AreaSpaces'] = None
+    spaces: typing.Union[typing.Dict[str, 'Space'], typing.List['Space'],
+                         'bpy_prop_collection', 'AreaSpaces'] = None
     ''' Spaces contained in this area, the first being the active space (NOTE: Useful for example to restore a previously used 3D view space in a certain area to get the old view orientation)
 
-    :type: typing.Union[typing.List['Space'], 'bpy_prop_collection', 'AreaSpaces']
+    :type: typing.Union[typing.Dict[str, 'Space'], typing.List['Space'], 'bpy_prop_collection', 'AreaSpaces']
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Current editor type for this area * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    ui_type: typing.Union[int, str] = None
+    ui_type: typing.Union[str, int] = None
     ''' Current editor type for this area
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     width: int = None
@@ -1445,40 +1448,40 @@ class BakeSettings(bpy_struct):
     :type: int
     '''
 
-    normal_b: typing.Union[int, str] = None
+    normal_b: typing.Union[str, int] = None
     ''' Axis to bake in blue channel
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    normal_g: typing.Union[int, str] = None
+    normal_g: typing.Union[str, int] = None
     ''' Axis to bake in green channel
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    normal_r: typing.Union[int, str] = None
+    normal_r: typing.Union[str, int] = None
     ''' Axis to bake in red channel
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    normal_space: typing.Union[int, str] = None
+    normal_space: typing.Union[str, int] = None
     ''' Choose normal space for baking * OBJECT Object, Bake the normals in object space. * TANGENT Tangent, Bake the normals in tangent space.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    pass_filter: typing.Union[typing.Set[int], typing.Set[str]] = None
+    pass_filter: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Passes to include in the active baking pass
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    save_mode: typing.Union[int, str] = None
+    save_mode: typing.Union[str, int] = None
     ''' Choose how to save the baking map * INTERNAL Internal, Save the baking map in an internal image data-block. * EXTERNAL External, Save the baking map in an external file.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_automatic_name: bool = None
@@ -1603,10 +1606,10 @@ class BezierSplinePoint(bpy_struct):
     :type: typing.List[float]
     '''
 
-    handle_left_type: typing.Union[int, str] = None
+    handle_left_type: typing.Union[str, int] = None
     ''' Handle types
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     handle_right: typing.List[float] = None
@@ -1615,10 +1618,10 @@ class BezierSplinePoint(bpy_struct):
     :type: typing.List[float]
     '''
 
-    handle_right_type: typing.Union[int, str] = None
+    handle_right_type: typing.Union[str, int] = None
     ''' Handle types
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     hide: bool = None
@@ -1689,53 +1692,56 @@ class BlendData(bpy_struct):
     ''' Main data structure representing a .blend file and all its data-blocks
     '''
 
-    actions: typing.Union[typing.List['Action'], 'bpy_prop_collection',
-                          'BlendDataActions'] = None
+    actions: typing.Union[typing.Dict[str, 'Action'], typing.List['Action'],
+                          'bpy_prop_collection', 'BlendDataActions'] = None
     ''' Action data-blocks
 
-    :type: typing.Union[typing.List['Action'], 'bpy_prop_collection', 'BlendDataActions']
+    :type: typing.Union[typing.Dict[str, 'Action'], typing.List['Action'], 'bpy_prop_collection', 'BlendDataActions']
     '''
 
-    armatures: typing.Union[typing.List['Armature'], 'bpy_prop_collection',
+    armatures: typing.Union[typing.Dict[str, 'Armature'], typing.
+                            List['Armature'], 'bpy_prop_collection',
                             'BlendDataArmatures'] = None
     ''' Armature data-blocks
 
-    :type: typing.Union[typing.List['Armature'], 'bpy_prop_collection', 'BlendDataArmatures']
+    :type: typing.Union[typing.Dict[str, 'Armature'], typing.List['Armature'], 'bpy_prop_collection', 'BlendDataArmatures']
     '''
 
-    brushes: typing.Union[typing.List['Brush'], 'bpy_prop_collection',
-                          'BlendDataBrushes'] = None
+    brushes: typing.Union[typing.Dict[str, 'Brush'], typing.List['Brush'],
+                          'bpy_prop_collection', 'BlendDataBrushes'] = None
     ''' Brush data-blocks
 
-    :type: typing.Union[typing.List['Brush'], 'bpy_prop_collection', 'BlendDataBrushes']
+    :type: typing.Union[typing.Dict[str, 'Brush'], typing.List['Brush'], 'bpy_prop_collection', 'BlendDataBrushes']
     '''
 
-    cache_files: typing.Union[typing.List['CacheFile'], 'bpy_prop_collection',
+    cache_files: typing.Union[typing.Dict[str, 'CacheFile'], typing.
+                              List['CacheFile'], 'bpy_prop_collection',
                               'BlendDataCacheFiles'] = None
     ''' Cache Files data-blocks
 
-    :type: typing.Union[typing.List['CacheFile'], 'bpy_prop_collection', 'BlendDataCacheFiles']
+    :type: typing.Union[typing.Dict[str, 'CacheFile'], typing.List['CacheFile'], 'bpy_prop_collection', 'BlendDataCacheFiles']
     '''
 
-    cameras: typing.Union[typing.List['Camera'], 'bpy_prop_collection',
-                          'BlendDataCameras'] = None
+    cameras: typing.Union[typing.Dict[str, 'Camera'], typing.List['Camera'],
+                          'bpy_prop_collection', 'BlendDataCameras'] = None
     ''' Camera data-blocks
 
-    :type: typing.Union[typing.List['Camera'], 'bpy_prop_collection', 'BlendDataCameras']
+    :type: typing.Union[typing.Dict[str, 'Camera'], typing.List['Camera'], 'bpy_prop_collection', 'BlendDataCameras']
     '''
 
-    collections: typing.Union[typing.List['Collection'], 'bpy_prop_collection',
+    collections: typing.Union[typing.Dict[str, 'Collection'], typing.
+                              List['Collection'], 'bpy_prop_collection',
                               'BlendDataCollections'] = None
     ''' Collection data-blocks
 
-    :type: typing.Union[typing.List['Collection'], 'bpy_prop_collection', 'BlendDataCollections']
+    :type: typing.Union[typing.Dict[str, 'Collection'], typing.List['Collection'], 'bpy_prop_collection', 'BlendDataCollections']
     '''
 
-    curves: typing.Union[typing.List['Curve'], 'bpy_prop_collection',
-                         'BlendDataCurves'] = None
+    curves: typing.Union[typing.Dict[str, 'Curve'], typing.List['Curve'],
+                         'bpy_prop_collection', 'BlendDataCurves'] = None
     ''' Curve data-blocks
 
-    :type: typing.Union[typing.List['Curve'], 'bpy_prop_collection', 'BlendDataCurves']
+    :type: typing.Union[typing.Dict[str, 'Curve'], typing.List['Curve'], 'bpy_prop_collection', 'BlendDataCurves']
     '''
 
     filepath: str = None
@@ -1744,26 +1750,27 @@ class BlendData(bpy_struct):
     :type: str
     '''
 
-    fonts: typing.Union[typing.List['VectorFont'], 'bpy_prop_collection',
+    fonts: typing.Union[typing.Dict[str, 'VectorFont'], typing.
+                        List['VectorFont'], 'bpy_prop_collection',
                         'BlendDataFonts'] = None
     ''' Vector font data-blocks
 
-    :type: typing.Union[typing.List['VectorFont'], 'bpy_prop_collection', 'BlendDataFonts']
+    :type: typing.Union[typing.Dict[str, 'VectorFont'], typing.List['VectorFont'], 'bpy_prop_collection', 'BlendDataFonts']
     '''
 
-    grease_pencils: typing.Union[typing.
+    grease_pencils: typing.Union[typing.Dict[str, 'GreasePencil'], typing.
                                  List['GreasePencil'], 'bpy_prop_collection',
                                  'BlendDataGreasePencils'] = None
     ''' Grease Pencil data-blocks
 
-    :type: typing.Union[typing.List['GreasePencil'], 'bpy_prop_collection', 'BlendDataGreasePencils']
+    :type: typing.Union[typing.Dict[str, 'GreasePencil'], typing.List['GreasePencil'], 'bpy_prop_collection', 'BlendDataGreasePencils']
     '''
 
-    images: typing.Union[typing.List['Image'], 'bpy_prop_collection',
-                         'BlendDataImages'] = None
+    images: typing.Union[typing.Dict[str, 'Image'], typing.List['Image'],
+                         'bpy_prop_collection', 'BlendDataImages'] = None
     ''' Image data-blocks
 
-    :type: typing.Union[typing.List['Image'], 'bpy_prop_collection', 'BlendDataImages']
+    :type: typing.Union[typing.Dict[str, 'Image'], typing.List['Image'], 'bpy_prop_collection', 'BlendDataImages']
     '''
 
     is_dirty: bool = None
@@ -1778,159 +1785,167 @@ class BlendData(bpy_struct):
     :type: bool
     '''
 
-    lattices: typing.Union[typing.List['Lattice'], 'bpy_prop_collection',
-                           'BlendDataLattices'] = None
+    lattices: typing.Union[typing.Dict[str, 'Lattice'], typing.List['Lattice'],
+                           'bpy_prop_collection', 'BlendDataLattices'] = None
     ''' Lattice data-blocks
 
-    :type: typing.Union[typing.List['Lattice'], 'bpy_prop_collection', 'BlendDataLattices']
+    :type: typing.Union[typing.Dict[str, 'Lattice'], typing.List['Lattice'], 'bpy_prop_collection', 'BlendDataLattices']
     '''
 
-    libraries: typing.Union[typing.List['Library'], 'bpy_prop_collection',
+    libraries: typing.Union[typing.Dict[str, 'Library'], typing.
+                            List['Library'], 'bpy_prop_collection',
                             'BlendDataLibraries'] = None
     ''' Library data-blocks
 
-    :type: typing.Union[typing.List['Library'], 'bpy_prop_collection', 'BlendDataLibraries']
+    :type: typing.Union[typing.Dict[str, 'Library'], typing.List['Library'], 'bpy_prop_collection', 'BlendDataLibraries']
     '''
 
-    lightprobes: typing.Union[typing.List['LightProbe'], 'bpy_prop_collection',
+    lightprobes: typing.Union[typing.Dict[str, 'LightProbe'], typing.
+                              List['LightProbe'], 'bpy_prop_collection',
                               'BlendDataProbes'] = None
     ''' LightProbe data-blocks
 
-    :type: typing.Union[typing.List['LightProbe'], 'bpy_prop_collection', 'BlendDataProbes']
+    :type: typing.Union[typing.Dict[str, 'LightProbe'], typing.List['LightProbe'], 'bpy_prop_collection', 'BlendDataProbes']
     '''
 
-    lights: typing.Union[typing.List['Light'], 'bpy_prop_collection',
-                         'BlendDataLights'] = None
+    lights: typing.Union[typing.Dict[str, 'Light'], typing.List['Light'],
+                         'bpy_prop_collection', 'BlendDataLights'] = None
     ''' Light data-blocks
 
-    :type: typing.Union[typing.List['Light'], 'bpy_prop_collection', 'BlendDataLights']
+    :type: typing.Union[typing.Dict[str, 'Light'], typing.List['Light'], 'bpy_prop_collection', 'BlendDataLights']
     '''
 
-    linestyles: typing.Union[typing.
+    linestyles: typing.Union[typing.Dict[str, 'FreestyleLineStyle'], typing.
                              List['FreestyleLineStyle'], 'bpy_prop_collection',
                              'BlendDataLineStyles'] = None
     ''' Line Style data-blocks
 
-    :type: typing.Union[typing.List['FreestyleLineStyle'], 'bpy_prop_collection', 'BlendDataLineStyles']
+    :type: typing.Union[typing.Dict[str, 'FreestyleLineStyle'], typing.List['FreestyleLineStyle'], 'bpy_prop_collection', 'BlendDataLineStyles']
     '''
 
-    masks: typing.Union[typing.List['Mask'], 'bpy_prop_collection',
-                        'BlendDataMasks'] = None
+    masks: typing.Union[typing.Dict[str, 'Mask'], typing.List['Mask'],
+                        'bpy_prop_collection', 'BlendDataMasks'] = None
     ''' Masks data-blocks
 
-    :type: typing.Union[typing.List['Mask'], 'bpy_prop_collection', 'BlendDataMasks']
+    :type: typing.Union[typing.Dict[str, 'Mask'], typing.List['Mask'], 'bpy_prop_collection', 'BlendDataMasks']
     '''
 
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
+    materials: typing.Union[typing.Dict[str, 'Material'], typing.
+                            List['Material'], 'bpy_prop_collection',
                             'BlendDataMaterials'] = None
     ''' Material data-blocks
 
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'BlendDataMaterials']
+    :type: typing.Union[typing.Dict[str, 'Material'], typing.List['Material'], 'bpy_prop_collection', 'BlendDataMaterials']
     '''
 
-    meshes: typing.Union[typing.List['Mesh'], 'bpy_prop_collection',
-                         'BlendDataMeshes'] = None
+    meshes: typing.Union[typing.Dict[str, 'Mesh'], typing.List['Mesh'],
+                         'bpy_prop_collection', 'BlendDataMeshes'] = None
     ''' Mesh data-blocks
 
-    :type: typing.Union[typing.List['Mesh'], 'bpy_prop_collection', 'BlendDataMeshes']
+    :type: typing.Union[typing.Dict[str, 'Mesh'], typing.List['Mesh'], 'bpy_prop_collection', 'BlendDataMeshes']
     '''
 
-    metaballs: typing.Union[typing.List['MetaBall'], 'bpy_prop_collection',
+    metaballs: typing.Union[typing.Dict[str, 'MetaBall'], typing.
+                            List['MetaBall'], 'bpy_prop_collection',
                             'BlendDataMetaBalls'] = None
     ''' Metaball data-blocks
 
-    :type: typing.Union[typing.List['MetaBall'], 'bpy_prop_collection', 'BlendDataMetaBalls']
+    :type: typing.Union[typing.Dict[str, 'MetaBall'], typing.List['MetaBall'], 'bpy_prop_collection', 'BlendDataMetaBalls']
     '''
 
-    movieclips: typing.Union[typing.List['MovieClip'], 'bpy_prop_collection',
+    movieclips: typing.Union[typing.Dict[str, 'MovieClip'], typing.
+                             List['MovieClip'], 'bpy_prop_collection',
                              'BlendDataMovieClips'] = None
     ''' Movie Clip data-blocks
 
-    :type: typing.Union[typing.List['MovieClip'], 'bpy_prop_collection', 'BlendDataMovieClips']
+    :type: typing.Union[typing.Dict[str, 'MovieClip'], typing.List['MovieClip'], 'bpy_prop_collection', 'BlendDataMovieClips']
     '''
 
-    node_groups: typing.Union[typing.List['NodeTree'], 'bpy_prop_collection',
+    node_groups: typing.Union[typing.Dict[str, 'NodeTree'], typing.
+                              List['NodeTree'], 'bpy_prop_collection',
                               'BlendDataNodeTrees'] = None
     ''' Node group data-blocks
 
-    :type: typing.Union[typing.List['NodeTree'], 'bpy_prop_collection', 'BlendDataNodeTrees']
+    :type: typing.Union[typing.Dict[str, 'NodeTree'], typing.List['NodeTree'], 'bpy_prop_collection', 'BlendDataNodeTrees']
     '''
 
-    objects: typing.Union[typing.List['Object'], 'bpy_prop_collection',
-                          'BlendDataObjects'] = None
+    objects: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'],
+                          'bpy_prop_collection', 'BlendDataObjects'] = None
     ''' Object data-blocks
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection', 'BlendDataObjects']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection', 'BlendDataObjects']
     '''
 
-    paint_curves: typing.Union[typing.
+    paint_curves: typing.Union[typing.Dict[str, 'PaintCurve'], typing.
                                List['PaintCurve'], 'bpy_prop_collection',
                                'BlendDataPaintCurves'] = None
     ''' Paint Curves data-blocks
 
-    :type: typing.Union[typing.List['PaintCurve'], 'bpy_prop_collection', 'BlendDataPaintCurves']
+    :type: typing.Union[typing.Dict[str, 'PaintCurve'], typing.List['PaintCurve'], 'bpy_prop_collection', 'BlendDataPaintCurves']
     '''
 
-    palettes: typing.Union[typing.List['Palette'], 'bpy_prop_collection',
-                           'BlendDataPalettes'] = None
+    palettes: typing.Union[typing.Dict[str, 'Palette'], typing.List['Palette'],
+                           'bpy_prop_collection', 'BlendDataPalettes'] = None
     ''' Palette data-blocks
 
-    :type: typing.Union[typing.List['Palette'], 'bpy_prop_collection', 'BlendDataPalettes']
+    :type: typing.Union[typing.Dict[str, 'Palette'], typing.List['Palette'], 'bpy_prop_collection', 'BlendDataPalettes']
     '''
 
-    particles: typing.Union[typing.List['ParticleSettings'],
-                            'bpy_prop_collection', 'BlendDataParticles'] = None
+    particles: typing.Union[typing.Dict[str, 'ParticleSettings'], typing.
+                            List['ParticleSettings'], 'bpy_prop_collection',
+                            'BlendDataParticles'] = None
     ''' Particle data-blocks
 
-    :type: typing.Union[typing.List['ParticleSettings'], 'bpy_prop_collection', 'BlendDataParticles']
+    :type: typing.Union[typing.Dict[str, 'ParticleSettings'], typing.List['ParticleSettings'], 'bpy_prop_collection', 'BlendDataParticles']
     '''
 
-    scenes: typing.Union[typing.List['Scene'], 'bpy_prop_collection',
-                         'BlendDataScenes'] = None
+    scenes: typing.Union[typing.Dict[str, 'Scene'], typing.List['Scene'],
+                         'bpy_prop_collection', 'BlendDataScenes'] = None
     ''' Scene data-blocks
 
-    :type: typing.Union[typing.List['Scene'], 'bpy_prop_collection', 'BlendDataScenes']
+    :type: typing.Union[typing.Dict[str, 'Scene'], typing.List['Scene'], 'bpy_prop_collection', 'BlendDataScenes']
     '''
 
-    screens: typing.Union[typing.List['Screen'], 'bpy_prop_collection',
-                          'BlendDataScreens'] = None
+    screens: typing.Union[typing.Dict[str, 'Screen'], typing.List['Screen'],
+                          'bpy_prop_collection', 'BlendDataScreens'] = None
     ''' Screen data-blocks
 
-    :type: typing.Union[typing.List['Screen'], 'bpy_prop_collection', 'BlendDataScreens']
+    :type: typing.Union[typing.Dict[str, 'Screen'], typing.List['Screen'], 'bpy_prop_collection', 'BlendDataScreens']
     '''
 
-    shape_keys: typing.Union[typing.List['Key'], 'bpy_prop_collection'] = None
+    shape_keys: typing.Union[typing.Dict[str, 'Key'], typing.
+                             List['Key'], 'bpy_prop_collection'] = None
     ''' Shape Key data-blocks
 
-    :type: typing.Union[typing.List['Key'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Key'], typing.List['Key'], 'bpy_prop_collection']
     '''
 
-    sounds: typing.Union[typing.List['Sound'], 'bpy_prop_collection',
-                         'BlendDataSounds'] = None
+    sounds: typing.Union[typing.Dict[str, 'Sound'], typing.List['Sound'],
+                         'bpy_prop_collection', 'BlendDataSounds'] = None
     ''' Sound data-blocks
 
-    :type: typing.Union[typing.List['Sound'], 'bpy_prop_collection', 'BlendDataSounds']
+    :type: typing.Union[typing.Dict[str, 'Sound'], typing.List['Sound'], 'bpy_prop_collection', 'BlendDataSounds']
     '''
 
-    speakers: typing.Union[typing.List['Speaker'], 'bpy_prop_collection',
-                           'BlendDataSpeakers'] = None
+    speakers: typing.Union[typing.Dict[str, 'Speaker'], typing.List['Speaker'],
+                           'bpy_prop_collection', 'BlendDataSpeakers'] = None
     ''' Speaker data-blocks
 
-    :type: typing.Union[typing.List['Speaker'], 'bpy_prop_collection', 'BlendDataSpeakers']
+    :type: typing.Union[typing.Dict[str, 'Speaker'], typing.List['Speaker'], 'bpy_prop_collection', 'BlendDataSpeakers']
     '''
 
-    texts: typing.Union[typing.List['Text'], 'bpy_prop_collection',
-                        'BlendDataTexts'] = None
+    texts: typing.Union[typing.Dict[str, 'Text'], typing.List['Text'],
+                        'bpy_prop_collection', 'BlendDataTexts'] = None
     ''' Text data-blocks
 
-    :type: typing.Union[typing.List['Text'], 'bpy_prop_collection', 'BlendDataTexts']
+    :type: typing.Union[typing.Dict[str, 'Text'], typing.List['Text'], 'bpy_prop_collection', 'BlendDataTexts']
     '''
 
-    textures: typing.Union[typing.List['Texture'], 'bpy_prop_collection',
-                           'BlendDataTextures'] = None
+    textures: typing.Union[typing.Dict[str, 'Texture'], typing.List['Texture'],
+                           'bpy_prop_collection', 'BlendDataTextures'] = None
     ''' Texture data-blocks
 
-    :type: typing.Union[typing.List['Texture'], 'bpy_prop_collection', 'BlendDataTextures']
+    :type: typing.Union[typing.Dict[str, 'Texture'], typing.List['Texture'], 'bpy_prop_collection', 'BlendDataTextures']
     '''
 
     use_autopack: bool = None
@@ -1945,33 +1960,34 @@ class BlendData(bpy_struct):
     :type: typing.List[int]
     '''
 
-    volumes: typing.Union[typing.List['Volume'], 'bpy_prop_collection',
-                          'BlendDataVolumes'] = None
+    volumes: typing.Union[typing.Dict[str, 'Volume'], typing.List['Volume'],
+                          'bpy_prop_collection', 'BlendDataVolumes'] = None
     ''' Volume data-blocks
 
-    :type: typing.Union[typing.List['Volume'], 'bpy_prop_collection', 'BlendDataVolumes']
+    :type: typing.Union[typing.Dict[str, 'Volume'], typing.List['Volume'], 'bpy_prop_collection', 'BlendDataVolumes']
     '''
 
-    window_managers: typing.Union[typing.
+    window_managers: typing.Union[typing.Dict[str, 'WindowManager'], typing.
                                   List['WindowManager'], 'bpy_prop_collection',
                                   'BlendDataWindowManagers'] = None
     ''' Window manager data-blocks
 
-    :type: typing.Union[typing.List['WindowManager'], 'bpy_prop_collection', 'BlendDataWindowManagers']
+    :type: typing.Union[typing.Dict[str, 'WindowManager'], typing.List['WindowManager'], 'bpy_prop_collection', 'BlendDataWindowManagers']
     '''
 
-    workspaces: typing.Union[typing.List['WorkSpace'], 'bpy_prop_collection',
+    workspaces: typing.Union[typing.Dict[str, 'WorkSpace'], typing.
+                             List['WorkSpace'], 'bpy_prop_collection',
                              'BlendDataWorkSpaces'] = None
     ''' Workspace data-blocks
 
-    :type: typing.Union[typing.List['WorkSpace'], 'bpy_prop_collection', 'BlendDataWorkSpaces']
+    :type: typing.Union[typing.Dict[str, 'WorkSpace'], typing.List['WorkSpace'], 'bpy_prop_collection', 'BlendDataWorkSpaces']
     '''
 
-    worlds: typing.Union[typing.List['World'], 'bpy_prop_collection',
-                         'BlendDataWorlds'] = None
+    worlds: typing.Union[typing.Dict[str, 'World'], typing.List['World'],
+                         'bpy_prop_collection', 'BlendDataWorlds'] = None
     ''' World data-blocks
 
-    :type: typing.Union[typing.List['World'], 'bpy_prop_collection', 'BlendDataWorlds']
+    :type: typing.Union[typing.Dict[str, 'World'], typing.List['World'], 'bpy_prop_collection', 'BlendDataWorlds']
     '''
 
     def batch_remove(self, ids=()):
@@ -2155,13 +2171,13 @@ class BlendDataBrushes(bpy_struct):
     '''
 
     def new(self, name: str,
-            mode: typing.Union[int, str] = 'TEXTURE_PAINT') -> 'Brush':
+            mode: typing.Union[str, int] = 'TEXTURE_PAINT') -> 'Brush':
         ''' Add a new brush to the main database
 
         :param name: New name for the data-block
         :type name: str
         :param mode: Paint Mode for the new brush * OBJECT Object Mode. * EDIT Edit Mode. * POSE Pose Mode. * SCULPT Sculpt Mode. * VERTEX_PAINT Vertex Paint. * WEIGHT_PAINT Weight Paint. * TEXTURE_PAINT Texture Paint. * PARTICLE_EDIT Particle Edit. * EDIT_GPENCIL Edit Mode, Edit Grease Pencil Strokes. * SCULPT_GPENCIL Sculpt Mode, Sculpt Grease Pencil Strokes. * PAINT_GPENCIL Draw, Paint Grease Pencil Strokes. * VERTEX_GPENCIL Vertex Paint, Grease Pencil Vertex Paint Strokes. * WEIGHT_GPENCIL Weight Paint, Grease Pencil Weight Paint Strokes.
-        :type mode: typing.Union[int, str]
+        :type mode: typing.Union[str, int]
         :rtype: 'Brush'
         :return: New brush data-block
         '''
@@ -2385,13 +2401,13 @@ class BlendDataCurves(bpy_struct):
     ''' Collection of curves
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'Curve':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'Curve':
         ''' Add a new curve to the main database
 
         :param name: New name for the data-block
         :type name: str
         :param type: Type, The type of curve to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Curve'
         :return: New curve data-block
         '''
@@ -2801,13 +2817,13 @@ class BlendDataLights(bpy_struct):
     ''' Collection of lights
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'Light':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'Light':
         ''' Add a new light to the main database
 
         :param name: New name for the data-block
         :type name: str
         :param type: Type, The type of texture to add * POINT Point, Omnidirectional point light source. * SUN Sun, Constant direction parallel ray light source. * SPOT Spot, Directional cone light source. * AREA Area, Directional area light source.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Light'
         :return: New light data-block
         '''
@@ -3272,13 +3288,13 @@ class BlendDataNodeTrees(bpy_struct):
     ''' Collection of node trees
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'NodeTree':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'NodeTree':
         ''' Add a new node tree to the main database
 
         :param name: New name for the data-block
         :type name: str
         :param type: Type, The type of node_group to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'NodeTree'
         :return: New node tree data-block
         '''
@@ -3558,13 +3574,13 @@ class BlendDataProbes(bpy_struct):
     ''' Collection of light probes
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'LightProbe':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'LightProbe':
         ''' Add a new probe to the main database
 
         :param name: New name for the data-block
         :type name: str
         :param type: Type, The type of lightprobe to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'LightProbe'
         :return: New light probe data-block
         '''
@@ -3910,13 +3926,13 @@ class BlendDataTextures(bpy_struct):
     ''' Collection of textures
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'Texture':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'Texture':
         ''' Add a new texture to the main database
 
         :param name: New name for the data-block
         :type name: str
         :param type: Type, The type of texture to add * NONE None. * BLEND Blend, Procedural - create a ramp texture. * CLOUDS Clouds, Procedural - create a cloud-like fractal noise texture. * DISTORTED_NOISE Distorted Noise, Procedural - noise texture distorted by two noise algorithms. * IMAGE Image or Movie, Allow for images or movies to be used as textures. * MAGIC Magic, Procedural - color texture based on trigonometric functions. * MARBLE Marble, Procedural - marble-like noise texture with wave generated bands. * MUSGRAVE Musgrave, Procedural - highly flexible fractal noise texture. * NOISE Noise, Procedural - random noise, gives a different result every time, for every frame, for every pixel. * STUCCI Stucci, Procedural - create a fractal noise texture. * VORONOI Voronoi, Procedural - create cell-like patterns based on Worley noise. * WOOD Wood, Procedural - wave generated bands or rings, with optional noise.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Texture'
         :return: New texture data-block
         '''
@@ -4166,10 +4182,11 @@ class BlenderRNA(bpy_struct):
     ''' Blender RNA structure definitions
     '''
 
-    structs: typing.Union[typing.List['Struct'], 'bpy_prop_collection'] = None
+    structs: typing.Union[typing.Dict[str, 'Struct'], typing.
+                          List['Struct'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Struct'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Struct'], typing.List['Struct'], 'bpy_prop_collection']
     '''
 
     @classmethod
@@ -4201,10 +4218,10 @@ class BoidRule(bpy_struct):
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * GOAL Goal, Go to assigned object or loudest assigned signal source. * AVOID Avoid, Get away from assigned object or loudest assigned signal source. * AVOID_COLLISION Avoid Collision, Maneuver to avoid collisions with other boids and deflector objects in near future. * SEPARATE Separate, Keep from going through other boids. * FLOCK Flock, Move to center of neighbors and match their velocity. * FOLLOW_LEADER Follow Leader, Follow a boid or assigned object. * AVERAGE_SPEED Average Speed, Maintain speed, flight level or wander. * FIGHT Fight, Go to closest enemy and attack when in range.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_in_air: bool = None
@@ -4371,11 +4388,11 @@ class BoidSettings(bpy_struct):
     :type: float
     '''
 
-    states: typing.Union[typing.
+    states: typing.Union[typing.Dict[str, 'BoidState'], typing.
                          List['BoidState'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['BoidState'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'BoidState'], typing.List['BoidState'], 'bpy_prop_collection']
     '''
 
     strength: float = None
@@ -4458,16 +4475,17 @@ class BoidState(bpy_struct):
     :type: float
     '''
 
-    rules: typing.Union[typing.List['BoidRule'], 'bpy_prop_collection'] = None
+    rules: typing.Union[typing.Dict[str, 'BoidRule'], typing.
+                        List['BoidRule'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['BoidRule'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'BoidRule'], typing.List['BoidRule'], 'bpy_prop_collection']
     '''
 
-    ruleset_type: typing.Union[int, str] = None
+    ruleset_type: typing.Union[str, int] = None
     ''' How the rules in the list are evaluated * FUZZY Fuzzy, Rules are gone through top to bottom (only the first rule which effect is above fuzziness threshold is evaluated). * RANDOM Random, A random rule is selected for each boid. * AVERAGE Average, All rules are averaged.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     volume: float = None
@@ -4550,16 +4568,16 @@ class Bone(bpy_struct):
     :type: float
     '''
 
-    bbone_handle_type_end: typing.Union[int, str] = None
+    bbone_handle_type_end: typing.Union[str, int] = None
     ''' Selects how the end handle of the B-Bone is computed * AUTO Automatic, Use connected parent and children to compute the handle. * ABSOLUTE Absolute, Use the position of the specified bone to compute the handle. * RELATIVE Relative, Use the offset of the specified bone from rest pose to compute the handle. * TANGENT Tangent, Use the orientation of the specified bone to compute the handle, ignoring the location.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    bbone_handle_type_start: typing.Union[int, str] = None
+    bbone_handle_type_start: typing.Union[str, int] = None
     ''' Selects how the start handle of the B-Bone is computed * AUTO Automatic, Use connected parent and children to compute the handle. * ABSOLUTE Absolute, Use the position of the specified bone to compute the handle. * RELATIVE Relative, Use the offset of the specified bone from rest pose to compute the handle. * TANGENT Tangent, Use the orientation of the specified bone to compute the handle, ignoring the location.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bbone_rollin: float = None
@@ -4616,10 +4634,11 @@ class Bone(bpy_struct):
     :type: float
     '''
 
-    children: typing.Union[typing.List['Bone'], 'bpy_prop_collection'] = None
+    children: typing.Union[typing.Dict[str, 'Bone'], typing.
+                           List['Bone'], 'bpy_prop_collection'] = None
     ''' Bones which are children of this bone
 
-    :type: typing.Union[typing.List['Bone'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Bone'], typing.List['Bone'], 'bpy_prop_collection']
     '''
 
     envelope_distance: float = None
@@ -4664,10 +4683,10 @@ class Bone(bpy_struct):
     :type: bool
     '''
 
-    inherit_scale: typing.Union[int, str] = None
+    inherit_scale: typing.Union[str, int] = None
     ''' Specifies how the bone inherits scaling from the parent bone * FULL Full, Inherit all effects of parent scaling. * FIX_SHEAR Fix Shear, Inherit scaling, but remove shearing of the child in the rest orientation. * ALIGNED Aligned, Rotate non-uniform parent scaling to align with the child, applying parent X scale to child X axis, and so forth. * AVERAGE Average, Inherit uniform scaling representing the overall change in the volume of the parent. * NONE None, Completely ignore parent scaling. * NONE_LEGACY None (Legacy), Ignore parent scaling without compensating for parent shear. Replicates the effect of disabling the original Inherit Scale checkbox.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     layers: typing.List[bool] = None
@@ -4935,10 +4954,10 @@ class BoneGroup(bpy_struct):
     ''' Groups of Pose Channels (Bones)
     '''
 
-    color_set: typing.Union[int, str] = None
+    color_set: typing.Union[str, int] = None
     ''' Custom color set to use
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     colors: 'ThemeBoneColorSet' = None
@@ -5381,16 +5400,16 @@ class BrushGpencilSettings(bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    direction: typing.Union[int, str] = None
+    direction: typing.Union[str, int] = None
     ''' * ADD Add, Add effect of brush. * SUBTRACT Subtract, Subtract effect of brush.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    eraser_mode: typing.Union[int, str] = None
+    eraser_mode: typing.Union[str, int] = None
     ''' Eraser Mode * SOFT Dissolve, Erase strokes, fading their points strength and thickness. * HARD Point, Erase stroke points. * STROKE Stroke, Erase entire strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     eraser_strength_factor: float = None
@@ -5405,10 +5424,10 @@ class BrushGpencilSettings(bpy_struct):
     :type: float
     '''
 
-    fill_draw_mode: typing.Union[int, str] = None
+    fill_draw_mode: typing.Union[str, int] = None
     ''' Mode to draw boundary limits * BOTH Default, Use both visible strokes and edit lines as fill boundary limits. * STROKE Strokes, Use visible strokes as fill boundary limits. * CONTROL Edit Lines, Use edit lines as fill boundary limits.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     fill_factor: int = None
@@ -5435,28 +5454,28 @@ class BrushGpencilSettings(bpy_struct):
     :type: float
     '''
 
-    gpencil_paint_icon: typing.Union[int, str] = None
+    gpencil_paint_icon: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_sculpt_icon: typing.Union[int, str] = None
+    gpencil_sculpt_icon: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_vertex_icon: typing.Union[int, str] = None
+    gpencil_vertex_icon: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_weight_icon: typing.Union[int, str] = None
+    gpencil_weight_icon: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     hardness: float = None
@@ -5645,10 +5664,10 @@ class BrushGpencilSettings(bpy_struct):
     :type: float
     '''
 
-    vertex_mode: typing.Union[int, str] = None
+    vertex_mode: typing.Union[str, int] = None
     ''' Defines how vertex color affect to the strokes * STROKE Stroke, Vertex Color affects to Stroke only. * FILL Fill, Vertex Color affects to Fill only. * BOTH Stroke and Fill, Vertex Color affects to Stroke and Fill.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -5695,16 +5714,16 @@ class CameraBackgroundImage(bpy_struct):
     :type: 'MovieClipUser'
     '''
 
-    display_depth: typing.Union[int, str] = None
+    display_depth: typing.Union[str, int] = None
     ''' Display under or over everything
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    frame_method: typing.Union[int, str] = None
+    frame_method: typing.Union[str, int] = None
     ''' How the image fits in the camera frame
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     image: 'Image' = None
@@ -5755,10 +5774,10 @@ class CameraBackgroundImage(bpy_struct):
     :type: bool
     '''
 
-    source: typing.Union[int, str] = None
+    source: typing.Union[str, int] = None
     ''' Data source used for background
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_camera_clip: bool = None
@@ -5927,10 +5946,10 @@ class CameraStereoData(bpy_struct):
     :type: float
     '''
 
-    convergence_mode: typing.Union[int, str] = None
+    convergence_mode: typing.Union[str, int] = None
     ''' * OFFAXIS Off-Axis, Off-axis frustums converging in a plane. * PARALLEL Parallel, Parallel cameras with no convergence. * TOE Toe-in, Rotated cameras, looking at the convergence distance.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     interocular_distance: float = None
@@ -5939,10 +5958,10 @@ class CameraStereoData(bpy_struct):
     :type: float
     '''
 
-    pivot: typing.Union[int, str] = None
+    pivot: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pole_merge_angle_from: float = None
@@ -6173,10 +6192,10 @@ class ClothSettings(bpy_struct):
     :type: float
     '''
 
-    bending_model: typing.Union[int, str] = None
+    bending_model: typing.Union[str, int] = None
     ''' Physical model for simulating bending forces * ANGULAR Angular, Cloth model with angular bending springs. * LINEAR Linear, Cloth model with linear bending springs (legacy).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bending_stiffness: float = None
@@ -6559,10 +6578,10 @@ class ClothSolverResult(bpy_struct):
     :type: int
     '''
 
-    status: typing.Union[typing.Set[int], typing.Set[str]] = None
+    status: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Status of the solver iteration * SUCCESS Success, Computation was successful. * NUMERICAL_ISSUE Numerical Issue, The provided data did not satisfy the prerequisites. * NO_CONVERGENCE No Convergence, Iterative procedure did not converge. * INVALID_INPUT Invalid Input, The inputs are invalid, or the algorithm has been improperly called.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     @classmethod
@@ -6791,10 +6810,10 @@ class ColorManagedDisplaySettings(bpy_struct):
     ''' Color management specific to display device
     '''
 
-    display_device: typing.Union[int, str] = None
+    display_device: typing.Union[str, int] = None
     ''' Display device name
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -6829,10 +6848,10 @@ class ColorManagedInputColorspaceSettings(bpy_struct):
     :type: bool
     '''
 
-    name: typing.Union[int, str] = None
+    name: typing.Union[str, int] = None
     ''' Color space in the image file, to convert to and from when saving and loading the image * Filmic Log Filmic Log, Log based filmic shaper with 16.5 stops of latitude, and 25 stops of dynamic range. * Linear Linear, Rec. 709 (Full Range), Blender native linear space. * Linear ACES Linear ACES, ACES linear space. * Non-Color Non-Color, Color space used for images which contains non-color data (i,e, normal maps). * Raw Raw. * sRGB sRGB, Standard RGB Display Space. * XYZ XYZ.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -6861,10 +6880,10 @@ class ColorManagedSequencerColorspaceSettings(bpy_struct):
     ''' Input color space settings
     '''
 
-    name: typing.Union[int, str] = None
+    name: typing.Union[str, int] = None
     ''' Color space that the sequencer operates in * Filmic Log Filmic Log, Log based filmic shaper with 16.5 stops of latitude, and 25 stops of dynamic range. * Linear Linear, Rec. 709 (Full Range), Blender native linear space. * Linear ACES Linear ACES, ACES linear space. * Non-Color Non-Color, Color space used for images which contains non-color data (i,e, normal maps). * Raw Raw. * sRGB sRGB, Standard RGB Display Space. * XYZ XYZ.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -6911,10 +6930,10 @@ class ColorManagedViewSettings(bpy_struct):
     :type: float
     '''
 
-    look: typing.Union[int, str] = None
+    look: typing.Union[str, int] = None
     ''' Additional transform applied before view transform for an artistic needs * NONE None, Do not modify image in an artistic manner.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_curve_mapping: bool = None
@@ -6923,10 +6942,10 @@ class ColorManagedViewSettings(bpy_struct):
     :type: bool
     '''
 
-    view_transform: typing.Union[int, str] = None
+    view_transform: typing.Union[str, int] = None
     ''' View used when converting image to a display space * NONE None, Do not perform any color transform on display, use old non-color managed technique for display.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -6967,10 +6986,10 @@ class ColorMapping(bpy_struct):
     :type: float
     '''
 
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' Mode used to mix with texture output color
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     brightness: float = None
@@ -7029,29 +7048,30 @@ class ColorRamp(bpy_struct):
     ''' Color ramp mapping a scalar value to a color
     '''
 
-    color_mode: typing.Union[int, str] = None
+    color_mode: typing.Union[str, int] = None
     ''' Set color mode to use for interpolation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    elements: typing.Union[typing.List['ColorRampElement'],
-                           'bpy_prop_collection', 'ColorRampElements'] = None
+    elements: typing.Union[typing.Dict[str, 'ColorRampElement'], typing.
+                           List['ColorRampElement'], 'bpy_prop_collection',
+                           'ColorRampElements'] = None
     ''' 
 
-    :type: typing.Union[typing.List['ColorRampElement'], 'bpy_prop_collection', 'ColorRampElements']
+    :type: typing.Union[typing.Dict[str, 'ColorRampElement'], typing.List['ColorRampElement'], 'bpy_prop_collection', 'ColorRampElements']
     '''
 
-    hue_interpolation: typing.Union[int, str] = None
+    hue_interpolation: typing.Union[str, int] = None
     ''' Set color interpolation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Set interpolation between color stops
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def evaluate(self, position: float) -> typing.List[float]:
@@ -7310,10 +7330,10 @@ class ConsoleLine(bpy_struct):
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Console line type when used in scrollback
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -7390,10 +7410,10 @@ class Constraint(bpy_struct):
     :type: str
     '''
 
-    owner_space: typing.Union[int, str] = None
+    owner_space: typing.Union[str, int] = None
     ''' Space that owner is evaluated in * WORLD World Space, The constraint is applied relative to the world coordinate system. * POSE Pose Space, The constraint is applied in Pose Space, the object transformation is ignored. * LOCAL_WITH_PARENT Local With Parent, The constraint is applied relative to the rest pose local coordinate system of the bone, thus including the parent-induced transformation. * LOCAL Local Space, The constraint is applied relative to the local coordinate system of the object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_expanded: bool = None
@@ -7402,16 +7422,16 @@ class Constraint(bpy_struct):
     :type: bool
     '''
 
-    target_space: typing.Union[int, str] = None
+    target_space: typing.Union[str, int] = None
     ''' Space that target is evaluated in * WORLD World Space, The transformation of the target is evaluated relative to the world coordinate system. * POSE Pose Space, The transformation of the target is only evaluated in the Pose Space, the target armature object transformation is ignored. * LOCAL_WITH_PARENT Local With Parent, The transformation of the target bone is evaluated relative to its rest pose local coordinate system, thus including the parent-induced transformation. * LOCAL Local Space, The transformation of the target is evaluated relative to its local coordinate system.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * CAMERA_SOLVER Camera Solver. * FOLLOW_TRACK Follow Track. * OBJECT_SOLVER Object Solver. * COPY_LOCATION Copy Location, Copy the location of a target (with an optional offset), so that they move together. * COPY_ROTATION Copy Rotation, Copy the rotation of a target (with an optional offset), so that they rotate together. * COPY_SCALE Copy Scale, Copy the scale factors of a target (with an optional offset), so that they are scaled by the same amount. * COPY_TRANSFORMS Copy Transforms, Copy all the transformations of a target, so that they move together. * LIMIT_DISTANCE Limit Distance, Restrict movements to within a certain distance of a target (at the time of constraint evaluation only). * LIMIT_LOCATION Limit Location, Restrict movement along each axis within given ranges. * LIMIT_ROTATION Limit Rotation, Restrict rotation along each axis within given ranges. * LIMIT_SCALE Limit Scale, Restrict scaling along each axis with given ranges. * MAINTAIN_VOLUME Maintain Volume, Compensate for scaling one axis by applying suitable scaling to the other two axes. * TRANSFORM Transformation, Use one transform property from target to control another (or same) property on owner. * TRANSFORM_CACHE Transform Cache, Look up the transformation matrix from an external file. * CLAMP_TO Clamp To, Restrict movements to lie along a curve by remapping location along curve's longest axis. * DAMPED_TRACK Damped Track, Point towards a target by performing the smallest rotation necessary. * IK Inverse Kinematics, Control a chain of bones by specifying the endpoint target (Bones only). * LOCKED_TRACK Locked Track, Rotate around the specified ('locked') axis to point towards a target. * SPLINE_IK Spline IK, Align chain of bones along a curve (Bones only). * STRETCH_TO Stretch To, Stretch along Y-Axis to point towards a target. * TRACK_TO Track To, Legacy tracking constraint prone to twisting artifacts. * ACTION Action, Use transform property of target to look up pose for owner from an Action. * ARMATURE Armature, Apply weight-blended transformation from multiple bones like the Armature modifier. * CHILD_OF Child Of, Make target the 'detachable' parent of owner. * FLOOR Floor, Use position (and optionally rotation) of target to define a 'wall' or 'floor' that the owner can not cross. * FOLLOW_PATH Follow Path, Use to animate an object/bone following a path. * PIVOT Pivot, Change pivot point for transforms (buggy). * SHRINKWRAP Shrinkwrap, Restrict movements to surface of target mesh.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -7558,10 +7578,10 @@ class Context(bpy_struct):
     :type: 'LayerCollection'
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     preferences: 'Preferences' = None
@@ -7670,11 +7690,12 @@ class CurveMap(bpy_struct):
     ''' Curve in a curve mapping
     '''
 
-    points: typing.Union[typing.List['CurveMapPoint'], 'bpy_prop_collection',
+    points: typing.Union[typing.Dict[str, 'CurveMapPoint'], typing.
+                         List['CurveMapPoint'], 'bpy_prop_collection',
                          'CurveMapPoints'] = None
     ''' 
 
-    :type: typing.Union[typing.List['CurveMapPoint'], 'bpy_prop_collection', 'CurveMapPoints']
+    :type: typing.Union[typing.Dict[str, 'CurveMapPoint'], typing.List['CurveMapPoint'], 'bpy_prop_collection', 'CurveMapPoints']
     '''
 
     @classmethod
@@ -7703,10 +7724,10 @@ class CurveMapPoint(bpy_struct):
     ''' Point of a curve used for a curve mapping
     '''
 
-    handle_type: typing.Union[int, str] = None
+    handle_type: typing.Union[str, int] = None
     ''' Curve interpolation at this point: Bezier or vector
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     location: typing.List[float] = None
@@ -7823,22 +7844,23 @@ class CurveMapping(bpy_struct):
     :type: float
     '''
 
-    curves: typing.Union[typing.List['CurveMap'], 'bpy_prop_collection'] = None
+    curves: typing.Union[typing.Dict[str, 'CurveMap'], typing.
+                         List['CurveMap'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['CurveMap'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'CurveMap'], typing.List['CurveMap'], 'bpy_prop_collection']
     '''
 
-    extend: typing.Union[int, str] = None
+    extend: typing.Union[str, int] = None
     ''' Extrapolate the curve or extend it horizontally
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    tone: typing.Union[int, str] = None
+    tone: typing.Union[str, int] = None
     ''' Tone of the curve
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_clip: bool = None
@@ -7906,16 +7928,16 @@ class CurvePaintSettings(bpy_struct):
     :type: float
     '''
 
-    curve_type: typing.Union[int, str] = None
+    curve_type: typing.Union[str, int] = None
     ''' Type of curve to use for new strokes
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    depth_mode: typing.Union[int, str] = None
+    depth_mode: typing.Union[str, int] = None
     ''' Method of projecting depth
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     error_threshold: int = None
@@ -7924,10 +7946,10 @@ class CurvePaintSettings(bpy_struct):
     :type: int
     '''
 
-    fit_method: typing.Union[int, str] = None
+    fit_method: typing.Union[str, int] = None
     ''' Curve fitting method * REFIT Refit, Incrementally re-fit the curve (high quality). * SPLIT Split, Split the curve until the tolerance is met (fast).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     radius_max: float = None
@@ -7960,10 +7982,10 @@ class CurvePaintSettings(bpy_struct):
     :type: float
     '''
 
-    surface_plane: typing.Union[int, str] = None
+    surface_plane: typing.Union[str, int] = None
     ''' Plane for projected stroke * NORMAL_VIEW Normal/View, Display perpendicular to the surface. * NORMAL_SURFACE Normal/Surface, Display aligned to the surface. * VIEW View, Display aligned to the viewport.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_corners_detect: bool = None
@@ -8016,24 +8038,26 @@ class CurveProfile(bpy_struct):
     ''' Profile Path editor used to build a profile path
     '''
 
-    points: typing.Union[typing.List['CurveProfilePoint'],
-                         'bpy_prop_collection', 'CurveProfilePoints'] = None
+    points: typing.Union[typing.Dict[str, 'CurveProfilePoint'], typing.
+                         List['CurveProfilePoint'], 'bpy_prop_collection',
+                         'CurveProfilePoints'] = None
     ''' Profile control points
 
-    :type: typing.Union[typing.List['CurveProfilePoint'], 'bpy_prop_collection', 'CurveProfilePoints']
+    :type: typing.Union[typing.Dict[str, 'CurveProfilePoint'], typing.List['CurveProfilePoint'], 'bpy_prop_collection', 'CurveProfilePoints']
     '''
 
-    preset: typing.Union[int, str] = None
+    preset: typing.Union[str, int] = None
     ''' * LINE Line, Default. * SUPPORTS Support Loops, Loops on each side of the profile. * CORNICE Cornice Molding. * CROWN Crown Molding. * STEPS Steps, A number of steps defined by the segments.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    segments: typing.Union[typing.List['CurveProfilePoint'],
+    segments: typing.Union[typing.Dict[str, 'CurveProfilePoint'], typing.
+                           List['CurveProfilePoint'],
                            'bpy_prop_collection'] = None
     ''' Segments sampled from control points
 
-    :type: typing.Union[typing.List['CurveProfilePoint'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'CurveProfilePoint'], typing.List['CurveProfilePoint'], 'bpy_prop_collection']
     '''
 
     use_clip: bool = None
@@ -8104,16 +8128,16 @@ class CurveProfilePoint(bpy_struct):
     ''' Point of a path used to define a profile
     '''
 
-    handle_type_1: typing.Union[int, str] = None
+    handle_type_1: typing.Union[str, int] = None
     ''' Path interpolation at this point: Bezier or vector
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    handle_type_2: typing.Union[int, str] = None
+    handle_type_2: typing.Union[str, int] = None
     ''' Path interpolation at this point: Bezier or vector
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     location: typing.List[float] = None
@@ -8206,11 +8230,11 @@ class CurveSplines(bpy_struct):
     :type: 'Spline'
     '''
 
-    def new(self, type: typing.Union[int, str]) -> 'Spline':
+    def new(self, type: typing.Union[str, int]) -> 'Spline':
         ''' Add a new spline to the curve
 
         :param type: type for the new spline
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Spline'
         :return: The newly created spline
         '''
@@ -8253,29 +8277,32 @@ class CurveSplines(bpy_struct):
 
 
 class Depsgraph(bpy_struct):
-    ids: typing.Union[typing.List['ID'], 'bpy_prop_collection'] = None
+    ids: typing.Union[typing.Dict[str, 'ID'], typing.
+                      List['ID'], 'bpy_prop_collection'] = None
     ''' All evaluated datablocks
 
-    :type: typing.Union[typing.List['ID'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ID'], typing.List['ID'], 'bpy_prop_collection']
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Evaluation mode * VIEWPORT Viewport, Viewport non-rendered mode. * RENDER Render, Render.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    object_instances: typing.Union[typing.List['DepsgraphObjectInstance'],
-                                   'bpy_prop_collection'] = None
+    object_instances: typing.Union[
+        typing.Dict[str, 'DepsgraphObjectInstance'], typing.
+        List['DepsgraphObjectInstance'], 'bpy_prop_collection'] = None
     ''' All object instances to display or render (WARNING: only use this as an iterator, never as a sequence, and do not keep any references to its items)
 
-    :type: typing.Union[typing.List['DepsgraphObjectInstance'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'DepsgraphObjectInstance'], typing.List['DepsgraphObjectInstance'], 'bpy_prop_collection']
     '''
 
-    objects: typing.Union[typing.List['Object'], 'bpy_prop_collection'] = None
+    objects: typing.Union[typing.Dict[str, 'Object'], typing.
+                          List['Object'], 'bpy_prop_collection'] = None
     ''' Evaluated objects in the dependency graph
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection']
     '''
 
     scene: 'Scene' = None
@@ -8290,11 +8317,12 @@ class Depsgraph(bpy_struct):
     :type: 'Scene'
     '''
 
-    updates: typing.Union[typing.List['DepsgraphUpdate'],
+    updates: typing.Union[typing.Dict[str, 'DepsgraphUpdate'], typing.
+                          List['DepsgraphUpdate'],
                           'bpy_prop_collection'] = None
     ''' Updates to datablocks
 
-    :type: typing.Union[typing.List['DepsgraphUpdate'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'DepsgraphUpdate'], typing.List['DepsgraphUpdate'], 'bpy_prop_collection']
     '''
 
     view_layer: 'ViewLayer' = None
@@ -8357,11 +8385,11 @@ class Depsgraph(bpy_struct):
         '''
         pass
 
-    def id_type_updated(self, id_type: typing.Union[int, str]) -> bool:
+    def id_type_updated(self, id_type: typing.Union[str, int]) -> bool:
         ''' id_type_updated
 
         :param id_type: ID Type
-        :type id_type: typing.Union[int, str]
+        :type id_type: typing.Union[str, int]
         :rtype: bool
         :return: Updated, True if any datablock with this type was added, updated or removed
         '''
@@ -8845,10 +8873,10 @@ class Driver(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Driver type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_self: bool = None
@@ -8857,12 +8885,12 @@ class Driver(bpy_struct):
     :type: bool
     '''
 
-    variables: typing.Union[typing.
+    variables: typing.Union[typing.Dict[str, 'DriverVariable'], typing.
                             List['DriverVariable'], 'bpy_prop_collection',
                             'ChannelDriverVariables'] = None
     ''' Properties acting as inputs for this driver
 
-    :type: typing.Union[typing.List['DriverVariable'], 'bpy_prop_collection', 'ChannelDriverVariables']
+    :type: typing.Union[typing.Dict[str, 'DriverVariable'], typing.List['DriverVariable'], 'bpy_prop_collection', 'ChannelDriverVariables']
     '''
 
     @classmethod
@@ -8909,28 +8937,28 @@ class DriverTarget(bpy_struct):
     :type: 'ID'
     '''
 
-    id_type: typing.Union[int, str] = None
+    id_type: typing.Union[str, int] = None
     ''' Type of ID-block that can be used
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    rotation_mode: typing.Union[int, str] = None
+    rotation_mode: typing.Union[str, int] = None
     ''' Mode for calculating rotation channel values * AUTO Auto Euler, Euler using the rotation order of the target. * XYZ XYZ Euler, Euler using the XYZ rotation order. * XZY XZY Euler, Euler using the XZY rotation order. * YXZ YXZ Euler, Euler using the YXZ rotation order. * YZX YZX Euler, Euler using the YZX rotation order. * ZXY ZXY Euler, Euler using the ZXY rotation order. * ZYX ZYX Euler, Euler using the ZYX rotation order. * QUATERNION Quaternion, Quaternion rotation. * SWING_TWIST_X Swing and X Twist, Decompose into a swing rotation to aim the X axis, followed by twist around it. * SWING_TWIST_Y Swing and Y Twist, Decompose into a swing rotation to aim the Y axis, followed by twist around it. * SWING_TWIST_Z Swing and Z Twist, Decompose into a swing rotation to aim the Z axis, followed by twist around it.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    transform_space: typing.Union[int, str] = None
+    transform_space: typing.Union[str, int] = None
     ''' Space in which transforms are used * WORLD_SPACE World Space, Transforms include effects of parenting/restpose and constraints. * TRANSFORM_SPACE Transform Space, Transforms don't include parenting/restpose or constraints. * LOCAL_SPACE Local Space, Transforms include effects of constraints but not parenting/restpose.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    transform_type: typing.Union[int, str] = None
+    transform_type: typing.Union[str, int] = None
     ''' Driver variable type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -8971,17 +8999,17 @@ class DriverVariable(bpy_struct):
     :type: str
     '''
 
-    targets: typing.Union[typing.
+    targets: typing.Union[typing.Dict[str, 'DriverTarget'], typing.
                           List['DriverTarget'], 'bpy_prop_collection'] = None
     ''' Sources of input data for evaluating this variable
 
-    :type: typing.Union[typing.List['DriverTarget'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'DriverTarget'], typing.List['DriverTarget'], 'bpy_prop_collection']
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Driver variable type * SINGLE_PROP Single Property, Use the value from some RNA property (Default). * TRANSFORMS Transform Channel, Final transformation value of object or bone. * ROTATION_DIFF Rotational Difference, Use the angle between two bones. * LOC_DIFF Distance, Distance between two bones or objects.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -9040,10 +9068,10 @@ class DynamicPaintBrushSettings(bpy_struct):
     :type: 'ColorRamp'
     '''
 
-    paint_source: typing.Union[int, str] = None
+    paint_source: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     paint_wetness: float = None
@@ -9058,16 +9086,16 @@ class DynamicPaintBrushSettings(bpy_struct):
     :type: 'ParticleSystem'
     '''
 
-    proximity_falloff: typing.Union[int, str] = None
+    proximity_falloff: typing.Union[str, int] = None
     ''' Proximity falloff type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    ray_direction: typing.Union[int, str] = None
+    ray_direction: typing.Union[str, int] = None
     ''' Ray direction to use for projection (if brush object is located in that direction it's painted)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     smooth_radius: float = None
@@ -9172,10 +9200,10 @@ class DynamicPaintBrushSettings(bpy_struct):
     :type: float
     '''
 
-    wave_type: typing.Union[int, str] = None
+    wave_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -9204,12 +9232,13 @@ class DynamicPaintCanvasSettings(bpy_struct):
     ''' Dynamic Paint canvas settings
     '''
 
-    canvas_surfaces: typing.Union[typing.List['DynamicPaintSurface'],
-                                  'bpy_prop_collection',
-                                  'DynamicPaintSurfaces'] = None
+    canvas_surfaces: typing.Union[
+        typing.Dict[str, 'DynamicPaintSurface'], typing.
+        List['DynamicPaintSurface'], 'bpy_prop_collection',
+        'DynamicPaintSurfaces'] = None
     ''' Paint surface list
 
-    :type: typing.Union[typing.List['DynamicPaintSurface'], 'bpy_prop_collection', 'DynamicPaintSurfaces']
+    :type: typing.Union[typing.Dict[str, 'DynamicPaintSurface'], typing.List['DynamicPaintSurface'], 'bpy_prop_collection', 'DynamicPaintSurfaces']
     '''
 
     @classmethod
@@ -9280,10 +9309,10 @@ class DynamicPaintSurface(bpy_struct):
     :type: float
     '''
 
-    displace_type: typing.Union[int, str] = None
+    displace_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     dissolve_speed: int = None
@@ -9310,10 +9339,10 @@ class DynamicPaintSurface(bpy_struct):
     :type: int
     '''
 
-    effect_ui: typing.Union[int, str] = None
+    effect_ui: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     effector_weights: 'EffectorWeights' = None
@@ -9340,10 +9369,10 @@ class DynamicPaintSurface(bpy_struct):
     :type: int
     '''
 
-    image_fileformat: typing.Union[int, str] = None
+    image_fileformat: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     image_output_path: str = None
@@ -9364,10 +9393,10 @@ class DynamicPaintSurface(bpy_struct):
     :type: typing.List[float]
     '''
 
-    init_color_type: typing.Union[int, str] = None
+    init_color_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     init_layername: str = None
@@ -9430,16 +9459,16 @@ class DynamicPaintSurface(bpy_struct):
     :type: float
     '''
 
-    surface_format: typing.Union[int, str] = None
+    surface_format: typing.Union[str, int] = None
     ''' Surface Format
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    surface_type: typing.Union[int, str] = None
+    surface_type: typing.Union[str, int] = None
     ''' Surface Type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_antialiasing: bool = None
@@ -9678,16 +9707,16 @@ class EditBone(bpy_struct):
     :type: float
     '''
 
-    bbone_handle_type_end: typing.Union[int, str] = None
+    bbone_handle_type_end: typing.Union[str, int] = None
     ''' Selects how the end handle of the B-Bone is computed * AUTO Automatic, Use connected parent and children to compute the handle. * ABSOLUTE Absolute, Use the position of the specified bone to compute the handle. * RELATIVE Relative, Use the offset of the specified bone from rest pose to compute the handle. * TANGENT Tangent, Use the orientation of the specified bone to compute the handle, ignoring the location.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    bbone_handle_type_start: typing.Union[int, str] = None
+    bbone_handle_type_start: typing.Union[str, int] = None
     ''' Selects how the start handle of the B-Bone is computed * AUTO Automatic, Use connected parent and children to compute the handle. * ABSOLUTE Absolute, Use the position of the specified bone to compute the handle. * RELATIVE Relative, Use the offset of the specified bone from rest pose to compute the handle. * TANGENT Tangent, Use the orientation of the specified bone to compute the handle, ignoring the location.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bbone_rollin: float = None
@@ -9780,10 +9809,10 @@ class EditBone(bpy_struct):
     :type: bool
     '''
 
-    inherit_scale: typing.Union[int, str] = None
+    inherit_scale: typing.Union[str, int] = None
     ''' Specifies how the bone inherits scaling from the parent bone * FULL Full, Inherit all effects of parent scaling. * FIX_SHEAR Fix Shear, Inherit scaling, but remove shearing of the child in the rest orientation. * ALIGNED Aligned, Rotate non-uniform parent scaling to align with the child, applying parent X scale to child X axis, and so forth. * AVERAGE Average, Inherit uniform scaling representing the overall change in the volume of the parent. * NONE None, Completely ignore parent scaling. * NONE_LEGACY None (Legacy), Ignore parent scaling without compensating for parent shear. Replicates the effect of disabling the original Inherit Scale checkbox.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     layers: typing.List[bool] = None
@@ -10149,10 +10178,10 @@ class EnumPropertyItem(bpy_struct):
     :type: str
     '''
 
-    icon: typing.Union[int, str] = None
+    icon: typing.Union[str, int] = None
     ''' Icon of the item
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     identifier: str = None
@@ -10295,10 +10324,10 @@ class Event(bpy_struct):
     :type: typing.List[float]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     unicode: str = None
@@ -10307,10 +10336,10 @@ class Event(bpy_struct):
     :type: str
     '''
 
-    value: typing.Union[int, str] = None
+    value: typing.Union[str, int] = None
     ''' The type of event, only applies to some
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -10345,10 +10374,10 @@ class FCurve(bpy_struct):
     :type: int
     '''
 
-    auto_smoothing: typing.Union[int, str] = None
+    auto_smoothing: typing.Union[str, int] = None
     ''' Algorithm used to compute automatic handles * NONE None, Automatic handles only take immediately adjacent keys into account. * CONT_ACCEL Continuous Acceleration, Automatic handles are adjusted to avoid jumps in acceleration, resulting in smoother curves. However, key changes may affect interpolation over a larger stretch of the curve.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color: typing.List[float] = None
@@ -10357,10 +10386,10 @@ class FCurve(bpy_struct):
     :type: typing.List[float]
     '''
 
-    color_mode: typing.Union[int, str] = None
+    color_mode: typing.Union[str, int] = None
     ''' Method used to determine color of F-Curve in Graph Editor * AUTO_RAINBOW Auto Rainbow, Cycle through the rainbow, trying to give each curve a unique color. * AUTO_RGB Auto XYZ to RGB, Use axis colors for transform and color properties, and auto-rainbow for the rest. * AUTO_YRGB Auto WXYZ to YRGB, Use axis colors for XYZ parts of transform, and yellow for the 'W' channel. * CUSTOM User Defined, Use custom hand-picked color for F-Curve.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     data_path: str = None
@@ -10375,10 +10404,10 @@ class FCurve(bpy_struct):
     :type: 'Driver'
     '''
 
-    extrapolation: typing.Union[int, str] = None
+    extrapolation: typing.Union[str, int] = None
     ''' Method used for evaluating value of F-Curve outside first and last keyframes * CONSTANT Constant, Hold values of endpoint keyframes. * LINEAR Linear, Use slope of curve leading in/out of endpoint keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     group: 'ActionGroup' = None
@@ -10405,12 +10434,12 @@ class FCurve(bpy_struct):
     :type: bool
     '''
 
-    keyframe_points: typing.Union[typing.
+    keyframe_points: typing.Union[typing.Dict[str, 'Keyframe'], typing.
                                   List['Keyframe'], 'bpy_prop_collection',
                                   'FCurveKeyframePoints'] = None
     ''' User-editable keyframes
 
-    :type: typing.Union[typing.List['Keyframe'], 'bpy_prop_collection', 'FCurveKeyframePoints']
+    :type: typing.Union[typing.Dict[str, 'Keyframe'], typing.List['Keyframe'], 'bpy_prop_collection', 'FCurveKeyframePoints']
     '''
 
     lock: bool = None
@@ -10419,11 +10448,12 @@ class FCurve(bpy_struct):
     :type: bool
     '''
 
-    modifiers: typing.Union[typing.List['FModifier'], 'bpy_prop_collection',
+    modifiers: typing.Union[typing.Dict[str, 'FModifier'], typing.
+                            List['FModifier'], 'bpy_prop_collection',
                             'FCurveModifiers'] = None
     ''' Modifiers affecting the shape of the F-Curve
 
-    :type: typing.Union[typing.List['FModifier'], 'bpy_prop_collection', 'FCurveModifiers']
+    :type: typing.Union[typing.Dict[str, 'FModifier'], typing.List['FModifier'], 'bpy_prop_collection', 'FCurveModifiers']
     '''
 
     mute: bool = None
@@ -10432,11 +10462,12 @@ class FCurve(bpy_struct):
     :type: bool
     '''
 
-    sampled_points: typing.Union[typing.List['FCurveSample'],
+    sampled_points: typing.Union[typing.Dict[str, 'FCurveSample'], typing.
+                                 List['FCurveSample'],
                                  'bpy_prop_collection'] = None
     ''' Sampled animation data
 
-    :type: typing.Union[typing.List['FCurveSample'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FCurveSample'], typing.List['FCurveSample'], 'bpy_prop_collection']
     '''
 
     select: bool = None
@@ -10527,8 +10558,8 @@ class FCurveKeyframePoints(bpy_struct):
             self,
             frame: float,
             value: float,
-            options: typing.Union[typing.Set[int], typing.Set[str]] = {},
-            keyframe_type: typing.Union[int, str] = 'KEYFRAME') -> 'Keyframe':
+            options: typing.Union[typing.Set[str], typing.Set[int]] = {},
+            keyframe_type: typing.Union[str, int] = 'KEYFRAME') -> 'Keyframe':
         ''' Add a keyframe point to a F-Curve
 
         :param frame: X Value of this keyframe point
@@ -10536,9 +10567,9 @@ class FCurveKeyframePoints(bpy_struct):
         :param value: Y Value of this keyframe point
         :type value: float
         :param options: Keyframe options * REPLACE Replace, Don't add any new keyframes, but just replace existing ones. * NEEDED Needed, Only adds keyframes that are needed. * FAST Fast, Fast keyframe insertion to avoid recalculating the curve each time.
-        :type options: typing.Union[typing.Set[int], typing.Set[str]]
+        :type options: typing.Union[typing.Set[str], typing.Set[int]]
         :param keyframe_type: Type of keyframe to insert * KEYFRAME Keyframe, Normal keyframe - e.g. for key poses. * BREAKDOWN Breakdown, A breakdown pose - e.g. for transitions between key poses. * MOVING_HOLD Moving Hold, A keyframe that is part of a moving hold. * EXTREME Extreme, An 'extreme' pose, or some other purpose as needed. * JITTER Jitter, A filler or baked keyframe for keying on ones, or some other purpose as needed.
-        :type keyframe_type: typing.Union[int, str]
+        :type keyframe_type: typing.Union[str, int]
         :rtype: 'Keyframe'
         :return: Newly created keyframe
         '''
@@ -10594,11 +10625,11 @@ class FCurveModifiers(bpy_struct):
     :type: 'FModifier'
     '''
 
-    def new(self, type: typing.Union[int, str]) -> 'FModifier':
+    def new(self, type: typing.Union[str, int]) -> 'FModifier':
         ''' Add a constraint to this object
 
         :param type: Constraint type to add * NULL Invalid. * GENERATOR Generator, Generate a curve using a factorized or expanded polynomial. * FNGENERATOR Built-In Function, Generate a curve using standard math functions such as sin and cos. * ENVELOPE Envelope, Reshape F-Curve values - e.g. change amplitude of movements. * CYCLES Cycles, Cyclic extend/repeat keyframe sequence. * NOISE Noise, Add pseudo-random noise on top of F-Curves. * LIMITS Limits, Restrict maximum and minimum values of F-Curve. * STEPPED Stepped Interpolation, Snap values to nearest grid-step - e.g. for a stop-motion look.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'FModifier'
         :return: New fmodifier
         '''
@@ -10682,16 +10713,16 @@ class FFmpegSettings(bpy_struct):
     :type: int
     '''
 
-    audio_channels: typing.Union[int, str] = None
+    audio_channels: typing.Union[str, int] = None
     ''' Audio channel count * MONO Mono, Set audio channels to mono. * STEREO Stereo, Set audio channels to stereo. * SURROUND4 4 Channels, Set audio channels to 4 channels. * SURROUND51 5.1 Surround, Set audio channels to 5.1 surround sound. * SURROUND71 7.1 Surround, Set audio channels to 7.1 surround sound.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    audio_codec: typing.Union[int, str] = None
+    audio_codec: typing.Union[str, int] = None
     ''' FFmpeg audio codec to use * NONE No Audio, Disables audio output, for video-only renders. * AAC AAC. * AC3 AC3. * FLAC FLAC. * MP2 MP2. * MP3 MP3. * OPUS Opus. * PCM PCM. * VORBIS Vorbis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     audio_mixrate: int = None
@@ -10712,28 +10743,28 @@ class FFmpegSettings(bpy_struct):
     :type: int
     '''
 
-    codec: typing.Union[int, str] = None
+    codec: typing.Union[str, int] = None
     ''' FFmpeg codec to use for video output * NONE No Video, Disables video output, for audio-only renders. * DNXHD DNxHD. * DV DV. * FFV1 FFmpeg video codec #1. * FLASH Flash Video. * H264 H.264. * HUFFYUV HuffYUV. * MPEG1 MPEG-1. * MPEG2 MPEG-2. * MPEG4 MPEG-4 (divx). * PNG PNG. * QTRLE QT rle / QT Animation. * THEORA Theora. * WEBM WEBM / VP9.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    constant_rate_factor: typing.Union[int, str] = None
+    constant_rate_factor: typing.Union[str, int] = None
     ''' Constant Rate Factor (CRF); tradeoff between video quality and file size * NONE Constant Bitrate, Configure constant bit rate, rather than constant output quality. * LOSSLESS Lossless. * PERC_LOSSLESS Perceptually lossless. * HIGH High quality. * MEDIUM Medium quality. * LOW Low quality. * VERYLOW Very low quality. * LOWEST Lowest quality.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    ffmpeg_preset: typing.Union[int, str] = None
+    ffmpeg_preset: typing.Union[str, int] = None
     ''' Tradeoff between encoding speed and compression ratio * BEST Slowest, Recommended if you have lots of time and want the best compression efficiency. * GOOD Good, The default and recommended for most applications. * REALTIME Realtime, Recommended for fast encoding.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    format: typing.Union[int, str] = None
+    format: typing.Union[str, int] = None
     ''' Output file container
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gopsize: int = None
@@ -10876,10 +10907,10 @@ class FModifier(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' F-Curve Modifier Type * NULL Invalid. * GENERATOR Generator, Generate a curve using a factorized or expanded polynomial. * FNGENERATOR Built-In Function, Generate a curve using standard math functions such as sin and cos. * ENVELOPE Envelope, Reshape F-Curve values - e.g. change amplitude of movements. * CYCLES Cycles, Cyclic extend/repeat keyframe sequence. * NOISE Noise, Add pseudo-random noise on top of F-Curves. * LIMITS Limits, Restrict maximum and minimum values of F-Curve. * STEPPED Stepped Interpolation, Snap values to nearest grid-step - e.g. for a stop-motion look.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_influence: bool = None
@@ -11160,10 +11191,10 @@ class FieldSettings(bpy_struct):
     :type: float
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     flow: float = None
@@ -11196,10 +11227,10 @@ class FieldSettings(bpy_struct):
     :type: float
     '''
 
-    guide_kink_axis: typing.Union[int, str] = None
+    guide_kink_axis: typing.Union[str, int] = None
     ''' Which axis to use for offset
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     guide_kink_frequency: float = None
@@ -11214,10 +11245,10 @@ class FieldSettings(bpy_struct):
     :type: float
     '''
 
-    guide_kink_type: typing.Union[int, str] = None
+    guide_kink_type: typing.Union[str, int] = None
     ''' Type of periodic offset on the curve
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     guide_minimum: float = None
@@ -11286,10 +11317,10 @@ class FieldSettings(bpy_struct):
     :type: int
     '''
 
-    shape: typing.Union[int, str] = None
+    shape: typing.Union[str, int] = None
     ''' Which direction is used to calculate the effector force * POINT Point, Field originates from the object center. * LINE Line, Field originates from the local Z axis of the object. * PLANE Plane, Field originates from the local XY plane of the object. * SURFACE Surface, Field originates from the surface of the object. * POINTS Every Point, Field originates from all of the vertices of the object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     size: float = None
@@ -11316,10 +11347,10 @@ class FieldSettings(bpy_struct):
     :type: 'Texture'
     '''
 
-    texture_mode: typing.Union[int, str] = None
+    texture_mode: typing.Union[str, int] = None
     ''' How the texture effect is calculated (RGB & Curl need a RGB texture, else Gradient will be used instead)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_nabla: float = None
@@ -11328,10 +11359,10 @@ class FieldSettings(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of field * NONE None. * FORCE Force, Radial field toward the center of object. * WIND Wind, Constant force along the force object's local Z axis. * VORTEX Vortex, Spiraling force that twists the force object's local Z axis. * MAGNET Magnetic, Forcefield depends on the speed of the particles. * HARMONIC Harmonic, The source of this force field is the zero point of a harmonic oscillator. * CHARGE Charge, Spherical forcefield based on the charge of particles, only influences other charge force fields. * LENNARDJ Lennard-Jones, Forcefield based on the Lennard-Jones potential. * TEXTURE Texture, Force field based on a texture. * GUIDE Curve Guide, Create a force along a curve object. * BOID Boid, Create a force that acts as a boid's predators or target. * TURBULENCE Turbulence, Create turbulence with a noise field. * DRAG Drag, Create a force that dampens motion. * SMOKE_FLOW Smoke Flow, Create a force based on smoke simulation air flow.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_2d_force: bool = None
@@ -11418,10 +11449,10 @@ class FieldSettings(bpy_struct):
     :type: bool
     '''
 
-    z_direction: typing.Union[int, str] = None
+    z_direction: typing.Union[str, int] = None
     ''' Effect in full or only positive/negative Z direction
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -11778,16 +11809,16 @@ class FileSelectParams(bpy_struct):
     :type: str
     '''
 
-    display_size: typing.Union[int, str] = None
+    display_size: typing.Union[str, int] = None
     ''' Change the size of the display (width of columns or thumbnails size)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    display_type: typing.Union[int, str] = None
+    display_type: typing.Union[str, int] = None
     ''' Display mode for the file list * LIST_VERTICAL Vertical List, Display files as a vertical list. * LIST_HORIZONTAL Horizontal List, Display files as a horizontal list. * THUMBNAIL Thumbnails, Display files as thumbnails.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     filename: str = None
@@ -11814,10 +11845,10 @@ class FileSelectParams(bpy_struct):
     :type: str
     '''
 
-    recursion_level: typing.Union[int, str] = None
+    recursion_level: typing.Union[str, int] = None
     ''' Numbers of dirtree levels to show simultaneously * NONE None, Only list current directory's content, with no recursion. * BLEND Blend File, List .blend files' content. * ALL_1 One Level, List all sub-directories' content, one level of recursion. * ALL_2 Two Levels, List all sub-directories' content, two levels of recursion. * ALL_3 Three Levels, List all sub-directories' content, three levels of recursion.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_details_datetime: bool = None
@@ -11838,10 +11869,10 @@ class FileSelectParams(bpy_struct):
     :type: bool
     '''
 
-    sort_method: typing.Union[int, str] = None
+    sort_method: typing.Union[str, int] = None
     ''' * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     title: str = None
@@ -11984,10 +12015,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    axis_slice_method: typing.Union[int, str] = None
+    axis_slice_method: typing.Union[str, int] = None
     ''' * FULL Full, Slice the whole domain object. * SINGLE Single, Perform a single slice of the domain object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     beta: float = None
@@ -12002,10 +12033,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    cache_data_format: typing.Union[int, str] = None
+    cache_data_format: typing.Union[str, int] = None
     ''' Select the file format to be used for caching volumetric data
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cache_directory: str = None
@@ -12056,28 +12087,28 @@ class FluidDomainSettings(bpy_struct):
     :type: int
     '''
 
-    cache_mesh_format: typing.Union[int, str] = None
+    cache_mesh_format: typing.Union[str, int] = None
     ''' Select the file format to be used for caching surface data
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    cache_noise_format: typing.Union[int, str] = None
+    cache_noise_format: typing.Union[str, int] = None
     ''' Select the file format to be used for caching noise data
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    cache_particle_format: typing.Union[int, str] = None
+    cache_particle_format: typing.Union[str, int] = None
     ''' Select the file format to be used for caching particle data
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    cache_type: typing.Union[int, str] = None
+    cache_type: typing.Union[str, int] = None
     ''' Change the cache type of the simulation * REPLAY Replay, Use the timeline to bake the scene. Pausing and resuming possible. * MODULAR Modular, Bake every stage of the simulation separately. Pausing and resuming possible. * FINAL Final, Bake the entire simulation at once. Only generates the most essential cache files. Pausing and resuming not possible.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cell_size: typing.List[float] = None
@@ -12098,10 +12129,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    coba_field: typing.Union[int, str] = None
+    coba_field: typing.Union[str, int] = None
     ''' Simulation field to color map * COLOR_R Red, Red component of the color field. * COLOR_G Green, Green component of the color field. * COLOR_B Blue, Blue component of the color field. * DENSITY Density, Quantity of soot in the fluid. * FLAME Flame, Flame field. * FUEL Fuel, Fuel field. * HEAT Heat, Temperature of the fluid. * VELOCITY_X X Velocity, X component of the velocity field. * VELOCITY_Y Y Velocity, Y component of the velocity field. * VELOCITY_Z Z Velocity, Z component of the velocity field.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_grid: typing.List[float] = None
@@ -12116,10 +12147,10 @@ class FluidDomainSettings(bpy_struct):
     :type: 'ColorRamp'
     '''
 
-    data_depth: typing.Union[int, str] = None
+    data_depth: typing.Union[str, int] = None
     ''' Bit depth for writing all scalar (including vector) lower values reduce file size * 16 Float (Half), Half float (16 bit data). * 32 Float (Full), Full float (32 bit data).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     delete_in_obstacle: bool = None
@@ -12134,10 +12165,10 @@ class FluidDomainSettings(bpy_struct):
     :type: typing.List[float]
     '''
 
-    display_interpolation: typing.Union[int, str] = None
+    display_interpolation: typing.Union[str, int] = None
     ''' Interpolation method to use for smoke/fire volumes in solid mode * LINEAR Linear, Good smoothness and speed. * CUBIC Cubic, Smoothed high quality interpolation, but slower.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     display_thickness: float = None
@@ -12158,10 +12189,10 @@ class FluidDomainSettings(bpy_struct):
     :type: typing.List[int]
     '''
 
-    domain_type: typing.Union[int, str] = None
+    domain_type: typing.Union[str, int] = None
     ''' Change domain type of the simulation * GAS Gas, Create domain for gases. * LIQUID Liquid, Create domain for liquids.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     effector_group: 'Collection' = None
@@ -12266,10 +12297,10 @@ class FluidDomainSettings(bpy_struct):
     :type: 'Object'
     '''
 
-    guide_source: typing.Union[int, str] = None
+    guide_source: typing.Union[str, int] = None
     ''' Choose where to get guiding velocities from * DOMAIN Domain, Use a fluid domain for guiding (domain needs to be baked already so that velocities can be extracted). Guiding domain can be of any type (i.e. gas or liquid). * EFFECTOR Effector, Use guiding (effector) objects to create fluid guiding (guiding objects should be animated and baked once set up completely).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     guide_vel_factor: float = None
@@ -12320,10 +12351,10 @@ class FluidDomainSettings(bpy_struct):
     :type: typing.List[float]
     '''
 
-    highres_sampling: typing.Union[int, str] = None
+    highres_sampling: typing.Union[str, int] = None
     ''' Method for sampling the high resolution flow
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_cache_baking_any: bool = None
@@ -12374,10 +12405,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    mesh_generator: typing.Union[int, str] = None
+    mesh_generator: typing.Union[str, int] = None
     ''' Which particle level set generator to use * IMPROVED Final, Use improved particle level set (slower but more precise and with mesh smoothening options). * UNION Preview, Use union particle level set (faster but lower quality).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mesh_particle_radius: float = None
@@ -12404,11 +12435,12 @@ class FluidDomainSettings(bpy_struct):
     :type: int
     '''
 
-    mesh_vertices: typing.Union[typing.List['FluidDomainVertexVelocity'],
-                                'bpy_prop_collection'] = None
+    mesh_vertices: typing.Union[
+        typing.Dict[str, 'FluidDomainVertexVelocity'], typing.
+        List['FluidDomainVertexVelocity'], 'bpy_prop_collection'] = None
     ''' Vertices of the fluid mesh generated by simulation
 
-    :type: typing.Union[typing.List['FluidDomainVertexVelocity'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FluidDomainVertexVelocity'], typing.List['FluidDomainVertexVelocity'], 'bpy_prop_collection']
     '''
 
     noise_pos_scale: float = None
@@ -12435,16 +12467,16 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    noise_type: typing.Union[int, str] = None
+    noise_type: typing.Union[str, int] = None
     ''' Noise method which is used during the high-res simulation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    openvdb_cache_compress_type: typing.Union[int, str] = None
+    openvdb_cache_compress_type: typing.Union[str, int] = None
     ''' Compression method to be used * ZIP Zip, Effective but slow compression. * BLOSC Blosc, Multithreaded compression, similar in size and quality as 'Zip'. * NONE None, Do not use any compression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     particle_band_width: float = None
@@ -12495,10 +12527,10 @@ class FluidDomainSettings(bpy_struct):
     :type: 'PointCache'
     '''
 
-    point_cache_compress_type: typing.Union[int, str] = None
+    point_cache_compress_type: typing.Union[str, int] = None
     ''' Compression method to be used * CACHELIGHT Lite, Fast but not so effective compression. * CACHEHEAVY Heavy, Effective but slow compression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     resolution_max: int = None
@@ -12513,16 +12545,16 @@ class FluidDomainSettings(bpy_struct):
     :type: bool
     '''
 
-    simulation_method: typing.Union[int, str] = None
+    simulation_method: typing.Union[str, int] = None
     ''' Change the underlying simulation method * FLIP FLIP, Use FLIP as the simulation method.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    slice_axis: typing.Union[int, str] = None
+    slice_axis: typing.Union[str, int] = None
     ''' * AUTO Auto, Adjust slice direction according to the view direction. * X X, Slice along the X axis. * Y Y, Slice along the Y axis. * Z Z, Slice along the Z axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     slice_depth: float = None
@@ -12531,10 +12563,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    slice_method: typing.Union[int, str] = None
+    slice_method: typing.Union[str, int] = None
     ''' How to slice the volume for viewport rendering * VIEW_ALIGNED View, Slice volume parallel to the view plane. * AXIS_ALIGNED Axis, Slice volume parallel to the major axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     slice_per_voxel: float = None
@@ -12543,10 +12575,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    sndparticle_boundary: typing.Union[int, str] = None
+    sndparticle_boundary: typing.Union[str, int] = None
     ''' How particles that left the domain are treated * DELETE Delete, Delete secondary particles that are inside obstacles or left the domain. * PUSHOUT Push Out, Push secondary particles that left the domain back into the domain.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sndparticle_bubble_buoyancy: float = None
@@ -12561,10 +12593,10 @@ class FluidDomainSettings(bpy_struct):
     :type: float
     '''
 
-    sndparticle_combined_export: typing.Union[int, str] = None
+    sndparticle_combined_export: typing.Union[str, int] = None
     ''' Determines which particle systems are created from secondary particles * OFF Off, Create a separate particle system for every secondary particle type. * SPRAY_FOAM Spray + Foam, Spray and foam particles are saved in the same particle system. * SPRAY_BUBBLES Spray + Bubbles, Spray and bubble particles are saved in the same particle system. * FOAM_BUBBLES Foam + Bubbles, Foam and bubbles particles are saved in the same particle system. * SPRAY_FOAM_BUBBLES Spray + Foam + Bubbles, Create one particle system that contains all three secondary particle types.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sndparticle_life_max: float = None
@@ -12807,10 +12839,10 @@ class FluidDomainSettings(bpy_struct):
     :type: bool
     '''
 
-    vector_display_type: typing.Union[int, str] = None
+    vector_display_type: typing.Union[str, int] = None
     ''' * NEEDLE Needle, Display vectors as needles. * STREAMLINE Streamlines, Display vectors as streamlines.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     vector_scale: float = None
@@ -12901,16 +12933,16 @@ class FluidEffectorSettings(bpy_struct):
     ''' Smoke collision settings
     '''
 
-    effector_type: typing.Union[int, str] = None
+    effector_type: typing.Union[str, int] = None
     ''' Change type of effector in the simulation * COLLISION Collision, Create collision object. * GUIDE Guide, Create guide object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    guide_mode: typing.Union[int, str] = None
+    guide_mode: typing.Union[str, int] = None
     ''' How to create guiding velocities * MAXIMUM Maximize, Compare velocities from previous frame with new velocities from current frame and keep the maximum. * MINIMUM Minimize, Compare velocities from previous frame with new velocities from current frame and keep the minimum. * OVERRIDE Override, Always write new guide velocities for every frame (each frame only contains current velocities from guiding objects). * AVERAGED Averaged, Take average of velocities from previous frame and new velocities from current frame.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subframes: int = None
@@ -12981,22 +13013,22 @@ class FluidFlowSettings(bpy_struct):
     :type: str
     '''
 
-    flow_behavior: typing.Union[int, str] = None
+    flow_behavior: typing.Union[str, int] = None
     ''' Change flow behavior in the simulation * INFLOW Inflow, Add fluid to simulation. * OUTFLOW Outflow, Delete fluid from simulation. * GEOMETRY Geometry, Only use given geometry for fluid.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    flow_source: typing.Union[int, str] = None
+    flow_source: typing.Union[str, int] = None
     ''' Change how fluid is emitted
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    flow_type: typing.Union[int, str] = None
+    flow_type: typing.Union[str, int] = None
     ''' Change type of fluid in the simulation * SMOKE Smoke, Add smoke. * BOTH Fire + Smoke, Add fire and smoke. * FIRE Fire, Add fire. * LIQUID Liquid, Add liquid.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     fuel_amount: float = None
@@ -13047,10 +13079,10 @@ class FluidFlowSettings(bpy_struct):
     :type: float
     '''
 
-    texture_map_type: typing.Union[int, str] = None
+    texture_map_type: typing.Union[str, int] = None
     ''' Texture mapping type * AUTO Generated, Generated coordinates centered to flow object. * UV UV, Use UV layer for texture coordinates.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_offset: float = None
@@ -13169,22 +13201,22 @@ class FreestyleLineSet(bpy_struct):
     :type: 'Collection'
     '''
 
-    collection_negation: typing.Union[int, str] = None
+    collection_negation: typing.Union[str, int] = None
     ''' Specify either inclusion or exclusion of feature edges belonging to a collection of objects * INCLUSIVE Inclusive, Select feature edges belonging to some object in the group. * EXCLUSIVE Exclusive, Select feature edges not belonging to any object in the group.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    edge_type_combination: typing.Union[int, str] = None
+    edge_type_combination: typing.Union[str, int] = None
     ''' Specify a logical combination of selection conditions on feature edge types * OR Logical OR, Select feature edges satisfying at least one of edge type conditions. * AND Logical AND, Select feature edges satisfying all edge type conditions.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    edge_type_negation: typing.Union[int, str] = None
+    edge_type_negation: typing.Union[str, int] = None
     ''' Specify either inclusion or exclusion of feature edges selected by edge types * INCLUSIVE Inclusive, Select feature edges satisfying the given edge type conditions. * EXCLUSIVE Exclusive, Select feature edges not satisfying the given edge type conditions.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     exclude_border: bool = None
@@ -13241,16 +13273,16 @@ class FreestyleLineSet(bpy_struct):
     :type: bool
     '''
 
-    face_mark_condition: typing.Union[int, str] = None
+    face_mark_condition: typing.Union[str, int] = None
     ''' Specify a feature edge selection condition based on face marks * ONE One Face, Select a feature edge if either of its adjacent faces is marked. * BOTH Both Faces, Select a feature edge if both of its adjacent faces are marked.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    face_mark_negation: typing.Union[int, str] = None
+    face_mark_negation: typing.Union[str, int] = None
     ''' Specify either inclusion or exclusion of feature edges selected by face marks * INCLUSIVE Inclusive, Select feature edges satisfying the given face mark conditions. * EXCLUSIVE Exclusive, Select feature edges not satisfying the given face mark conditions.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     linestyle: 'FreestyleLineStyle' = None
@@ -13367,10 +13399,10 @@ class FreestyleLineSet(bpy_struct):
     :type: bool
     '''
 
-    visibility: typing.Union[int, str] = None
+    visibility: typing.Union[str, int] = None
     ''' Determine how to use visibility for feature edge selection * VISIBLE Visible, Select visible feature edges. * HIDDEN Hidden, Select hidden feature edges. * RANGE QI Range, Select feature edges within a range of quantitative invisibility (QI) values.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -13497,24 +13529,26 @@ class FreestyleSettings(bpy_struct):
     :type: float
     '''
 
-    linesets: typing.Union[typing.List['FreestyleLineSet'],
-                           'bpy_prop_collection', 'Linesets'] = None
+    linesets: typing.Union[typing.Dict[str, 'FreestyleLineSet'], typing.
+                           List['FreestyleLineSet'], 'bpy_prop_collection',
+                           'Linesets'] = None
     ''' 
 
-    :type: typing.Union[typing.List['FreestyleLineSet'], 'bpy_prop_collection', 'Linesets']
+    :type: typing.Union[typing.Dict[str, 'FreestyleLineSet'], typing.List['FreestyleLineSet'], 'bpy_prop_collection', 'Linesets']
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Select the Freestyle control mode * SCRIPT Python Scripting Mode, Advanced mode for using style modules written in Python. * EDITOR Parameter Editor Mode, Basic mode for interactive style parameter editing.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    modules: typing.Union[typing.List['FreestyleModuleSettings'],
+    modules: typing.Union[typing.Dict[str, 'FreestyleModuleSettings'], typing.
+                          List['FreestyleModuleSettings'],
                           'bpy_prop_collection', 'FreestyleModules'] = None
     ''' A list of style modules (to be applied from top to bottom)
 
-    :type: typing.Union[typing.List['FreestyleModuleSettings'], 'bpy_prop_collection', 'FreestyleModules']
+    :type: typing.Union[typing.Dict[str, 'FreestyleModuleSettings'], typing.List['FreestyleModuleSettings'], 'bpy_prop_collection', 'FreestyleModules']
     '''
 
     sphere_radius: float = None
@@ -13615,11 +13649,11 @@ class Function(bpy_struct):
     :type: bool
     '''
 
-    parameters: typing.Union[typing.
+    parameters: typing.Union[typing.Dict[str, 'Property'], typing.
                              List['Property'], 'bpy_prop_collection'] = None
     ''' Parameters for the function
 
-    :type: typing.Union[typing.List['Property'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Property'], typing.List['Property'], 'bpy_prop_collection']
     '''
 
     use_self: bool = None
@@ -13678,11 +13712,12 @@ class GPencilFrame(bpy_struct):
     :type: bool
     '''
 
-    strokes: typing.Union[typing.List['GPencilStroke'], 'bpy_prop_collection',
+    strokes: typing.Union[typing.Dict[str, 'GPencilStroke'], typing.
+                          List['GPencilStroke'], 'bpy_prop_collection',
                           'GPencilStrokes'] = None
     ''' Freehand curves defining the sketch on this frame
 
-    :type: typing.Union[typing.List['GPencilStroke'], 'bpy_prop_collection', 'GPencilStrokes']
+    :type: typing.Union[typing.Dict[str, 'GPencilStroke'], typing.List['GPencilStroke'], 'bpy_prop_collection', 'GPencilStrokes']
     '''
 
     def clear(self):
@@ -13785,10 +13820,10 @@ class GPencilInterpolateSettings(bpy_struct):
     :type: float
     '''
 
-    easing: typing.Union[int, str] = None
+    easing: typing.Union[str, int] = None
     ''' Which ends of the segment between the preceding and following grease pencil frames easing interpolation is applied to * AUTO Automatic Easing, Easing type is chosen automatically based on what the type of interpolation used (e.g. 'Ease In' for transitional types, and 'Ease Out' for dynamic effects). * EASE_IN Ease In, Only on the end closest to the next keyframe. * EASE_OUT Ease Out, Only on the end closest to the first keyframe. * EASE_IN_OUT Ease In and Out, Segment between both keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     interpolate_all_layers: bool = None
@@ -13815,10 +13850,10 @@ class GPencilInterpolateSettings(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Interpolation method to use the next time 'Interpolate Sequence' is run * LINEAR Linear, Straight-line interpolation between A and B (i.e. no ease in/out). * CUSTOM Custom, Custom interpolation defined using a curve map. * SINE Sinusoidal, Sinusoidal easing (weakest, almost linear but with a slight curvature). * QUAD Quadratic, Quadratic easing. * CUBIC Cubic, Cubic easing. * QUART Quartic, Quartic easing. * QUINT Quintic, Quintic easing. * EXPO Exponential, Exponential easing (dramatic). * CIRC Circular, Circular easing (strongest and most dynamic). * BACK Back, Cubic easing with overshoot and settle. * BOUNCE Bounce, Exponentially decaying parabolic bounce, like when objects collide. * ELASTIC Elastic, Exponentially decaying sine wave, like an elastic band.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -13883,10 +13918,10 @@ class GPencilLayer(bpy_struct):
     :type: int
     '''
 
-    blend_mode: typing.Union[int, str] = None
+    blend_mode: typing.Union[str, int] = None
     ''' Blend mode
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     channel_color: typing.List[float] = None
@@ -13901,11 +13936,12 @@ class GPencilLayer(bpy_struct):
     :type: typing.List[float]
     '''
 
-    frames: typing.Union[typing.List['GPencilFrame'], 'bpy_prop_collection',
+    frames: typing.Union[typing.Dict[str, 'GPencilFrame'], typing.
+                         List['GPencilFrame'], 'bpy_prop_collection',
                          'GPencilFrames'] = None
     ''' Sketches for this layer on different frames
 
-    :type: typing.Union[typing.List['GPencilFrame'], 'bpy_prop_collection', 'GPencilFrames']
+    :type: typing.Union[typing.Dict[str, 'GPencilFrame'], typing.List['GPencilFrame'], 'bpy_prop_collection', 'GPencilFrames']
     '''
 
     hide: bool = None
@@ -13956,12 +13992,12 @@ class GPencilLayer(bpy_struct):
     :type: bool
     '''
 
-    mask_layers: typing.Union[typing.
+    mask_layers: typing.Union[typing.Dict[str, 'GPencilLayerMask'], typing.
                               List['GPencilLayerMask'], 'bpy_prop_collection',
                               'GreasePencilMaskLayers'] = None
     ''' List of Masking Layers
 
-    :type: typing.Union[typing.List['GPencilLayerMask'], 'bpy_prop_collection', 'GreasePencilMaskLayers']
+    :type: typing.Union[typing.Dict[str, 'GPencilLayerMask'], typing.List['GPencilLayerMask'], 'bpy_prop_collection', 'GreasePencilMaskLayers']
     '''
 
     matrix_inverse: typing.List[float] = None
@@ -13988,10 +14024,10 @@ class GPencilLayer(bpy_struct):
     :type: str
     '''
 
-    parent_type: typing.Union[int, str] = None
+    parent_type: typing.Union[str, int] = None
     ''' Type of parent relation * OBJECT Object, The layer is parented to an object. * ARMATURE Armature. * BONE Bone, The layer is parented to a bone.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pass_index: int = None
@@ -14178,10 +14214,10 @@ class GPencilSculptGuide(bpy_struct):
     :type: 'Object'
     '''
 
-    reference_point: typing.Union[int, str] = None
+    reference_point: typing.Union[str, int] = None
     ''' Type of speed guide * CURSOR Cursor, Use cursor as reference point. * CUSTOM Custom, Use custom reference point. * OBJECT Object, Use object as reference point.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     spacing: float = None
@@ -14190,10 +14226,10 @@ class GPencilSculptGuide(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of speed guide * CIRCULAR Circular, Use single point to create rings. * RADIAL Radial, Use single point as direction. * PARALLEL Parallel, Parallel lines. * GRID Grid, Grid allows horizontal and vertical lines. * ISO Isometric, Grid allows isometric and vertical lines.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_guide: bool = None
@@ -14246,10 +14282,10 @@ class GPencilSculptSettings(bpy_struct):
     :type: float
     '''
 
-    lock_axis: typing.Union[int, str] = None
+    lock_axis: typing.Union[str, int] = None
     ''' * VIEW View, Align strokes to current view plane. * AXIS_Y Front (X-Z), Project strokes to plane locked to Y. * AXIS_X Side (Y-Z), Project strokes to plane locked to X. * AXIS_Z Top (X-Y), Project strokes to plane locked to Z. * CURSOR Cursor, Align strokes to current 3D cursor orientation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     multiframe_falloff_curve: 'CurveMapping' = None
@@ -14326,10 +14362,10 @@ class GPencilStroke(bpy_struct):
     :type: typing.List[float]
     '''
 
-    display_mode: typing.Union[int, str] = None
+    display_mode: typing.Union[str, int] = None
     ''' Coordinate space that stroke is in * SCREEN Screen, Stroke is in screen-space. * 3DSPACE 3D Space, Stroke is in 3D-space. * 2DSPACE 2D Space, Stroke is in 2D-space. * 2DIMAGE 2D Image, Stroke is in 2D-space (but with special 'image' scaling).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     draw_cyclic: bool = None
@@ -14338,17 +14374,18 @@ class GPencilStroke(bpy_struct):
     :type: bool
     '''
 
-    end_cap_mode: typing.Union[int, str] = None
+    end_cap_mode: typing.Union[str, int] = None
     ''' Stroke end extreme cap style
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    groups: typing.Union[typing.List['GpencilVertexGroupElement'],
+    groups: typing.Union[typing.Dict[str, 'GpencilVertexGroupElement'], typing.
+                         List['GpencilVertexGroupElement'],
                          'bpy_prop_collection'] = None
     ''' Weights for the vertex groups this vertex is member of
 
-    :type: typing.Union[typing.List['GpencilVertexGroupElement'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'GpencilVertexGroupElement'], typing.List['GpencilVertexGroupElement'], 'bpy_prop_collection']
     '''
 
     hardness: float = None
@@ -14375,11 +14412,12 @@ class GPencilStroke(bpy_struct):
     :type: int
     '''
 
-    points: typing.Union[typing.List['GPencilStrokePoint'],
-                         'bpy_prop_collection', 'GPencilStrokePoints'] = None
+    points: typing.Union[typing.Dict[str, 'GPencilStrokePoint'], typing.
+                         List['GPencilStrokePoint'], 'bpy_prop_collection',
+                         'GPencilStrokePoints'] = None
     ''' Stroke data points
 
-    :type: typing.Union[typing.List['GPencilStrokePoint'], 'bpy_prop_collection', 'GPencilStrokePoints']
+    :type: typing.Union[typing.Dict[str, 'GPencilStrokePoint'], typing.List['GPencilStrokePoint'], 'bpy_prop_collection', 'GPencilStrokePoints']
     '''
 
     select: bool = None
@@ -14388,17 +14426,18 @@ class GPencilStroke(bpy_struct):
     :type: bool
     '''
 
-    start_cap_mode: typing.Union[int, str] = None
+    start_cap_mode: typing.Union[str, int] = None
     ''' Stroke start extreme cap style
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    triangles: typing.Union[typing.List['GPencilTriangle'],
+    triangles: typing.Union[typing.Dict[str, 'GPencilTriangle'], typing.
+                            List['GPencilTriangle'],
                             'bpy_prop_collection'] = None
     ''' Triangulation data for HQ fill
 
-    :type: typing.Union[typing.List['GPencilTriangle'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'GPencilTriangle'], typing.List['GPencilTriangle'], 'bpy_prop_collection']
     '''
 
     uv_rotation: float = None
@@ -14859,8 +14898,8 @@ class Gizmo(bpy_struct):
         pass
 
     def modal(self, context: 'Context', event: 'Event',
-              tweak: typing.Union[typing.Set[int], typing.Set[str]]
-              ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+              tweak: typing.Union[typing.Set[str], typing.Set[int]]
+              ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' 
 
         :param context: 
@@ -14868,8 +14907,8 @@ class Gizmo(bpy_struct):
         :param event: 
         :type event: 'Event'
         :param tweak: Tweak
-        :type tweak: typing.Union[typing.Set[int], typing.Set[str]]
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :type tweak: typing.Union[typing.Set[str], typing.Set[int]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -14881,14 +14920,14 @@ class Gizmo(bpy_struct):
         pass
 
     def invoke(self, context: 'Context', event: 'Event'
-               ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+               ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' 
 
         :param context: 
         :type context: 'Context'
         :param event: 
         :type event: 'Event'
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -14921,14 +14960,14 @@ class Gizmo(bpy_struct):
 
     def draw_preset_arrow(self,
                           matrix: typing.List[float],
-                          axis: typing.Union[int, str] = 'POS_Z',
+                          axis: typing.Union[str, int] = 'POS_Z',
                           select_id: int = -1):
         ''' Draw a box
 
         :param matrix: The matrix to transform
         :type matrix: typing.List[float]
         :param axis: Arrow Orientation
-        :type axis: typing.Union[int, str]
+        :type axis: typing.Union[str, int]
         :param select_id: Zero when not selecting
         :type select_id: int
         '''
@@ -14936,14 +14975,14 @@ class Gizmo(bpy_struct):
 
     def draw_preset_circle(self,
                            matrix: typing.List[float],
-                           axis: typing.Union[int, str] = 'POS_Z',
+                           axis: typing.Union[str, int] = 'POS_Z',
                            select_id: int = -1):
         ''' Draw a box
 
         :param matrix: The matrix to transform
         :type matrix: typing.List[float]
         :param axis: Arrow Orientation
-        :type axis: typing.Union[int, str]
+        :type axis: typing.Union[str, int]
         :param select_id: Zero when not selecting
         :type select_id: int
         '''
@@ -15113,10 +15152,10 @@ class GizmoGroup(bpy_struct):
     :type: str
     '''
 
-    bl_options: typing.Union[typing.Set[int], typing.Set[str]] = None
+    bl_options: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Options for this operator type * 3D 3D, Use in 3D viewport. * SCALE Scale, Scale to respect zoom (otherwise zoom independent draw size). * DEPTH_3D Depth 3D, Supports culled depth by other objects in the view. * SELECT Select, Supports selection. * PERSISTENT Persistent. * SHOW_MODAL_ALL Show Modal All, Show all while interacting. * TOOL_INIT Tool Init, Postpone running until tool operator run (when used with a tool). * VR_REDRAWS VR Redraws, The gizmos are made for use with virtual reality sessions and require special redraw management.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     bl_owner_id: str = None
@@ -15125,23 +15164,23 @@ class GizmoGroup(bpy_struct):
     :type: str
     '''
 
-    bl_region_type: typing.Union[int, str] = None
+    bl_region_type: typing.Union[str, int] = None
     ''' The region where the panel is going to be used in
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    bl_space_type: typing.Union[int, str] = None
+    bl_space_type: typing.Union[str, int] = None
     ''' The space where the panel is going to be used in * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gizmos: typing.Union[typing.
+    gizmos: typing.Union[typing.Dict[str, 'Gizmo'], typing.
                          List['Gizmo'], 'bpy_prop_collection', 'Gizmos'] = None
     ''' List of gizmos in the Gizmo Map
 
-    :type: typing.Union[typing.List['Gizmo'], 'bpy_prop_collection', 'Gizmos']
+    :type: typing.Union[typing.Dict[str, 'Gizmo'], typing.List['Gizmo'], 'bpy_prop_collection', 'Gizmos']
     '''
 
     has_reports: bool = None
@@ -15366,10 +15405,10 @@ class GpencilModifier(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * GP_ARRAY Array, Create array of duplicate instances. * GP_BUILD Build, Create duplication of strokes. * GP_MIRROR Mirror, Duplicate strokes like a mirror. * GP_MULTIPLY Multiple Strokes, Produce multiple strokes along one stroke. * GP_SIMPLIFY Simplify, Simplify stroke reducing number of points. * GP_SUBDIV Subdivide, Subdivide stroke adding more control points. * GP_ARMATURE Armature, Deform stroke points using armature object. * GP_HOOK Hook, Deform stroke points using objects. * GP_LATTICE Lattice, Deform strokes using lattice. * GP_NOISE Noise, Add noise to strokes. * GP_OFFSET Offset, Change stroke location, rotation or scale. * GP_SMOOTH Smooth, Smooth stroke. * GP_THICK Thickness, Change stroke thickness. * GP_TIME Time Offset, Offset keyframes. * GP_COLOR Hue/Saturation, Apply changes to stroke colors. * GP_OPACITY Opacity, Opacity of the strokes. * GP_TINT Tint, Tint strokes with new color.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -15498,10 +15537,10 @@ class GreasePencilLayers(bpy_struct):
     :type: int
     '''
 
-    active_note: typing.Union[int, str] = None
+    active_note: typing.Union[str, int] = None
     ''' Note/Layer to add annotation strokes to
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def new(self, name: str, set_active: bool = True) -> 'GPencilLayer':
@@ -15524,13 +15563,13 @@ class GreasePencilLayers(bpy_struct):
         '''
         pass
 
-    def move(self, layer: 'GPencilLayer', type: typing.Union[int, str]):
+    def move(self, layer: 'GPencilLayer', type: typing.Union[str, int]):
         ''' Move a grease pencil layer in the layer stack
 
         :param layer: The layer to move
         :type layer: 'GPencilLayer'
         :param type: Direction of movement
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         '''
         pass
 
@@ -15614,16 +15653,16 @@ class Header(bpy_struct):
     :type: str
     '''
 
-    bl_region_type: typing.Union[int, str] = None
+    bl_region_type: typing.Union[str, int] = None
     ''' The region where the header is going to be used in (defaults to header region)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    bl_space_type: typing.Union[int, str] = None
+    bl_space_type: typing.Union[str, int] = None
     ''' The space where the header is going to be used in * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     layout: 'UILayout' = None
@@ -15666,10 +15705,10 @@ class Histogram(bpy_struct):
     ''' Statistical view of the levels of color in an image
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Channels to display when drawing the histogram * LUMA Luma, Luma. * RGB RGB, Red Green Blue. * R R, Red. * G G, Green. * B B, Blue. * A A, Alpha.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_line: bool = None
@@ -15854,11 +15893,11 @@ class ID(bpy_struct):
 
     def update_tag(
             self,
-            refresh: typing.Union[typing.Set[int], typing.Set[str]] = {}):
+            refresh: typing.Union[typing.Set[str], typing.Set[int]] = {}):
         ''' Tag the ID to update its display data, e.g. when calling bpy.types.Scene.update
 
         :param refresh: Type of updates to perform
-        :type refresh: typing.Union[typing.Set[int], typing.Set[str]]
+        :type refresh: typing.Union[typing.Set[str], typing.Set[int]]
         '''
         pass
 
@@ -15944,11 +15983,12 @@ class IDOverrideLibrary(bpy_struct):
     :type: bool
     '''
 
-    properties: typing.Union[typing.List['IDOverrideLibraryProperty'],
-                             'bpy_prop_collection'] = None
+    properties: typing.Union[
+        typing.Dict[str, 'IDOverrideLibraryProperty'], typing.
+        List['IDOverrideLibraryProperty'], 'bpy_prop_collection'] = None
     ''' List of overridden properties
 
-    :type: typing.Union[typing.List['IDOverrideLibraryProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'IDOverrideLibraryProperty'], typing.List['IDOverrideLibraryProperty'], 'bpy_prop_collection']
     '''
 
     reference: 'ID' = None
@@ -15983,11 +16023,13 @@ class IDOverrideLibraryProperty(bpy_struct):
     ''' Description of an overridden property
     '''
 
-    operations: typing.Union[typing.List['IDOverrideLibraryPropertyOperation'],
-                             'bpy_prop_collection'] = None
+    operations: typing.Union[
+        typing.Dict[str, 'IDOverrideLibraryPropertyOperation'], typing.
+        List['IDOverrideLibraryPropertyOperation'],
+        'bpy_prop_collection'] = None
     ''' List of overriding operations for a property
 
-    :type: typing.Union[typing.List['IDOverrideLibraryPropertyOperation'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'IDOverrideLibraryPropertyOperation'], typing.List['IDOverrideLibraryPropertyOperation'], 'bpy_prop_collection']
     '''
 
     rna_path: str = None
@@ -16022,16 +16064,16 @@ class IDOverrideLibraryPropertyOperation(bpy_struct):
     ''' Description of an override operation over an overridden property
     '''
 
-    flag: typing.Union[int, str] = None
+    flag: typing.Union[str, int] = None
     ''' Optional flags (NOT USED) * MANDATORY Mandatory, For templates, prevents the user from removing pre-defined operation (NOT USED). * LOCKED Locked, Prevents the user from modifying that override operation (NOT USED).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    operation: typing.Union[int, str] = None
+    operation: typing.Union[str, int] = None
     ''' What override operation is performed * NOOP No-Op, Does nothing, prevents adding actual overrides (NOT USED). * REPLACE Replace, Replace value of reference by overriding one. * DIFF_ADD Differential, Stores and apply difference between reference and local value (NOT USED). * DIFF_SUB Differential, Stores and apply difference between reference and local value (NOT USED). * FACT_MULTIPLY Factor, Stores and apply multiplication factor between reference and local value (NOT USED). * INSERT_AFTER Insert After, Insert a new item into collection after the one referenced in subitem_reference_name or _index. * INSERT_BEFORE Insert Before, Insert a new item into collection after the one referenced in subitem_reference_name or _index (NOT USED).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subitem_local_index: int = None
@@ -16107,10 +16149,10 @@ class IKParam(bpy_struct):
     ''' Base type for IK solver parameters
     '''
 
-    ik_solver: typing.Union[int, str] = None
+    ik_solver: typing.Union[str, int] = None
     ''' IK solver for which these parameters are defined * LEGACY Standard, Original IK solver. * ITASC iTaSC, Multi constraint, stateful IK solver.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -16157,16 +16199,16 @@ class ImageFormatSettings(bpy_struct):
     :type: int
     '''
 
-    color_depth: typing.Union[int, str] = None
+    color_depth: typing.Union[str, int] = None
     ''' Bit depth per channel * 8 8, 8 bit color channels. * 10 10, 10 bit color channels. * 12 12, 12 bit color channels. * 16 16, 16 bit color channels. * 32 32, 32 bit color channels.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    color_mode: typing.Union[int, str] = None
+    color_mode: typing.Union[str, int] = None
     ''' Choose BW for saving grayscale images, RGB for saving red, green and blue channels, and RGBA for saving red, green, blue and alpha channels * BW BW, Images get saved in 8 bits grayscale (only PNG, JPEG, TGA, TIF). * RGB RGB, Images are saved with RGB (color) data. * RGBA RGBA, Images are saved with RGB and Alpha data (if supported).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     compression: int = None
@@ -16181,22 +16223,22 @@ class ImageFormatSettings(bpy_struct):
     :type: 'ColorManagedDisplaySettings'
     '''
 
-    exr_codec: typing.Union[int, str] = None
+    exr_codec: typing.Union[str, int] = None
     ''' Codec settings for OpenEXR
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    file_format: typing.Union[int, str] = None
+    file_format: typing.Union[str, int] = None
     ''' File format to save the rendered images as * BMP BMP, Output image in bitmap format. * IRIS Iris, Output image in (old!) SGI IRIS format. * PNG PNG, Output image in PNG format. * JPEG JPEG, Output image in JPEG format. * JPEG2000 JPEG 2000, Output image in JPEG 2000 format. * TARGA Targa, Output image in Targa format. * TARGA_RAW Targa Raw, Output image in uncompressed Targa format. * CINEON Cineon, Output image in Cineon format. * DPX DPX, Output image in DPX format. * OPEN_EXR_MULTILAYER OpenEXR MultiLayer, Output image in multilayer OpenEXR format. * OPEN_EXR OpenEXR, Output image in OpenEXR format. * HDR Radiance HDR, Output image in Radiance HDR format. * TIFF TIFF, Output image in TIFF format. * AVI_JPEG AVI JPEG, Output video in AVI JPEG format. * AVI_RAW AVI Raw, Output video in AVI Raw format. * FFMPEG FFmpeg video, The most versatile way to output video files.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    jpeg2k_codec: typing.Union[int, str] = None
+    jpeg2k_codec: typing.Union[str, int] = None
     ''' Codec settings for Jpeg2000
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     quality: int = None
@@ -16211,10 +16253,10 @@ class ImageFormatSettings(bpy_struct):
     :type: 'Stereo3dFormat'
     '''
 
-    tiff_codec: typing.Union[int, str] = None
+    tiff_codec: typing.Union[str, int] = None
     ''' Compression mode for TIFF
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_cineon_log: bool = None
@@ -16259,10 +16301,10 @@ class ImageFormatSettings(bpy_struct):
     :type: 'ColorManagedViewSettings'
     '''
 
-    views_format: typing.Union[int, str] = None
+    views_format: typing.Union[str, int] = None
     ''' Format of multiview media * INDIVIDUAL Individual, Individual files for each view with the prefix as defined by the scene views. * STEREO_3D Stereo 3D, Single file with an encoded stereo pair.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -16510,11 +16552,11 @@ class KeyConfig(bpy_struct):
     :type: bool
     '''
 
-    keymaps: typing.Union[typing.List['KeyMap'], 'bpy_prop_collection',
-                          'KeyMaps'] = None
+    keymaps: typing.Union[typing.Dict[str, 'KeyMap'], typing.List['KeyMap'],
+                          'bpy_prop_collection', 'KeyMaps'] = None
     ''' Key maps configured as part of this configuration
 
-    :type: typing.Union[typing.List['KeyMap'], 'bpy_prop_collection', 'KeyMaps']
+    :type: typing.Union[typing.Dict[str, 'KeyMap'], typing.List['KeyMap'], 'bpy_prop_collection', 'KeyMaps']
     '''
 
     name: str = None
@@ -16629,24 +16671,24 @@ class KeyConfigurations(bpy_struct):
     def find_item_from_operator(
             self,
             idname: str,
-            context: typing.Union[int, str] = 'INVOKE_DEFAULT',
+            context: typing.Union[str, int] = 'INVOKE_DEFAULT',
             properties: 'OperatorProperties' = None,
-            include: typing.Union[typing.Set[int], typing.Set[str]] = {
+            include: typing.Union[typing.Set[str], typing.Set[int]] = {
                 'ACTIONZONE', 'KEYBOARD', 'MOUSE', 'NDOF', 'TWEAK'
             },
-            exclude: typing.Union[typing.Set[int], typing.Set[str]] = {}):
+            exclude: typing.Union[typing.Set[str], typing.Set[int]] = {}):
         ''' find_item_from_operator
 
         :param idname: Operator Identifier
         :type idname: str
         :param context: context
-        :type context: typing.Union[int, str]
+        :type context: typing.Union[str, int]
         :param properties: 
         :type properties: 'OperatorProperties'
         :param include: Include
-        :type include: typing.Union[typing.Set[int], typing.Set[str]]
+        :type include: typing.Union[typing.Set[str], typing.Set[int]]
         :param exclude: Exclude
-        :type exclude: typing.Union[typing.Set[int], typing.Set[str]]
+        :type exclude: typing.Union[typing.Set[str], typing.Set[int]]
         '''
         pass
 
@@ -16700,11 +16742,12 @@ class KeyMap(bpy_struct):
     :type: bool
     '''
 
-    keymap_items: typing.Union[typing.List['KeyMapItem'],
-                               'bpy_prop_collection', 'KeyMapItems'] = None
+    keymap_items: typing.Union[typing.Dict[str, 'KeyMapItem'], typing.
+                               List['KeyMapItem'], 'bpy_prop_collection',
+                               'KeyMapItems'] = None
     ''' Items in the keymap, linking an operator to an input event
 
-    :type: typing.Union[typing.List['KeyMapItem'], 'bpy_prop_collection', 'KeyMapItems']
+    :type: typing.Union[typing.Dict[str, 'KeyMapItem'], typing.List['KeyMapItem'], 'bpy_prop_collection', 'KeyMapItems']
     '''
 
     name: str = None
@@ -16713,10 +16756,10 @@ class KeyMap(bpy_struct):
     :type: str
     '''
 
-    region_type: typing.Union[int, str] = None
+    region_type: typing.Union[str, int] = None
     ''' Optional region type keymap is associated with
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_expanded_children: bool = None
@@ -16731,10 +16774,10 @@ class KeyMap(bpy_struct):
     :type: bool
     '''
 
-    space_type: typing.Union[int, str] = None
+    space_type: typing.Union[str, int] = None
     ''' Optional space type keymap is associated with * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def active(self) -> 'KeyMap':
@@ -16833,16 +16876,16 @@ class KeyMapItem(bpy_struct):
     :type: bool
     '''
 
-    key_modifier: typing.Union[int, str] = None
+    key_modifier: typing.Union[str, int] = None
     ''' Regular key pressed as a modifier * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    map_type: typing.Union[int, str] = None
+    map_type: typing.Union[str, int] = None
     ''' Type of event mapping
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -16863,10 +16906,10 @@ class KeyMapItem(bpy_struct):
     :type: 'OperatorProperties'
     '''
 
-    propvalue: typing.Union[int, str] = None
+    propvalue: typing.Union[str, int] = None
     ''' The value this event translates to in a modal keymap
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     repeat: bool = None
@@ -16887,16 +16930,16 @@ class KeyMapItem(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of event * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    value: typing.Union[int, str] = None
+    value: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def compare(self, item: 'KeyMapItem') -> bool:
@@ -16947,14 +16990,14 @@ class KeyMapItems(bpy_struct):
 
     def new(self,
             idname: str,
-            type: typing.Union[int, str],
-            value: typing.Union[int, str],
+            type: typing.Union[str, int],
+            value: typing.Union[str, int],
             any: bool = False,
             shift: bool = False,
             ctrl: bool = False,
             alt: bool = False,
             oskey: bool = False,
-            key_modifier: typing.Union[int, str] = 'NONE',
+            key_modifier: typing.Union[str, int] = 'NONE',
             repeat: bool = True,
             head: bool = False) -> 'KeyMapItem':
         ''' new
@@ -16962,9 +17005,9 @@ class KeyMapItems(bpy_struct):
         :param idname: Operator Identifier
         :type idname: str
         :param type: Type * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :param value: Value
-        :type value: typing.Union[int, str]
+        :type value: typing.Union[str, int]
         :param any: Any
         :type any: bool
         :param shift: Shift
@@ -16976,7 +17019,7 @@ class KeyMapItems(bpy_struct):
         :param oskey: OS Key
         :type oskey: bool
         :param key_modifier: Key Modifier * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
-        :type key_modifier: typing.Union[int, str]
+        :type key_modifier: typing.Union[str, int]
         :param repeat: Repeat, When set, accept key-repeat events
         :type repeat: bool
         :param head: At Head, Force item to be added at start (not end) of key map so that it doesn't get blocked by an existing key map item
@@ -16988,23 +17031,23 @@ class KeyMapItems(bpy_struct):
 
     def new_modal(self,
                   propvalue: str,
-                  type: typing.Union[int, str],
-                  value: typing.Union[int, str],
+                  type: typing.Union[str, int],
+                  value: typing.Union[str, int],
                   any: bool = False,
                   shift: bool = False,
                   ctrl: bool = False,
                   alt: bool = False,
                   oskey: bool = False,
-                  key_modifier: typing.Union[int, str] = 'NONE',
+                  key_modifier: typing.Union[str, int] = 'NONE',
                   repeat: bool = True) -> 'KeyMapItem':
         ''' new_modal
 
         :param propvalue: Property Value
         :type propvalue: str
         :param type: Type * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :param value: Value
-        :type value: typing.Union[int, str]
+        :type value: typing.Union[str, int]
         :param any: Any
         :type any: bool
         :param shift: Shift
@@ -17016,7 +17059,7 @@ class KeyMapItems(bpy_struct):
         :param oskey: OS Key
         :type oskey: bool
         :param key_modifier: Key Modifier * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
-        :type key_modifier: typing.Union[int, str]
+        :type key_modifier: typing.Union[str, int]
         :param repeat: Repeat, When set, accept key-repeat events
         :type repeat: bool
         :rtype: 'KeyMapItem'
@@ -17059,10 +17102,10 @@ class KeyMapItems(bpy_struct):
             self,
             idname: str,
             properties: 'OperatorProperties' = None,
-            include: typing.Union[typing.Set[int], typing.Set[str]] = {
+            include: typing.Union[typing.Set[str], typing.Set[int]] = {
                 'ACTIONZONE', 'KEYBOARD', 'MOUSE', 'NDOF', 'TWEAK'
             },
-            exclude: typing.Union[typing.Set[int], typing.Set[str]] = {}):
+            exclude: typing.Union[typing.Set[str], typing.Set[int]] = {}):
         ''' find_from_operator
 
         :param idname: Operator Identifier
@@ -17070,9 +17113,9 @@ class KeyMapItems(bpy_struct):
         :param properties: 
         :type properties: 'OperatorProperties'
         :param include: Include
-        :type include: typing.Union[typing.Set[int], typing.Set[str]]
+        :type include: typing.Union[typing.Set[str], typing.Set[int]]
         :param exclude: Exclude
-        :type exclude: typing.Union[typing.Set[int], typing.Set[str]]
+        :type exclude: typing.Union[typing.Set[str], typing.Set[int]]
         '''
         pass
 
@@ -17112,8 +17155,8 @@ class KeyMaps(bpy_struct):
 
     def new(self,
             name: str,
-            space_type: typing.Union[int, str] = 'EMPTY',
-            region_type: typing.Union[int, str] = 'WINDOW',
+            space_type: typing.Union[str, int] = 'EMPTY',
+            region_type: typing.Union[str, int] = 'WINDOW',
             modal: bool = False,
             tool: bool = False) -> 'KeyMap':
         ''' new
@@ -17121,9 +17164,9 @@ class KeyMaps(bpy_struct):
         :param name: Name
         :type name: str
         :param space_type: Space Type * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
-        :type space_type: typing.Union[int, str]
+        :type space_type: typing.Union[str, int]
         :param region_type: Region Type
-        :type region_type: typing.Union[int, str]
+        :type region_type: typing.Union[str, int]
         :param modal: Modal, Keymap for modal operators
         :type modal: bool
         :param tool: Tool, Keymap for active tools
@@ -17143,16 +17186,16 @@ class KeyMaps(bpy_struct):
 
     def find(self,
              name: str,
-             space_type: typing.Union[int, str] = 'EMPTY',
-             region_type: typing.Union[int, str] = 'WINDOW') -> 'KeyMap':
+             space_type: typing.Union[str, int] = 'EMPTY',
+             region_type: typing.Union[str, int] = 'WINDOW') -> 'KeyMap':
         ''' find
 
         :param name: Name
         :type name: str
         :param space_type: Space Type * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
-        :type space_type: typing.Union[int, str]
+        :type space_type: typing.Union[str, int]
         :param region_type: Region Type
-        :type region_type: typing.Union[int, str]
+        :type region_type: typing.Union[str, int]
         :rtype: 'KeyMap'
         :return: Key Map, Corresponding key map
         '''
@@ -17212,10 +17255,10 @@ class Keyframe(bpy_struct):
     :type: typing.List[float]
     '''
 
-    easing: typing.Union[int, str] = None
+    easing: typing.Union[str, int] = None
     ''' Which ends of the segment between this and the next keyframe easing interpolation is applied to * AUTO Automatic Easing, Easing type is chosen automatically based on what the type of interpolation used (e.g. 'Ease In' for transitional types, and 'Ease Out' for dynamic effects). * EASE_IN Ease In, Only on the end closest to the next keyframe. * EASE_OUT Ease Out, Only on the end closest to the first keyframe. * EASE_IN_OUT Ease In and Out, Segment between both keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     handle_left: typing.List[float] = None
@@ -17224,10 +17267,10 @@ class Keyframe(bpy_struct):
     :type: typing.List[float]
     '''
 
-    handle_left_type: typing.Union[int, str] = None
+    handle_left_type: typing.Union[str, int] = None
     ''' Handle types * FREE Free, Completely independent manually set handle. * ALIGNED Aligned, Manually set handle with rotation locked together with its pair. * VECTOR Vector, Automatic handles that create straight lines. * AUTO Automatic, Automatic handles that create smooth curves. * AUTO_CLAMPED Auto Clamped, Automatic handles that create smooth curves which only change direction at keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     handle_right: typing.List[float] = None
@@ -17236,16 +17279,16 @@ class Keyframe(bpy_struct):
     :type: typing.List[float]
     '''
 
-    handle_right_type: typing.Union[int, str] = None
+    handle_right_type: typing.Union[str, int] = None
     ''' Handle types * FREE Free, Completely independent manually set handle. * ALIGNED Aligned, Manually set handle with rotation locked together with its pair. * VECTOR Vector, Automatic handles that create straight lines. * AUTO Automatic, Automatic handles that create smooth curves. * AUTO_CLAMPED Auto Clamped, Automatic handles that create smooth curves which only change direction at keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Interpolation method to use for segment of the F-Curve from this Keyframe until the next Keyframe * CONSTANT Constant, No interpolation, value of A gets held until B is encountered. * LINEAR Linear, Straight-line interpolation between A and B (i.e. no ease in/out). * BEZIER Bezier, Smooth interpolation between A and B, with some control over curve shape. * SINE Sinusoidal, Sinusoidal easing (weakest, almost linear but with a slight curvature). * QUAD Quadratic, Quadratic easing. * CUBIC Cubic, Cubic easing. * QUART Quartic, Quartic easing. * QUINT Quintic, Quintic easing. * EXPO Exponential, Exponential easing (dramatic). * CIRC Circular, Circular easing (strongest and most dynamic). * BACK Back, Cubic easing with overshoot and settle. * BOUNCE Bounce, Exponentially decaying parabolic bounce, like when objects collide. * ELASTIC Elastic, Exponentially decaying sine wave, like an elastic band.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     period: float = None
@@ -17272,10 +17315,10 @@ class Keyframe(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of keyframe (for visual purposes only) * KEYFRAME Keyframe, Normal keyframe - e.g. for key poses. * BREAKDOWN Breakdown, A breakdown pose - e.g. for transitions between key poses. * MOVING_HOLD Moving Hold, A keyframe that is part of a moving hold. * EXTREME Extreme, An 'extreme' pose, or some other purpose as needed. * JITTER Jitter, A filler or baked keyframe for keying on ones, or some other purpose as needed.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -17328,11 +17371,12 @@ class KeyingSet(bpy_struct):
     :type: bool
     '''
 
-    paths: typing.Union[typing.List['KeyingSetPath'], 'bpy_prop_collection',
+    paths: typing.Union[typing.Dict[str, 'KeyingSetPath'], typing.
+                        List['KeyingSetPath'], 'bpy_prop_collection',
                         'KeyingSetPaths'] = None
     ''' Keying Set Paths to define settings that get keyframed together
 
-    :type: typing.Union[typing.List['KeyingSetPath'], 'bpy_prop_collection', 'KeyingSetPaths']
+    :type: typing.Union[typing.Dict[str, 'KeyingSetPath'], typing.List['KeyingSetPath'], 'bpy_prop_collection', 'KeyingSetPaths']
     '''
 
     type_info: 'KeyingSetInfo' = None
@@ -17427,10 +17471,10 @@ class KeyingSetInfo(bpy_struct):
     :type: str
     '''
 
-    bl_options: typing.Union[typing.Set[int], typing.Set[str]] = None
+    bl_options: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Keying Set options to use when inserting keyframes * INSERTKEY_NEEDED Only Needed, Only insert keyframes where they're needed in the relevant F-Curves. * INSERTKEY_VISUAL Visual Keying, Insert keyframes based on 'visual transforms'. * INSERTKEY_XYZ_TO_RGB XYZ=RGB Colors, Color for newly added transformation F-Curves (Location, Rotation, Scale) and also Color is based on the transform axis.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     def poll(self, context: 'Context'):
@@ -17507,10 +17551,10 @@ class KeyingSetPath(bpy_struct):
     :type: str
     '''
 
-    group_method: typing.Union[int, str] = None
+    group_method: typing.Union[str, int] = None
     ''' Method used to define which Group-name to use
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     id: 'ID' = None
@@ -17519,10 +17563,10 @@ class KeyingSetPath(bpy_struct):
     :type: 'ID'
     '''
 
-    id_type: typing.Union[int, str] = None
+    id_type: typing.Union[str, int] = None
     ''' Type of ID-block that can be used
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_entire_array: bool = None
@@ -17609,7 +17653,7 @@ class KeyingSetPaths(bpy_struct):
             target_id: 'ID',
             data_path: str,
             index: int = -1,
-            group_method: typing.Union[int, str] = 'KEYINGSET',
+            group_method: typing.Union[str, int] = 'KEYINGSET',
             group_name: str = "") -> 'KeyingSetPath':
         ''' Add a new path for the Keying Set
 
@@ -17620,7 +17664,7 @@ class KeyingSetPaths(bpy_struct):
         :param index: Index, The index of the destination property (i.e. axis of Location/Rotation/etc.), or -1 for the entire array
         :type index: int
         :param group_method: Grouping Method, Method used to define which Group-name to use
-        :type group_method: typing.Union[int, str]
+        :type group_method: typing.Union[str, int]
         :param group_name: Group Name, Name of Action Group to assign destination to (only if grouping mode is to use this name)
         :type group_name: str
         :rtype: 'KeyingSetPath'
@@ -17769,11 +17813,12 @@ class LatticePoint(bpy_struct):
     :type: typing.List[float]
     '''
 
-    groups: typing.Union[typing.List['VertexGroupElement'],
+    groups: typing.Union[typing.Dict[str, 'VertexGroupElement'], typing.
+                         List['VertexGroupElement'],
                          'bpy_prop_collection'] = None
     ''' Weights for the vertex groups this point is member of
 
-    :type: typing.Union[typing.List['VertexGroupElement'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'VertexGroupElement'], typing.List['VertexGroupElement'], 'bpy_prop_collection']
     '''
 
     select: bool = None
@@ -17814,11 +17859,12 @@ class LayerCollection(bpy_struct):
     ''' Layer collection
     '''
 
-    children: typing.Union[typing.List['LayerCollection'],
+    children: typing.Union[typing.Dict[str, 'LayerCollection'], typing.
+                           List['LayerCollection'],
                            'bpy_prop_collection'] = None
     ''' Child layer collections
 
-    :type: typing.Union[typing.List['LayerCollection'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'LayerCollection'], typing.List['LayerCollection'], 'bpy_prop_collection']
     '''
 
     collection: 'Collection' = None
@@ -17915,10 +17961,11 @@ class LayerObjects(bpy_struct):
     :type: 'Object'
     '''
 
-    selected: typing.Union[typing.List['Object'], 'bpy_prop_collection'] = None
+    selected: typing.Union[typing.Dict[str, 'Object'], typing.
+                           List['Object'], 'bpy_prop_collection'] = None
     ''' All the selected objects of this layer
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection']
     '''
 
     @classmethod
@@ -17948,13 +17995,13 @@ class LineStyleAlphaModifiers(bpy_struct):
     '''
 
     def new(self, name: str,
-            type: typing.Union[int, str]) -> 'LineStyleAlphaModifier':
+            type: typing.Union[str, int]) -> 'LineStyleAlphaModifier':
         ''' Add a alpha modifier to line style
 
         :param name: New name for the alpha modifier (not unique)
         :type name: str
         :param type: Alpha modifier type to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'LineStyleAlphaModifier'
         :return: Newly added alpha modifier
         '''
@@ -17995,13 +18042,13 @@ class LineStyleColorModifiers(bpy_struct):
     '''
 
     def new(self, name: str,
-            type: typing.Union[int, str]) -> 'LineStyleColorModifier':
+            type: typing.Union[str, int]) -> 'LineStyleColorModifier':
         ''' Add a color modifier to line style
 
         :param name: New name for the color modifier (not unique)
         :type name: str
         :param type: Color modifier type to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'LineStyleColorModifier'
         :return: Newly added color modifier
         '''
@@ -18042,13 +18089,13 @@ class LineStyleGeometryModifiers(bpy_struct):
     '''
 
     def new(self, name: str,
-            type: typing.Union[int, str]) -> 'LineStyleGeometryModifier':
+            type: typing.Union[str, int]) -> 'LineStyleGeometryModifier':
         ''' Add a geometry modifier to line style
 
         :param name: New name for the geometry modifier (not unique)
         :type name: str
         :param type: Geometry modifier type to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'LineStyleGeometryModifier'
         :return: Newly added geometry modifier
         '''
@@ -18170,13 +18217,13 @@ class LineStyleThicknessModifiers(bpy_struct):
     '''
 
     def new(self, name: str,
-            type: typing.Union[int, str]) -> 'LineStyleThicknessModifier':
+            type: typing.Union[str, int]) -> 'LineStyleThicknessModifier':
         ''' Add a thickness modifier to line style
 
         :param name: New name for the thickness modifier (not unique)
         :type name: str
         :param type: Thickness modifier type to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'LineStyleThicknessModifier'
         :return: Newly added thickness modifier
         '''
@@ -18349,10 +18396,10 @@ class Macro(bpy_struct):
     :type: str
     '''
 
-    bl_options: typing.Union[typing.Set[int], typing.Set[str]] = None
+    bl_options: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Options for this operator type * REGISTER Register, Display in the info window and support the redo toolbar panel. * UNDO Undo, Push an undo event (needed for operator redo). * UNDO_GROUPED Grouped Undo, Push a single undo event for repeated instances of this operator. * BLOCKING Blocking, Block anything else from using the cursor. * MACRO Macro, Use to check if an operator is a macro. * GRAB_CURSOR Grab Pointer, Use so the operator grabs the mouse focus, enables wrapping when continuous grab is enabled. * GRAB_CURSOR_X Grab Pointer X, Grab, only warping the X axis. * GRAB_CURSOR_Y Grab Pointer Y, Grab, only warping the Y axis. * PRESET Preset, Display a preset button with the operators settings. * INTERNAL Internal, Removes the operator from search results.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     bl_translation_context: str = None
@@ -18379,12 +18426,12 @@ class Macro(bpy_struct):
     :type: 'OperatorProperties'
     '''
 
-    def report(self, type: typing.Union[typing.Set[int], typing.Set[str]],
+    def report(self, type: typing.Union[typing.Set[str], typing.Set[int]],
                message: str):
         ''' report
 
         :param type: Type
-        :type type: typing.Union[typing.Set[int], typing.Set[str]]
+        :type type: typing.Union[typing.Set[str], typing.Set[int]]
         :param message: Report Message
         :type message: str
         '''
@@ -18439,16 +18486,16 @@ class MaskLayer(bpy_struct):
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Method of blending mask layers
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    falloff: typing.Union[int, str] = None
+    falloff: typing.Union[str, int] = None
     ''' Falloff type the feather * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     hide: bool = None
@@ -18487,11 +18534,12 @@ class MaskLayer(bpy_struct):
     :type: bool
     '''
 
-    splines: typing.Union[typing.List['MaskSpline'], 'bpy_prop_collection',
+    splines: typing.Union[typing.Dict[str, 'MaskSpline'], typing.
+                          List['MaskSpline'], 'bpy_prop_collection',
                           'MaskSplines'] = None
     ''' Collection of splines which defines this layer
 
-    :type: typing.Union[typing.List['MaskSpline'], 'bpy_prop_collection', 'MaskSplines']
+    :type: typing.Union[typing.Dict[str, 'MaskSpline'], typing.List['MaskSpline'], 'bpy_prop_collection', 'MaskSplines']
     '''
 
     use_fill_holes: bool = None
@@ -18594,10 +18642,10 @@ class MaskParent(bpy_struct):
     :type: 'ID'
     '''
 
-    id_type: typing.Union[int, str] = None
+    id_type: typing.Union[str, int] = None
     ''' Type of ID-block that can be used
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     parent: str = None
@@ -18612,10 +18660,10 @@ class MaskParent(bpy_struct):
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Parent Type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -18644,17 +18692,18 @@ class MaskSpline(bpy_struct):
     ''' Single spline used for defining mask shape
     '''
 
-    offset_mode: typing.Union[int, str] = None
+    offset_mode: typing.Union[str, int] = None
     ''' The method used for calculating the feather offset * EVEN Even, Calculate even feather offset. * SMOOTH Smooth, Calculate feather offset as a second curve.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    points: typing.Union[typing.List['MaskSplinePoint'], 'bpy_prop_collection',
+    points: typing.Union[typing.Dict[str, 'MaskSplinePoint'], typing.
+                         List['MaskSplinePoint'], 'bpy_prop_collection',
                          'MaskSplinePoints'] = None
     ''' Collection of points
 
-    :type: typing.Union[typing.List['MaskSplinePoint'], 'bpy_prop_collection', 'MaskSplinePoints']
+    :type: typing.Union[typing.Dict[str, 'MaskSplinePoint'], typing.List['MaskSplinePoint'], 'bpy_prop_collection', 'MaskSplinePoints']
     '''
 
     use_cyclic: bool = None
@@ -18675,10 +18724,10 @@ class MaskSpline(bpy_struct):
     :type: bool
     '''
 
-    weight_interpolation: typing.Union[int, str] = None
+    weight_interpolation: typing.Union[str, int] = None
     ''' The type of weight interpolation for spline
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -18713,11 +18762,12 @@ class MaskSplinePoint(bpy_struct):
     :type: typing.List[float]
     '''
 
-    feather_points: typing.Union[typing.List['MaskSplinePointUW'],
+    feather_points: typing.Union[typing.Dict[str, 'MaskSplinePointUW'], typing.
+                                 List['MaskSplinePointUW'],
                                  'bpy_prop_collection'] = None
     ''' Points defining feather
 
-    :type: typing.Union[typing.List['MaskSplinePointUW'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MaskSplinePointUW'], typing.List['MaskSplinePointUW'], 'bpy_prop_collection']
     '''
 
     handle_left: typing.List[float] = None
@@ -18726,10 +18776,10 @@ class MaskSplinePoint(bpy_struct):
     :type: typing.List[float]
     '''
 
-    handle_left_type: typing.Union[int, str] = None
+    handle_left_type: typing.Union[str, int] = None
     ''' Handle type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     handle_right: typing.List[float] = None
@@ -18738,16 +18788,16 @@ class MaskSplinePoint(bpy_struct):
     :type: typing.List[float]
     '''
 
-    handle_right_type: typing.Union[int, str] = None
+    handle_right_type: typing.Union[str, int] = None
     ''' Handle type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    handle_type: typing.Union[int, str] = None
+    handle_type: typing.Union[str, int] = None
     ''' Handle type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     parent: 'MaskParent' = None
@@ -18931,10 +18981,10 @@ class MaskSplines(bpy_struct):
 
 
 class MaterialGPencilStyle(bpy_struct):
-    alignment_mode: typing.Union[int, str] = None
+    alignment_mode: typing.Union[str, int] = None
     ''' Defines how align Dots and Boxes with drawing path and object rotation * PATH Path, Follow stroke drawing path and object rotation. * OBJECT Object, Follow object rotation only. * FIXED Fixed, Do not follow drawing path or object rotation and keeps aligned with viewport.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color: typing.List[float] = None
@@ -18955,10 +19005,10 @@ class MaterialGPencilStyle(bpy_struct):
     :type: 'Image'
     '''
 
-    fill_style: typing.Union[int, str] = None
+    fill_style: typing.Union[str, int] = None
     ''' Select style used to fill strokes * SOLID Solid, Fill area with solid color. * GRADIENT Gradient, Fill area with gradient color. * TEXTURE Texture, Fill area with image texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     flip: bool = None
@@ -18973,10 +19023,10 @@ class MaterialGPencilStyle(bpy_struct):
     :type: bool
     '''
 
-    gradient_type: typing.Union[int, str] = None
+    gradient_type: typing.Union[str, int] = None
     ''' Select type of gradient used to fill strokes * LINEAR Linear, Fill area with gradient color. * RADIAL Radial, Fill area with radial gradient.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     hide: bool = None
@@ -19021,10 +19071,10 @@ class MaterialGPencilStyle(bpy_struct):
     :type: float
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Select draw mode for stroke * LINE Line, Draw strokes using a continuous line. * DOTS Dots, Draw strokes using separated dots. * BOX Squares, Draw strokes using separated squares.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pass_index: int = None
@@ -19057,10 +19107,10 @@ class MaterialGPencilStyle(bpy_struct):
     :type: 'Image'
     '''
 
-    stroke_style: typing.Union[int, str] = None
+    stroke_style: typing.Union[str, int] = None
     ''' Select style used to draw strokes * SOLID Solid, Draw strokes with solid color. * TEXTURE Texture, Draw strokes using texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_angle: float = None
@@ -19119,10 +19169,10 @@ class MaterialSlot(bpy_struct):
     ''' Material slot in an object
     '''
 
-    link: typing.Union[int, str] = None
+    link: typing.Union[str, int] = None
     ''' Link material to object or the object's data
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     material: 'Material' = None
@@ -19427,11 +19477,11 @@ class MeshFaceMapLayer(bpy_struct):
     ''' Per-face map index
     '''
 
-    data: typing.Union[typing.
+    data: typing.Union[typing.Dict[str, 'MeshFaceMap'], typing.
                        List['MeshFaceMap'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshFaceMap'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshFaceMap'], typing.List['MeshFaceMap'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -19628,11 +19678,11 @@ class MeshLoopColorLayer(bpy_struct):
     :type: bool
     '''
 
-    data: typing.Union[typing.
+    data: typing.Union[typing.Dict[str, 'MeshLoopColor'], typing.
                        List['MeshLoopColor'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshLoopColor'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshLoopColor'], typing.List['MeshLoopColor'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -19813,11 +19863,12 @@ class MeshPaintMaskLayer(bpy_struct):
     ''' Per-vertex paint mask data
     '''
 
-    data: typing.Union[typing.List['MeshPaintMaskProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshPaintMaskProperty'], typing.
+                       List['MeshPaintMaskProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPaintMaskProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshPaintMaskProperty'], typing.List['MeshPaintMaskProperty'], 'bpy_prop_collection']
     '''
 
     @classmethod
@@ -20020,11 +20071,12 @@ class MeshPolygonFloatPropertyLayer(bpy_struct):
     ''' User defined layer of floating point number values
     '''
 
-    data: typing.Union[typing.List['MeshPolygonFloatProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshPolygonFloatProperty'], typing.
+                       List['MeshPolygonFloatProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPolygonFloatProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygonFloatProperty'], typing.List['MeshPolygonFloatProperty'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20091,11 +20143,12 @@ class MeshPolygonIntPropertyLayer(bpy_struct):
     ''' User defined layer of integer number values
     '''
 
-    data: typing.Union[typing.List['MeshPolygonIntProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshPolygonIntProperty'], typing.
+                       List['MeshPolygonIntProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPolygonIntProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygonIntProperty'], typing.List['MeshPolygonIntProperty'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20162,11 +20215,12 @@ class MeshPolygonStringPropertyLayer(bpy_struct):
     ''' User defined layer of string text values
     '''
 
-    data: typing.Union[typing.List['MeshPolygonStringProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshPolygonStringProperty'], typing.
+                       List['MeshPolygonStringProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPolygonStringProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygonStringProperty'], typing.List['MeshPolygonStringProperty'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20285,11 +20339,11 @@ class MeshSkinVertexLayer(bpy_struct):
     ''' Per-vertex skin data for use with the Skin modifier
     '''
 
-    data: typing.Union[typing.
+    data: typing.Union[typing.Dict[str, 'MeshSkinVertex'], typing.
                        List['MeshSkinVertex'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshSkinVertex'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshSkinVertex'], typing.List['MeshSkinVertex'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20333,10 +20387,10 @@ class MeshStatVis(bpy_struct):
     :type: float
     '''
 
-    overhang_axis: typing.Union[int, str] = None
+    overhang_axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     overhang_max: float = None
@@ -20381,10 +20435,10 @@ class MeshStatVis(bpy_struct):
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of data to visualize/check
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -20469,10 +20523,11 @@ class MeshUVLoopLayer(bpy_struct):
     :type: bool
     '''
 
-    data: typing.Union[typing.List['MeshUVLoop'], 'bpy_prop_collection'] = None
+    data: typing.Union[typing.Dict[str, 'MeshUVLoop'], typing.
+                       List['MeshUVLoop'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshUVLoop'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshUVLoop'], typing.List['MeshUVLoop'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20519,11 +20574,12 @@ class MeshVertex(bpy_struct):
     :type: typing.List[float]
     '''
 
-    groups: typing.Union[typing.List['VertexGroupElement'],
+    groups: typing.Union[typing.Dict[str, 'VertexGroupElement'], typing.
+                         List['VertexGroupElement'],
                          'bpy_prop_collection'] = None
     ''' Weights for the vertex groups this vertex is member of
 
-    :type: typing.Union[typing.List['VertexGroupElement'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'VertexGroupElement'], typing.List['VertexGroupElement'], 'bpy_prop_collection']
     '''
 
     hide: bool = None
@@ -20614,11 +20670,12 @@ class MeshVertexFloatPropertyLayer(bpy_struct):
     ''' User defined layer of floating point number values
     '''
 
-    data: typing.Union[typing.List['MeshVertexFloatProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshVertexFloatProperty'], typing.
+                       List['MeshVertexFloatProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshVertexFloatProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshVertexFloatProperty'], typing.List['MeshVertexFloatProperty'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20685,11 +20742,12 @@ class MeshVertexIntPropertyLayer(bpy_struct):
     ''' User defined layer of integer number values
     '''
 
-    data: typing.Union[typing.List['MeshVertexIntProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshVertexIntProperty'], typing.
+                       List['MeshVertexIntProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshVertexIntProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshVertexIntProperty'], typing.List['MeshVertexIntProperty'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20756,11 +20814,12 @@ class MeshVertexStringPropertyLayer(bpy_struct):
     ''' User defined layer of string text values
     '''
 
-    data: typing.Union[typing.List['MeshVertexStringProperty'],
+    data: typing.Union[typing.Dict[str, 'MeshVertexStringProperty'], typing.
+                       List['MeshVertexStringProperty'],
                        'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshVertexStringProperty'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshVertexStringProperty'], typing.List['MeshVertexStringProperty'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -20835,11 +20894,11 @@ class MetaBallElements(bpy_struct):
     :type: 'MetaElement'
     '''
 
-    def new(self, type: typing.Union[int, str] = 'BALL') -> 'MetaElement':
+    def new(self, type: typing.Union[str, int] = 'BALL') -> 'MetaElement':
         ''' Add a new element to the metaball
 
         :param type: type for the new meta-element
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'MetaElement'
         :return: The newly created meta-element
         '''
@@ -20939,10 +20998,10 @@ class MetaElement(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Metaball types
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_negative: bool = None
@@ -21019,10 +21078,10 @@ class Modifier(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * DATA_TRANSFER Data Transfer, Transfer several types of data (vertex groups, UV maps, vertex colors, custom normals) from one mesh to another. * MESH_CACHE Mesh Cache, Deform the mesh using an external frame-by-frame vertex transform cache. * MESH_SEQUENCE_CACHE Mesh Sequence Cache, Deform the mesh or curve using an external mesh cache in Alembic format. * NORMAL_EDIT Normal Edit, Modify the direction of the surface normals. * WEIGHTED_NORMAL Weighted Normal, Modify the direction of the surface normals using a weighting method. * UV_PROJECT UV Project, Project the UV map coordinates from the negative Z axis of another object. * UV_WARP UV Warp, Transform the UV map using the difference between two objects. * VERTEX_WEIGHT_EDIT Vertex Weight Edit, Modify of the weights of a vertex group. * VERTEX_WEIGHT_MIX Vertex Weight Mix, Mix the weights of two vertex groups. * VERTEX_WEIGHT_PROXIMITY Vertex Weight Proximity, Set the vertex group weights based on the distance to another target object. * ARRAY Array, Create copies of the shape with offsets. * BEVEL Bevel, Generate sloped corners by adding geometry to the mesh's edges or vertices. * BOOLEAN Boolean, Use another shape to cut, combine or perform a difference operation. * BUILD Build, Cause the faces of the mesh object to appear or disappear one after the other over time. * DECIMATE Decimate, Reduce the geometry density. * EDGE_SPLIT Edge Split, Split away joined faces at the edges. * MASK Mask, Dynamically hide vertices based on a vertex group or armature. * MIRROR Mirror, Mirror along the local X, Y and/or Z axes, over the object origin. * MULTIRES Multiresolution, Subdivide the mesh in a way that allows editing the higher subdivision levels. * REMESH Remesh, Generate new mesh topology based on the current shape. * SCREW Screw, Lathe around an axis, treating the input mesh as a profile. * SKIN Skin, Create a solid shape from vertices and edges, using the vertex radius to define the thickness. * SOLIDIFY Solidify, Make the surface thick. * SUBSURF Subdivision Surface, Split the faces into smaller parts, giving it a smoother appearance. * TRIANGULATE Triangulate, Convert all polygons to triangles. * WELD Weld, Find groups of vertices closer then dist and merges them together. * WIREFRAME Wireframe, Convert faces into thickened edges. * ARMATURE Armature, Deform the shape using an armature object. * CAST Cast, Shift the shape towards a predefined primitive. * CURVE Curve, Bend the mesh using a curve object. * DISPLACE Displace, Offset vertices based on a texture. * HOOK Hook, Deform specific points using another object. * LAPLACIANDEFORM Laplacian Deform, Deform based a series of anchor points. * LATTICE Lattice, Deform using the shape of a lattice object. * MESH_DEFORM Mesh Deform, Deform using a different mesh, which acts as a deformation cage. * SHRINKWRAP Shrinkwrap, Project the shape onto another object. * SIMPLE_DEFORM Simple Deform, Deform the shape by twisting, bending, tapering or stretching. * SMOOTH Smooth, Smooth the mesh by flattening the angles between adjacent faces. * CORRECTIVE_SMOOTH Smooth Corrective, Smooth the mesh while still preserving the volume. * LAPLACIANSMOOTH Smooth Laplacian, Reduce the noise on a mesh surface with minimal changes to its shape. * SURFACE_DEFORM Surface Deform, Transfer motion from another mesh. * WARP Warp, Warp parts of a mesh to a new location in a very flexible way thanks to 2 specified objects. * WAVE Wave, Adds a ripple-like motion to an object’s geometry. * CLOTH Cloth. * COLLISION Collision. * DYNAMIC_PAINT Dynamic Paint. * EXPLODE Explode, Break apart the mesh faces and let them follow particles. * FLUID Fluid. * OCEAN Ocean, Generate a moving ocean surface. * PARTICLE_INSTANCE Particle Instance. * PARTICLE_SYSTEM Particle System, Spawn particles from the shape. * SOFT_BODY Soft Body. * SURFACE Surface.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_apply_on_spline: bool = None
@@ -21099,11 +21158,11 @@ class MotionPath(bpy_struct):
     :type: bool
     '''
 
-    points: typing.Union[typing.
+    points: typing.Union[typing.Dict[str, 'MotionPathVert'], typing.
                          List['MotionPathVert'], 'bpy_prop_collection'] = None
     ''' Cached positions per frame
 
-    :type: typing.Union[typing.List['MotionPathVert'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MotionPathVert'], typing.List['MotionPathVert'], 'bpy_prop_collection']
     '''
 
     use_bone_head: bool = None
@@ -21260,10 +21319,10 @@ class MovieClipProxy(bpy_struct):
     :type: int
     '''
 
-    timecode: typing.Union[int, str] = None
+    timecode: typing.Union[str, int] = None
     ''' * NONE No TC in use. * RECORD_RUN Record Run, Use images in the order they are recorded. * FREE_RUN Free Run, Use global timestamp written by recording device. * FREE_RUN_REC_DATE Free Run (rec date), Interpolate a global timestamp using the record date and time written by recording device. * FREE_RUN_NO_GAPS Free Run No Gaps, Record run, but ignore timecode, changes in framerate or dropouts.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -21324,10 +21383,10 @@ class MovieClipUser(bpy_struct):
     :type: int
     '''
 
-    proxy_render_size: typing.Union[int, str] = None
+    proxy_render_size: typing.Union[str, int] = None
     ''' Draw preview using full resolution or different proxy resolutions
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_render_undistorted: bool = None
@@ -21424,19 +21483,21 @@ class MovieTracking(bpy_struct):
     :type: 'MovieTrackingDopesheet'
     '''
 
-    objects: typing.Union[typing.List['MovieTrackingObject'],
-                          'bpy_prop_collection', 'MovieTrackingObjects'] = None
+    objects: typing.Union[typing.Dict[str, 'MovieTrackingObject'], typing.
+                          List['MovieTrackingObject'], 'bpy_prop_collection',
+                          'MovieTrackingObjects'] = None
     ''' Collection of objects in this tracking data object
 
-    :type: typing.Union[typing.List['MovieTrackingObject'], 'bpy_prop_collection', 'MovieTrackingObjects']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingObject'], typing.List['MovieTrackingObject'], 'bpy_prop_collection', 'MovieTrackingObjects']
     '''
 
-    plane_tracks: typing.Union[typing.List['MovieTrackingPlaneTrack'],
-                               'bpy_prop_collection',
-                               'MovieTrackingPlaneTracks'] = None
+    plane_tracks: typing.Union[
+        typing.Dict[str, 'MovieTrackingPlaneTrack'], typing.
+        List['MovieTrackingPlaneTrack'], 'bpy_prop_collection',
+        'MovieTrackingPlaneTracks'] = None
     ''' Collection of plane tracks in this tracking data object
 
-    :type: typing.Union[typing.List['MovieTrackingPlaneTrack'], 'bpy_prop_collection', 'MovieTrackingPlaneTracks']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingPlaneTrack'], typing.List['MovieTrackingPlaneTrack'], 'bpy_prop_collection', 'MovieTrackingPlaneTracks']
     '''
 
     reconstruction: 'MovieTrackingReconstruction' = None
@@ -21457,11 +21518,12 @@ class MovieTracking(bpy_struct):
     :type: 'MovieTrackingStabilization'
     '''
 
-    tracks: typing.Union[typing.List['MovieTrackingTrack'],
-                         'bpy_prop_collection', 'MovieTrackingTracks'] = None
+    tracks: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.
+                         List['MovieTrackingTrack'], 'bpy_prop_collection',
+                         'MovieTrackingTracks'] = None
     ''' Collection of tracks in this tracking data object
 
-    :type: typing.Union[typing.List['MovieTrackingTrack'], 'bpy_prop_collection', 'MovieTrackingTracks']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.List['MovieTrackingTrack'], 'bpy_prop_collection', 'MovieTrackingTracks']
     '''
 
     @classmethod
@@ -21490,10 +21552,10 @@ class MovieTrackingCamera(bpy_struct):
     ''' Match-moving camera data for tracking
     '''
 
-    distortion_model: typing.Union[int, str] = None
+    distortion_model: typing.Union[str, int] = None
     ''' Distortion model used for camera lenses * POLYNOMIAL Polynomial, Radial distortion model which fits common cameras. * DIVISION Divisions, Division distortion model which better represents wide-angle cameras.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     division_k1: float = None
@@ -21556,10 +21618,10 @@ class MovieTrackingCamera(bpy_struct):
     :type: float
     '''
 
-    units: typing.Union[int, str] = None
+    units: typing.Union[str, int] = None
     ''' Units used for camera focal length * PIXELS px, Use pixels for units of focal length. * MILLIMETERS mm, Use millimeters for units of focal length.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -21600,10 +21662,10 @@ class MovieTrackingDopesheet(bpy_struct):
     :type: bool
     '''
 
-    sort_method: typing.Union[int, str] = None
+    sort_method: typing.Union[str, int] = None
     ''' Method to be used to sort channels in dopesheet view * NAME Name, Sort channels by their names. * LONGEST Longest, Sort channels by longest tracked segment. * TOTAL Total, Sort channels by overall amount of tracked segments. * AVERAGE_ERROR Average Error, Sort channels by average reprojection error of tracks after solve.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_invert_sort: bool = None
@@ -21797,12 +21859,13 @@ class MovieTrackingObject(bpy_struct):
     :type: str
     '''
 
-    plane_tracks: typing.Union[typing.List['MovieTrackingPlaneTrack'],
-                               'bpy_prop_collection',
-                               'MovieTrackingObjectPlaneTracks'] = None
+    plane_tracks: typing.Union[
+        typing.Dict[str, 'MovieTrackingPlaneTrack'], typing.
+        List['MovieTrackingPlaneTrack'], 'bpy_prop_collection',
+        'MovieTrackingObjectPlaneTracks'] = None
     ''' Collection of plane tracks in this tracking data object
 
-    :type: typing.Union[typing.List['MovieTrackingPlaneTrack'], 'bpy_prop_collection', 'MovieTrackingObjectPlaneTracks']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingPlaneTrack'], typing.List['MovieTrackingPlaneTrack'], 'bpy_prop_collection', 'MovieTrackingObjectPlaneTracks']
     '''
 
     reconstruction: 'MovieTrackingReconstruction' = None
@@ -21817,12 +21880,12 @@ class MovieTrackingObject(bpy_struct):
     :type: float
     '''
 
-    tracks: typing.Union[typing.
+    tracks: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.
                          List['MovieTrackingTrack'], 'bpy_prop_collection',
                          'MovieTrackingObjectTracks'] = None
     ''' Collection of tracks in this tracking data object
 
-    :type: typing.Union[typing.List['MovieTrackingTrack'], 'bpy_prop_collection', 'MovieTrackingObjectTracks']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.List['MovieTrackingTrack'], 'bpy_prop_collection', 'MovieTrackingObjectTracks']
     '''
 
     @classmethod
@@ -22090,12 +22153,13 @@ class MovieTrackingPlaneTrack(bpy_struct):
     :type: float
     '''
 
-    markers: typing.Union[typing.List['MovieTrackingPlaneMarker'],
+    markers: typing.Union[typing.Dict[str, 'MovieTrackingPlaneMarker'], typing.
+                          List['MovieTrackingPlaneMarker'],
                           'bpy_prop_collection',
                           'MovieTrackingPlaneMarkers'] = None
     ''' Collection of markers in track
 
-    :type: typing.Union[typing.List['MovieTrackingPlaneMarker'], 'bpy_prop_collection', 'MovieTrackingPlaneMarkers']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingPlaneMarker'], typing.List['MovieTrackingPlaneMarker'], 'bpy_prop_collection', 'MovieTrackingPlaneMarkers']
     '''
 
     name: str = None
@@ -22226,12 +22290,13 @@ class MovieTrackingReconstruction(bpy_struct):
     :type: float
     '''
 
-    cameras: typing.Union[typing.List['MovieReconstructedCamera'],
+    cameras: typing.Union[typing.Dict[str, 'MovieReconstructedCamera'], typing.
+                          List['MovieReconstructedCamera'],
                           'bpy_prop_collection',
                           'MovieTrackingReconstructedCameras'] = None
     ''' Collection of solved cameras
 
-    :type: typing.Union[typing.List['MovieReconstructedCamera'], 'bpy_prop_collection', 'MovieTrackingReconstructedCameras']
+    :type: typing.Union[typing.Dict[str, 'MovieReconstructedCamera'], typing.List['MovieReconstructedCamera'], 'bpy_prop_collection', 'MovieTrackingReconstructedCameras']
     '''
 
     is_valid: bool = None
@@ -22266,10 +22331,10 @@ class MovieTrackingSettings(bpy_struct):
     ''' Match moving settings
     '''
 
-    clean_action: typing.Union[int, str] = None
+    clean_action: typing.Union[str, int] = None
     ''' Cleanup action to execute * SELECT Select, Select unclean tracks. * DELETE_TRACK Delete Track, Delete unclean tracks. * DELETE_SEGMENTS Delete Segments, Delete unclean segments of tracks.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     clean_error: float = None
@@ -22302,16 +22367,16 @@ class MovieTrackingSettings(bpy_struct):
     :type: int
     '''
 
-    default_motion_model: typing.Union[int, str] = None
+    default_motion_model: typing.Union[str, int] = None
     ''' Default motion model to use for tracking * Perspective Perspective, Search for markers that are perspectively deformed (homography) between frames. * Affine Affine, Search for markers that are affine-deformed (t, r, k, and skew) between frames. * LocRotScale LocRotScale, Search for markers that are translated, rotated, and scaled between frames. * LocScale LocScale, Search for markers that are translated and scaled between frames. * LocRot LocRot, Search for markers that are translated and rotated between frames. * Loc Loc, Search for markers that are translated between frames.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    default_pattern_match: typing.Union[int, str] = None
+    default_pattern_match: typing.Union[str, int] = None
     ''' Track pattern from given frame when tracking marker to next frame * KEYFRAME Keyframe, Track pattern from keyframe to next frame. * PREV_FRAME Previous frame, Track pattern from current frame to next frame.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     default_pattern_size: int = None
@@ -22344,10 +22409,10 @@ class MovieTrackingSettings(bpy_struct):
     :type: float
     '''
 
-    refine_intrinsics: typing.Union[int, str] = None
+    refine_intrinsics: typing.Union[str, int] = None
     ''' Refine intrinsics during camera solving * NONE Nothing, Do not refine camera intrinsics. * FOCAL_LENGTH Focal Length, Refine focal length. * FOCAL_LENGTH_RADIAL_K1 Focal length, K1, Refine focal length and radial distortion K1. * FOCAL_LENGTH_RADIAL_K1_K2 Focal length, K1, K2, Refine focal length and radial distortion K1 and K2. * FOCAL_LENGTH_PRINCIPAL_POINT_RADIAL_K1_K2 Focal Length, Optical Center, K1, K2, Refine focal length, optical center and radial distortion K1 and K2. * FOCAL_LENGTH_PRINCIPAL_POINT Focal Length, Optical Center, Refine focal length and optical center. * RADIAL_K1_K2 K1, K2, Refine radial distortion K1 and K2.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_default_expanded: bool = None
@@ -22362,10 +22427,10 @@ class MovieTrackingSettings(bpy_struct):
     :type: bool
     '''
 
-    speed: typing.Union[int, str] = None
+    speed: typing.Union[str, int] = None
     ''' Limit speed of tracking to make visual feedback easier (this does not affect the tracking quality) * FASTEST Fastest, Track as fast as it's possible. * DOUBLE Double, Track with double speed. * REALTIME Realtime, Track with realtime speed. * HALF Half, Track with half of realtime speed. * QUARTER Quarter, Track with quarter of realtime speed.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_default_blue_channel: bool = None
@@ -22460,10 +22525,10 @@ class MovieTrackingStabilization(bpy_struct):
     :type: int
     '''
 
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' Interpolation to use for sub-pixel shifts and rotations due to stabilization * NEAREST Nearest, No interpolation, use nearest neighbor pixel. * BILINEAR Bilinear, Simple interpolation between adjacent pixels. * BICUBIC Bicubic, High quality pixel interpolation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     influence_location: float = None
@@ -22484,11 +22549,12 @@ class MovieTrackingStabilization(bpy_struct):
     :type: float
     '''
 
-    rotation_tracks: typing.Union[typing.List['MovieTrackingTrack'],
-                                  'bpy_prop_collection'] = None
+    rotation_tracks: typing.Union[
+        typing.Dict[str, 'MovieTrackingTrack'], typing.
+        List['MovieTrackingTrack'], 'bpy_prop_collection'] = None
     ''' Collection of tracks used for 2D stabilization (translation)
 
-    :type: typing.Union[typing.List['MovieTrackingTrack'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.List['MovieTrackingTrack'], 'bpy_prop_collection']
     '''
 
     scale_max: float = None
@@ -22521,11 +22587,12 @@ class MovieTrackingStabilization(bpy_struct):
     :type: float
     '''
 
-    tracks: typing.Union[typing.List['MovieTrackingTrack'],
+    tracks: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.
+                         List['MovieTrackingTrack'],
                          'bpy_prop_collection'] = None
     ''' Collection of tracks used for 2D stabilization (translation)
 
-    :type: typing.Union[typing.List['MovieTrackingTrack'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingTrack'], typing.List['MovieTrackingTrack'], 'bpy_prop_collection']
     '''
 
     use_2d_stabilization: bool = None
@@ -22638,17 +22705,18 @@ class MovieTrackingTrack(bpy_struct):
     :type: int
     '''
 
-    markers: typing.Union[typing.List['MovieTrackingMarker'],
-                          'bpy_prop_collection', 'MovieTrackingMarkers'] = None
+    markers: typing.Union[typing.Dict[str, 'MovieTrackingMarker'], typing.
+                          List['MovieTrackingMarker'], 'bpy_prop_collection',
+                          'MovieTrackingMarkers'] = None
     ''' Collection of markers in track
 
-    :type: typing.Union[typing.List['MovieTrackingMarker'], 'bpy_prop_collection', 'MovieTrackingMarkers']
+    :type: typing.Union[typing.Dict[str, 'MovieTrackingMarker'], typing.List['MovieTrackingMarker'], 'bpy_prop_collection', 'MovieTrackingMarkers']
     '''
 
-    motion_model: typing.Union[int, str] = None
+    motion_model: typing.Union[str, int] = None
     ''' Default motion model to use for tracking * Perspective Perspective, Search for markers that are perspectively deformed (homography) between frames. * Affine Affine, Search for markers that are affine-deformed (t, r, k, and skew) between frames. * LocRotScale LocRotScale, Search for markers that are translated, rotated, and scaled between frames. * LocScale LocScale, Search for markers that are translated and scaled between frames. * LocRot LocRot, Search for markers that are translated and rotated between frames. * Loc Loc, Search for markers that are translated between frames.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -22663,10 +22731,10 @@ class MovieTrackingTrack(bpy_struct):
     :type: typing.List[float]
     '''
 
-    pattern_match: typing.Union[int, str] = None
+    pattern_match: typing.Union[str, int] = None
     ''' Track pattern from given frame when tracking marker to next frame * KEYFRAME Keyframe, Track pattern from keyframe to next frame. * PREV_FRAME Previous frame, Track pattern from current frame to next frame.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     select: bool = None
@@ -22865,23 +22933,23 @@ class NlaStrip(bpy_struct):
     :type: float
     '''
 
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' Method used for combining strip's result with accumulated result * REPLACE Replace, The strip values replace the accumulated results by amount specified by influence. * COMBINE Combine, The strip values are combined with accumulated results by appropriately using addition, multiplication, or quaternion math, based on channel type. * ADD Add, Weighted result of strip is added to the accumulated results. * SUBTRACT Subtract, Weighted result of strip is removed from the accumulated results. * MULTIPLY Multiply, Weighted result of strip is multiplied with the accumulated results.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    extrapolation: typing.Union[int, str] = None
+    extrapolation: typing.Union[str, int] = None
     ''' Action to take for gaps past the strip extents * NOTHING Nothing, Strip has no influence past its extents. * HOLD Hold, Hold the first frame if no previous strips in track, and always hold last frame. * HOLD_FORWARD Hold Forward, Only hold last frame.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    fcurves: typing.Union[typing.List['FCurve'], 'bpy_prop_collection',
-                          'NlaStripFCurves'] = None
+    fcurves: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'],
+                          'bpy_prop_collection', 'NlaStripFCurves'] = None
     ''' F-Curves for controlling the strip's influence and timing
 
-    :type: typing.Union[typing.List['FCurve'], 'bpy_prop_collection', 'NlaStripFCurves']
+    :type: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'], 'bpy_prop_collection', 'NlaStripFCurves']
     '''
 
     frame_end: float = None
@@ -22902,11 +22970,11 @@ class NlaStrip(bpy_struct):
     :type: float
     '''
 
-    modifiers: typing.Union[typing.
+    modifiers: typing.Union[typing.Dict[str, 'FModifier'], typing.
                             List['FModifier'], 'bpy_prop_collection'] = None
     ''' Modifiers affecting all the F-Curves in the referenced Action
 
-    :type: typing.Union[typing.List['FModifier'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FModifier'], typing.List['FModifier'], 'bpy_prop_collection']
     '''
 
     mute: bool = None
@@ -22945,16 +23013,17 @@ class NlaStrip(bpy_struct):
     :type: float
     '''
 
-    strips: typing.Union[typing.List['NlaStrip'], 'bpy_prop_collection'] = None
+    strips: typing.Union[typing.Dict[str, 'NlaStrip'], typing.
+                         List['NlaStrip'], 'bpy_prop_collection'] = None
     ''' NLA Strips that this strip acts as a container for (if it is of type Meta)
 
-    :type: typing.Union[typing.List['NlaStrip'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'NlaStrip'], typing.List['NlaStrip'], 'bpy_prop_collection']
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of NLA Strip * CLIP Action Clip, NLA Strip references some Action. * TRANSITION Transition, NLA Strip 'transitions' between adjacent strips. * META Meta, NLA Strip acts as a container for adjacent strips. * SOUND Sound Clip, NLA Strip representing a sound event for speakers.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_animated_influence: bool = None
@@ -23141,11 +23210,11 @@ class NlaTrack(bpy_struct):
     :type: bool
     '''
 
-    strips: typing.Union[typing.List['NlaStrip'], 'bpy_prop_collection',
-                         'NlaStrips'] = None
+    strips: typing.Union[typing.Dict[str, 'NlaStrip'], typing.List['NlaStrip'],
+                         'bpy_prop_collection', 'NlaStrips'] = None
     ''' NLA Strips on this NLA-track
 
-    :type: typing.Union[typing.List['NlaStrip'], 'bpy_prop_collection', 'NlaStrips']
+    :type: typing.Union[typing.Dict[str, 'NlaStrip'], typing.List['NlaStrip'], 'bpy_prop_collection', 'NlaStrips']
     '''
 
     @classmethod
@@ -23248,10 +23317,10 @@ class Node(bpy_struct):
     :type: float
     '''
 
-    bl_icon: typing.Union[int, str] = None
+    bl_icon: typing.Union[str, int] = None
     ''' The node icon
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bl_idname: str = None
@@ -23266,10 +23335,10 @@ class Node(bpy_struct):
     :type: str
     '''
 
-    bl_static_type: typing.Union[int, str] = None
+    bl_static_type: typing.Union[str, int] = None
     ''' Node type (deprecated, use with care) * CUSTOM Custom, Custom Node.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bl_width_default: float = None
@@ -23314,18 +23383,20 @@ class Node(bpy_struct):
     :type: bool
     '''
 
-    inputs: typing.Union[typing.List['NodeSocket'], 'bpy_prop_collection',
+    inputs: typing.Union[typing.Dict[str, 'NodeSocket'], typing.
+                         List['NodeSocket'], 'bpy_prop_collection',
                          'NodeInputs'] = None
     ''' 
 
-    :type: typing.Union[typing.List['NodeSocket'], 'bpy_prop_collection', 'NodeInputs']
+    :type: typing.Union[typing.Dict[str, 'NodeSocket'], typing.List['NodeSocket'], 'bpy_prop_collection', 'NodeInputs']
     '''
 
-    internal_links: typing.Union[typing.List['NodeLink'],
+    internal_links: typing.Union[typing.Dict[str, 'NodeLink'], typing.
+                                 List['NodeLink'],
                                  'bpy_prop_collection'] = None
     ''' Internal input-to-output connections for muting
 
-    :type: typing.Union[typing.List['NodeLink'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'NodeLink'], typing.List['NodeLink'], 'bpy_prop_collection']
     '''
 
     label: str = None
@@ -23352,11 +23423,12 @@ class Node(bpy_struct):
     :type: str
     '''
 
-    outputs: typing.Union[typing.List['NodeSocket'], 'bpy_prop_collection',
+    outputs: typing.Union[typing.Dict[str, 'NodeSocket'], typing.
+                          List['NodeSocket'], 'bpy_prop_collection',
                           'NodeOutputs'] = None
     ''' 
 
-    :type: typing.Union[typing.List['NodeSocket'], 'bpy_prop_collection', 'NodeOutputs']
+    :type: typing.Union[typing.Dict[str, 'NodeSocket'], typing.List['NodeSocket'], 'bpy_prop_collection', 'NodeOutputs']
     '''
 
     parent: 'Node' = None
@@ -23389,10 +23461,10 @@ class Node(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Node type (deprecated, use bl_static_type or bl_idname for the actual identifier string) * CUSTOM Custom, Custom Node.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_custom_color: bool = None
@@ -23639,10 +23711,10 @@ class NodeInternalSocketTemplate(bpy_struct):
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Data type of the socket
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -23936,10 +24008,10 @@ class NodeSocket(bpy_struct):
     :type: str
     '''
 
-    display_shape: typing.Union[int, str] = None
+    display_shape: typing.Union[str, int] = None
     ''' Socket shape
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     enabled: bool = None
@@ -24008,10 +24080,10 @@ class NodeSocket(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Data type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     links = None
@@ -24433,11 +24505,11 @@ class ObjectConstraints(bpy_struct):
     :type: 'Constraint'
     '''
 
-    def new(self, type: typing.Union[int, str]) -> 'Constraint':
+    def new(self, type: typing.Union[str, int]) -> 'Constraint':
         ''' Add a new constraint to this object
 
         :param type: Constraint type to add * CAMERA_SOLVER Camera Solver. * FOLLOW_TRACK Follow Track. * OBJECT_SOLVER Object Solver. * COPY_LOCATION Copy Location, Copy the location of a target (with an optional offset), so that they move together. * COPY_ROTATION Copy Rotation, Copy the rotation of a target (with an optional offset), so that they rotate together. * COPY_SCALE Copy Scale, Copy the scale factors of a target (with an optional offset), so that they are scaled by the same amount. * COPY_TRANSFORMS Copy Transforms, Copy all the transformations of a target, so that they move together. * LIMIT_DISTANCE Limit Distance, Restrict movements to within a certain distance of a target (at the time of constraint evaluation only). * LIMIT_LOCATION Limit Location, Restrict movement along each axis within given ranges. * LIMIT_ROTATION Limit Rotation, Restrict rotation along each axis within given ranges. * LIMIT_SCALE Limit Scale, Restrict scaling along each axis with given ranges. * MAINTAIN_VOLUME Maintain Volume, Compensate for scaling one axis by applying suitable scaling to the other two axes. * TRANSFORM Transformation, Use one transform property from target to control another (or same) property on owner. * TRANSFORM_CACHE Transform Cache, Look up the transformation matrix from an external file. * CLAMP_TO Clamp To, Restrict movements to lie along a curve by remapping location along curve's longest axis. * DAMPED_TRACK Damped Track, Point towards a target by performing the smallest rotation necessary. * IK Inverse Kinematics, Control a chain of bones by specifying the endpoint target (Bones only). * LOCKED_TRACK Locked Track, Rotate around the specified ('locked') axis to point towards a target. * SPLINE_IK Spline IK, Align chain of bones along a curve (Bones only). * STRETCH_TO Stretch To, Stretch along Y-Axis to point towards a target. * TRACK_TO Track To, Legacy tracking constraint prone to twisting artifacts. * ACTION Action, Use transform property of target to look up pose for owner from an Action. * ARMATURE Armature, Apply weight-blended transformation from multiple bones like the Armature modifier. * CHILD_OF Child Of, Make target the 'detachable' parent of owner. * FLOOR Floor, Use position (and optionally rotation) of target to define a 'wall' or 'floor' that the owner can not cross. * FOLLOW_PATH Follow Path, Use to animate an object/bone following a path. * PIVOT Pivot, Change pivot point for transforms (buggy). * SHRINKWRAP Shrinkwrap, Restrict movements to surface of target mesh.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Constraint'
         :return: New constraint
         '''
@@ -24526,13 +24598,13 @@ class ObjectGpencilModifiers(bpy_struct):
     '''
 
     def new(self, name: str,
-            type: typing.Union[int, str]) -> 'GpencilModifier':
+            type: typing.Union[str, int]) -> 'GpencilModifier':
         ''' Add a new greasepencil_modifier
 
         :param name: New name for the greasepencil_modifier
         :type name: str
         :param type: Modifier type to add * GP_ARRAY Array, Create array of duplicate instances. * GP_BUILD Build, Create duplication of strokes. * GP_MIRROR Mirror, Duplicate strokes like a mirror. * GP_MULTIPLY Multiple Strokes, Produce multiple strokes along one stroke. * GP_SIMPLIFY Simplify, Simplify stroke reducing number of points. * GP_SUBDIV Subdivide, Subdivide stroke adding more control points. * GP_ARMATURE Armature, Deform stroke points using armature object. * GP_HOOK Hook, Deform stroke points using objects. * GP_LATTICE Lattice, Deform strokes using lattice. * GP_NOISE Noise, Add noise to strokes. * GP_OFFSET Offset, Change stroke location, rotation or scale. * GP_SMOOTH Smooth, Smooth stroke. * GP_THICK Thickness, Change stroke thickness. * GP_TIME Time Offset, Offset keyframes. * GP_COLOR Hue/Saturation, Apply changes to stroke colors. * GP_OPACITY Opacity, Opacity of the strokes. * GP_TINT Tint, Tint strokes with new color.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'GpencilModifier'
         :return: Newly created modifier
         '''
@@ -24578,13 +24650,13 @@ class ObjectModifiers(bpy_struct):
     ''' Collection of object modifiers
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'Modifier':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'Modifier':
         ''' Add a new modifier
 
         :param name: New name for the modifier
         :type name: str
         :param type: Modifier type to add * DATA_TRANSFER Data Transfer, Transfer several types of data (vertex groups, UV maps, vertex colors, custom normals) from one mesh to another. * MESH_CACHE Mesh Cache, Deform the mesh using an external frame-by-frame vertex transform cache. * MESH_SEQUENCE_CACHE Mesh Sequence Cache, Deform the mesh or curve using an external mesh cache in Alembic format. * NORMAL_EDIT Normal Edit, Modify the direction of the surface normals. * WEIGHTED_NORMAL Weighted Normal, Modify the direction of the surface normals using a weighting method. * UV_PROJECT UV Project, Project the UV map coordinates from the negative Z axis of another object. * UV_WARP UV Warp, Transform the UV map using the difference between two objects. * VERTEX_WEIGHT_EDIT Vertex Weight Edit, Modify of the weights of a vertex group. * VERTEX_WEIGHT_MIX Vertex Weight Mix, Mix the weights of two vertex groups. * VERTEX_WEIGHT_PROXIMITY Vertex Weight Proximity, Set the vertex group weights based on the distance to another target object. * ARRAY Array, Create copies of the shape with offsets. * BEVEL Bevel, Generate sloped corners by adding geometry to the mesh's edges or vertices. * BOOLEAN Boolean, Use another shape to cut, combine or perform a difference operation. * BUILD Build, Cause the faces of the mesh object to appear or disappear one after the other over time. * DECIMATE Decimate, Reduce the geometry density. * EDGE_SPLIT Edge Split, Split away joined faces at the edges. * MASK Mask, Dynamically hide vertices based on a vertex group or armature. * MIRROR Mirror, Mirror along the local X, Y and/or Z axes, over the object origin. * MULTIRES Multiresolution, Subdivide the mesh in a way that allows editing the higher subdivision levels. * REMESH Remesh, Generate new mesh topology based on the current shape. * SCREW Screw, Lathe around an axis, treating the input mesh as a profile. * SKIN Skin, Create a solid shape from vertices and edges, using the vertex radius to define the thickness. * SOLIDIFY Solidify, Make the surface thick. * SUBSURF Subdivision Surface, Split the faces into smaller parts, giving it a smoother appearance. * TRIANGULATE Triangulate, Convert all polygons to triangles. * WELD Weld, Find groups of vertices closer then dist and merges them together. * WIREFRAME Wireframe, Convert faces into thickened edges. * ARMATURE Armature, Deform the shape using an armature object. * CAST Cast, Shift the shape towards a predefined primitive. * CURVE Curve, Bend the mesh using a curve object. * DISPLACE Displace, Offset vertices based on a texture. * HOOK Hook, Deform specific points using another object. * LAPLACIANDEFORM Laplacian Deform, Deform based a series of anchor points. * LATTICE Lattice, Deform using the shape of a lattice object. * MESH_DEFORM Mesh Deform, Deform using a different mesh, which acts as a deformation cage. * SHRINKWRAP Shrinkwrap, Project the shape onto another object. * SIMPLE_DEFORM Simple Deform, Deform the shape by twisting, bending, tapering or stretching. * SMOOTH Smooth, Smooth the mesh by flattening the angles between adjacent faces. * CORRECTIVE_SMOOTH Smooth Corrective, Smooth the mesh while still preserving the volume. * LAPLACIANSMOOTH Smooth Laplacian, Reduce the noise on a mesh surface with minimal changes to its shape. * SURFACE_DEFORM Surface Deform, Transfer motion from another mesh. * WARP Warp, Warp parts of a mesh to a new location in a very flexible way thanks to 2 specified objects. * WAVE Wave, Adds a ripple-like motion to an object’s geometry. * CLOTH Cloth. * COLLISION Collision. * DYNAMIC_PAINT Dynamic Paint. * EXPLODE Explode, Break apart the mesh faces and let them follow particles. * FLUID Fluid. * OCEAN Ocean, Generate a moving ocean surface. * PARTICLE_INSTANCE Particle Instance. * PARTICLE_SYSTEM Particle System, Spawn particles from the shape. * SOFT_BODY Soft Body. * SURFACE Surface.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Modifier'
         :return: Newly created modifier
         '''
@@ -24630,13 +24702,13 @@ class ObjectShaderFx(bpy_struct):
     ''' Collection of object effects
     '''
 
-    def new(self, name: str, type: typing.Union[int, str]) -> 'ShaderFx':
+    def new(self, name: str, type: typing.Union[str, int]) -> 'ShaderFx':
         ''' Add a new shader fx
 
         :param name: New name for the effect
         :type name: str
         :param type: Effect type to add * FX_BLUR Blur, Apply Gaussian Blur to object. * FX_COLORIZE Colorize, Apply different tint effects. * FX_FLIP Flip, Flip image. * FX_GLOW Glow, Create a glow effect. * FX_PIXEL Pixelate, Pixelate image. * FX_RIM Rim, Add a rim to the image. * FX_SHADOW Shadow, Create a shadow effect. * FX_SWIRL Swirl, Create a rotation distortion. * FX_WAVE Wave Distortion, Apply sinusoidal deformation.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'ShaderFx'
         :return: Newly created effect
         '''
@@ -24700,10 +24772,10 @@ class Operator(bpy_struct):
     :type: str
     '''
 
-    bl_options: typing.Union[typing.Set[int], typing.Set[str]] = None
+    bl_options: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Options for this operator type * REGISTER Register, Display in the info window and support the redo toolbar panel. * UNDO Undo, Push an undo event (needed for operator redo). * UNDO_GROUPED Grouped Undo, Push a single undo event for repeated instances of this operator. * BLOCKING Blocking, Block anything else from using the cursor. * MACRO Macro, Use to check if an operator is a macro. * GRAB_CURSOR Grab Pointer, Use so the operator grabs the mouse focus, enables wrapping when continuous grab is enabled. * GRAB_CURSOR_X Grab Pointer X, Grab, only warping the X axis. * GRAB_CURSOR_Y Grab Pointer Y, Grab, only warping the Y axis. * PRESET Preset, Display a preset button with the operators settings. * INTERNAL Internal, Removes the operator from search results.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     bl_translation_context: str = None
@@ -24730,10 +24802,11 @@ class Operator(bpy_struct):
     :type: 'UILayout'
     '''
 
-    macros: typing.Union[typing.List['Macro'], 'bpy_prop_collection'] = None
+    macros: typing.Union[typing.Dict[str, 'Macro'], typing.
+                         List['Macro'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Macro'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Macro'], typing.List['Macro'], 'bpy_prop_collection']
     '''
 
     name: str = None
@@ -24760,12 +24833,12 @@ class Operator(bpy_struct):
     :type: str
     '''
 
-    def report(self, type: typing.Union[typing.Set[int], typing.Set[str]],
+    def report(self, type: typing.Union[typing.Set[str], typing.Set[int]],
                message: str):
         ''' report
 
         :param type: Type
-        :type type: typing.Union[typing.Set[int], typing.Set[str]]
+        :type type: typing.Union[typing.Set[str], typing.Set[int]]
         :param message: Report Message
         :type message: str
         '''
@@ -24789,12 +24862,12 @@ class Operator(bpy_struct):
         pass
 
     def execute(self, context: 'Context'
-                ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+                ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Execute the operator
 
         :param context: 
         :type context: 'Context'
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -24810,27 +24883,27 @@ class Operator(bpy_struct):
         pass
 
     def invoke(self, context: 'Context', event: 'Event'
-               ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+               ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Invoke the operator
 
         :param context: 
         :type context: 'Context'
         :param event: 
         :type event: 'Event'
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
 
     def modal(self, context: 'Context', event: 'Event'
-              ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+              ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Modal operator function
 
         :param context: 
         :type context: 'Context'
         :param event: 
         :type event: 'Event'
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -25112,11 +25185,12 @@ class Paint(bpy_struct):
     :type: bool
     '''
 
-    tool_slots: typing.Union[typing.List['PaintToolSlot'],
+    tool_slots: typing.Union[typing.Dict[str, 'PaintToolSlot'], typing.
+                             List['PaintToolSlot'],
                              'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['PaintToolSlot'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'PaintToolSlot'], typing.List['PaintToolSlot'], 'bpy_prop_collection']
     '''
 
     use_cavity: bool = None
@@ -25329,10 +25403,10 @@ class Panel(bpy_struct):
     :type: str
     '''
 
-    bl_options: typing.Union[typing.Set[int], typing.Set[str]] = None
+    bl_options: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Options for this panel type * DEFAULT_CLOSED Default Closed, Defines if the panel has to be open or collapsed at the time of its creation. * HIDE_HEADER Hide Header, If set to False, the panel shows a header, which contains a clickable arrow to collapse the panel and the label (see bl_label).
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     bl_order: int = None
@@ -25353,16 +25427,16 @@ class Panel(bpy_struct):
     :type: str
     '''
 
-    bl_region_type: typing.Union[int, str] = None
+    bl_region_type: typing.Union[str, int] = None
     ''' The region where the panel is going to be used in
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    bl_space_type: typing.Union[int, str] = None
+    bl_space_type: typing.Union[str, int] = None
     ''' The space where the panel is going to be used in * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bl_translation_context: str = None
@@ -25460,10 +25534,10 @@ class Particle(bpy_struct):
     ''' Particle in a particle system
     '''
 
-    alive_state: typing.Union[int, str] = None
+    alive_state: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     angular_velocity: typing.List[float] = None
@@ -25484,11 +25558,12 @@ class Particle(bpy_struct):
     :type: float
     '''
 
-    hair_keys: typing.Union[typing.List['ParticleHairKey'],
+    hair_keys: typing.Union[typing.Dict[str, 'ParticleHairKey'], typing.
+                            List['ParticleHairKey'],
                             'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['ParticleHairKey'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ParticleHairKey'], typing.List['ParticleHairKey'], 'bpy_prop_collection']
     '''
 
     is_exist: bool = None
@@ -25515,11 +25590,12 @@ class Particle(bpy_struct):
     :type: typing.List[float]
     '''
 
-    particle_keys: typing.Union[typing.List['ParticleKey'],
+    particle_keys: typing.Union[typing.Dict[str, 'ParticleKey'], typing.
+                                List['ParticleKey'],
                                 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['ParticleKey'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ParticleKey'], typing.List['ParticleKey'], 'bpy_prop_collection']
     '''
 
     prev_angular_velocity: typing.List[float] = None
@@ -25613,16 +25689,16 @@ class ParticleBrush(bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    length_mode: typing.Union[int, str] = None
+    length_mode: typing.Union[str, int] = None
     ''' * GROW Grow, Make hairs longer. * SHRINK Shrink, Make hairs shorter.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    puff_mode: typing.Union[int, str] = None
+    puff_mode: typing.Union[str, int] = None
     ''' * ADD Add, Make hairs more puffy. * SUB Sub, Make hairs less puffy.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     size: int = None
@@ -25761,10 +25837,10 @@ class ParticleEdit(bpy_struct):
     :type: 'Object'
     '''
 
-    select_mode: typing.Union[int, str] = None
+    select_mode: typing.Union[str, int] = None
     ''' Particle select and display mode * PATH Path, Path edit mode. * POINT Point, Point select mode. * TIP Tip, Tip select mode.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     shape_object: 'Object' = None
@@ -25779,16 +25855,16 @@ class ParticleEdit(bpy_struct):
     :type: bool
     '''
 
-    tool: typing.Union[int, str] = None
+    tool: typing.Union[str, int] = None
     ''' * COMB Comb, Comb hairs. * SMOOTH Smooth, Smooth hairs. * ADD Add, Add hairs. * LENGTH Length, Make hairs longer or shorter. * PUFF Puff, Make hairs stand up. * CUT Cut, Cut hairs. * WEIGHT Weight, Weight hair particles.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_velocity: bool = None
@@ -26041,11 +26117,12 @@ class ParticleSystem(bpy_struct):
     :type: int
     '''
 
-    child_particles: typing.Union[typing.List['ChildParticle'],
+    child_particles: typing.Union[typing.Dict[str, 'ChildParticle'], typing.
+                                  List['ChildParticle'],
                                   'bpy_prop_collection'] = None
     ''' Child particles generated by the particle system
 
-    :type: typing.Union[typing.List['ChildParticle'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ChildParticle'], typing.List['ChildParticle'], 'bpy_prop_collection']
     '''
 
     child_seed: int = None
@@ -26180,11 +26257,11 @@ class ParticleSystem(bpy_struct):
     :type: 'Object'
     '''
 
-    particles: typing.Union[typing.
+    particles: typing.Union[typing.Dict[str, 'Particle'], typing.
                             List['Particle'], 'bpy_prop_collection'] = None
     ''' Particles generated by the particle system
 
-    :type: typing.Union[typing.List['Particle'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Particle'], typing.List['Particle'], 'bpy_prop_collection']
     '''
 
     point_cache: 'PointCache' = None
@@ -26217,11 +26294,11 @@ class ParticleSystem(bpy_struct):
     :type: 'ParticleSettings'
     '''
 
-    targets: typing.Union[typing.
+    targets: typing.Union[typing.Dict[str, 'ParticleTarget'], typing.
                           List['ParticleTarget'], 'bpy_prop_collection'] = None
     ''' Target particle systems
 
-    :type: typing.Union[typing.List['ParticleTarget'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ParticleTarget'], typing.List['ParticleTarget'], 'bpy_prop_collection']
     '''
 
     use_hair_dynamics: bool = None
@@ -26433,10 +26510,10 @@ class ParticleTarget(bpy_struct):
     ''' Target particle system
     '''
 
-    alliance: typing.Union[int, str] = None
+    alliance: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     duration: float = None
@@ -26581,10 +26658,10 @@ class PointCache(bpy_struct):
     ''' Active point cache for physics simulations
     '''
 
-    compression: typing.Union[int, str] = None
+    compression: typing.Union[str, int] = None
     ''' Compression method to be used * NO None, No compression. * LIGHT Lite, Fast but not so effective compression. * HEAVY Heavy, Effective but slow compression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     filepath: str = None
@@ -26653,11 +26730,12 @@ class PointCache(bpy_struct):
     :type: str
     '''
 
-    point_caches: typing.Union[typing.List['PointCacheItem'],
-                               'bpy_prop_collection', 'PointCaches'] = None
+    point_caches: typing.Union[typing.Dict[str, 'PointCacheItem'], typing.
+                               List['PointCacheItem'], 'bpy_prop_collection',
+                               'PointCaches'] = None
     ''' 
 
-    :type: typing.Union[typing.List['PointCacheItem'], 'bpy_prop_collection', 'PointCaches']
+    :type: typing.Union[typing.Dict[str, 'PointCacheItem'], typing.List['PointCacheItem'], 'bpy_prop_collection', 'PointCaches']
     '''
 
     use_disk_cache: bool = None
@@ -26704,10 +26782,10 @@ class PointCacheItem(bpy_struct):
     ''' Point cache for physics simulations
     '''
 
-    compression: typing.Union[int, str] = None
+    compression: typing.Union[str, int] = None
     ''' Compression method to be used * NO None, No compression. * LIGHT Lite, Fast but not so effective compression. * HEAVY Heavy, Effective but slow compression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     filepath: str = None
@@ -26967,17 +27045,19 @@ class Pose(bpy_struct):
     :type: 'AnimViz'
     '''
 
-    bone_groups: typing.Union[typing.List['BoneGroup'], 'bpy_prop_collection',
+    bone_groups: typing.Union[typing.Dict[str, 'BoneGroup'], typing.
+                              List['BoneGroup'], 'bpy_prop_collection',
                               'BoneGroups'] = None
     ''' Groups of the bones
 
-    :type: typing.Union[typing.List['BoneGroup'], 'bpy_prop_collection', 'BoneGroups']
+    :type: typing.Union[typing.Dict[str, 'BoneGroup'], typing.List['BoneGroup'], 'bpy_prop_collection', 'BoneGroups']
     '''
 
-    bones: typing.Union[typing.List['PoseBone'], 'bpy_prop_collection'] = None
+    bones: typing.Union[typing.Dict[str, 'PoseBone'], typing.
+                        List['PoseBone'], 'bpy_prop_collection'] = None
     ''' Individual pose bones for the armature
 
-    :type: typing.Union[typing.List['PoseBone'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'PoseBone'], typing.List['PoseBone'], 'bpy_prop_collection']
     '''
 
     ik_param: 'IKParam' = None
@@ -26986,10 +27066,10 @@ class Pose(bpy_struct):
     :type: 'IKParam'
     '''
 
-    ik_solver: typing.Union[int, str] = None
+    ik_solver: typing.Union[str, int] = None
     ''' Selection of IK solver for IK chain * LEGACY Standard, Original IK solver. * ITASC iTaSC, Multi constraint, stateful IK solver.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_ik: bool = None
@@ -27144,11 +27224,12 @@ class PoseBone(bpy_struct):
     :type: 'PoseBone'
     '''
 
-    constraints: typing.Union[typing.List['Constraint'], 'bpy_prop_collection',
+    constraints: typing.Union[typing.Dict[str, 'Constraint'], typing.
+                              List['Constraint'], 'bpy_prop_collection',
                               'PoseBoneConstraints'] = None
     ''' Constraints that act on this PoseChannel
 
-    :type: typing.Union[typing.List['Constraint'], 'bpy_prop_collection', 'PoseBoneConstraints']
+    :type: typing.Union[typing.Dict[str, 'Constraint'], typing.List['Constraint'], 'bpy_prop_collection', 'PoseBoneConstraints']
     '''
 
     custom_shape: 'Object' = None
@@ -27361,10 +27442,10 @@ class PoseBone(bpy_struct):
     :type: typing.List[float]
     '''
 
-    rotation_mode: typing.Union[int, str] = None
+    rotation_mode: typing.Union[str, int] = None
     ''' * QUATERNION Quaternion (WXYZ), No Gimbal Lock. * XYZ XYZ Euler, XYZ Rotation Order - prone to Gimbal Lock (default). * XZY XZY Euler, XZY Rotation Order - prone to Gimbal Lock. * YXZ YXZ Euler, YXZ Rotation Order - prone to Gimbal Lock. * YZX YZX Euler, YZX Rotation Order - prone to Gimbal Lock. * ZXY ZXY Euler, ZXY Rotation Order - prone to Gimbal Lock. * ZYX ZYX Euler, ZYX Rotation Order - prone to Gimbal Lock. * AXIS_ANGLE Axis Angle, Axis Angle (W+XYZ), defines a rotation around some axis defined by 3D-Vector.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation_quaternion: typing.List[float] = None
@@ -27533,11 +27614,11 @@ class PoseBoneConstraints(bpy_struct):
     :type: 'Constraint'
     '''
 
-    def new(self, type: typing.Union[int, str]) -> 'Constraint':
+    def new(self, type: typing.Union[str, int]) -> 'Constraint':
         ''' Add a constraint to this object
 
         :param type: Constraint type to add * CAMERA_SOLVER Camera Solver. * FOLLOW_TRACK Follow Track. * OBJECT_SOLVER Object Solver. * COPY_LOCATION Copy Location, Copy the location of a target (with an optional offset), so that they move together. * COPY_ROTATION Copy Rotation, Copy the rotation of a target (with an optional offset), so that they rotate together. * COPY_SCALE Copy Scale, Copy the scale factors of a target (with an optional offset), so that they are scaled by the same amount. * COPY_TRANSFORMS Copy Transforms, Copy all the transformations of a target, so that they move together. * LIMIT_DISTANCE Limit Distance, Restrict movements to within a certain distance of a target (at the time of constraint evaluation only). * LIMIT_LOCATION Limit Location, Restrict movement along each axis within given ranges. * LIMIT_ROTATION Limit Rotation, Restrict rotation along each axis within given ranges. * LIMIT_SCALE Limit Scale, Restrict scaling along each axis with given ranges. * MAINTAIN_VOLUME Maintain Volume, Compensate for scaling one axis by applying suitable scaling to the other two axes. * TRANSFORM Transformation, Use one transform property from target to control another (or same) property on owner. * TRANSFORM_CACHE Transform Cache, Look up the transformation matrix from an external file. * CLAMP_TO Clamp To, Restrict movements to lie along a curve by remapping location along curve's longest axis. * DAMPED_TRACK Damped Track, Point towards a target by performing the smallest rotation necessary. * IK Inverse Kinematics, Control a chain of bones by specifying the endpoint target (Bones only). * LOCKED_TRACK Locked Track, Rotate around the specified ('locked') axis to point towards a target. * SPLINE_IK Spline IK, Align chain of bones along a curve (Bones only). * STRETCH_TO Stretch To, Stretch along Y-Axis to point towards a target. * TRACK_TO Track To, Legacy tracking constraint prone to twisting artifacts. * ACTION Action, Use transform property of target to look up pose for owner from an Action. * ARMATURE Armature, Apply weight-blended transformation from multiple bones like the Armature modifier. * CHILD_OF Child Of, Make target the 'detachable' parent of owner. * FLOOR Floor, Use position (and optionally rotation) of target to define a 'wall' or 'floor' that the owner can not cross. * FOLLOW_PATH Follow Path, Use to animate an object/bone following a path. * PIVOT Pivot, Change pivot point for transforms (buggy). * SHRINKWRAP Shrinkwrap, Restrict movements to surface of target mesh.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'Constraint'
         :return: New constraint
         '''
@@ -27587,17 +27668,17 @@ class Preferences(bpy_struct):
     ''' Global preferences
     '''
 
-    active_section: typing.Union[int, str] = None
+    active_section: typing.Union[str, int] = None
     ''' Active section of the preferences shown in the user interface
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    addons: typing.Union[typing.
+    addons: typing.Union[typing.Dict[str, 'Addon'], typing.
                          List['Addon'], 'bpy_prop_collection', 'Addons'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Addon'], 'bpy_prop_collection', 'Addons']
+    :type: typing.Union[typing.Dict[str, 'Addon'], typing.List['Addon'], 'bpy_prop_collection', 'Addons']
     '''
 
     app_template: str = None
@@ -27606,12 +27687,12 @@ class Preferences(bpy_struct):
     :type: str
     '''
 
-    autoexec_paths: typing.Union[typing.
+    autoexec_paths: typing.Union[typing.Dict[str, 'PathCompare'], typing.
                                  List['PathCompare'], 'bpy_prop_collection',
                                  'PathCompareCollection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['PathCompare'], 'bpy_prop_collection', 'PathCompareCollection']
+    :type: typing.Union[typing.Dict[str, 'PathCompare'], typing.List['PathCompare'], 'bpy_prop_collection', 'PathCompareCollection']
     '''
 
     edit: 'PreferencesEdit' = None
@@ -27650,11 +27731,12 @@ class Preferences(bpy_struct):
     :type: 'PreferencesKeymap'
     '''
 
-    studio_lights: typing.Union[typing.List['StudioLight'],
-                                'bpy_prop_collection', 'StudioLights'] = None
+    studio_lights: typing.Union[typing.Dict[str, 'StudioLight'], typing.
+                                List['StudioLight'], 'bpy_prop_collection',
+                                'StudioLights'] = None
     ''' 
 
-    :type: typing.Union[typing.List['StudioLight'], 'bpy_prop_collection', 'StudioLights']
+    :type: typing.Union[typing.Dict[str, 'StudioLight'], typing.List['StudioLight'], 'bpy_prop_collection', 'StudioLights']
     '''
 
     system: 'PreferencesSystem' = None
@@ -27663,17 +27745,18 @@ class Preferences(bpy_struct):
     :type: 'PreferencesSystem'
     '''
 
-    themes: typing.Union[typing.List['Theme'], 'bpy_prop_collection'] = None
+    themes: typing.Union[typing.Dict[str, 'Theme'], typing.
+                         List['Theme'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Theme'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Theme'], typing.List['Theme'], 'bpy_prop_collection']
     '''
 
-    ui_styles: typing.Union[typing.
+    ui_styles: typing.Union[typing.Dict[str, 'ThemeStyle'], typing.
                             List['ThemeStyle'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['ThemeStyle'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ThemeStyle'], typing.List['ThemeStyle'], 'bpy_prop_collection']
     '''
 
     use_preferences_save: bool = None
@@ -27720,16 +27803,16 @@ class PreferencesEdit(bpy_struct):
     ''' Settings for interacting with Blender data
     '''
 
-    auto_keying_mode: typing.Union[int, str] = None
+    auto_keying_mode: typing.Union[str, int] = None
     ''' Mode of automatic keyframe insertion for Objects and Bones (default setting used for new Scenes)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    fcurve_new_auto_smoothing: typing.Union[int, str] = None
+    fcurve_new_auto_smoothing: typing.Union[str, int] = None
     ''' Auto Handle Smoothing mode used for newly added F-Curves * NONE None, Automatic handles only take immediately adjacent keys into account. * CONT_ACCEL Continuous Acceleration, Automatic handles are adjusted to avoid jumps in acceleration, resulting in smoother curves. However, key changes may affect interpolation over a larger stretch of the curve.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     fcurve_unselected_alpha: float = None
@@ -27762,22 +27845,22 @@ class PreferencesEdit(bpy_struct):
     :type: int
     '''
 
-    keyframe_new_handle_type: typing.Union[int, str] = None
+    keyframe_new_handle_type: typing.Union[str, int] = None
     ''' Handle type for handles of new keyframes * FREE Free, Completely independent manually set handle. * ALIGNED Aligned, Manually set handle with rotation locked together with its pair. * VECTOR Vector, Automatic handles that create straight lines. * AUTO Automatic, Automatic handles that create smooth curves. * AUTO_CLAMPED Auto Clamped, Automatic handles that create smooth curves which only change direction at keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    keyframe_new_interpolation_type: typing.Union[int, str] = None
+    keyframe_new_interpolation_type: typing.Union[str, int] = None
     ''' Interpolation mode used for first keyframe on newly added F-Curves (subsequent keyframes take interpolation from preceding keyframe) * CONSTANT Constant, No interpolation, value of A gets held until B is encountered. * LINEAR Linear, Straight-line interpolation between A and B (i.e. no ease in/out). * BEZIER Bezier, Smooth interpolation between A and B, with some control over curve shape. * SINE Sinusoidal, Sinusoidal easing (weakest, almost linear but with a slight curvature). * QUAD Quadratic, Quadratic easing. * CUBIC Cubic, Cubic easing. * QUART Quartic, Quartic easing. * QUINT Quintic, Quintic easing. * EXPO Exponential, Exponential easing (dramatic). * CIRC Circular, Circular easing (strongest and most dynamic). * BACK Back, Cubic easing with overshoot and settle. * BOUNCE Bounce, Exponentially decaying parabolic bounce, like when objects collide. * ELASTIC Elastic, Exponentially decaying sine wave, like an elastic band.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    material_link: typing.Union[int, str] = None
+    material_link: typing.Union[str, int] = None
     ''' Toggle whether the material is linked to object data or the object block * OBDATA Object Data, Toggle whether the material is linked to object data or the object block. * OBJECT Object, Toggle whether the material is linked to object data or the object block.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     node_margin: int = None
@@ -27786,10 +27869,10 @@ class PreferencesEdit(bpy_struct):
     :type: int
     '''
 
-    object_align: typing.Union[int, str] = None
+    object_align: typing.Union[str, int] = None
     ''' When adding objects from a 3D View menu, either align them with that view or with the world * WORLD World, Align newly added objects to the world coordinate system. * VIEW View, Align newly added objects to the active 3D View direction. * CURSOR 3D Cursor, Align newly added objects to the 3D Cursor's rotation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sculpt_paint_overlay_color: typing.List[float] = None
@@ -28024,10 +28107,10 @@ class PreferencesFilePaths(bpy_struct):
     :type: str
     '''
 
-    animation_player_preset: typing.Union[int, str] = None
+    animation_player_preset: typing.Union[str, int] = None
     ''' Preset configs for external animation players * INTERNAL Internal, Built-in animation player. * DJV Djv, Open source frame player: http://djv.sourceforge.net. * FRAMECYCLER FrameCycler, Frame player from IRIDAS. * RV rv, Frame player from Tweak Software. * MPLAYER MPlayer, Media player for video & png/jpeg/sgi image sequences. * CUSTOM Custom, Custom animation player executable path.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     auto_save_time: int = None
@@ -28230,10 +28313,10 @@ class PreferencesInput(bpy_struct):
     :type: int
     '''
 
-    mouse_emulate_3_button_modifier: typing.Union[int, str] = None
+    mouse_emulate_3_button_modifier: typing.Union[str, int] = None
     ''' Hold this modifier to emulate the middle mouse button
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     move_threshold: int = None
@@ -28242,10 +28325,10 @@ class PreferencesInput(bpy_struct):
     :type: int
     '''
 
-    navigation_mode: typing.Union[int, str] = None
+    navigation_mode: typing.Union[str, int] = None
     ''' Which method to use for viewport navigation * WALK Walk, Interactively walk or free navigate around the scene. * FLY Fly, Use fly dynamics to navigate the scene.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ndof_deadzone: float = None
@@ -28326,16 +28409,16 @@ class PreferencesInput(bpy_struct):
     :type: bool
     '''
 
-    ndof_view_navigate_method: typing.Union[int, str] = None
+    ndof_view_navigate_method: typing.Union[str, int] = None
     ''' Navigation style in the viewport * FREE Free, Use full 6 degrees of freedom by default. * ORBIT Orbit, Orbit about the view center by default.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    ndof_view_rotate_method: typing.Union[int, str] = None
+    ndof_view_rotate_method: typing.Union[str, int] = None
     ''' Rotation style in the viewport * TURNTABLE Turntable, Use turntable style rotation in the viewport. * TRACKBALL Trackball, Use trackball style rotation in the viewport.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ndof_zoom_invert: bool = None
@@ -28356,10 +28439,10 @@ class PreferencesInput(bpy_struct):
     :type: float
     '''
 
-    tablet_api: typing.Union[int, str] = None
+    tablet_api: typing.Union[str, int] = None
     ''' Select the tablet API to use for pressure sensitivity * AUTOMATIC Automatic, Automatically choose Wintab or Windows Ink depending on the device. * WINDOWS_INK Windows Ink, Use native Windows Ink API, for modern tablet and pen devices. Requires Windows 8 or newer. * WINTAB Wintab, Use Wintab driver for older tablets and Windows versions.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_perspective: bool = None
@@ -28434,10 +28517,10 @@ class PreferencesInput(bpy_struct):
     :type: bool
     '''
 
-    view_rotate_method: typing.Union[int, str] = None
+    view_rotate_method: typing.Union[str, int] = None
     ''' Orbit method in the viewport * TURNTABLE Turntable, Turntable keeps the Z-axis upright while orbiting. * TRACKBALL Trackball, Trackball allows you to tumble your view at any angle.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     view_rotate_sensitivity_trackball: float = None
@@ -28452,16 +28535,16 @@ class PreferencesInput(bpy_struct):
     :type: float
     '''
 
-    view_zoom_axis: typing.Union[int, str] = None
+    view_zoom_axis: typing.Union[str, int] = None
     ''' Axis of mouse movement to zoom in or out on * VERTICAL Vertical, Zoom in and out based on vertical mouse movement. * HORIZONTAL Horizontal, Zoom in and out based on horizontal mouse movement.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    view_zoom_method: typing.Union[int, str] = None
+    view_zoom_method: typing.Union[str, int] = None
     ''' Which style to use for viewport scaling * CONTINUE Continue, Continuous zooming. The zoom direction and speed depends on how far along the set Zoom Axis the mouse has moved. * DOLLY Dolly, Zoom in and out based on mouse movement along the set Zoom Axis. * SCALE Scale, Zoom in and out as if you are scaling the view, mouse movements relative to center.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     walk_navigation: 'WalkNavigation' = None
@@ -28540,40 +28623,40 @@ class PreferencesSystem(bpy_struct):
     ''' Graphics driver and operating system settings
     '''
 
-    anisotropic_filter: typing.Union[int, str] = None
+    anisotropic_filter: typing.Union[str, int] = None
     ''' Quality of the anisotropic filtering (values greater than 1.0 enable anisotropic filtering)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    audio_channels: typing.Union[int, str] = None
+    audio_channels: typing.Union[str, int] = None
     ''' Audio channel count * MONO Mono, Set audio channels to mono. * STEREO Stereo, Set audio channels to stereo. * SURROUND4 4 Channels, Set audio channels to 4 channels. * SURROUND51 5.1 Surround, Set audio channels to 5.1 surround sound. * SURROUND71 7.1 Surround, Set audio channels to 7.1 surround sound.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    audio_device: typing.Union[int, str] = None
+    audio_device: typing.Union[str, int] = None
     ''' Audio output device * Null None, Null device - there will be no audio output.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    audio_mixing_buffer: typing.Union[int, str] = None
+    audio_mixing_buffer: typing.Union[str, int] = None
     ''' Number of samples used by the audio mixing buffer * SAMPLES_256 256 Samples, Set audio mixing buffer size to 256 samples. * SAMPLES_512 512 Samples, Set audio mixing buffer size to 512 samples. * SAMPLES_1024 1024 Samples, Set audio mixing buffer size to 1024 samples. * SAMPLES_2048 2048 Samples, Set audio mixing buffer size to 2048 samples. * SAMPLES_4096 4096 Samples, Set audio mixing buffer size to 4096 samples. * SAMPLES_8192 8192 Samples, Set audio mixing buffer size to 8192 samples. * SAMPLES_16384 16384 Samples, Set audio mixing buffer size to 16384 samples. * SAMPLES_32768 32768 Samples, Set audio mixing buffer size to 32768 samples.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    audio_sample_format: typing.Union[int, str] = None
+    audio_sample_format: typing.Union[str, int] = None
     ''' Audio sample format * U8 8-bit Unsigned, Set audio sample format to 8 bit unsigned integer. * S16 16-bit Signed, Set audio sample format to 16 bit signed integer. * S24 24-bit Signed, Set audio sample format to 24 bit signed integer. * S32 32-bit Signed, Set audio sample format to 32 bit signed integer. * FLOAT 32-bit Float, Set audio sample format to 32 bit float. * DOUBLE 64-bit Float, Set audio sample format to 64 bit float.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    audio_sample_rate: typing.Union[int, str] = None
+    audio_sample_rate: typing.Union[str, int] = None
     ''' Audio sample rate * RATE_44100 44.1 kHz, Set audio sampling rate to 44100 samples per second. * RATE_48000 48 kHz, Set audio sampling rate to 48000 samples per second. * RATE_96000 96 kHz, Set audio sampling rate to 96000 samples per second. * RATE_192000 192 kHz, Set audio sampling rate to 192000 samples per second.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     dpi: int = None
@@ -28588,16 +28671,16 @@ class PreferencesSystem(bpy_struct):
     :type: float
     '''
 
-    gl_texture_limit: typing.Union[int, str] = None
+    gl_texture_limit: typing.Union[str, int] = None
     ''' Limit the texture size to save graphics memory
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    image_draw_method: typing.Union[int, str] = None
+    image_draw_method: typing.Union[str, int] = None
     ''' Method used for displaying images on the screen * AUTO Automatic, Automatically choose method based on GPU and image. * 2DTEXTURE 2D Texture, Use CPU for display transform and draw image with 2D texture. * GLSL GLSL, Use GLSL shaders for display transform and draw image with 2D texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     legacy_compute_device_type: int = None
@@ -28618,10 +28701,10 @@ class PreferencesSystem(bpy_struct):
     :type: int
     '''
 
-    opensubdiv_compute_type: typing.Union[int, str] = None
+    opensubdiv_compute_type: typing.Union[str, int] = None
     ''' Type of computer back-end used with OpenSubdiv
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pixel_size: float = None
@@ -28636,10 +28719,10 @@ class PreferencesSystem(bpy_struct):
     :type: int
     '''
 
-    sequencer_disk_cache_compression: typing.Union[int, str] = None
+    sequencer_disk_cache_compression: typing.Union[str, int] = None
     ''' Smaller compression will result in larger files, but less decoding overhead * NONE None, Requires fast storage, but uses minimum CPU resources. * LOW Low, Doesn't require fast storage and uses less CPU resources. * HIGH High, Works on slower storage devices and uses most CPU resources.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sequencer_disk_cache_dir: str = None
@@ -28654,11 +28737,12 @@ class PreferencesSystem(bpy_struct):
     :type: int
     '''
 
-    solid_lights: typing.Union[typing.List['UserSolidLight'],
+    solid_lights: typing.Union[typing.Dict[str, 'UserSolidLight'], typing.
+                               List['UserSolidLight'],
                                'bpy_prop_collection'] = None
     ''' Lights user to display objects in solid draw mode
 
-    :type: typing.Union[typing.List['UserSolidLight'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'UserSolidLight'], typing.List['UserSolidLight'], 'bpy_prop_collection']
     '''
 
     texture_collection_rate: int = None
@@ -28733,10 +28817,10 @@ class PreferencesSystem(bpy_struct):
     :type: int
     '''
 
-    viewport_aa: typing.Union[int, str] = None
+    viewport_aa: typing.Union[str, int] = None
     ''' Method of anti-aliasing in 3d viewport * OFF No Anti-Aliasing, Scene will be rendering without any anti-aliasing. * FXAA Single Pass Anti-Aliasing, Scene will be rendered using a single pass anti-aliasing method (FXAA). * 5 5 Samples, Scene will be rendered using 5 anti-aliasing samples. * 8 8 Samples, Scene will be rendered using 8 anti-aliasing samples. * 11 11 Samples, Scene will be rendered using 11 anti-aliasing samples. * 16 16 Samples, Scene will be rendered using 16 anti-aliasing samples. * 32 32 Samples, Scene will be rendered using 32 anti-aliasing samples.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -28765,22 +28849,22 @@ class PreferencesView(bpy_struct):
     ''' Preferences related to viewing data
     '''
 
-    color_picker_type: typing.Union[int, str] = None
+    color_picker_type: typing.Union[str, int] = None
     ''' Different styles of displaying the color picker widget * CIRCLE_HSV Circle (HSV), A circular Hue/Saturation color wheel, with Value slider. * CIRCLE_HSL Circle (HSL), A circular Hue/Saturation color wheel, with Lightness slider. * SQUARE_SV Square (SV + H), A square showing Saturation/Value, with Hue slider. * SQUARE_HS Square (HS + V), A square showing Hue/Saturation, with Value slider. * SQUARE_HV Square (HV + S), A square showing Hue/Value, with Saturation slider.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    factor_display_type: typing.Union[int, str] = None
+    factor_display_type: typing.Union[str, int] = None
     ''' How factor values are displayed * FACTOR Factor, Display factors as values between 0 and 1. * PERCENTAGE Percentage, Display factors as percentages.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    filebrowser_display_type: typing.Union[int, str] = None
+    filebrowser_display_type: typing.Union[str, int] = None
     ''' Default location where the File Editor will be displayed in * SCREEN Full Screen, Open the temporary editor in a maximized screen. * WINDOW New Window, Open the temporary editor in a new window.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     font_path_ui: str = None
@@ -28801,16 +28885,16 @@ class PreferencesView(bpy_struct):
     :type: int
     '''
 
-    header_align: typing.Union[int, str] = None
+    header_align: typing.Union[str, int] = None
     ''' Default header position for new space-types * NONE Default, Keep existing header alignment. * TOP Top, Top aligned on load. * BOTTOM Bottom, Bottom align on load (except for property editors).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    language: typing.Union[int, str] = None
+    language: typing.Union[str, int] = None
     ''' Language used for translation * DEFAULT Automatic (Automatic), Automatically choose system's defined language if available, or fall-back to English.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     lookdev_sphere_size: int = None
@@ -28831,10 +28915,10 @@ class PreferencesView(bpy_struct):
     :type: int
     '''
 
-    mini_axis_type: typing.Union[int, str] = None
+    mini_axis_type: typing.Union[str, int] = None
     ''' Show a small rotating 3D axes in the top right corner of the 3D View
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     open_sublevel_delay: int = None
@@ -28885,10 +28969,10 @@ class PreferencesView(bpy_struct):
     :type: int
     '''
 
-    render_display_type: typing.Union[int, str] = None
+    render_display_type: typing.Union[str, int] = None
     ''' Default location where rendered images will be displayed in * NONE Keep User Interface, Images are rendered without changing the user interface. * SCREEN Full Screen, Images are rendered in a maximized Image Editor. * AREA Image Editor, Images are rendered in an Image Editor. * WINDOW New Window, Images are rendered in a new window.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation_angle: float = None
@@ -28975,22 +29059,22 @@ class PreferencesView(bpy_struct):
     :type: int
     '''
 
-    text_hinting: typing.Union[int, str] = None
+    text_hinting: typing.Union[str, int] = None
     ''' Method for making user interface text render sharp
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    timecode_style: typing.Union[int, str] = None
+    timecode_style: typing.Union[str, int] = None
     ''' Format of Time Codes displayed when not displaying timing in terms of frames * MINIMAL Minimal Info, Most compact representation, uses '+' as separator for sub-second frame numbers, with left and right truncation of the timecode as necessary. * SMPTE SMPTE (Full), Full SMPTE timecode (format is HH:MM:SS:FF). * SMPTE_COMPACT SMPTE (Compact), SMPTE timecode showing minutes, seconds, and frames only - hours are also shown if necessary, but not by default. * MILLISECONDS Compact with Milliseconds, Similar to SMPTE (Compact), except that instead of frames, milliseconds are shown instead. * SECONDS_ONLY Only Seconds, Direct conversion of frame numbers to seconds.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    ui_line_width: typing.Union[int, str] = None
+    ui_line_width: typing.Union[str, int] = None
     ''' Changes the thickness of widget outlines, lines and points in the interface, for high DPI displays * THIN Thin, Thinner lines than the default. * AUTO Auto, Automatic line width based on UI scale. * THICK Thick, Thicker lines than the default.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ui_scale: float = None
@@ -29065,10 +29149,10 @@ class PreferencesView(bpy_struct):
     :type: float
     '''
 
-    view_frame_type: typing.Union[int, str] = None
+    view_frame_type: typing.Union[str, int] = None
     ''' How zooming to frame focuses around current frame
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     weight_color_range: 'ColorRamp' = None
@@ -29109,10 +29193,10 @@ class Property(bpy_struct):
     :type: str
     '''
 
-    icon: typing.Union[int, str] = None
+    icon: typing.Union[str, int] = None
     ''' Icon of the item
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     identifier: str = None
@@ -29217,16 +29301,16 @@ class Property(bpy_struct):
     :type: 'Struct'
     '''
 
-    subtype: typing.Union[int, str] = None
+    subtype: typing.Union[str, int] = None
     ''' Semantic interpretation of the property
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    tags: typing.Union[typing.Set[int], typing.Set[str]] = None
+    tags: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Subset of tags (defined in parent struct) that are set for this property
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     translation_context: str = None
@@ -29235,16 +29319,16 @@ class Property(bpy_struct):
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Data type of the property
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    unit: typing.Union[int, str] = None
+    unit: typing.Union[str, int] = None
     ''' Type of units for this property
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -29305,11 +29389,12 @@ class PropertyGroupItem(bpy_struct):
     ''' Property that stores arbitrary, user defined properties
     '''
 
-    collection: typing.Union[typing.List['PropertyGroup'],
+    collection: typing.Union[typing.Dict[str, 'PropertyGroup'], typing.
+                             List['PropertyGroup'],
                              'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['PropertyGroup'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'PropertyGroup'], typing.List['PropertyGroup'], 'bpy_prop_collection']
     '''
 
     double: float = None
@@ -29348,11 +29433,12 @@ class PropertyGroupItem(bpy_struct):
     :type: 'ID'
     '''
 
-    idp_array: typing.Union[typing.List['PropertyGroup'],
+    idp_array: typing.Union[typing.Dict[str, 'PropertyGroup'], typing.
+                            List['PropertyGroup'],
                             'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['PropertyGroup'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'PropertyGroup'], typing.List['PropertyGroup'], 'bpy_prop_collection']
     '''
 
     int: int = None
@@ -29399,10 +29485,10 @@ class Region(bpy_struct):
     ''' Region in a subdivided screen area
     '''
 
-    alignment: typing.Union[int, str] = None
+    alignment: typing.Union[str, int] = None
     ''' Alignment of the region within the area * NONE None, Don't use any fixed alignment, fill available space. * TOP Top. * BOTTOM Bottom. * LEFT Left. * RIGHT Right. * HORIZONTAL_SPLIT Horizontal Split. * VERTICAL_SPLIT Vertical Split. * FLOAT Float, Region floats on screen, doesn't use any fixed alignment. * QUAD_SPLIT Quad Split, Region is split horizontally and vertically.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     height: int = None
@@ -29411,10 +29497,10 @@ class Region(bpy_struct):
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of this region
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     view2d: 'View2D' = None
@@ -29551,10 +29637,10 @@ class RegionView3D(bpy_struct):
     :type: typing.List[float]
     '''
 
-    view_perspective: typing.Union[int, str] = None
+    view_perspective: typing.Union[str, int] = None
     ''' View Perspective
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     view_rotation: typing.List[float] = None
@@ -29734,7 +29820,7 @@ class RenderEngine(bpy_struct):
         pass
 
     def bake(self, depsgraph: 'Depsgraph', object: 'Object',
-             pass_type: typing.Union[int, str], pass_filter: int,
+             pass_type: typing.Union[str, int], pass_filter: int,
              object_id: int, pixel_array: 'BakePixel', num_pixels: int,
              depth: int, result: 'AnyType'):
         ''' Bake passes
@@ -29744,7 +29830,7 @@ class RenderEngine(bpy_struct):
         :param object: 
         :type object: 'Object'
         :param pass_type: Pass, Pass to bake
-        :type pass_type: typing.Union[int, str]
+        :type pass_type: typing.Union[str, int]
         :param pass_filter: Pass Filter, Filter to combined, diffuse, glossy and transmission passes
         :type pass_filter: int
         :param object_id: Object Id, Id of the current object being baked in relation to the others
@@ -29990,12 +30076,12 @@ class RenderEngine(bpy_struct):
         '''
         pass
 
-    def report(self, type: typing.Union[typing.Set[int], typing.Set[str]],
+    def report(self, type: typing.Union[typing.Set[str], typing.Set[int]],
                message: str):
         ''' Report info, warning or error messages
 
         :param type: Type
-        :type type: typing.Union[typing.Set[int], typing.Set[str]]
+        :type type: typing.Union[typing.Set[str], typing.Set[int]]
         :param message: Report Message
         :type message: str
         '''
@@ -30051,7 +30137,7 @@ class RenderEngine(bpy_struct):
 
     def register_pass(self, scene: 'Scene', view_layer: 'ViewLayer', name: str,
                       channels: int, chanid: str,
-                      type: typing.Union[int, str]):
+                      type: typing.Union[str, int]):
         ''' Register a render pass that will be part of the render with the current settings
 
         :param scene: 
@@ -30065,7 +30151,7 @@ class RenderEngine(bpy_struct):
         :param chanid: Channel IDs
         :type chanid: str
         :param type: Type
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         '''
         pass
 
@@ -30104,11 +30190,12 @@ class RenderLayer(bpy_struct):
     :type: str
     '''
 
-    passes: typing.Union[typing.List['RenderPass'], 'bpy_prop_collection',
+    passes: typing.Union[typing.Dict[str, 'RenderPass'], typing.
+                         List['RenderPass'], 'bpy_prop_collection',
                          'RenderPasses'] = None
     ''' 
 
-    :type: typing.Union[typing.List['RenderPass'], 'bpy_prop_collection', 'RenderPasses']
+    :type: typing.Union[typing.Dict[str, 'RenderPass'], typing.List['RenderPass'], 'bpy_prop_collection', 'RenderPasses']
     '''
 
     use_all_z: bool = None
@@ -30412,12 +30499,12 @@ class RenderPasses(bpy_struct):
     ''' Collection of render passes
     '''
 
-    def find_by_type(self, pass_type: typing.Union[int, str],
+    def find_by_type(self, pass_type: typing.Union[str, int],
                      view: str) -> 'RenderPass':
         ''' Get the render pass for a given type and view
 
         :param pass_type: Pass
-        :type pass_type: typing.Union[int, str]
+        :type pass_type: typing.Union[str, int]
         :param view: View, Render view to get pass from
         :type view: str
         :rtype: 'RenderPass'
@@ -30463,11 +30550,11 @@ class RenderResult(bpy_struct):
     ''' Result of rendering, including all layers and passes
     '''
 
-    layers: typing.Union[typing.
+    layers: typing.Union[typing.Dict[str, 'RenderLayer'], typing.
                          List['RenderLayer'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['RenderLayer'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'RenderLayer'], typing.List['RenderLayer'], 'bpy_prop_collection']
     '''
 
     resolution_x: int = None
@@ -30482,11 +30569,11 @@ class RenderResult(bpy_struct):
     :type: int
     '''
 
-    views: typing.Union[typing.
+    views: typing.Union[typing.Dict[str, 'RenderView'], typing.
                         List['RenderView'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['RenderView'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'RenderView'], typing.List['RenderView'], 'bpy_prop_collection']
     '''
 
     def load_from_file(self, filename: str):
@@ -30557,10 +30644,10 @@ class RenderSettings(bpy_struct):
     :type: int
     '''
 
-    bake_type: typing.Union[int, str] = None
+    bake_type: typing.Union[str, int] = None
     ''' Choose shading information to bake into the image * NORMALS Normals, Bake normals. * DISPLACEMENT Displacement, Bake displacement.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bake_user_scale: float = None
@@ -30599,10 +30686,10 @@ class RenderSettings(bpy_struct):
     :type: float
     '''
 
-    engine: typing.Union[int, str] = None
+    engine: typing.Union[str, int] = None
     ''' Engine to use for rendering
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ffmpeg: 'FFmpegSettings' = None
@@ -30665,10 +30752,10 @@ class RenderSettings(bpy_struct):
     :type: int
     '''
 
-    hair_type: typing.Union[int, str] = None
+    hair_type: typing.Union[str, int] = None
     ''' Hair shape type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     has_multiple_engines: bool = None
@@ -30695,10 +30782,10 @@ class RenderSettings(bpy_struct):
     :type: float
     '''
 
-    line_thickness_mode: typing.Union[int, str] = None
+    line_thickness_mode: typing.Union[str, int] = None
     ''' Line thickness mode for Freestyle line drawing * ABSOLUTE Absolute, Specify unit line thickness in pixels. * RELATIVE Relative, Unit line thickness is scaled by the proportion of the present vertical image resolution to 480 pixels.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     motion_blur_shutter: float = None
@@ -30725,10 +30812,10 @@ class RenderSettings(bpy_struct):
     :type: float
     '''
 
-    preview_pixel_size: typing.Union[int, str] = None
+    preview_pixel_size: typing.Union[str, int] = None
     ''' Pixel size for viewport rendering * AUTO Automatic, Automatic pixel size, depends on the user interface scale. * 1 1x, Render at full resolution. * 2 2x, Render at 50% resolution. * 4 4x, Render at 25% resolution. * 8 8x, Render at 12.5% resolution.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     preview_start_resolution: int = None
@@ -30755,10 +30842,10 @@ class RenderSettings(bpy_struct):
     :type: int
     '''
 
-    sequencer_gl_preview: typing.Union[int, str] = None
+    sequencer_gl_preview: typing.Union[str, int] = None
     ''' Method to draw in the sequencer view * WIREFRAME Wireframe, Display the object as wire edges. * SOLID Solid, Display in solid mode. * MATERIAL Material Preview, Display in Material Preview mode. * RENDERED Rendered, Display render preview.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     simplify_child_particles: float = None
@@ -30851,11 +30938,12 @@ class RenderSettings(bpy_struct):
     :type: str
     '''
 
-    stereo_views: typing.Union[typing.List['SceneRenderView'],
+    stereo_views: typing.Union[typing.Dict[str, 'SceneRenderView'], typing.
+                               List['SceneRenderView'],
                                'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['SceneRenderView'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'SceneRenderView'], typing.List['SceneRenderView'], 'bpy_prop_collection']
     '''
 
     threads: int = None
@@ -30864,10 +30952,10 @@ class RenderSettings(bpy_struct):
     :type: int
     '''
 
-    threads_mode: typing.Union[int, str] = None
+    threads_mode: typing.Union[str, int] = None
     ''' Determine the amount of render threads used * AUTO Auto-detect, Automatically determine the number of threads, based on CPUs. * FIXED Fixed, Manually determine the number of threads.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     tile_x: int = None
@@ -31134,17 +31222,18 @@ class RenderSettings(bpy_struct):
     :type: bool
     '''
 
-    views: typing.Union[typing.List['SceneRenderView'], 'bpy_prop_collection',
+    views: typing.Union[typing.Dict[str, 'SceneRenderView'], typing.
+                        List['SceneRenderView'], 'bpy_prop_collection',
                         'RenderViews'] = None
     ''' 
 
-    :type: typing.Union[typing.List['SceneRenderView'], 'bpy_prop_collection', 'RenderViews']
+    :type: typing.Union[typing.Dict[str, 'SceneRenderView'], typing.List['SceneRenderView'], 'bpy_prop_collection', 'RenderViews']
     '''
 
-    views_format: typing.Union[int, str] = None
+    views_format: typing.Union[str, int] = None
     ''' * STEREO_3D Stereo 3D, Single stereo camera system, adjust the stereo settings in the camera panel. * MULTIVIEW Multi-View, Multi camera system, adjust the cameras individually.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def frame_path(self,
@@ -31567,16 +31656,16 @@ class RigidBodyConstraint(bpy_struct):
     :type: float
     '''
 
-    spring_type: typing.Union[int, str] = None
+    spring_type: typing.Union[str, int] = None
     ''' Which implementation of spring to use * SPRING1 Blender 2.7, Spring implementation used in blender 2.7. Damping is capped at 1.0. * SPRING2 Blender 2.8, New implementation available since 2.8.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of Rigid Body Constraint * FIXED Fixed, Glue rigid bodies together. * POINT Point, Constrain rigid bodies to move around common pivot point. * HINGE Hinge, Restrict rigid body rotation to one axis. * SLIDER Slider, Restrict rigid body translation to one axis. * PISTON Piston, Restrict rigid body translation and rotation to one axis. * GENERIC Generic, Restrict translation and rotation to specified axes. * GENERIC_SPRING Generic Spring, Restrict translation and rotation to specified axes with springs. * MOTOR Motor, Drive rigid body around or along an axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_breaking: bool = None
@@ -31719,10 +31808,10 @@ class RigidBodyObject(bpy_struct):
     :type: float
     '''
 
-    collision_shape: typing.Union[int, str] = None
+    collision_shape: typing.Union[str, int] = None
     ''' Collision Shape of object in Rigid Body Simulations * BOX Box, Box-like shapes (i.e. cubes), including planes (i.e. ground planes). * SPHERE Sphere. * CAPSULE Capsule. * CYLINDER Cylinder. * CONE Cone. * CONVEX_HULL Convex Hull, A mesh-like surface encompassing (i.e. shrinkwrap over) all vertices (best results with fewer vertices). * MESH Mesh, Mesh consisting of triangles only, allowing for more detailed interactions than convex hulls.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     deactivate_angular_velocity: float = None
@@ -31767,10 +31856,10 @@ class RigidBodyObject(bpy_struct):
     :type: float
     '''
 
-    mesh_source: typing.Union[int, str] = None
+    mesh_source: typing.Union[str, int] = None
     ''' Source of the mesh used to create collision shape * BASE Base, Base mesh. * DEFORM Deform, Deformations (shape keys, deform modifiers). * FINAL Final, All modifiers.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     restitution: float = None
@@ -31779,10 +31868,10 @@ class RigidBodyObject(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Role of object in Rigid Body Simulations * ACTIVE Active, Object is directly controlled by simulation results. * PASSIVE Passive, Object is directly controlled by animation system.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_deactivation: bool = None
@@ -31970,10 +32059,10 @@ class SPHFluidSettings(bpy_struct):
     :type: float
     '''
 
-    solver: typing.Union[int, str] = None
+    solver: typing.Union[str, int] = None
     ''' The code used to calculate internal forces on particles * DDR Double-Density, An artistic solver with strong surface tension effects (original). * CLASSICAL Classical, A more physically-accurate solver.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     spring_force: float = None
@@ -32098,10 +32187,10 @@ class SceneDisplay(bpy_struct):
     :type: int
     '''
 
-    render_aa: typing.Union[int, str] = None
+    render_aa: typing.Union[str, int] = None
     ''' Method of anti-aliasing when rendering final image * OFF No Anti-Aliasing, Scene will be rendering without any anti-aliasing. * FXAA Single Pass Anti-Aliasing, Scene will be rendered using a single pass anti-aliasing method (FXAA). * 5 5 Samples, Scene will be rendered using 5 anti-aliasing samples. * 8 8 Samples, Scene will be rendered using 8 anti-aliasing samples. * 11 11 Samples, Scene will be rendered using 11 anti-aliasing samples. * 16 16 Samples, Scene will be rendered using 16 anti-aliasing samples. * 32 32 Samples, Scene will be rendered using 32 anti-aliasing samples.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     shading: 'View3DShading' = None
@@ -32122,10 +32211,10 @@ class SceneDisplay(bpy_struct):
     :type: float
     '''
 
-    viewport_aa: typing.Union[int, str] = None
+    viewport_aa: typing.Union[str, int] = None
     ''' Method of anti-aliasing when rendering 3d viewport * OFF No Anti-Aliasing, Scene will be rendering without any anti-aliasing. * FXAA Single Pass Anti-Aliasing, Scene will be rendered using a single pass anti-aliasing method (FXAA). * 5 5 Samples, Scene will be rendered using 5 anti-aliasing samples. * 8 8 Samples, Scene will be rendered using 8 anti-aliasing samples. * 11 11 Samples, Scene will be rendered using 11 anti-aliasing samples. * 16 16 Samples, Scene will be rendered using 16 anti-aliasing samples. * 32 32 Samples, Scene will be rendered using 32 anti-aliasing samples.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -32220,10 +32309,10 @@ class SceneEEVEE(bpy_struct):
     :type: float
     '''
 
-    gi_cubemap_resolution: typing.Union[int, str] = None
+    gi_cubemap_resolution: typing.Union[str, int] = None
     ''' Size of every cubemaps
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gi_diffuse_bounces: int = None
@@ -32268,10 +32357,10 @@ class SceneEEVEE(bpy_struct):
     :type: bool
     '''
 
-    gi_visibility_resolution: typing.Union[int, str] = None
+    gi_visibility_resolution: typing.Union[str, int] = None
     ''' Size of the shadow map applied to each irradiance sample
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gtao_distance: float = None
@@ -32316,16 +32405,16 @@ class SceneEEVEE(bpy_struct):
     :type: float
     '''
 
-    shadow_cascade_size: typing.Union[int, str] = None
+    shadow_cascade_size: typing.Union[str, int] = None
     ''' Size of sun light shadow maps
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    shadow_cube_size: typing.Union[int, str] = None
+    shadow_cube_size: typing.Union[str, int] = None
     ''' Size of point and area light shadow maps
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ssr_border_fade: float = None
@@ -32502,10 +32591,10 @@ class SceneEEVEE(bpy_struct):
     :type: float
     '''
 
-    volumetric_tile_size: typing.Union[int, str] = None
+    volumetric_tile_size: typing.Union[str, int] = None
     ''' Control the quality of the volumetric effects (lower size increase vram usage and quality)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -32672,10 +32761,10 @@ class Scopes(bpy_struct):
     :type: float
     '''
 
-    waveform_mode: typing.Union[int, str] = None
+    waveform_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -32710,10 +32799,10 @@ class Sequence(bpy_struct):
     :type: float
     '''
 
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' Method for controlling how the strip combines with other strips
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     channel: int = None
@@ -32788,11 +32877,12 @@ class Sequence(bpy_struct):
     :type: bool
     '''
 
-    modifiers: typing.Union[typing.List['SequenceModifier'],
-                            'bpy_prop_collection', 'SequenceModifiers'] = None
+    modifiers: typing.Union[typing.Dict[str, 'SequenceModifier'], typing.
+                            List['SequenceModifier'], 'bpy_prop_collection',
+                            'SequenceModifiers'] = None
     ''' Modifiers affecting this strip
 
-    :type: typing.Union[typing.List['SequenceModifier'], 'bpy_prop_collection', 'SequenceModifiers']
+    :type: typing.Union[typing.Dict[str, 'SequenceModifier'], typing.List['SequenceModifier'], 'bpy_prop_collection', 'SequenceModifiers']
     '''
 
     mute: bool = None
@@ -32837,10 +32927,10 @@ class Sequence(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_cache_composite: bool = None
@@ -33043,11 +33133,11 @@ class SequenceEditor(bpy_struct):
     :type: 'Sequence'
     '''
 
-    meta_stack: typing.Union[typing.
+    meta_stack: typing.Union[typing.Dict[str, 'Sequence'], typing.
                              List['Sequence'], 'bpy_prop_collection'] = None
     ''' Meta strip stack, last is currently edited meta strip
 
-    :type: typing.Union[typing.List['Sequence'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Sequence'], typing.List['Sequence'], 'bpy_prop_collection']
     '''
 
     overlay_frame: int = None
@@ -33062,10 +33152,10 @@ class SequenceEditor(bpy_struct):
     :type: str
     '''
 
-    proxy_storage: typing.Union[int, str] = None
+    proxy_storage: typing.Union[str, int] = None
     ''' How to store proxies for this project * PER_STRIP Per Strip, Store proxies using per strip settings. * PROJECT Project, Store proxies using project directory.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     recycle_max_cost: float = None
@@ -33074,18 +33164,19 @@ class SequenceEditor(bpy_struct):
     :type: float
     '''
 
-    sequences: typing.Union[typing.List['Sequence'], 'bpy_prop_collection',
+    sequences: typing.Union[typing.Dict[str, 'Sequence'], typing.
+                            List['Sequence'], 'bpy_prop_collection',
                             'Sequences'] = None
     ''' Top-level strips only
 
-    :type: typing.Union[typing.List['Sequence'], 'bpy_prop_collection', 'Sequences']
+    :type: typing.Union[typing.Dict[str, 'Sequence'], typing.List['Sequence'], 'bpy_prop_collection', 'Sequences']
     '''
 
-    sequences_all: typing.Union[typing.
+    sequences_all: typing.Union[typing.Dict[str, 'Sequence'], typing.
                                 List['Sequence'], 'bpy_prop_collection'] = None
     ''' All strips, recursively including those inside metastrips
 
-    :type: typing.Union[typing.List['Sequence'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Sequence'], typing.List['Sequence'], 'bpy_prop_collection']
     '''
 
     show_cache: bool = None
@@ -33286,16 +33377,16 @@ class SequenceModifier(bpy_struct):
     :type: 'Sequence'
     '''
 
-    input_mask_type: typing.Union[int, str] = None
+    input_mask_type: typing.Union[str, int] = None
     ''' Type of input data used for mask * STRIP Strip, Use sequencer strip as mask input. * ID Mask, Use mask ID as mask input.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_time: typing.Union[int, str] = None
+    mask_time: typing.Union[str, int] = None
     ''' Time to use for the Mask animation * RELATIVE Relative, Mask animation is offset to start of strip. * ABSOLUTE Absolute, Mask animation is in sync with scene frame.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mute: bool = None
@@ -33316,10 +33407,10 @@ class SequenceModifier(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -33349,13 +33440,13 @@ class SequenceModifiers(bpy_struct):
     '''
 
     def new(self, name: str,
-            type: typing.Union[int, str]) -> 'SequenceModifier':
+            type: typing.Union[str, int]) -> 'SequenceModifier':
         ''' Add a new modifier
 
         :param name: New name for the modifier
         :type name: str
         :param type: Modifier type to add
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'SequenceModifier'
         :return: Newly created modifier
         '''
@@ -33461,10 +33552,10 @@ class SequenceProxy(bpy_struct):
     :type: int
     '''
 
-    timecode: typing.Union[int, str] = None
+    timecode: typing.Union[str, int] = None
     ''' Method for reading the inputs timecode * NONE No TC in use. * RECORD_RUN Record Run, Use images in the order as they are recorded. * FREE_RUN Free Run, Use global timestamp written by recording device. * FREE_RUN_REC_DATE Free Run (rec date), Interpolate a global timestamp using the record date and time written by recording device. * RECORD_RUN_NO_GAPS Record Run No Gaps, Like record run, but ignore timecode, changes in framerate or dropouts.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_overwrite: bool = None
@@ -33653,7 +33744,7 @@ class Sequences(bpy_struct):
 
     def new_effect(self,
                    name: str,
-                   type: typing.Union[int, str],
+                   type: typing.Union[str, int],
                    channel: int,
                    frame_start: int,
                    frame_end: int = 0,
@@ -33665,7 +33756,7 @@ class Sequences(bpy_struct):
         :param name: Name for the new sequence
         :type name: str
         :param type: Type, type for the new sequence
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :param channel: Channel, The channel for the new sequence
         :type channel: int
         :param frame_start: The start frame for the new sequence
@@ -33747,10 +33838,10 @@ class ShaderFx(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * FX_BLUR Blur, Apply Gaussian Blur to object. * FX_COLORIZE Colorize, Apply different tint effects. * FX_FLIP Flip, Flip image. * FX_GLOW Glow, Create a glow effect. * FX_PIXEL Pixelate, Pixelate image. * FX_RIM Rim, Add a rim to the image. * FX_SHADOW Shadow, Create a shadow effect. * FX_SWIRL Swirl, Create a rotation distortion. * FX_WAVE Wave Distortion, Apply sinusoidal deformation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -33779,11 +33870,11 @@ class ShapeKey(bpy_struct):
     ''' Shape key in a shape keys data-block
     '''
 
-    data: typing.Union[typing.
+    data: typing.Union[typing.Dict[str, 'UnknownType'], typing.
                        List['UnknownType'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['UnknownType'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'UnknownType'], typing.List['UnknownType'], 'bpy_prop_collection']
     '''
 
     frame: float = None
@@ -33792,10 +33883,10 @@ class ShapeKey(bpy_struct):
     :type: float
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Interpolation type for absolute shape keys
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mute: bool = None
@@ -34028,10 +34119,10 @@ class SoftBodySettings(bpy_struct):
     :type: int
     '''
 
-    aerodynamics_type: typing.Union[int, str] = None
+    aerodynamics_type: typing.Union[str, int] = None
     ''' Method of calculating aerodynamic interaction * SIMPLE Simple, Edges receive a drag force from surrounding media. * LIFT_FORCE Lift Force, Edges receive a lift force when passing through surrounding media.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ball_damp: float = None
@@ -34070,10 +34161,10 @@ class SoftBodySettings(bpy_struct):
     :type: 'Collection'
     '''
 
-    collision_type: typing.Union[int, str] = None
+    collision_type: typing.Union[str, int] = None
     ''' Choose Collision Type * MANUAL Manual, Manual adjust. * AVERAGE Average, Average Spring length \* Ball Size. * MINIMAL Minimal, Minimal Spring length \* Ball Size. * MAXIMAL Maximal, Maximal Spring length \* Ball Size. * MINMAX AvMinMax, (Min+Max)/2 \* Ball Size.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     damping: float = None
@@ -34324,10 +34415,10 @@ class Space(bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Space data type * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -34355,13 +34446,13 @@ class Space(bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -34372,9 +34463,9 @@ class Space(bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -34446,16 +34537,16 @@ class SpaceUVEditor(bpy_struct):
     ''' UV editor data for the image editor space
     '''
 
-    display_stretch_type: typing.Union[int, str] = None
+    display_stretch_type: typing.Union[str, int] = None
     ''' Type of stretch to draw * ANGLE Angle, Angular distortion between UV and 3D angles. * AREA Area, Area distortion between UV and 3D faces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    edge_display_type: typing.Union[int, str] = None
+    edge_display_type: typing.Union[str, int] = None
     ''' Display style for UV edges * OUTLINE Outline, Display white edges with black outline. * DASH Dash, Display dashed black-white edges. * BLACK Black, Display black edges. * WHITE White, Display white edges.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     lock_bounds: bool = None
@@ -34464,10 +34555,10 @@ class SpaceUVEditor(bpy_struct):
     :type: bool
     '''
 
-    pixel_snap_mode: typing.Union[int, str] = None
+    pixel_snap_mode: typing.Union[str, int] = None
     ''' Snap UVs to pixels while editing * DISABLED Disabled, Don't snap to pixels. * CORNER Corner, Snap to pixel corners. * CENTER Center, Snap to pixel centers.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_faces: bool = None
@@ -34512,10 +34603,10 @@ class SpaceUVEditor(bpy_struct):
     :type: bool
     '''
 
-    sticky_select_mode: typing.Union[int, str] = None
+    sticky_select_mode: typing.Union[str, int] = None
     ''' Automatically select also UVs sharing the same vertex as the ones being selected * DISABLED Disabled, Sticky vertex selection disabled. * SHARED_LOCATION Shared Location, Select UVs that are at the same location and share a mesh vertex. * SHARED_VERTEX Shared Vertex, Select UVs that share mesh vertex, irrespective if they are in the same location.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     tile_grid_shape: typing.List[int] = None
@@ -34556,12 +34647,13 @@ class Spline(bpy_struct):
     ''' Element of a curve, either NURBS, Bezier or Polyline or a character with text objects
     '''
 
-    bezier_points: typing.Union[typing.List['BezierSplinePoint'],
+    bezier_points: typing.Union[typing.Dict[str, 'BezierSplinePoint'], typing.
+                                List['BezierSplinePoint'],
                                 'bpy_prop_collection',
                                 'SplineBezierPoints'] = None
     ''' Collection of points for Bezier curves only
 
-    :type: typing.Union[typing.List['BezierSplinePoint'], 'bpy_prop_collection', 'SplineBezierPoints']
+    :type: typing.Union[typing.Dict[str, 'BezierSplinePoint'], typing.List['BezierSplinePoint'], 'bpy_prop_collection', 'SplineBezierPoints']
     '''
 
     character_index: int = None
@@ -34606,17 +34698,18 @@ class Spline(bpy_struct):
     :type: int
     '''
 
-    points: typing.Union[typing.List['SplinePoint'], 'bpy_prop_collection',
+    points: typing.Union[typing.Dict[str, 'SplinePoint'], typing.
+                         List['SplinePoint'], 'bpy_prop_collection',
                          'SplinePoints'] = None
     ''' Collection of points that make up this poly or nurbs spline
 
-    :type: typing.Union[typing.List['SplinePoint'], 'bpy_prop_collection', 'SplinePoints']
+    :type: typing.Union[typing.Dict[str, 'SplinePoint'], typing.List['SplinePoint'], 'bpy_prop_collection', 'SplinePoints']
     '''
 
-    radius_interpolation: typing.Union[int, str] = None
+    radius_interpolation: typing.Union[str, int] = None
     ''' The type of radius interpolation for Bezier curves
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     resolution_u: int = None
@@ -34631,16 +34724,16 @@ class Spline(bpy_struct):
     :type: int
     '''
 
-    tilt_interpolation: typing.Union[int, str] = None
+    tilt_interpolation: typing.Union[str, int] = None
     ''' The type of tilt interpolation for 3D, Bezier curves
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' The interpolation type for this curve element
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_bezier_u: bool = None
@@ -34857,22 +34950,22 @@ class Stereo3dDisplay(bpy_struct):
     ''' Settings for stereo 3D display
     '''
 
-    anaglyph_type: typing.Union[int, str] = None
+    anaglyph_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    display_mode: typing.Union[int, str] = None
+    display_mode: typing.Union[str, int] = None
     ''' * ANAGLYPH Anaglyph, Render views for left and right eyes as two differently filtered colors in a single image (anaglyph glasses are required). * INTERLACE Interlace, Render views for left and right eyes interlaced in a single image (3D-ready monitor is required). * TIMESEQUENTIAL Time Sequential, Render alternate eyes (also known as page flip, quad buffer support in the graphic card is required). * SIDEBYSIDE Side-by-Side, Render views for left and right eyes side-by-side. * TOPBOTTOM Top-Bottom, Render views for left and right eyes one above another.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    interlace_type: typing.Union[int, str] = None
+    interlace_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_interlace_swap: bool = None
@@ -34913,22 +35006,22 @@ class Stereo3dFormat(bpy_struct):
     ''' Settings for stereo output
     '''
 
-    anaglyph_type: typing.Union[int, str] = None
+    anaglyph_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    display_mode: typing.Union[int, str] = None
+    display_mode: typing.Union[str, int] = None
     ''' * ANAGLYPH Anaglyph, Render views for left and right eyes as two differently filtered colors in a single image (anaglyph glasses are required). * INTERLACE Interlace, Render views for left and right eyes interlaced in a single image (3D-ready monitor is required). * SIDEBYSIDE Side-by-Side, Render views for left and right eyes side-by-side. * TOPBOTTOM Top-Bottom, Render views for left and right eyes one above another.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    interlace_type: typing.Union[int, str] = None
+    interlace_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_interlace_swap: bool = None
@@ -34987,11 +35080,11 @@ class Struct(bpy_struct):
     :type: str
     '''
 
-    functions: typing.Union[typing.
+    functions: typing.Union[typing.Dict[str, 'Function'], typing.
                             List['Function'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Function'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Function'], typing.List['Function'], 'bpy_prop_collection']
     '''
 
     identifier: str = None
@@ -35018,18 +35111,19 @@ class Struct(bpy_struct):
     :type: 'Struct'
     '''
 
-    properties: typing.Union[typing.
+    properties: typing.Union[typing.Dict[str, 'Property'], typing.
                              List['Property'], 'bpy_prop_collection'] = None
     ''' Properties in the struct
 
-    :type: typing.Union[typing.List['Property'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Property'], typing.List['Property'], 'bpy_prop_collection']
     '''
 
-    property_tags: typing.Union[typing.List['EnumPropertyItem'],
+    property_tags: typing.Union[typing.Dict[str, 'EnumPropertyItem'], typing.
+                                List['EnumPropertyItem'],
                                 'bpy_prop_collection'] = None
     ''' Tags that properties can use to influence behavior
 
-    :type: typing.Union[typing.List['EnumPropertyItem'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'EnumPropertyItem'], typing.List['EnumPropertyItem'], 'bpy_prop_collection']
     '''
 
     translation_context: str = None
@@ -35112,11 +35206,12 @@ class StudioLight(bpy_struct):
     :type: str
     '''
 
-    solid_lights: typing.Union[typing.List['UserSolidLight'],
+    solid_lights: typing.Union[typing.Dict[str, 'UserSolidLight'], typing.
+                               List['UserSolidLight'],
                                'bpy_prop_collection'] = None
     ''' Lights user to display objects in solid draw mode
 
-    :type: typing.Union[typing.List['UserSolidLight'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'UserSolidLight'], typing.List['UserSolidLight'], 'bpy_prop_collection']
     '''
 
     spherical_harmonics_coefficients: typing.List[float] = None
@@ -35125,10 +35220,10 @@ class StudioLight(bpy_struct):
     :type: typing.List[float]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -35157,13 +35252,13 @@ class StudioLights(bpy_struct):
     ''' Collection of studio lights
     '''
 
-    def load(self, path: str, type: typing.Union[int, str]) -> 'StudioLight':
+    def load(self, path: str, type: typing.Union[str, int]) -> 'StudioLight':
         ''' Load studiolight from file
 
         :param path: File Path, File path where the studio light file can be found
         :type path: str
         :param type: Type, The type for the new studio light
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :rtype: 'StudioLight'
         :return: Newly created StudioLight
         '''
@@ -35219,28 +35314,28 @@ class TexMapping(bpy_struct):
     ''' Texture coordinate mapping settings
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' * FLAT Flat, Map X and Y coordinates directly. * CUBE Cube, Map using the normal vector. * TUBE Tube, Map with Z as central axis. * SPHERE Sphere, Map with Z as central axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_x: typing.Union[int, str] = None
+    mapping_x: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_y: typing.Union[int, str] = None
+    mapping_y: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_z: typing.Union[int, str] = None
+    mapping_z: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     max: typing.List[float] = None
@@ -35285,10 +35380,10 @@ class TexMapping(bpy_struct):
     :type: bool
     '''
 
-    vector_type: typing.Union[int, str] = None
+    vector_type: typing.Union[str, int] = None
     ''' Type of vector that the mapping transforms * POINT Point, Transform a point. * TEXTURE Texture, Transform a texture by inverse mapping the texture coordinate. * VECTOR Vector, Transform a direction vector. Location is ignored. * NORMAL Normal, Transform a unit normal vector. Location is ignored.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -35499,10 +35594,10 @@ class TextureSlot(bpy_struct):
     ''' Texture slot defining the mapping and influence of a texture
     '''
 
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' Mode used to apply the texture
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color: typing.List[float] = None
@@ -35529,10 +35624,10 @@ class TextureSlot(bpy_struct):
     :type: typing.List[float]
     '''
 
-    output_node: typing.Union[int, str] = None
+    output_node: typing.Union[str, int] = None
     ''' Which output node to use, for node-based textures
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     scale: typing.List[float] = None
@@ -35573,11 +35668,12 @@ class Theme(bpy_struct):
     ''' Theme settings defining draw style and colors in the user interface
     '''
 
-    bone_color_sets: typing.Union[typing.List['ThemeBoneColorSet'],
-                                  'bpy_prop_collection'] = None
+    bone_color_sets: typing.Union[
+        typing.Dict[str, 'ThemeBoneColorSet'], typing.
+        List['ThemeBoneColorSet'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['ThemeBoneColorSet'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ThemeBoneColorSet'], typing.List['ThemeBoneColorSet'], 'bpy_prop_collection']
     '''
 
     clip_editor: 'ThemeClipEditor' = None
@@ -35676,10 +35772,10 @@ class Theme(bpy_struct):
     :type: 'ThemeTextEditor'
     '''
 
-    theme_area: typing.Union[int, str] = None
+    theme_area: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     topbar: 'ThemeTopBar' = None
@@ -36324,10 +36420,10 @@ class ThemeFontStyle(bpy_struct):
     ''' Theme settings for Font
     '''
 
-    font_kerning_style: typing.Union[int, str] = None
+    font_kerning_style: typing.Union[str, int] = None
     ''' Which style to use for font kerning * UNFITTED Unfitted, Use scaled but un-grid-fitted kerning distances. * FITTED Fitted, Use scaled and grid-fitted kerning distances.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     points: int = None
@@ -36392,10 +36488,10 @@ class ThemeGradientColors(bpy_struct):
     ''' Theme settings for background colors and gradient
     '''
 
-    background_type: typing.Union[int, str] = None
+    background_type: typing.Union[str, int] = None
     ''' Type of background in the 3D viewport * SINGLE_COLOR Single Color, Use a solid color as viewport background. * LINEAR Linear Gradient, Use a screen space vertical linear gradient as viewport background. * RADIAL Vignette, Use a radial gradient as viewport background.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gradient: typing.List[float] = None
@@ -39396,29 +39492,29 @@ class Timer(bpy_struct):
 
 
 class ToolSettings(bpy_struct):
-    annotation_stroke_placement_image_editor: typing.Union[int, str] = None
+    annotation_stroke_placement_image_editor: typing.Union[str, int] = None
     ''' * CURSOR 3D Cursor, Draw stroke at 3D cursor location. * VIEW View, Stick stroke to the view . * SURFACE Surface, Stick stroke to surfaces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    annotation_stroke_placement_sequencer_preview: typing.Union[int,
-                                                                str] = None
+    annotation_stroke_placement_sequencer_preview: typing.Union[str,
+                                                                int] = None
     ''' * CURSOR 3D Cursor, Draw stroke at 3D cursor location. * VIEW View, Stick stroke to the view . * SURFACE Surface, Stick stroke to surfaces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    annotation_stroke_placement_view2d: typing.Union[int, str] = None
+    annotation_stroke_placement_view2d: typing.Union[str, int] = None
     ''' * CURSOR 3D Cursor, Draw stroke at 3D cursor location. * VIEW View, Stick stroke to the view . * SURFACE Surface, Stick stroke to surfaces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    annotation_stroke_placement_view3d: typing.Union[int, str] = None
+    annotation_stroke_placement_view3d: typing.Union[str, int] = None
     ''' How annotation strokes are orientated in 3D space * CURSOR 3D Cursor, Draw stroke at 3D cursor location. * VIEW View, Stick stroke to the view . * SURFACE Surface, Stick stroke to surfaces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     annotation_thickness: int = None
@@ -39427,10 +39523,10 @@ class ToolSettings(bpy_struct):
     :type: int
     '''
 
-    auto_keying_mode: typing.Union[int, str] = None
+    auto_keying_mode: typing.Union[str, int] = None
     ''' Mode of automatic keyframe insertion for Objects, Bones and Masks
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve_paint_settings: 'CurvePaintSettings' = None
@@ -39475,22 +39571,22 @@ class ToolSettings(bpy_struct):
     :type: 'GpSculptPaint'
     '''
 
-    gpencil_selectmode_edit: typing.Union[int, str] = None
+    gpencil_selectmode_edit: typing.Union[str, int] = None
     ''' * POINT Point, Select only points. * STROKE Stroke, Select all stroke points. * SEGMENT Segment, Select all stroke points between other strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_stroke_placement_view3d: typing.Union[int, str] = None
+    gpencil_stroke_placement_view3d: typing.Union[str, int] = None
     ''' * ORIGIN Origin, Draw stroke at Object origin. * CURSOR 3D Cursor, Draw stroke at 3D cursor location. * SURFACE Surface, Stick stroke to surfaces. * STROKE Stroke, Stick stroke to other strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_stroke_snap_mode: typing.Union[int, str] = None
+    gpencil_stroke_snap_mode: typing.Union[str, int] = None
     ''' * NONE All points, Snap to all points. * ENDS End points, Snap to first and last points and interpolate. * FIRST First point, Snap to first point.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gpencil_vertex_paint: 'GpVertexPaint' = None
@@ -39511,10 +39607,10 @@ class ToolSettings(bpy_struct):
     :type: 'ImagePaint'
     '''
 
-    keyframe_type: typing.Union[int, str] = None
+    keyframe_type: typing.Union[str, int] = None
     ''' Type of keyframes to create when inserting keyframes * KEYFRAME Keyframe, Normal keyframe - e.g. for key poses. * BREAKDOWN Breakdown, A breakdown pose - e.g. for transitions between key poses. * MOVING_HOLD Moving Hold, A keyframe that is part of a moving hold. * EXTREME Extreme, An 'extreme' pose, or some other purpose as needed. * JITTER Jitter, A filler or baked keyframe for keying on ones, or some other purpose as needed.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     lock_markers: bool = None
@@ -39547,10 +39643,10 @@ class ToolSettings(bpy_struct):
     :type: 'ParticleEdit'
     '''
 
-    proportional_edit_falloff: typing.Union[int, str] = None
+    proportional_edit_falloff: typing.Union[str, int] = None
     ''' Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     proportional_size: float = None
@@ -39571,28 +39667,28 @@ class ToolSettings(bpy_struct):
     :type: bool
     '''
 
-    snap_elements: typing.Union[typing.Set[int], typing.Set[str]] = None
+    snap_elements: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Type of element to snap to * INCREMENT Increment, Snap to increments of grid. * VERTEX Vertex, Snap to vertices. * EDGE Edge, Snap to edges. * FACE Face, Snap to faces. * VOLUME Volume, Snap to volume. * EDGE_MIDPOINT Edge Center, Snap to the middle of edges. * EDGE_PERPENDICULAR Edge Perpendicular, Snap to the nearest point on an edge.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    snap_node_element: typing.Union[int, str] = None
+    snap_node_element: typing.Union[str, int] = None
     ''' Type of element to snap to * GRID Grid, Snap to grid. * NODE_X Node X, Snap to left/right node border. * NODE_Y Node Y, Snap to top/bottom node border. * NODE_XY Node X / Y, Snap to any node border.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    snap_target: typing.Union[int, str] = None
+    snap_target: typing.Union[str, int] = None
     ''' Which part to snap onto the target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    snap_uv_element: typing.Union[int, str] = None
+    snap_uv_element: typing.Union[str, int] = None
     ''' Type of element to snap to * INCREMENT Increment, Snap to increments of grid. * VERTEX Vertex, Snap to vertices.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     statvis: 'MeshStatVis' = None
@@ -39601,10 +39697,10 @@ class ToolSettings(bpy_struct):
     :type: 'MeshStatVis'
     '''
 
-    transform_pivot_point: typing.Union[int, str] = None
+    transform_pivot_point: typing.Union[str, int] = None
     ''' Pivot center for rotation/scaling * BOUNDING_BOX_CENTER Bounding Box Center, Pivot around bounding box center of selected object(s). * CURSOR 3D Cursor, Pivot around the 3D cursor. * INDIVIDUAL_ORIGINS Individual Origins, Pivot around each object's own origin. * MEDIAN_POINT Median Point, Pivot around the median point of selected objects. * ACTIVE_ELEMENT Active Element, Pivot around active object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     unified_paint_settings: 'UnifiedPaintSettings' = None
@@ -39865,10 +39961,10 @@ class ToolSettings(bpy_struct):
     :type: bool
     '''
 
-    uv_relax_method: typing.Union[int, str] = None
+    uv_relax_method: typing.Union[str, int] = None
     ''' Algorithm used for UV relaxation * LAPLACIAN Laplacian, Use Laplacian method for relaxation. * HC HC, Use HC method for relaxation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     uv_sculpt: 'UvSculpt' = None
@@ -39889,22 +39985,22 @@ class ToolSettings(bpy_struct):
     :type: bool
     '''
 
-    uv_select_mode: typing.Union[int, str] = None
+    uv_select_mode: typing.Union[str, int] = None
     ''' UV selection and display mode * VERTEX Vertex, Vertex selection mode. * EDGE Edge, Edge selection mode. * FACE Face, Face selection mode. * ISLAND Island, Island selection mode.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    vertex_group_subset: typing.Union[int, str] = None
+    vertex_group_subset: typing.Union[str, int] = None
     ''' Filter Vertex groups for Display * ALL All, All Vertex Groups. * BONE_DEFORM Deform, Vertex Groups assigned to Deform Bones. * OTHER_DEFORM Other, Vertex Groups assigned to non Deform Bones.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    vertex_group_user: typing.Union[int, str] = None
+    vertex_group_user: typing.Union[str, int] = None
     ''' Display unweighted vertices * NONE None. * ACTIVE Active, Show vertices with no weights in the active group. * ALL All, Show vertices with no weights in any group.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     vertex_group_weight: float = None
@@ -39925,10 +40021,10 @@ class ToolSettings(bpy_struct):
     :type: 'VertexPaint'
     '''
 
-    workspace_tool_type: typing.Union[int, str] = None
+    workspace_tool_type: typing.Union[str, int] = None
     ''' Action when dragging in the viewport
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -39995,10 +40091,10 @@ class TransformOrientationSlot(bpy_struct):
     :type: 'TransformOrientation'
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Transformation orientation * GLOBAL Global, Align the transformation axes to world space. * LOCAL Local, Align the transformation axes to the selected objects' local space. * NORMAL Normal, Align the transformation axes to average normal of selected elements (bone Y axis for pose mode). * GIMBAL Gimbal, Align each axis to the Euler rotation axis as used for input. * VIEW View, Align the transformation axes to the window. * CURSOR Cursor, Align the transformation axes to the 3D cursor.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -40163,22 +40259,22 @@ class UILayout(bpy_struct):
     :type: bool
     '''
 
-    alignment: typing.Union[int, str] = None
+    alignment: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    direction: typing.Union[int, str] = None
+    direction: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    emboss: typing.Union[int, str] = None
+    emboss: typing.Union[str, int] = None
     ''' * NORMAL Regular, Draw standard button emboss style. * NONE None, Draw only text and icons. * PULLDOWN_MENU Pulldown Menu, Draw pulldown menu style. * RADIAL_MENU Radial Menu, Draw radial menu style.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     enabled: bool = None
@@ -40187,10 +40283,10 @@ class UILayout(bpy_struct):
     :type: bool
     '''
 
-    operator_context: typing.Union[int, str] = None
+    operator_context: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     scale_x: float = None
@@ -40377,7 +40473,7 @@ class UILayout(bpy_struct):
              text: str = "",
              text_ctxt: str = "",
              translate: bool = True,
-             icon: typing.Union[int, str] = 'NONE',
+             icon: typing.Union[str, int] = 'NONE',
              expand: bool = False,
              slider: bool = False,
              toggle: int = -1,
@@ -40401,7 +40497,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param expand: Expand button to show more detail
         :type expand: bool
         :param slider: Use slider widget for numeric values
@@ -40441,7 +40537,7 @@ class UILayout(bpy_struct):
                        text: str = "",
                        text_ctxt: str = "",
                        translate: bool = True,
-                       icon: typing.Union[int, str] = 'NONE'):
+                       icon: typing.Union[str, int] = 'NONE'):
         ''' prop_menu_enum
 
         :param data: Data from which to take property
@@ -40455,7 +40551,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         '''
         pass
 
@@ -40465,7 +40561,7 @@ class UILayout(bpy_struct):
                           text: str = "",
                           text_ctxt: str = "",
                           translate: bool = True,
-                          icon: typing.Union[int, str] = 'NONE',
+                          icon: typing.Union[str, int] = 'NONE',
                           icon_only: bool = False,
                           panel: str = ""):
         ''' prop_with_popover
@@ -40481,7 +40577,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param icon_only: Draw only icons in tabs, no text
         :type icon_only: bool
         :param panel: Identifier of the panel
@@ -40495,7 +40591,7 @@ class UILayout(bpy_struct):
                        text: str = "",
                        text_ctxt: str = "",
                        translate: bool = True,
-                       icon: typing.Union[int, str] = 'NONE',
+                       icon: typing.Union[str, int] = 'NONE',
                        icon_only: bool = False,
                        menu: str = ""):
         ''' prop_with_menu
@@ -40511,7 +40607,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param icon_only: Draw only icons in tabs, no text
         :type icon_only: bool
         :param menu: Identifier of the menu
@@ -40541,7 +40637,7 @@ class UILayout(bpy_struct):
                   text: str = "",
                   text_ctxt: str = "",
                   translate: bool = True,
-                  icon: typing.Union[int, str] = 'NONE'):
+                  icon: typing.Union[str, int] = 'NONE'):
         ''' prop_enum
 
         :param data: Data from which to take property
@@ -40557,7 +40653,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         '''
         pass
 
@@ -40569,7 +40665,7 @@ class UILayout(bpy_struct):
                     text: str = "",
                     text_ctxt: str = "",
                     translate: bool = True,
-                    icon: typing.Union[int, str] = 'NONE'):
+                    icon: typing.Union[str, int] = 'NONE'):
         ''' prop_search
 
         :param data: Data from which to take property
@@ -40587,7 +40683,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         '''
         pass
 
@@ -40596,7 +40692,7 @@ class UILayout(bpy_struct):
                  text: str = "",
                  text_ctxt: str = "",
                  translate: bool = True,
-                 icon: typing.Union[int, str] = 'NONE',
+                 icon: typing.Union[str, int] = 'NONE',
                  emboss: bool = True,
                  depress: bool = False,
                  icon_value: int = 0) -> 'OperatorProperties':
@@ -40611,7 +40707,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param emboss: Draw the button itself, not just the icon/text
         :type emboss: bool
         :param depress: Draw pressed in
@@ -40628,7 +40724,7 @@ class UILayout(bpy_struct):
                            text: str = "",
                            text_ctxt: str = "",
                            translate: bool = True,
-                           icon: typing.Union[int, str] = 'NONE',
+                           icon: typing.Union[str, int] = 'NONE',
                            emboss: bool = True,
                            depress: bool = False,
                            icon_value: int = 0,
@@ -40644,7 +40740,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param emboss: Draw the button itself, not just the icon/text
         :type emboss: bool
         :param depress: Draw pressed in
@@ -40674,7 +40770,7 @@ class UILayout(bpy_struct):
                            text: str = "",
                            text_ctxt: str = "",
                            translate: bool = True,
-                           icon: typing.Union[int, str] = 'NONE'):
+                           icon: typing.Union[str, int] = 'NONE'):
         ''' operator_menu_enum
 
         :param operator: Identifier of the operator
@@ -40688,7 +40784,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         '''
         pass
 
@@ -40696,7 +40792,7 @@ class UILayout(bpy_struct):
               text: str = "",
               text_ctxt: str = "",
               translate: bool = True,
-              icon: typing.Union[int, str] = 'NONE',
+              icon: typing.Union[str, int] = 'NONE',
               icon_value: int = 0):
         ''' Item. Displays text and/or icon in the layout
 
@@ -40707,7 +40803,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param icon_value: Icon Value, Override automatic icon of the item
         :type icon_value: int
         '''
@@ -40718,7 +40814,7 @@ class UILayout(bpy_struct):
              text: str = "",
              text_ctxt: str = "",
              translate: bool = True,
-             icon: typing.Union[int, str] = 'NONE',
+             icon: typing.Union[str, int] = 'NONE',
              icon_value: int = 0):
         ''' menu
 
@@ -40731,7 +40827,7 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param icon_value: Icon Value, Override automatic icon of the item
         :type icon_value: int
         '''
@@ -40750,7 +40846,7 @@ class UILayout(bpy_struct):
                 text: str = "",
                 text_ctxt: str = "",
                 translate: bool = True,
-                icon: typing.Union[int, str] = 'NONE',
+                icon: typing.Union[str, int] = 'NONE',
                 icon_value: int = 0):
         ''' popover
 
@@ -40763,21 +40859,21 @@ class UILayout(bpy_struct):
         :param translate: Translate the given text, when UI translation is enabled
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param icon_value: Icon Value, Override automatic icon of the item
         :type icon_value: int
         '''
         pass
 
-    def popover_group(self, space_type: typing.Union[int, str],
-                      region_type: typing.Union[int, str], context: str,
+    def popover_group(self, space_type: typing.Union[str, int],
+                      region_type: typing.Union[str, int], context: str,
                       category: str):
         ''' popover_group
 
         :param space_type: Space Type * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
-        :type space_type: typing.Union[int, str]
+        :type space_type: typing.Union[str, int]
         :param region_type: Region Type
-        :type region_type: typing.Union[int, str]
+        :type region_type: typing.Union[str, int]
         :param context: panel type context
         :type context: str
         :param category: panel type category
@@ -40821,7 +40917,7 @@ class UILayout(bpy_struct):
                     new: str = "",
                     open: str = "",
                     unlink: str = "",
-                    filter: typing.Union[int, str] = 'ALL',
+                    filter: typing.Union[str, int] = 'ALL',
                     live_icon: bool = False,
                     text: str = "",
                     text_ctxt: str = "",
@@ -40839,7 +40935,7 @@ class UILayout(bpy_struct):
         :param unlink: Operator identifier to unlink the ID block
         :type unlink: str
         :param filter: Optionally limit the items which can be selected
-        :type filter: typing.Union[int, str]
+        :type filter: typing.Union[str, int]
         :param live_icon: Show preview instead of fixed icon
         :type live_icon: bool
         :param text: Override automatic text of the item
@@ -40859,7 +40955,7 @@ class UILayout(bpy_struct):
                             unlink: str = "",
                             rows: int = 0,
                             cols: int = 0,
-                            filter: typing.Union[int, str] = 'ALL',
+                            filter: typing.Union[str, int] = 'ALL',
                             hide_buttons: bool = False):
         ''' template_ID_preview
 
@@ -40878,7 +40974,7 @@ class UILayout(bpy_struct):
         :param cols: Number of thumbnail preview columns to display
         :type cols: int
         :param filter: Optionally limit the items which can be selected
-        :type filter: typing.Union[int, str]
+        :type filter: typing.Union[str, int]
         :param hide_buttons: Show only list, no buttons
         :type hide_buttons: bool
         '''
@@ -40913,7 +41009,7 @@ class UILayout(bpy_struct):
                          property: str,
                          new: str = "",
                          menu: str = "",
-                         filter: typing.Union[int, str] = 'ALL'):
+                         filter: typing.Union[str, int] = 'ALL'):
         ''' template_ID_tabs
 
         :param data: Data from which to take property
@@ -40925,7 +41021,7 @@ class UILayout(bpy_struct):
         :param menu: Context menu identifier
         :type menu: str
         :param filter: Optionally limit the items which can be selected
-        :type filter: typing.Union[int, str]
+        :type filter: typing.Union[str, int]
         '''
         pass
 
@@ -41044,7 +41140,7 @@ class UILayout(bpy_struct):
                                     rows: int = 0,
                                     cols: int = 0,
                                     scale: float = 1.0,
-                                    filter: typing.Union[int, str] = 'ALL'):
+                                    filter: typing.Union[str, int] = 'ALL'):
         ''' template_greasepencil_color
 
         :param data: Data from which to take property
@@ -41058,7 +41154,7 @@ class UILayout(bpy_struct):
         :param scale: Scale of the image thumbnails
         :type scale: float
         :param filter: Optionally limit the items which can be selected
-        :type filter: typing.Union[int, str]
+        :type filter: typing.Union[str, int]
         '''
         pass
 
@@ -41096,7 +41192,7 @@ class UILayout(bpy_struct):
     def template_curve_mapping(self,
                                data: 'AnyType',
                                property: str,
-                               type: typing.Union[int, str] = 'NONE',
+                               type: typing.Union[str, int] = 'NONE',
                                levels: bool = False,
                                brush: bool = False,
                                use_negative_slope: bool = False,
@@ -41108,7 +41204,7 @@ class UILayout(bpy_struct):
         :param property: Identifier of property in data
         :type property: str
         :param type: Type, Type of curves to display
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :param levels: Show black/white levels
         :type levels: bool
         :param brush: Show brush options
@@ -41391,7 +41487,7 @@ class UILayout(bpy_struct):
                       item_dyntip_propname: str = "",
                       rows: int = 5,
                       maxrows: int = 5,
-                      type: typing.Union[int, str] = 'DEFAULT',
+                      type: typing.Union[str, int] = 'DEFAULT',
                       columns: int = 9,
                       sort_reverse: bool = False,
                       sort_lock: bool = False):
@@ -41416,7 +41512,7 @@ class UILayout(bpy_struct):
         :param maxrows: Default maximum number of rows to display
         :type maxrows: int
         :param type: Type, Type of layout to use * DEFAULT Default Layout, Use the default, multi-rows layout. * COMPACT Compact Layout, Use the compact, single-row layout. * GRID Grid Layout, Use the grid-based layout.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :param columns: Number of items to display per row, for GRID layout
         :type columns: int
         :param sort_reverse: Display items in reverse order by default
@@ -41643,10 +41739,10 @@ class UIList(bpy_struct):
     :type: str
     '''
 
-    layout_type: typing.Union[int, str] = None
+    layout_type: typing.Union[str, int] = None
     ''' * DEFAULT Default Layout, Use the default, multi-rows layout. * COMPACT Compact Layout, Use the compact, single-row layout. * GRID Grid Layout, Use the grid-based layout.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_filter_invert: bool = None
@@ -41968,10 +42064,10 @@ class UnifiedPaintSettings(bpy_struct):
     :type: float
     '''
 
-    use_locked_size: typing.Union[int, str] = None
+    use_locked_size: typing.Union[str, int] = None
     ''' Measure brush size relative to the view or the scene * VIEW View, Measure brush size relative to the view. * SCENE Scene, Measure brush size relative to the scene.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_unified_color: bool = None
@@ -42027,16 +42123,16 @@ class UnifiedPaintSettings(bpy_struct):
 
 
 class UnitSettings(bpy_struct):
-    length_unit: typing.Union[int, str] = None
+    length_unit: typing.Union[str, int] = None
     ''' Unit that will be used to display length values
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mass_unit: typing.Union[int, str] = None
+    mass_unit: typing.Union[str, int] = None
     ''' Unit that will be used to display mass values
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     scale_length: float = None
@@ -42045,22 +42141,22 @@ class UnitSettings(bpy_struct):
     :type: float
     '''
 
-    system: typing.Union[int, str] = None
+    system: typing.Union[str, int] = None
     ''' The unit system to use for user interface controls
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    system_rotation: typing.Union[int, str] = None
+    system_rotation: typing.Union[str, int] = None
     ''' Unit to use for displaying/editing rotation values * DEGREES Degrees, Use degrees for measuring angles and rotations. * RADIANS Radians.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    time_unit: typing.Union[int, str] = None
+    time_unit: typing.Union[str, int] = None
     ''' Unit that will be used to display time values
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_separate: bool = None
@@ -42232,7 +42328,7 @@ class VertexGroup(bpy_struct):
     '''
 
     def add(self, index: typing.List[int], weight: float,
-            type: typing.Union[int, str]):
+            type: typing.Union[str, int]):
         ''' Add vertices to the group
 
         :param index: Index List
@@ -42240,7 +42336,7 @@ class VertexGroup(bpy_struct):
         :param weight: Vertex weight
         :type weight: float
         :param type: Vertex assign mode * REPLACE Replace, Replace. * ADD Add, Add. * SUBTRACT Subtract, Subtract.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         '''
         pass
 
@@ -42535,10 +42631,10 @@ class View3DCursor(bpy_struct):
     :type: typing.List[float]
     '''
 
-    rotation_mode: typing.Union[int, str] = None
+    rotation_mode: typing.Union[str, int] = None
     ''' * QUATERNION Quaternion (WXYZ), No Gimbal Lock. * XYZ XYZ Euler, XYZ Rotation Order - prone to Gimbal Lock (default). * XZY XZY Euler, XZY Rotation Order - prone to Gimbal Lock. * YXZ YXZ Euler, YXZ Rotation Order - prone to Gimbal Lock. * YZX YZX Euler, YZX Rotation Order - prone to Gimbal Lock. * ZXY ZXY Euler, ZXY Rotation Order - prone to Gimbal Lock. * ZYX ZYX Euler, ZYX Rotation Order - prone to Gimbal Lock. * AXIS_ANGLE Axis Angle, Axis Angle (W+XYZ), defines a rotation around some axis defined by 3D-Vector.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation_quaternion: typing.List[float] = None
@@ -43037,10 +43133,10 @@ class View3DShading(bpy_struct):
     :type: typing.List[float]
     '''
 
-    background_type: typing.Union[int, str] = None
+    background_type: typing.Union[str, int] = None
     ''' Way to draw the background * THEME Theme, Use the theme for background color. * WORLD World, Use the world for background color. * VIEWPORT Viewport, Use a custom color limited to this viewport only.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cavity_ridge_factor: float = None
@@ -43049,10 +43145,10 @@ class View3DShading(bpy_struct):
     :type: float
     '''
 
-    cavity_type: typing.Union[int, str] = None
+    cavity_type: typing.Union[str, int] = None
     ''' Way to draw the cavity shading * WORLD World, Cavity shading computed in world space, useful for larger-scale occlusion. * SCREEN Screen, Curvature-based shading, useful for making fine details more visible. * BOTH Both, Use both effects simultaneously.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cavity_valley_factor: float = None
@@ -43061,10 +43157,10 @@ class View3DShading(bpy_struct):
     :type: float
     '''
 
-    color_type: typing.Union[int, str] = None
+    color_type: typing.Union[str, int] = None
     ''' Color Type * MATERIAL Material, Show material color. * SINGLE Single, Show scene in a single color. * OBJECT Object, Show object color. * RANDOM Random, Show random object color. * VERTEX Vertex, Show active vertex color. * TEXTURE Texture, Show texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curvature_ridge_factor: float = None
@@ -43082,10 +43178,10 @@ class View3DShading(bpy_struct):
     cycles = None
     ''' '''
 
-    light: typing.Union[int, str] = None
+    light: typing.Union[str, int] = None
     ''' Lighting Method for Solid/Texture Viewport Shading * STUDIO Studio, Display using studio lighting. * MATCAP MatCap, Display using matcap material and lighting. * FLAT Flat, Display using flat lighting.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     object_outline_color: typing.List[float] = None
@@ -43094,10 +43190,10 @@ class View3DShading(bpy_struct):
     :type: typing.List[float]
     '''
 
-    render_pass: typing.Union[int, str] = None
+    render_pass: typing.Union[str, int] = None
     ''' Render Pass to show in the viewport
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     selected_studio_light: 'StudioLight' = None
@@ -43160,10 +43256,10 @@ class View3DShading(bpy_struct):
     :type: typing.List[float]
     '''
 
-    studio_light: typing.Union[int, str] = None
+    studio_light: typing.Union[str, int] = None
     ''' Studio lighting setup
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     studiolight_background_alpha: float = None
@@ -43190,10 +43286,10 @@ class View3DShading(bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Method to display/shade objects in the 3D View * WIREFRAME Wireframe, Display the object as wire edges. * SOLID Solid, Display in solid mode. * MATERIAL Material Preview, Display in Material Preview mode. * RENDERED Rendered, Display render preview.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_dof: bool = None
@@ -43232,10 +43328,10 @@ class View3DShading(bpy_struct):
     :type: bool
     '''
 
-    wireframe_color_type: typing.Union[int, str] = None
+    wireframe_color_type: typing.Union[str, int] = None
     ''' Color Type * MATERIAL Material, Show material color. * SINGLE Single, Show scene in a single color. * OBJECT Object, Show object color. * RANDOM Random, Show random object color. * VERTEX Vertex, Show active vertex color. * TEXTURE Texture, Show texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     xray_alpha: float = None
@@ -43327,11 +43423,11 @@ class ViewLayer(bpy_struct):
     :type: str
     '''
 
-    objects: typing.Union[typing.List['Object'], 'bpy_prop_collection',
-                          'LayerObjects'] = None
+    objects: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'],
+                          'bpy_prop_collection', 'LayerObjects'] = None
     ''' All the objects in this layer
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection', 'LayerObjects']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection', 'LayerObjects']
     '''
 
     pass_alpha_threshold: float = None
@@ -43695,16 +43791,16 @@ class VolumeDisplay(bpy_struct):
     :type: float
     '''
 
-    wireframe_detail: typing.Union[int, str] = None
+    wireframe_detail: typing.Union[str, int] = None
     ''' Amount of detail for wireframe display * COARSE Coarse, Display one box or point for each intermediate tree node. * FINE Fine, Display box for each leaf node containing 8x8 voxels.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    wireframe_type: typing.Union[int, str] = None
+    wireframe_type: typing.Union[str, int] = None
     ''' Type of wireframe display * NONE None, Don't display volume in wireframe mode. * BOUNDS Bounds, Display single bounding box for the entire grid. * BOXES Boxes, Display bounding boxes for nodes in the volume tree. * POINTS Points, Display points for nodes in the volume tree.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -43739,10 +43835,10 @@ class VolumeGrid(bpy_struct):
     :type: int
     '''
 
-    data_type: typing.Union[int, str] = None
+    data_type: typing.Union[str, int] = None
     ''' Data type of voxel values * BOOLEAN Boolean, Boolean. * FLOAT Float, Single precision float. * DOUBLE Double, Double precision. * INT Integer, 32 bit integer. * INT64 Integer 64 bit, 64 bit integer. * MASK Mask, No data, boolean mask of active voxels. * STRING String, Text string. * VECTOR_FLOAT Float Vector, 3D float vector. * VECTOR_DOUBLE Double Vector, 3D double vector. * VECTOR_INT Integer Vector, 3D integer vector. * POINTS Points (Unsupported), Points grid, currently unsupported by volume objects. * UNKNOWN Unknown, Unsupported data type.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_loaded: bool = None
@@ -43879,10 +43975,10 @@ class VolumeRender(bpy_struct):
     :type: float
     '''
 
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Specify volume density and step size in object or world space * OBJECT Object, Keep volume opacity and detail the same regardless of object scale. * WORLD World, Specify volume step size and density in world space.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     step_size: float = None
@@ -44061,19 +44157,19 @@ class Window(bpy_struct):
         '''
         pass
 
-    def cursor_set(self, cursor: typing.Union[int, str]):
+    def cursor_set(self, cursor: typing.Union[str, int]):
         ''' Set the cursor
 
         :param cursor: cursor
-        :type cursor: typing.Union[int, str]
+        :type cursor: typing.Union[str, int]
         '''
         pass
 
-    def cursor_modal_set(self, cursor: typing.Union[int, str]):
+    def cursor_modal_set(self, cursor: typing.Union[str, int]):
         ''' Restore the previous cursor after calling cursor_modal_set
 
         :param cursor: cursor
-        :type cursor: typing.Union[int, str]
+        :type cursor: typing.Union[str, int]
         '''
         pass
 
@@ -44084,8 +44180,8 @@ class Window(bpy_struct):
         pass
 
     def event_simulate(self,
-                       type: typing.Union[int, str],
-                       value: typing.Union[int, str],
+                       type: typing.Union[str, int],
+                       value: typing.Union[str, int],
                        unicode: str = "",
                        x: int = 0,
                        y: int = 0,
@@ -44096,9 +44192,9 @@ class Window(bpy_struct):
         ''' event_simulate
 
         :param type: Type * NONE . * LEFTMOUSE Left Mouse, LMB. * MIDDLEMOUSE Middle Mouse, MMB. * RIGHTMOUSE Right Mouse, RMB. * BUTTON4MOUSE Button4 Mouse, MB4. * BUTTON5MOUSE Button5 Mouse, MB5. * BUTTON6MOUSE Button6 Mouse, MB6. * BUTTON7MOUSE Button7 Mouse, MB7. * PEN Pen. * ERASER Eraser. * MOUSEMOVE Mouse Move, MsMov. * INBETWEEN_MOUSEMOVE In-between Move, MsSubMov. * TRACKPADPAN Mouse/Trackpad Pan, MsPan. * TRACKPADZOOM Mouse/Trackpad Zoom, MsZoom. * MOUSEROTATE Mouse/Trackpad Rotate, MsRot. * MOUSESMARTZOOM Mouse/Trackpad Smart Zoom, MsSmartZoom. * WHEELUPMOUSE Wheel Up, WhUp. * WHEELDOWNMOUSE Wheel Down, WhDown. * WHEELINMOUSE Wheel In, WhIn. * WHEELOUTMOUSE Wheel Out, WhOut. * EVT_TWEAK_L Tweak Left, TwkL. * EVT_TWEAK_M Tweak Middle, TwkM. * EVT_TWEAK_R Tweak Right, TwkR. * A A. * B B. * C C. * D D. * E E. * F F. * G G. * H H. * I I. * J J. * K K. * L L. * M M. * N N. * O O. * P P. * Q Q. * R R. * S S. * T T. * U U. * V V. * W W. * X X. * Y Y. * Z Z. * ZERO 0. * ONE 1. * TWO 2. * THREE 3. * FOUR 4. * FIVE 5. * SIX 6. * SEVEN 7. * EIGHT 8. * NINE 9. * LEFT_CTRL Left Ctrl, CtrlL. * LEFT_ALT Left Alt, AltL. * LEFT_SHIFT Left Shift, ShiftL. * RIGHT_ALT Right Alt, AltR. * RIGHT_CTRL Right Ctrl, CtrlR. * RIGHT_SHIFT Right Shift, ShiftR. * OSKEY OS Key, Cmd. * APP Application, App. * GRLESS Grless. * ESC Esc. * TAB Tab. * RET Return, Enter. * SPACE Spacebar, Space. * LINE_FEED Line Feed. * BACK_SPACE Back Space, BkSpace. * DEL Delete, Del. * SEMI_COLON ;. * PERIOD .. * COMMA ,. * QUOTE ". * ACCENT_GRAVE \ . * MINUS -. * PLUS +. * SLASH /. * BACK_SLASH \\. * EQUAL =. * LEFT_BRACKET [. * RIGHT_BRACKET ]. * LEFT_ARROW Left Arrow, ←. * DOWN_ARROW Down Arrow, ↓. * RIGHT_ARROW Right Arrow, →. * UP_ARROW Up Arrow, ↑. * NUMPAD_2 Numpad 2, Pad2. * NUMPAD_4 Numpad 4, Pad4. * NUMPAD_6 Numpad 6, Pad6. * NUMPAD_8 Numpad 8, Pad8. * NUMPAD_1 Numpad 1, Pad1. * NUMPAD_3 Numpad 3, Pad3. * NUMPAD_5 Numpad 5, Pad5. * NUMPAD_7 Numpad 7, Pad7. * NUMPAD_9 Numpad 9, Pad9. * NUMPAD_PERIOD Numpad ., Pad.. * NUMPAD_SLASH Numpad /, Pad/. * NUMPAD_ASTERIX Numpad \*, Pad\*. * NUMPAD_0 Numpad 0, Pad0. * NUMPAD_MINUS Numpad -, Pad-. * NUMPAD_ENTER Numpad Enter, PadEnter. * NUMPAD_PLUS Numpad +, Pad+. * F1 F1. * F2 F2. * F3 F3. * F4 F4. * F5 F5. * F6 F6. * F7 F7. * F8 F8. * F9 F9. * F10 F10. * F11 F11. * F12 F12. * F13 F13. * F14 F14. * F15 F15. * F16 F16. * F17 F17. * F18 F18. * F19 F19. * F20 F20. * F21 F21. * F22 F22. * F23 F23. * F24 F24. * PAUSE Pause. * INSERT Insert, Ins. * HOME Home. * PAGE_UP Page Up, PgUp. * PAGE_DOWN Page Down, PgDown. * END End. * MEDIA_PLAY Media Play/Pause, >/\|\|. * MEDIA_STOP Media Stop, Stop. * MEDIA_FIRST Media First, \|<<. * MEDIA_LAST Media Last, >>\|. * TEXTINPUT Text Input, TxtIn. * WINDOW_DEACTIVATE Window Deactivate. * TIMER Timer, Tmr. * TIMER0 Timer 0, Tmr0. * TIMER1 Timer 1, Tmr1. * TIMER2 Timer 2, Tmr2. * TIMER_JOBS Timer Jobs, TmrJob. * TIMER_AUTOSAVE Timer Autosave, TmrSave. * TIMER_REPORT Timer Report, TmrReport. * TIMERREGION Timer Region, TmrReg. * NDOF_MOTION NDOF Motion, NdofMov. * NDOF_BUTTON_MENU NDOF Menu, NdofMenu. * NDOF_BUTTON_FIT NDOF Fit, NdofFit. * NDOF_BUTTON_TOP NDOF Top, Ndof↑. * NDOF_BUTTON_BOTTOM NDOF Bottom, Ndof↓. * NDOF_BUTTON_LEFT NDOF Left, Ndof←. * NDOF_BUTTON_RIGHT NDOF Right, Ndof→. * NDOF_BUTTON_FRONT NDOF Front, NdofFront. * NDOF_BUTTON_BACK NDOF Back, NdofBack. * NDOF_BUTTON_ISO1 NDOF Isometric 1, NdofIso1. * NDOF_BUTTON_ISO2 NDOF Isometric 2, NdofIso2. * NDOF_BUTTON_ROLL_CW NDOF Roll CW, NdofRCW. * NDOF_BUTTON_ROLL_CCW NDOF Roll CCW, NdofRCCW. * NDOF_BUTTON_SPIN_CW NDOF Spin CW, NdofSCW. * NDOF_BUTTON_SPIN_CCW NDOF Spin CCW, NdofSCCW. * NDOF_BUTTON_TILT_CW NDOF Tilt CW, NdofTCW. * NDOF_BUTTON_TILT_CCW NDOF Tilt CCW, NdofTCCW. * NDOF_BUTTON_ROTATE NDOF Rotate, NdofRot. * NDOF_BUTTON_PANZOOM NDOF Pan/Zoom, NdofPanZoom. * NDOF_BUTTON_DOMINANT NDOF Dominant, NdofDom. * NDOF_BUTTON_PLUS NDOF Plus, Ndof+. * NDOF_BUTTON_MINUS NDOF Minus, Ndof-. * NDOF_BUTTON_ESC NDOF Esc, NdofEsc. * NDOF_BUTTON_ALT NDOF Alt, NdofAlt. * NDOF_BUTTON_SHIFT NDOF Shift, NdofShift. * NDOF_BUTTON_CTRL NDOF Ctrl, NdofCtrl. * NDOF_BUTTON_1 NDOF Button 1, NdofB1. * NDOF_BUTTON_2 NDOF Button 2, NdofB2. * NDOF_BUTTON_3 NDOF Button 3, NdofB3. * NDOF_BUTTON_4 NDOF Button 4, NdofB4. * NDOF_BUTTON_5 NDOF Button 5, NdofB5. * NDOF_BUTTON_6 NDOF Button 6, NdofB6. * NDOF_BUTTON_7 NDOF Button 7, NdofB7. * NDOF_BUTTON_8 NDOF Button 8, NdofB8. * NDOF_BUTTON_9 NDOF Button 9, NdofB9. * NDOF_BUTTON_10 NDOF Button 10, NdofB10. * NDOF_BUTTON_A NDOF Button A, NdofBA. * NDOF_BUTTON_B NDOF Button B, NdofBB. * NDOF_BUTTON_C NDOF Button C, NdofBC. * ACTIONZONE_AREA ActionZone Area, AZone Area. * ACTIONZONE_REGION ActionZone Region, AZone Region. * ACTIONZONE_FULLSCREEN ActionZone Fullscreen, AZone FullScr.
-        :type type: typing.Union[int, str]
+        :type type: typing.Union[str, int]
         :param value: Value
-        :type value: typing.Union[int, str]
+        :type value: typing.Union[str, int]
         :param unicode: 
         :type unicode: str
         :param x: 
@@ -44165,16 +44261,16 @@ class WorkSpaceTool(bpy_struct):
     :type: int
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    space_type: typing.Union[int, str] = None
+    space_type: typing.Union[str, int] = None
     ''' * EMPTY Empty. * VIEW_3D 3D Viewport, Manipulate objects in a 3D environment. * IMAGE_EDITOR UV/Image Editor, View and edit images and UV Maps. * NODE_EDITOR Node Editor, Editor for node-based shading and compositing tools. * SEQUENCE_EDITOR Video Sequencer, Video editing tools. * CLIP_EDITOR Movie Clip Editor, Motion tracking tools. * DOPESHEET_EDITOR Dope Sheet, Adjust timing of keyframes. * GRAPH_EDITOR Graph Editor, Edit drivers and keyframe interpolation. * NLA_EDITOR Nonlinear Animation, Combine and layer Actions. * TEXT_EDITOR Text Editor, Edit scripts and in-file documentation. * CONSOLE Python Console, Interactive programmatic console for advanced editing and script development. * INFO Info, Log of operations, warnings and error messages. * TOPBAR Top Bar, Global bar at the top of the screen for global per-window settings. * STATUSBAR Status Bar, Global bar at the bottom of the screen for general status information. * OUTLINER Outliner, Overview of scene graph and all available data-blocks. * PROPERTIES Properties, Edit properties of active object and related data-blocks. * FILE_BROWSER File Browser, Browse for files and assets. * PREFERENCES Preferences, Edit persistent configuration settings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     widget: str = None
@@ -44185,7 +44281,7 @@ class WorkSpaceTool(bpy_struct):
 
     def setup(self,
               idname: str,
-              cursor: typing.Union[int, str] = 'DEFAULT',
+              cursor: typing.Union[str, int] = 'DEFAULT',
               keymap: str = "",
               gizmo_group: str = "",
               data_block: str = "",
@@ -44198,7 +44294,7 @@ class WorkSpaceTool(bpy_struct):
         :param idname: Identifier
         :type idname: str
         :param cursor: cursor
-        :type cursor: typing.Union[int, str]
+        :type cursor: typing.Union[str, int]
         :param keymap: Key Map
         :type keymap: str
         :param gizmo_group: Gizmo Group
@@ -44314,10 +44410,10 @@ class WorldMistSettings(bpy_struct):
     :type: float
     '''
 
-    falloff: typing.Union[int, str] = None
+    falloff: typing.Union[str, int] = None
     ''' Type of transition used to fade mist * QUADRATIC Quadratic, Use quadratic progression. * LINEAR Linear, Use linear progression. * INVERSE_QUADRATIC Inverse Quadratic, Use inverse quadratic progression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     height: float = None
@@ -44385,10 +44481,10 @@ class XrSessionSettings(bpy_struct):
     :type: 'Object'
     '''
 
-    base_pose_type: typing.Union[int, str] = None
+    base_pose_type: typing.Union[str, int] = None
     ''' Define where the location and rotation for the VR view come from, to which translation and rotation deltas from the VR headset will be applied to * SCENE_CAMERA Scene Camera, Follow the active scene camera to define the VR view's base pose. * OBJECT Object, Follow the transformation of an object to define the VR view's base pose. * CUSTOM Custom, Follow a custom transformation to define the VR view's base pose.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     clip_end: float = None
@@ -44574,24 +44670,24 @@ class wmOwnerIDs(bpy_struct):
 
 class wmTools(bpy_struct):
     def from_space_view3d_mode(self,
-                               mode: typing.Union[int, str],
+                               mode: typing.Union[str, int],
                                create: bool = False):
         ''' 
 
         :param mode: 
-        :type mode: typing.Union[int, str]
+        :type mode: typing.Union[str, int]
         :param create: Create
         :type create: bool
         '''
         pass
 
     def from_space_image_mode(self,
-                              mode: typing.Union[int, str],
+                              mode: typing.Union[str, int],
                               create: bool = False):
         ''' 
 
         :param mode: * VIEW View, View the image. * UV UV Editor, UV edit in mesh editmode. * PAINT Paint, 2D image painting mode. * MASK Mask, Mask editing.
-        :type mode: typing.Union[int, str]
+        :type mode: typing.Union[str, int]
         :param create: Create
         :type create: bool
         '''
@@ -44606,12 +44702,12 @@ class wmTools(bpy_struct):
         pass
 
     def from_space_sequencer(self,
-                             mode: typing.Union[int, str],
+                             mode: typing.Union[str, int],
                              create: bool = False):
         ''' 
 
         :param mode: 
-        :type mode: typing.Union[int, str]
+        :type mode: typing.Union[str, int]
         :param create: Create
         :type create: bool
         '''
@@ -44913,10 +45009,10 @@ class ActionConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' Specify how existing transformations and the action channels are combined * BEFORE Before Original, Apply the action channels before the original transformation, as if applied to an imaginary parent with Aligned Inherit Scale. * AFTER After Original, Apply the action channels after the original transformation, as if applied to an imaginary child with Aligned Inherit Scale. * AFTER_FULL After Original (Full Scale), Apply the action channels after the original transformation, as if applied to an imaginary child with Full Inherit Scale. This mode can create shear and is provided only for backward compatibility.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -44931,10 +45027,10 @@ class ActionConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    transform_channel: typing.Union[int, str] = None
+    transform_channel: typing.Union[str, int] = None
     ''' Transformation channel from the target that is used to key the Action
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_bone_object_action: bool = None
@@ -44969,12 +45065,12 @@ class ArmatureConstraint(Constraint, bpy_struct):
     ''' Applies transformations done by the Armature modifier
     '''
 
-    targets: typing.Union[typing.
+    targets: typing.Union[typing.Dict[str, 'ConstraintTargetBone'], typing.
                           List['ConstraintTargetBone'], 'bpy_prop_collection',
                           'ArmatureConstraintTargets'] = None
     ''' Target Bones
 
-    :type: typing.Union[typing.List['ConstraintTargetBone'], 'bpy_prop_collection', 'ArmatureConstraintTargets']
+    :type: typing.Union[typing.Dict[str, 'ConstraintTargetBone'], typing.List['ConstraintTargetBone'], 'bpy_prop_collection', 'ArmatureConstraintTargets']
     '''
 
     use_bone_envelopes: bool = None
@@ -45163,10 +45259,10 @@ class ClampToConstraint(Constraint, bpy_struct):
     ''' Constrain an object's location to the nearest point along the target path
     '''
 
-    main_axis: typing.Union[int, str] = None
+    main_axis: typing.Union[str, int] = None
     ''' Main axis of movement
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     target: 'Object' = None
@@ -45299,10 +45395,10 @@ class CopyRotationConstraint(Constraint, bpy_struct):
     ''' Copy the rotation of the target
     '''
 
-    euler_order: typing.Union[int, str] = None
+    euler_order: typing.Union[str, int] = None
     ''' Explicitly specify the euler rotation order * AUTO Default, Euler using the default rotation order. * XYZ XYZ Euler, Euler using the XYZ rotation order. * XZY XZY Euler, Euler using the XZY rotation order. * YXZ YXZ Euler, Euler using the YXZ rotation order. * YZX YZX Euler, Euler using the YZX rotation order. * ZXY ZXY Euler, Euler using the ZXY rotation order. * ZYX ZYX Euler, Euler using the ZYX rotation order.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_x: bool = None
@@ -45323,10 +45419,10 @@ class CopyRotationConstraint(Constraint, bpy_struct):
     :type: bool
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' Specify how the copied and existing rotations are combined * REPLACE Replace, Replace the original rotation with copied. * ADD Add, Add euler component values together. * BEFORE Before Original, Apply copied rotation before original, as if the constraint target is a parent. * AFTER After Original, Apply copied rotation after original, as if the constraint target is a child. * OFFSET Offset (Legacy), Combine rotations like the original Offset checkbox. Does not work well for multiple axis rotations.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -45477,10 +45573,10 @@ class CopyTransformsConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' Specify how the copied and existing transformations are combined * REPLACE Replace, Replace the original transformation with copied. * BEFORE Before Original, Apply copied transformation before original, as if the constraint target is a parent. Scale is handled specially to avoid creating shear. * AFTER After Original, Apply copied transformation after original, as if the constraint target is a child. Scale is handled specially to avoid creating shear.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -45545,10 +45641,10 @@ class DampedTrackConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    track_axis: typing.Union[int, str] = None
+    track_axis: typing.Union[str, int] = None
     ''' Axis that points to the target object
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_bbone_shape: bool = None
@@ -45583,10 +45679,10 @@ class FloorConstraint(Constraint, bpy_struct):
     ''' Use the target object for location limitation
     '''
 
-    floor_location: typing.Union[int, str] = None
+    floor_location: typing.Union[str, int] = None
     ''' Location of target that object will not pass through
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     offset: float = None
@@ -45639,10 +45735,10 @@ class FollowPathConstraint(Constraint, bpy_struct):
     ''' Lock motion to the target path
     '''
 
-    forward_axis: typing.Union[int, str] = None
+    forward_axis: typing.Union[str, int] = None
     ''' Axis that points forward along the path
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     offset: float = None
@@ -45663,10 +45759,10 @@ class FollowPathConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    up_axis: typing.Union[int, str] = None
+    up_axis: typing.Union[str, int] = None
     ''' Axis that points upward
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_curve_follow: bool = None
@@ -45731,10 +45827,10 @@ class FollowTrackConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    frame_method: typing.Union[int, str] = None
+    frame_method: typing.Union[str, int] = None
     ''' How the footage fits in the camera frame
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     object: str = None
@@ -45805,10 +45901,10 @@ class KinematicConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    ik_type: typing.Union[int, str] = None
+    ik_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     iterations: int = None
@@ -45817,10 +45913,10 @@ class KinematicConstraint(Constraint, bpy_struct):
     :type: int
     '''
 
-    limit_mode: typing.Union[int, str] = None
+    limit_mode: typing.Union[str, int] = None
     ''' Distances in relation to sphere of influence to allow * LIMITDIST_INSIDE Inside, The object is constrained inside a virtual sphere around the target object, with a radius defined by the limit distance. * LIMITDIST_OUTSIDE Outside, The object is constrained outside a virtual sphere around the target object, with a radius defined by the limit distance. * LIMITDIST_ONSURFACE On Surface, The object is constrained on the surface of a virtual sphere around the target object, with a radius defined by the limit distance.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     lock_location_x: bool = None
@@ -45883,10 +45979,10 @@ class KinematicConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    reference_axis: typing.Union[int, str] = None
+    reference_axis: typing.Union[str, int] = None
     ''' Constraint axis Lock options relative to Bone or Target reference
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -45969,10 +46065,10 @@ class LimitDistanceConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    limit_mode: typing.Union[int, str] = None
+    limit_mode: typing.Union[str, int] = None
     ''' Distances in relation to sphere of influence to allow * LIMITDIST_INSIDE Inside, The object is constrained inside a virtual sphere around the target object, with a radius defined by the limit distance. * LIMITDIST_OUTSIDE Outside, The object is constrained outside a virtual sphere around the target object, with a radius defined by the limit distance. * LIMITDIST_ONSURFACE On Surface, The object is constrained on the surface of a virtual sphere around the target object, with a radius defined by the limit distance.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -46325,10 +46421,10 @@ class LockedTrackConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    lock_axis: typing.Union[int, str] = None
+    lock_axis: typing.Union[str, int] = None
     ''' Axis that points upward
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -46343,10 +46439,10 @@ class LockedTrackConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    track_axis: typing.Union[int, str] = None
+    track_axis: typing.Union[str, int] = None
     ''' Axis that points to the target object
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_bbone_shape: bool = None
@@ -46381,16 +46477,16 @@ class MaintainVolumeConstraint(Constraint, bpy_struct):
     ''' Maintain a constant volume along a single scaling axis
     '''
 
-    free_axis: typing.Union[int, str] = None
+    free_axis: typing.Union[str, int] = None
     ''' The free scaling axis of the object
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' The way the constraint treats original non-free axis scaling * STRICT Strict, Volume is strictly preserved, overriding the scaling of non-free axes. * UNIFORM Uniform, Volume is preserved when the object is scaled uniformly. Deviations from uniform scale on non-free axes are passed through. * SINGLE_AXIS Single Axis, Volume is preserved when the object is scaled only on the free axis. Non-free axis scaling is passed through.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     volume: float = None
@@ -46493,10 +46589,10 @@ class PivotConstraint(Constraint, bpy_struct):
     :type: typing.List[float]
     '''
 
-    rotation_range: typing.Union[int, str] = None
+    rotation_range: typing.Union[str, int] = None
     ''' Rotation range on which pivoting should occur * ALWAYS_ACTIVE Always, Use the pivot point in every rotation. * NX -X Rot, Use the pivot point in the negative rotation range around the X-axis. * NY -Y Rot, Use the pivot point in the negative rotation range around the Y-axis. * NZ -Z Rot, Use the pivot point in the negative rotation range around the Z-axis. * X X Rot, Use the pivot point in the positive rotation range around the X-axis. * Y Y Rot, Use the pivot point in the positive rotation range around the Y-axis. * Z Z Rot, Use the pivot point in the positive rotation range around the Z-axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -46561,11 +46657,12 @@ class PythonConstraint(Constraint, bpy_struct):
     :type: int
     '''
 
-    targets: typing.Union[typing.List['ConstraintTarget'],
+    targets: typing.Union[typing.Dict[str, 'ConstraintTarget'], typing.
+                          List['ConstraintTarget'],
                           'bpy_prop_collection'] = None
     ''' Target Objects
 
-    :type: typing.Union[typing.List['ConstraintTarget'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ConstraintTarget'], typing.List['ConstraintTarget'], 'bpy_prop_collection']
     '''
 
     text: 'Text' = None
@@ -46606,10 +46703,10 @@ class ShrinkwrapConstraint(Constraint, bpy_struct):
     ''' Create constraint-based shrinkwrap relationship
     '''
 
-    cull_face: typing.Union[int, str] = None
+    cull_face: typing.Union[str, int] = None
     ''' Stop vertices from projecting to a face on the target when facing towards/away * OFF Off, No culling. * FRONT Front, No projection when in front of the face. * BACK Back, No projection when behind the face.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     distance: float = None
@@ -46618,16 +46715,16 @@ class ShrinkwrapConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    project_axis: typing.Union[int, str] = None
+    project_axis: typing.Union[str, int] = None
     ''' Axis constrain to
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    project_axis_space: typing.Union[int, str] = None
+    project_axis_space: typing.Union[str, int] = None
     ''' Space for the projection axis * WORLD World Space, The constraint is applied relative to the world coordinate system. * POSE Pose Space, The constraint is applied in Pose Space, the object transformation is ignored. * LOCAL_WITH_PARENT Local With Parent, The constraint is applied relative to the rest pose local coordinate system of the bone, thus including the parent-induced transformation. * LOCAL Local Space, The constraint is applied relative to the local coordinate system of the object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     project_limit: float = None
@@ -46636,10 +46733,10 @@ class ShrinkwrapConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    shrinkwrap_type: typing.Union[int, str] = None
+    shrinkwrap_type: typing.Union[str, int] = None
     ''' Select type of shrinkwrap algorithm for target position * NEAREST_SURFACE Nearest Surface Point, Shrink the location to the nearest target surface. * PROJECT Project, Shrink the location to the nearest target surface along a given axis. * NEAREST_VERTEX Nearest Vertex, Shrink the location to the nearest target vertex. * TARGET_PROJECT Target Normal Project, Shrink the location to the nearest target surface along the interpolated vertex normals of the target.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     target: 'Object' = None
@@ -46648,10 +46745,10 @@ class ShrinkwrapConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    track_axis: typing.Union[int, str] = None
+    track_axis: typing.Union[str, int] = None
     ''' Axis that is aligned to the normal
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_invert_cull: bool = None
@@ -46672,10 +46769,10 @@ class ShrinkwrapConstraint(Constraint, bpy_struct):
     :type: bool
     '''
 
-    wrap_mode: typing.Union[int, str] = None
+    wrap_mode: typing.Union[str, int] = None
     ''' Select how to constrain the object to the target surface * ON_SURFACE On Surface, The point is constrained to the surface of the target object, with distance offset towards the original point location. * INSIDE Inside, The point is constrained to be inside the target object. * OUTSIDE Outside, The point is constrained to be outside the target object. * OUTSIDE_SURFACE Outside Surface, The point is constrained to the surface of the target object, with distance offset always to the outside, towards or away from the original location. * ABOVE_SURFACE Above Surface, The point is constrained to the surface of the target object, with distance offset applied exactly along the target normal.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -46782,16 +46879,16 @@ class SplineIKConstraint(Constraint, bpy_struct):
     :type: bool
     '''
 
-    xz_scale_mode: typing.Union[int, str] = None
+    xz_scale_mode: typing.Union[str, int] = None
     ''' Method used for determining the scaling of the X and Z axes of the bones * NONE None, Don't scale the X and Z axes (Default). * BONE_ORIGINAL Bone Original, Use the original scaling of the bones. * INVERSE_PRESERVE Inverse Scale, Scale of the X and Z axes is the inverse of the Y-Scale. * VOLUME_PRESERVE Volume Preservation, Scale of the X and Z axes are adjusted to preserve the volume of the bones.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    y_scale_mode: typing.Union[int, str] = None
+    y_scale_mode: typing.Union[str, int] = None
     ''' Method used for determining the scaling of the Y axis of the bones, on top of the shape and scaling of the curve itself * NONE None, Don't scale in the Y axis. * FIT_CURVE Fit Curve, Scale the bones to fit the entire length of the curve. * BONE_ORIGINAL Bone Original, Use the original Y scale of the bone.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -46850,10 +46947,10 @@ class StretchToConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    keep_axis: typing.Union[int, str] = None
+    keep_axis: typing.Union[str, int] = None
     ''' The rotation type and axis order to use * PLANE_X XZ, Rotate around local X, then Z. * PLANE_Z ZX, Rotate around local Z, then X. * SWING_Y Swing, Use the smallest single axis rotation, similar to Damped Track.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rest_length: float = None
@@ -46892,10 +46989,10 @@ class StretchToConstraint(Constraint, bpy_struct):
     :type: bool
     '''
 
-    volume: typing.Union[int, str] = None
+    volume: typing.Union[str, int] = None
     ''' Maintain the object's volume as it stretches
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -46942,16 +47039,16 @@ class TrackToConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    track_axis: typing.Union[int, str] = None
+    track_axis: typing.Union[str, int] = None
     ''' Axis that points to the target object
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    up_axis: typing.Union[int, str] = None
+    up_axis: typing.Union[str, int] = None
     ''' Axis that points upward
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_bbone_shape: bool = None
@@ -47138,58 +47235,58 @@ class TransformConstraint(Constraint, bpy_struct):
     :type: float
     '''
 
-    from_rotation_mode: typing.Union[int, str] = None
+    from_rotation_mode: typing.Union[str, int] = None
     ''' Specify the type of rotation channels to use * AUTO Auto Euler, Euler using the rotation order of the target. * XYZ XYZ Euler, Euler using the XYZ rotation order. * XZY XZY Euler, Euler using the XZY rotation order. * YXZ YXZ Euler, Euler using the YXZ rotation order. * YZX YZX Euler, Euler using the YZX rotation order. * ZXY ZXY Euler, Euler using the ZXY rotation order. * ZYX ZYX Euler, Euler using the ZYX rotation order. * QUATERNION Quaternion, Quaternion rotation. * SWING_TWIST_X Swing and X Twist, Decompose into a swing rotation to aim the X axis, followed by twist around it. * SWING_TWIST_Y Swing and Y Twist, Decompose into a swing rotation to aim the Y axis, followed by twist around it. * SWING_TWIST_Z Swing and Z Twist, Decompose into a swing rotation to aim the Z axis, followed by twist around it.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    map_from: typing.Union[int, str] = None
+    map_from: typing.Union[str, int] = None
     ''' The transformation type to use from the target
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    map_to: typing.Union[int, str] = None
+    map_to: typing.Union[str, int] = None
     ''' The transformation type to affect of the constrained object
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    map_to_x_from: typing.Union[int, str] = None
+    map_to_x_from: typing.Union[str, int] = None
     ''' The source axis constrained object's X axis uses
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    map_to_y_from: typing.Union[int, str] = None
+    map_to_y_from: typing.Union[str, int] = None
     ''' The source axis constrained object's Y axis uses
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    map_to_z_from: typing.Union[int, str] = None
+    map_to_z_from: typing.Union[str, int] = None
     ''' The source axis constrained object's Z axis uses
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' Specify how to combine the new location with original * REPLACE Replace, Replace component values. * ADD Add, Add component values together.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mix_mode_rot: typing.Union[int, str] = None
+    mix_mode_rot: typing.Union[str, int] = None
     ''' Specify how to combine the new rotation with original * REPLACE Replace, Replace component values. * ADD Add, Add component values together. * BEFORE Before Original, Apply new rotation before original, as if it was on a parent. * AFTER After Original, Apply new rotation after original, as if it was on a child.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mix_mode_scale: typing.Union[int, str] = None
+    mix_mode_scale: typing.Union[str, int] = None
     ''' Specify how to combine the new scale with original * REPLACE Replace, Replace component values. * MULTIPLY Multiply, Multiply component values together.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     subtarget: str = None
@@ -47204,10 +47301,10 @@ class TransformConstraint(Constraint, bpy_struct):
     :type: 'Object'
     '''
 
-    to_euler_order: typing.Union[int, str] = None
+    to_euler_order: typing.Union[str, int] = None
     ''' Explicitly specify the output euler rotation order * AUTO Default, Euler using the default rotation order. * XYZ XYZ Euler, Euler using the XYZ rotation order. * XZY XZY Euler, Euler using the XZY rotation order. * YXZ YXZ Euler, Euler using the YXZ rotation order. * YZX YZX Euler, Euler using the YZX rotation order. * ZXY ZXY Euler, Euler using the ZXY rotation order. * ZYX ZYX Euler, Euler using the ZYX rotation order.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     to_max_x: float = None
@@ -47362,16 +47459,16 @@ class FModifierCycles(FModifier, bpy_struct):
     :type: int
     '''
 
-    mode_after: typing.Union[int, str] = None
+    mode_after: typing.Union[str, int] = None
     ''' Cycling mode to use after last keyframe * NONE No Cycles, Don't do anything. * REPEAT Repeat Motion, Repeat keyframe range as-is. * REPEAT_OFFSET Repeat with Offset, Repeat keyframe range, but with offset based on gradient between start and end values. * MIRROR Repeat Mirrored, Alternate between forward and reverse playback of keyframe range.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mode_before: typing.Union[int, str] = None
+    mode_before: typing.Union[str, int] = None
     ''' Cycling mode to use before first keyframe * NONE No Cycles, Don't do anything. * REPEAT Repeat Motion, Repeat keyframe range as-is. * REPEAT_OFFSET Repeat with Offset, Repeat keyframe range, but with offset based on gradient between start and end values. * MIRROR Repeat Mirrored, Alternate between forward and reverse playback of keyframe range.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -47400,12 +47497,13 @@ class FModifierEnvelope(FModifier, bpy_struct):
     ''' Scale the values of the modified F-Curve
     '''
 
-    control_points: typing.Union[typing.List['FModifierEnvelopeControlPoint'],
-                                 'bpy_prop_collection',
-                                 'FModifierEnvelopeControlPoints'] = None
+    control_points: typing.Union[
+        typing.Dict[str, 'FModifierEnvelopeControlPoint'], typing.
+        List['FModifierEnvelopeControlPoint'], 'bpy_prop_collection',
+        'FModifierEnvelopeControlPoints'] = None
     ''' Control points defining the shape of the envelope
 
-    :type: typing.Union[typing.List['FModifierEnvelopeControlPoint'], 'bpy_prop_collection', 'FModifierEnvelopeControlPoints']
+    :type: typing.Union[typing.Dict[str, 'FModifierEnvelopeControlPoint'], typing.List['FModifierEnvelopeControlPoint'], 'bpy_prop_collection', 'FModifierEnvelopeControlPoints']
     '''
 
     default_max: float = None
@@ -47458,10 +47556,10 @@ class FModifierFunctionGenerator(FModifier, bpy_struct):
     :type: float
     '''
 
-    function_type: typing.Union[int, str] = None
+    function_type: typing.Union[str, int] = None
     ''' Type of built-in function to use * SIN Sine. * COS Cosine. * TAN Tangent. * SQRT Square Root. * LN Natural Logarithm. * SINC Normalized Sine, sin(x) / x.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     phase_multiplier: float = None
@@ -47520,10 +47618,10 @@ class FModifierGenerator(FModifier, bpy_struct):
     :type: typing.List[float]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Type of generator to use
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     poly_order: int = None
@@ -47638,10 +47736,10 @@ class FModifierNoise(FModifier, bpy_struct):
     ''' Give randomness to the modified F-Curve
     '''
 
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' Method of modifying the existing F-Curve
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     depth: int = None
@@ -47996,10 +48094,10 @@ class BuildGpencilModifier(GpencilModifier, bpy_struct):
     ''' Animate strokes appearing and disappearing
     '''
 
-    concurrent_time_alignment: typing.Union[int, str] = None
+    concurrent_time_alignment: typing.Union[str, int] = None
     ''' When should strokes start to appear/disappear * START Align Start, All strokes start at same time (i.e. short strokes finish earlier). * END Align End, All strokes end at same time (i.e. short strokes start later).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     frame_end: float = None
@@ -48044,10 +48142,10 @@ class BuildGpencilModifier(GpencilModifier, bpy_struct):
     :type: float
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' How many strokes are being animated at a time * SEQUENTIAL Sequential, Strokes appear/disappear one after the other, but only a single one changes at a time. * CONCURRENT Concurrent, Multiple strokes appear/disappear at once.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     start_delay: float = None
@@ -48056,10 +48154,10 @@ class BuildGpencilModifier(GpencilModifier, bpy_struct):
     :type: float
     '''
 
-    transition: typing.Union[int, str] = None
+    transition: typing.Union[str, int] = None
     ''' How are strokes animated (i.e. are they appearing or disappearing) * GROW Grow, Show points in the order they occur in each stroke (e.g. for animating lines being drawn). * SHRINK Shrink, Hide points from the end of each stroke to the start (e.g. for animating lines being erased). * FADE Fade, Hide points in the order they occur in each stroke (e.g. for animating ink fading or vanishing after getting drawn).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_restrict_frame_range: bool = None
@@ -48148,10 +48246,10 @@ class ColorGpencilModifier(GpencilModifier, bpy_struct):
     :type: str
     '''
 
-    modify_color: typing.Union[int, str] = None
+    modify_color: typing.Union[str, int] = None
     ''' Set what colors of the stroke are affected * BOTH Stroke and Fill, Modify fill and stroke colors. * STROKE Stroke, Modify stroke color only. * FILL Fill, Modify fill color only.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pass_index: int = None
@@ -48222,10 +48320,10 @@ class HookGpencilModifier(GpencilModifier, bpy_struct):
     :type: float
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_layer_pass: bool = None
@@ -48990,10 +49088,10 @@ class OpacityGpencilModifier(GpencilModifier, bpy_struct):
     :type: str
     '''
 
-    modify_color: typing.Union[int, str] = None
+    modify_color: typing.Union[str, int] = None
     ''' Set what colors of the stroke are affected * BOTH Stroke and Fill, Modify fill and stroke colors. * STROKE Stroke, Modify stroke color only. * FILL Fill, Modify fill color only. * HARDNESS Hardness, Modify stroke hardness.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     normalize_opacity: bool = None
@@ -49106,10 +49204,10 @@ class SimplifyGpencilModifier(GpencilModifier, bpy_struct):
     :type: str
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' How to simplify the stroke * FIXED Fixed, Delete alternating vertices in the stroke, except extremes. * ADAPTIVE Adaptive, Use a Ramer-Douglas-Peucker algorithm to simplify the stroke preserving main shape. * SAMPLE Sample, Re-sample the stroke with segments of the specified length. * MERGE Merge, Simplify the stroke by merging vertices closer than a given distance.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pass_index: int = None
@@ -49338,10 +49436,10 @@ class SubdivGpencilModifier(GpencilModifier, bpy_struct):
     :type: int
     '''
 
-    subdivision_type: typing.Union[int, str] = None
+    subdivision_type: typing.Union[str, int] = None
     ''' Select type of subdivision algorithm
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -49528,10 +49626,10 @@ class TimeGpencilModifier(GpencilModifier, bpy_struct):
     :type: int
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' * NORMAL Regular, Apply offset in usual animation direction. * REVERSE Reverse, Apply offset in reverse animation direction. * FIX Fixed Frame, Keep frame and do not change with time.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     offset: int = None
@@ -49668,10 +49766,10 @@ class TintGpencilModifier(GpencilModifier, bpy_struct):
     :type: float
     '''
 
-    tint_type: typing.Union[int, str] = None
+    tint_type: typing.Union[str, int] = None
     ''' Select type of tinting algorithm
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_custom_curve: bool = None
@@ -49686,10 +49784,10 @@ class TintGpencilModifier(GpencilModifier, bpy_struct):
     :type: str
     '''
 
-    vertex_mode: typing.Union[int, str] = None
+    vertex_mode: typing.Union[str, int] = None
     ''' Defines how vertex color affect to the strokes * STROKE Stroke, Vertex Color affects to Stroke only. * FILL Fill, Vertex Color affects to Fill only. * BOTH Stroke and Fill, Vertex Color affects to Stroke and Fill.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -49718,11 +49816,11 @@ class Action(ID, bpy_struct):
     ''' A collection of F-Curves for animation
     '''
 
-    fcurves: typing.Union[typing.List['FCurve'], 'bpy_prop_collection',
-                          'ActionFCurves'] = None
+    fcurves: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'],
+                          'bpy_prop_collection', 'ActionFCurves'] = None
     ''' The individual F-Curves that make up the action
 
-    :type: typing.Union[typing.List['FCurve'], 'bpy_prop_collection', 'ActionFCurves']
+    :type: typing.Union[typing.Dict[str, 'FCurve'], typing.List['FCurve'], 'bpy_prop_collection', 'ActionFCurves']
     '''
 
     frame_range: typing.List[float] = None
@@ -49731,25 +49829,26 @@ class Action(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    groups: typing.Union[typing.List['ActionGroup'], 'bpy_prop_collection',
+    groups: typing.Union[typing.Dict[str, 'ActionGroup'], typing.
+                         List['ActionGroup'], 'bpy_prop_collection',
                          'ActionGroups'] = None
     ''' Convenient groupings of F-Curves
 
-    :type: typing.Union[typing.List['ActionGroup'], 'bpy_prop_collection', 'ActionGroups']
+    :type: typing.Union[typing.Dict[str, 'ActionGroup'], typing.List['ActionGroup'], 'bpy_prop_collection', 'ActionGroups']
     '''
 
-    id_root: typing.Union[int, str] = None
+    id_root: typing.Union[str, int] = None
     ''' Type of ID block that action can be used on - DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    pose_markers: typing.Union[typing.
+    pose_markers: typing.Union[typing.Dict[str, 'TimelineMarker'], typing.
                                List['TimelineMarker'], 'bpy_prop_collection',
                                'ActionPoseMarkers'] = None
     ''' Markers specific to this action, for labeling poses
 
-    :type: typing.Union[typing.List['TimelineMarker'], 'bpy_prop_collection', 'ActionPoseMarkers']
+    :type: typing.Union[typing.Dict[str, 'TimelineMarker'], typing.List['TimelineMarker'], 'bpy_prop_collection', 'ActionPoseMarkers']
     '''
 
     @classmethod
@@ -49784,24 +49883,25 @@ class Armature(ID, bpy_struct):
     :type: 'AnimData'
     '''
 
-    bones: typing.Union[typing.List['Bone'], 'bpy_prop_collection',
-                        'ArmatureBones'] = None
+    bones: typing.Union[typing.Dict[str, 'Bone'], typing.List['Bone'],
+                        'bpy_prop_collection', 'ArmatureBones'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Bone'], 'bpy_prop_collection', 'ArmatureBones']
+    :type: typing.Union[typing.Dict[str, 'Bone'], typing.List['Bone'], 'bpy_prop_collection', 'ArmatureBones']
     '''
 
-    display_type: typing.Union[int, str] = None
+    display_type: typing.Union[str, int] = None
     ''' * OCTAHEDRAL Octahedral, Display bones as octahedral shape (default). * STICK Stick, Display bones as simple 2D lines with dots. * BBONE B-Bone, Display bones as boxes, showing subdivision and B-Splines. * ENVELOPE Envelope, Display bones as extruded spheres, showing deformation influence volume. * WIRE Wire, Display bones as thin wires, showing subdivision and B-Splines.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    edit_bones: typing.Union[typing.List['EditBone'], 'bpy_prop_collection',
+    edit_bones: typing.Union[typing.Dict[str, 'EditBone'], typing.
+                             List['EditBone'], 'bpy_prop_collection',
                              'ArmatureEditBones'] = None
     ''' 
 
-    :type: typing.Union[typing.List['EditBone'], 'bpy_prop_collection', 'ArmatureEditBones']
+    :type: typing.Union[typing.Dict[str, 'EditBone'], typing.List['EditBone'], 'bpy_prop_collection', 'ArmatureEditBones']
     '''
 
     is_editmode: bool = None
@@ -49822,10 +49922,10 @@ class Armature(ID, bpy_struct):
     :type: typing.List[bool]
     '''
 
-    pose_position: typing.Union[int, str] = None
+    pose_position: typing.Union[str, int] = None
     ''' Show armature in binding pose or final posed state * POSE Pose Position, Show armature in posed state. * REST Rest Position, Show Armature in binding pose state (no posing possible).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_axes: bool = None
@@ -49910,10 +50010,10 @@ class Brush(ID, bpy_struct):
     :type: int
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Brush blending mode * MIX Mix, Use Mix blending mode while painting. * DARKEN Darken, Use Darken blending mode while painting. * MUL Multiply, Use Multiply blending mode while painting. * COLORBURN Color Burn, Use Color Burn blending mode while painting. * LINEARBURN Linear Burn, Use Linear Burn blending mode while painting. * LIGHTEN Lighten, Use Lighten blending mode while painting. * SCREEN Screen, Use Screen blending mode while painting. * COLORDODGE Color Dodge, Use Color Dodge blending mode while painting. * ADD Add, Use Add blending mode while painting. * OVERLAY Overlay, Use Overlay blending mode while painting. * SOFTLIGHT Soft Light, Use Soft Light blending mode while painting. * HARDLIGHT Hard Light, Use Hard Light blending mode while painting. * VIVIDLIGHT Vivid Light, Use Vivid Light blending mode while painting. * LINEARLIGHT Linear Light, Use Linear Light blending mode while painting. * PINLIGHT Pin Light, Use Pin Light blending mode while painting. * DIFFERENCE Difference, Use Difference blending mode while painting. * EXCLUSION Exclusion, Use Exclusion blending mode while painting. * SUB Subtract, Use Subtract blending mode while painting. * HUE Hue, Use Hue blending mode while painting. * SATURATION Saturation, Use Saturation blending mode while painting. * COLOR Color, Use Color blending mode while painting. * LUMINOSITY Value, Use Value blending mode while painting. * ERASE_ALPHA Erase Alpha, Erase alpha while painting. * ADD_ALPHA Add Alpha, Add alpha while painting.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     blur_kernel_radius: int = None
@@ -49922,10 +50022,10 @@ class Brush(ID, bpy_struct):
     :type: int
     '''
 
-    blur_mode: typing.Union[int, str] = None
+    blur_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     brush_capabilities: 'BrushCapabilities' = None
@@ -49958,16 +50058,16 @@ class Brush(ID, bpy_struct):
     :type: float
     '''
 
-    cloth_deform_type: typing.Union[int, str] = None
+    cloth_deform_type: typing.Union[str, int] = None
     ''' Deformation type that is used in the brush
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    cloth_force_falloff_type: typing.Union[int, str] = None
+    cloth_force_falloff_type: typing.Union[str, int] = None
     ''' Shape used in the brush to apply force to the cloth
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cloth_mass: float = None
@@ -49994,10 +50094,10 @@ class Brush(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    color_type: typing.Union[int, str] = None
+    color_type: typing.Union[str, int] = None
     ''' Use single color or gradient when painting * COLOR Color, Paint with a single color. * GRADIENT Gradient, Paint with a gradient.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     crease_pinch_factor: float = None
@@ -50030,10 +50130,10 @@ class Brush(ID, bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    curve_preset: typing.Union[int, str] = None
+    curve_preset: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     dash_ratio: float = None
@@ -50048,16 +50148,16 @@ class Brush(ID, bpy_struct):
     :type: int
     '''
 
-    direction: typing.Union[int, str] = None
+    direction: typing.Union[str, int] = None
     ''' * ADD Add, Add effect of brush. * SUBTRACT Subtract, Subtract effect of brush.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    elastic_deform_type: typing.Union[int, str] = None
+    elastic_deform_type: typing.Union[str, int] = None
     ''' Deformation type that is used in the brush
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     elastic_deform_volume_preservation: float = None
@@ -50072,10 +50172,10 @@ class Brush(ID, bpy_struct):
     :type: float
     '''
 
-    falloff_shape: typing.Union[int, str] = None
+    falloff_shape: typing.Union[str, int] = None
     ''' Use projected or spherical falloff * SPHERE Sphere, Apply brush influence in a Sphere, outwards from the center. * PROJECTED Projected, Apply brush influence in a 2D circle, projected from the view.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     fill_threshold: float = None
@@ -50084,10 +50184,10 @@ class Brush(ID, bpy_struct):
     :type: float
     '''
 
-    gpencil_sculpt_tool: typing.Union[int, str] = None
+    gpencil_sculpt_tool: typing.Union[str, int] = None
     ''' * SMOOTH Smooth, Smooth stroke points. * THICKNESS Thickness, Adjust thickness of strokes. * STRENGTH Strength, Adjust color strength of strokes. * RANDOMIZE Randomize, Introduce jitter/randomness into strokes. * GRAB Grab, Translate the set of points initially within the brush circle. * PUSH Push, Move points out of the way, as if combing them. * TWIST Twist, Rotate points around the midpoint of the brush. * PINCH Pinch, Pull points towards the midpoint of the brush. * CLONE Clone, Paste copies of the strokes stored on the clipboard.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gpencil_settings: 'BrushGpencilSettings' = None
@@ -50096,22 +50196,22 @@ class Brush(ID, bpy_struct):
     :type: 'BrushGpencilSettings'
     '''
 
-    gpencil_tool: typing.Union[int, str] = None
+    gpencil_tool: typing.Union[str, int] = None
     ''' * DRAW Draw, The brush is of type used for drawing strokes. * FILL Fill, The brush is of type used for filling areas. * ERASE Erase, The brush is used for erasing strokes. * TINT Tint, The brush is of type used for tinting strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_vertex_tool: typing.Union[int, str] = None
+    gpencil_vertex_tool: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gpencil_weight_tool: typing.Union[int, str] = None
+    gpencil_weight_tool: typing.Union[str, int] = None
     ''' * WEIGHT Weight, Weight Paint for Vertex Groups.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     grad_spacing: int = None
@@ -50126,16 +50226,16 @@ class Brush(ID, bpy_struct):
     :type: 'ColorRamp'
     '''
 
-    gradient_fill_mode: typing.Union[int, str] = None
+    gradient_fill_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    gradient_stroke_mode: typing.Union[int, str] = None
+    gradient_stroke_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     hardness: float = None
@@ -50162,10 +50262,10 @@ class Brush(ID, bpy_struct):
     :type: 'BrushCapabilitiesImagePaint'
     '''
 
-    image_tool: typing.Union[int, str] = None
+    image_tool: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_to_scrape_fill: bool = None
@@ -50186,10 +50286,10 @@ class Brush(ID, bpy_struct):
     :type: int
     '''
 
-    jitter_unit: typing.Union[int, str] = None
+    jitter_unit: typing.Union[str, int] = None
     ''' Jitter in screen space or relative to brush size * VIEW View, Jittering happens in screen space, in pixels. * BRUSH Brush, Jittering happens relative to the brush size.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mask_overlay_alpha: int = None
@@ -50222,10 +50322,10 @@ class Brush(ID, bpy_struct):
     :type: 'BrushTextureSlot'
     '''
 
-    mask_tool: typing.Union[int, str] = None
+    mask_tool: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     multiplane_scrape_angle: float = None
@@ -50276,10 +50376,10 @@ class Brush(ID, bpy_struct):
     :type: float
     '''
 
-    pose_origin_type: typing.Union[int, str] = None
+    pose_origin_type: typing.Union[str, int] = None
     ''' Method to set the rotation origins for the segments of the brush * TOPOLOGY Topology, Sets the rotation origin automatically using the topology and shape of the mesh as a guide. * FACE_SETS Face Sets, Creates a pose segment per face sets, starting from the active face set.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pose_smooth_iterations: int = None
@@ -50306,16 +50406,16 @@ class Brush(ID, bpy_struct):
     :type: 'BrushCapabilitiesSculpt'
     '''
 
-    sculpt_plane: typing.Union[int, str] = None
+    sculpt_plane: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    sculpt_tool: typing.Union[int, str] = None
+    sculpt_tool: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     secondary_color: typing.List[float] = None
@@ -50342,10 +50442,10 @@ class Brush(ID, bpy_struct):
     :type: int
     '''
 
-    smooth_deform_type: typing.Union[int, str] = None
+    smooth_deform_type: typing.Union[str, int] = None
     ''' Deformation type that is used in the brush * LAPLACIAN Laplacian, Smooths the surface and the volume. * SURFACE Surface, Smooths the surface of the mesh, preserving the volume.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     smooth_stroke_factor: float = None
@@ -50384,10 +50484,10 @@ class Brush(ID, bpy_struct):
     :type: float
     '''
 
-    stroke_method: typing.Union[int, str] = None
+    stroke_method: typing.Union[str, int] = None
     ''' * DOTS Dots, Apply paint on each mouse move step. * DRAG_DOT Drag Dot, Allows a single dot to be carefully positioned. * SPACE Space, Limit brush application to the distance specified by spacing. * AIRBRUSH Airbrush, Keep applying paint effect while holding mouse (spray). * ANCHORED Anchored, Keep the brush anchored to the initial location. * LINE Line, Draw a line with dabs separated according to spacing. * CURVE Curve, Define the stroke curve with a bezier curve (dabs are separated according to spacing).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     surface_smooth_current_vertex: float = None
@@ -50564,10 +50664,10 @@ class Brush(ID, bpy_struct):
     :type: bool
     '''
 
-    use_locked_size: typing.Union[int, str] = None
+    use_locked_size: typing.Union[str, int] = None
     ''' Measure brush size relative to the view or the scene * VIEW View, Measure brush size relative to the view. * SCENE Scene, Measure brush size relative to the scene.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_multiplane_scrape_dynamic: bool = None
@@ -50660,10 +50760,10 @@ class Brush(ID, bpy_struct):
     :type: bool
     '''
 
-    use_pressure_masking: typing.Union[int, str] = None
+    use_pressure_masking: typing.Union[str, int] = None
     ''' Pen pressure makes texture influence smaller
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_pressure_size: bool = None
@@ -50702,10 +50802,10 @@ class Brush(ID, bpy_struct):
     :type: bool
     '''
 
-    use_scene_spacing: typing.Union[int, str] = None
+    use_scene_spacing: typing.Union[str, int] = None
     ''' Calculate the brush spacing using view or scene distance * VIEW View, Calculate brush spacing relative to the view. * SCENE Scene, Calculate brush spacing relative to the scene using the stroke location.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_secondary_overlay: bool = None
@@ -50744,10 +50844,10 @@ class Brush(ID, bpy_struct):
     :type: bool
     '''
 
-    uv_sculpt_tool: typing.Union[int, str] = None
+    uv_sculpt_tool: typing.Union[str, int] = None
     ''' * GRAB Grab, Grab UVs. * RELAX Relax, Relax UVs. * PINCH Pinch, Pinch UVs.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     vertex_paint_capabilities: 'BrushCapabilitiesVertexPaint' = None
@@ -50756,10 +50856,10 @@ class Brush(ID, bpy_struct):
     :type: 'BrushCapabilitiesVertexPaint'
     '''
 
-    vertex_tool: typing.Union[int, str] = None
+    vertex_tool: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     weight: float = None
@@ -50774,10 +50874,10 @@ class Brush(ID, bpy_struct):
     :type: 'BrushCapabilitiesWeightPaint'
     '''
 
-    weight_tool: typing.Union[int, str] = None
+    weight_tool: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -50815,10 +50915,10 @@ class CacheFile(ID, bpy_struct):
     :type: str
     '''
 
-    forward_axis: typing.Union[int, str] = None
+    forward_axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     frame: float = None
@@ -50839,12 +50939,13 @@ class CacheFile(ID, bpy_struct):
     :type: bool
     '''
 
-    object_paths: typing.Union[typing.List['AlembicObjectPath'],
+    object_paths: typing.Union[typing.Dict[str, 'AlembicObjectPath'], typing.
+                               List['AlembicObjectPath'],
                                'bpy_prop_collection',
                                'AlembicObjectPaths'] = None
     ''' Paths of the objects inside the Alembic archive
 
-    :type: typing.Union[typing.List['AlembicObjectPath'], 'bpy_prop_collection', 'AlembicObjectPaths']
+    :type: typing.Union[typing.Dict[str, 'AlembicObjectPath'], typing.List['AlembicObjectPath'], 'bpy_prop_collection', 'AlembicObjectPaths']
     '''
 
     override_frame: bool = None
@@ -50859,10 +50960,10 @@ class CacheFile(ID, bpy_struct):
     :type: float
     '''
 
-    up_axis: typing.Union[int, str] = None
+    up_axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -50915,12 +51016,13 @@ class Camera(ID, bpy_struct):
     :type: 'AnimData'
     '''
 
-    background_images: typing.Union[typing.List['CameraBackgroundImage'],
-                                    'bpy_prop_collection',
-                                    'CameraBackgroundImages'] = None
+    background_images: typing.Union[
+        typing.Dict[str, 'CameraBackgroundImage'], typing.
+        List['CameraBackgroundImage'], 'bpy_prop_collection',
+        'CameraBackgroundImages'] = None
     ''' List of background images
 
-    :type: typing.Union[typing.List['CameraBackgroundImage'], 'bpy_prop_collection', 'CameraBackgroundImages']
+    :type: typing.Union[typing.Dict[str, 'CameraBackgroundImage'], typing.List['CameraBackgroundImage'], 'bpy_prop_collection', 'CameraBackgroundImages']
     '''
 
     clip_end: float = None
@@ -50956,10 +51058,10 @@ class Camera(ID, bpy_struct):
     :type: float
     '''
 
-    lens_unit: typing.Union[int, str] = None
+    lens_unit: typing.Union[str, int] = None
     ''' Unit to edit lens in for the user interface * MILLIMETERS Millimeters, Specify the lens in millimeters. * FOV Field of View, Specify the lens as the field of view's angle.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ortho_scale: float = None
@@ -50974,10 +51076,10 @@ class Camera(ID, bpy_struct):
     :type: float
     '''
 
-    sensor_fit: typing.Union[int, str] = None
+    sensor_fit: typing.Union[str, int] = None
     ''' Method to fit image and field of view angle inside the sensor * AUTO Auto, Fit to the sensor width or height depending on image resolution. * HORIZONTAL Horizontal, Fit to the sensor width. * VERTICAL Vertical, Fit to the sensor height.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sensor_height: float = None
@@ -51106,10 +51208,10 @@ class Camera(ID, bpy_struct):
     :type: 'CameraStereoData'
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Camera types
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def view_frame(self, scene: 'Scene' = None):
@@ -51146,18 +51248,19 @@ class Collection(ID, bpy_struct):
     ''' Collection of Object data-blocks
     '''
 
-    all_objects: typing.Union[typing.
+    all_objects: typing.Union[typing.Dict[str, 'Object'], typing.
                               List['Object'], 'bpy_prop_collection'] = None
     ''' Objects that are in this collection and its child collections
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection']
     '''
 
-    children: typing.Union[typing.List['Collection'], 'bpy_prop_collection',
+    children: typing.Union[typing.Dict[str, 'Collection'], typing.
+                           List['Collection'], 'bpy_prop_collection',
                            'CollectionChildren'] = None
     ''' Collections that are immediate children of this collection
 
-    :type: typing.Union[typing.List['Collection'], 'bpy_prop_collection', 'CollectionChildren']
+    :type: typing.Union[typing.Dict[str, 'Collection'], typing.List['Collection'], 'bpy_prop_collection', 'CollectionChildren']
     '''
 
     hide_render: bool = None
@@ -51184,11 +51287,11 @@ class Collection(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    objects: typing.Union[typing.List['Object'], 'bpy_prop_collection',
-                          'CollectionObjects'] = None
+    objects: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'],
+                          'bpy_prop_collection', 'CollectionObjects'] = None
     ''' Objects that are directly in this collection
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection', 'CollectionObjects']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection', 'CollectionObjects']
     '''
 
     users_dupli_group = None
@@ -51238,16 +51341,16 @@ class Curve(ID, bpy_struct):
     :type: float
     '''
 
-    bevel_factor_mapping_end: typing.Union[int, str] = None
+    bevel_factor_mapping_end: typing.Union[str, int] = None
     ''' Determines how the end bevel factor is mapped to a spline * RESOLUTION Resolution, Map the bevel factor to the number of subdivisions of a spline (U resolution). * SEGMENTS Segments, Map the bevel factor to the length of a segment and to the number of subdivisions of a segment. * SPLINE Spline, Map the bevel factor to the length of a spline.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    bevel_factor_mapping_start: typing.Union[int, str] = None
+    bevel_factor_mapping_start: typing.Union[str, int] = None
     ''' Determines how the start bevel factor is mapped to a spline * RESOLUTION Resolution, Map the bevel factor to the number of subdivisions of a spline (U resolution). * SEGMENTS Segments, Map the bevel factor to the length of a segment and to the number of subdivisions of a segment. * SPLINE Spline, Map the bevel factor to the length of a spline.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bevel_factor_start: float = None
@@ -51271,10 +51374,10 @@ class Curve(ID, bpy_struct):
     cycles = None
     ''' Cycles mesh settings'''
 
-    dimensions: typing.Union[int, str] = None
+    dimensions: typing.Union[str, int] = None
     ''' Select 2D or 3D curve type * 2D 2D, Clamp the Z axis of the curve. * 3D 3D, Allow editing on the Z axis of this curve, also allows tilt and curve radius to be used.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     eval_time: float = None
@@ -51289,10 +51392,10 @@ class Curve(ID, bpy_struct):
     :type: float
     '''
 
-    fill_mode: typing.Union[int, str] = None
+    fill_mode: typing.Union[str, int] = None
     ''' Mode of filling curve
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_editmode: bool = None
@@ -51301,11 +51404,12 @@ class Curve(ID, bpy_struct):
     :type: bool
     '''
 
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
+    materials: typing.Union[typing.Dict[str, 'Material'], typing.
+                            List['Material'], 'bpy_prop_collection',
                             'IDMaterials'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
+    :type: typing.Union[typing.Dict[str, 'Material'], typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
     '''
 
     offset: float = None
@@ -51350,11 +51454,11 @@ class Curve(ID, bpy_struct):
     :type: 'Key'
     '''
 
-    splines: typing.Union[typing.List['Spline'], 'bpy_prop_collection',
-                          'CurveSplines'] = None
+    splines: typing.Union[typing.Dict[str, 'Spline'], typing.List['Spline'],
+                          'bpy_prop_collection', 'CurveSplines'] = None
     ''' Collection of splines in this curve data object
 
-    :type: typing.Union[typing.List['Spline'], 'bpy_prop_collection', 'CurveSplines']
+    :type: typing.Union[typing.Dict[str, 'Spline'], typing.List['Spline'], 'bpy_prop_collection', 'CurveSplines']
     '''
 
     taper_object: 'Object' = None
@@ -51375,10 +51479,10 @@ class Curve(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    twist_mode: typing.Union[int, str] = None
+    twist_mode: typing.Union[str, int] = None
     ''' The type of tilt calculation for 3D Curves * Z_UP Z-Up, Use Z-Up axis to calculate the curve twist at each point. * MINIMUM Minimum, Use the least twist over the entire curve. * TANGENT Tangent, Use the tangent to calculate twist.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     twist_smooth: float = None
@@ -51509,12 +51613,13 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: float
     '''
 
-    alpha_modifiers: typing.Union[typing.List['LineStyleAlphaModifier'],
-                                  'bpy_prop_collection',
-                                  'LineStyleAlphaModifiers'] = None
+    alpha_modifiers: typing.Union[
+        typing.Dict[str, 'LineStyleAlphaModifier'], typing.
+        List['LineStyleAlphaModifier'], 'bpy_prop_collection',
+        'LineStyleAlphaModifiers'] = None
     ''' List of alpha transparency modifiers
 
-    :type: typing.Union[typing.List['LineStyleAlphaModifier'], 'bpy_prop_collection', 'LineStyleAlphaModifiers']
+    :type: typing.Union[typing.Dict[str, 'LineStyleAlphaModifier'], typing.List['LineStyleAlphaModifier'], 'bpy_prop_collection', 'LineStyleAlphaModifiers']
     '''
 
     angle_max: float = None
@@ -51535,10 +51640,10 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: 'AnimData'
     '''
 
-    caps: typing.Union[int, str] = None
+    caps: typing.Union[str, int] = None
     ''' Select the shape of both ends of strokes * BUTT Butt, Butt cap (flat). * ROUND Round, Round cap (half-circle). * SQUARE Square, Square cap (flat and extended).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     chain_count: int = None
@@ -51547,10 +51652,10 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: int
     '''
 
-    chaining: typing.Union[int, str] = None
+    chaining: typing.Union[str, int] = None
     ''' Select the way how feature edges are jointed to form chains * PLAIN Plain, Plain chaining. * SKETCHY Sketchy, Sketchy chaining with a multiple touch.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color: typing.List[float] = None
@@ -51559,12 +51664,13 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    color_modifiers: typing.Union[typing.List['LineStyleColorModifier'],
-                                  'bpy_prop_collection',
-                                  'LineStyleColorModifiers'] = None
+    color_modifiers: typing.Union[
+        typing.Dict[str, 'LineStyleColorModifier'], typing.
+        List['LineStyleColorModifier'], 'bpy_prop_collection',
+        'LineStyleColorModifiers'] = None
     ''' List of line color modifiers
 
-    :type: typing.Union[typing.List['LineStyleColorModifier'], 'bpy_prop_collection', 'LineStyleColorModifiers']
+    :type: typing.Union[typing.Dict[str, 'LineStyleColorModifier'], typing.List['LineStyleColorModifier'], 'bpy_prop_collection', 'LineStyleColorModifiers']
     '''
 
     dash1: int = None
@@ -51603,18 +51709,19 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: int
     '''
 
-    geometry_modifiers: typing.Union[typing.List['LineStyleGeometryModifier'],
-                                     'bpy_prop_collection',
-                                     'LineStyleGeometryModifiers'] = None
+    geometry_modifiers: typing.Union[
+        typing.Dict[str, 'LineStyleGeometryModifier'], typing.
+        List['LineStyleGeometryModifier'], 'bpy_prop_collection',
+        'LineStyleGeometryModifiers'] = None
     ''' List of stroke geometry modifiers
 
-    :type: typing.Union[typing.List['LineStyleGeometryModifier'], 'bpy_prop_collection', 'LineStyleGeometryModifiers']
+    :type: typing.Union[typing.Dict[str, 'LineStyleGeometryModifier'], typing.List['LineStyleGeometryModifier'], 'bpy_prop_collection', 'LineStyleGeometryModifiers']
     '''
 
-    integration_type: typing.Union[int, str] = None
+    integration_type: typing.Union[str, int] = None
     ''' Select the way how the sort key is computed for each chain * MEAN Mean, The value computed for the chain is the mean of the values obtained for chain vertices. * MIN Min, The value computed for the chain is the minimum of the values obtained for chain vertices. * MAX Max, The value computed for the chain is the maximum of the values obtained for chain vertices. * FIRST First, The value computed for the chain is the value obtained for the first chain vertex. * LAST Last, The value computed for the chain is the value obtained for the last chain vertex.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     length_max: float = None
@@ -51641,10 +51748,10 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: 'NodeTree'
     '''
 
-    panel: typing.Union[int, str] = None
+    panel: typing.Union[str, int] = None
     ''' Select the property panel to be shown * STROKES Strokes, Show the panel for stroke construction. * COLOR Color, Show the panel for line color options. * ALPHA Alpha, Show the panel for alpha transparency options. * THICKNESS Thickness, Show the panel for line thickness options. * GEOMETRY Geometry, Show the panel for stroke geometry options. * TEXTURE Texture, Show the panel for stroke texture options.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rounds: int = None
@@ -51653,16 +51760,16 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: int
     '''
 
-    sort_key: typing.Union[int, str] = None
+    sort_key: typing.Union[str, int] = None
     ''' Select the sort key to determine the stacking order of chains * DISTANCE_FROM_CAMERA Distance from Camera, Sort by distance from camera (closer lines lie on top of further lines). * 2D_LENGTH 2D Length, Sort by curvilinear 2D length (longer lines lie on top of shorter lines). * PROJECTED_X Projected X, Sort by the projected X value in the image coordinate system. * PROJECTED_Y Projected Y, Sort by the projected Y value in the image coordinate system.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    sort_order: typing.Union[int, str] = None
+    sort_order: typing.Union[str, int] = None
     ''' Select the sort order * DEFAULT Default, Default order of the sort key. * REVERSE Reverse, Reverse order.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     split_dash1: int = None
@@ -51707,12 +51814,13 @@ class FreestyleLineStyle(ID, bpy_struct):
     :type: float
     '''
 
-    texture_slots: typing.Union[typing.List['LineStyleTextureSlot'],
-                                'bpy_prop_collection',
-                                'LineStyleTextureSlots'] = None
+    texture_slots: typing.Union[
+        typing.Dict[str, 'LineStyleTextureSlot'], typing.
+        List['LineStyleTextureSlot'], 'bpy_prop_collection',
+        'LineStyleTextureSlots'] = None
     ''' Texture slots defining the mapping and influence of textures
 
-    :type: typing.Union[typing.List['LineStyleTextureSlot'], 'bpy_prop_collection', 'LineStyleTextureSlots']
+    :type: typing.Union[typing.Dict[str, 'LineStyleTextureSlot'], typing.List['LineStyleTextureSlot'], 'bpy_prop_collection', 'LineStyleTextureSlots']
     '''
 
     texture_spacing: float = None
@@ -51728,17 +51836,18 @@ class FreestyleLineStyle(ID, bpy_struct):
     '''
 
     thickness_modifiers: typing.Union[
-        typing.List['LineStyleThicknessModifier'], 'bpy_prop_collection',
+        typing.Dict[str, 'LineStyleThicknessModifier'], typing.
+        List['LineStyleThicknessModifier'], 'bpy_prop_collection',
         'LineStyleThicknessModifiers'] = None
     ''' List of line thickness modifiers
 
-    :type: typing.Union[typing.List['LineStyleThicknessModifier'], 'bpy_prop_collection', 'LineStyleThicknessModifiers']
+    :type: typing.Union[typing.Dict[str, 'LineStyleThicknessModifier'], typing.List['LineStyleThicknessModifier'], 'bpy_prop_collection', 'LineStyleThicknessModifiers']
     '''
 
-    thickness_position: typing.Union[int, str] = None
+    thickness_position: typing.Union[str, int] = None
     ''' Thickness position of silhouettes and border edges (applicable when plain chaining is used with the Same Object option) * CENTER Center, Silhouettes and border edges are centered along stroke geometry. * INSIDE Inside, Silhouettes and border edges are drawn inside of stroke geometry. * OUTSIDE Outside, Silhouettes and border edges are drawn outside of stroke geometry. * RELATIVE Relative, Silhouettes and border edges are shifted by a user-defined ratio.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     thickness_ratio: float = None
@@ -51923,18 +52032,20 @@ class GreasePencil(ID, bpy_struct):
     :type: bool
     '''
 
-    layers: typing.Union[typing.List['GPencilLayer'], 'bpy_prop_collection',
+    layers: typing.Union[typing.Dict[str, 'GPencilLayer'], typing.
+                         List['GPencilLayer'], 'bpy_prop_collection',
                          'GreasePencilLayers'] = None
     ''' 
 
-    :type: typing.Union[typing.List['GPencilLayer'], 'bpy_prop_collection', 'GreasePencilLayers']
+    :type: typing.Union[typing.Dict[str, 'GPencilLayer'], typing.List['GPencilLayer'], 'bpy_prop_collection', 'GreasePencilLayers']
     '''
 
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
+    materials: typing.Union[typing.Dict[str, 'Material'], typing.
+                            List['Material'], 'bpy_prop_collection',
                             'IDMaterials'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
+    :type: typing.Union[typing.Dict[str, 'Material'], typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
     '''
 
     onion_factor: float = None
@@ -51943,16 +52054,16 @@ class GreasePencil(ID, bpy_struct):
     :type: float
     '''
 
-    onion_keyframe_type: typing.Union[int, str] = None
+    onion_keyframe_type: typing.Union[str, int] = None
     ''' Type of keyframe (for filtering) * ALL All Types, Include all Keyframe types. * KEYFRAME Keyframe, Normal keyframe - e.g. for key poses. * BREAKDOWN Breakdown, A breakdown pose - e.g. for transitions between key poses. * MOVING_HOLD Moving Hold, A keyframe that is part of a moving hold. * EXTREME Extreme, An 'extreme' pose, or some other purpose as needed. * JITTER Jitter, A filler or baked keyframe for keying on ones, or some other purpose as needed.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    onion_mode: typing.Union[int, str] = None
+    onion_mode: typing.Union[str, int] = None
     ''' Mode to display frames * ABSOLUTE Frames, Frames in absolute range of the scene frame. * RELATIVE Keyframes, Frames in relative range of the Grease Pencil keyframes. * SELECTED Selected, Only selected keyframes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pixel_factor: float = None
@@ -51961,16 +52072,16 @@ class GreasePencil(ID, bpy_struct):
     :type: float
     '''
 
-    stroke_depth_order: typing.Union[int, str] = None
+    stroke_depth_order: typing.Union[str, int] = None
     ''' Defines how the strokes are ordered in 3D space (for objects not displayed 'In Front') * 2D 2D Layers, Display strokes using grease pencil layers to define order. * 3D 3D Location, Display strokes using real 3D position in 3D space.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    stroke_thickness_space: typing.Union[int, str] = None
+    stroke_thickness_space: typing.Union[str, int] = None
     ''' Set stroke thickness in screen space or world space * WORLDSPACE World Space, Set stroke thickness relative to the world space. * SCREENSPACE Screen Space, Set stroke thickness relative to the screen space.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_autolock_layers: bool = None
@@ -52059,10 +52170,10 @@ class Image(ID, bpy_struct):
     ''' Image data-block referencing an external or packed image
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha in the image file, to convert to and from when saving and loading the image * STRAIGHT Straight, Store RGB and alpha channels separately with alpha acting as a mask, also known as unassociated alpha. Commonly used by image editing applications and file formats like PNG. * PREMUL Premultiplied, Store RGB channels with alpha multiplied in, also known as associated alpha. The natural format for renders and used by file formats like OpenEXR. * CHANNEL_PACKED Channel Packed, Different images are packed in the RGB and alpha channels, and they should not affect each other. Channel packing is commonly used by game engines to save memory. * NONE None, Ignore alpha channel from the file and make image fully opaque.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bindcode: int = None
@@ -52095,10 +52206,10 @@ class Image(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    file_format: typing.Union[int, str] = None
+    file_format: typing.Union[str, int] = None
     ''' Format used for re-saving this file * BMP BMP, Output image in bitmap format. * IRIS Iris, Output image in (old!) SGI IRIS format. * PNG PNG, Output image in PNG format. * JPEG JPEG, Output image in JPEG format. * JPEG2000 JPEG 2000, Output image in JPEG 2000 format. * TARGA Targa, Output image in Targa format. * TARGA_RAW Targa Raw, Output image in uncompressed Targa format. * CINEON Cineon, Output image in Cineon format. * DPX DPX, Output image in DPX format. * OPEN_EXR_MULTILAYER OpenEXR MultiLayer, Output image in multilayer OpenEXR format. * OPEN_EXR OpenEXR, Output image in OpenEXR format. * HDR Radiance HDR, Output image in Radiance HDR format. * TIFF TIFF, Output image in TIFF format. * AVI_JPEG AVI JPEG, Output video in AVI JPEG format. * AVI_RAW AVI Raw, Output video in AVI Raw format. * FFMPEG FFmpeg video, The most versatile way to output video files.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     filepath: str = None
@@ -52131,10 +52242,10 @@ class Image(ID, bpy_struct):
     :type: int
     '''
 
-    generated_type: typing.Union[int, str] = None
+    generated_type: typing.Union[str, int] = None
     ''' Generated image type * BLANK Blank, Generate a blank image. * UV_GRID UV Grid, Generated grid to test UV mappings. * COLOR_GRID Color Grid, Generated improved UV grid to test UV mappings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     generated_width: int = None
@@ -52179,11 +52290,12 @@ class Image(ID, bpy_struct):
     :type: 'PackedFile'
     '''
 
-    packed_files: typing.Union[typing.List['ImagePackedFile'],
+    packed_files: typing.Union[typing.Dict[str, 'ImagePackedFile'], typing.
+                               List['ImagePackedFile'],
                                'bpy_prop_collection'] = None
     ''' Collection of packed images
 
-    :type: typing.Union[typing.List['ImagePackedFile'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ImagePackedFile'], typing.List['ImagePackedFile'], 'bpy_prop_collection']
     '''
 
     pixels: float = None
@@ -52192,11 +52304,12 @@ class Image(ID, bpy_struct):
     :type: float
     '''
 
-    render_slots: typing.Union[typing.List['RenderSlot'],
-                               'bpy_prop_collection', 'RenderSlots'] = None
+    render_slots: typing.Union[typing.Dict[str, 'RenderSlot'], typing.
+                               List['RenderSlot'], 'bpy_prop_collection',
+                               'RenderSlots'] = None
     ''' Render slots of the image
 
-    :type: typing.Union[typing.List['RenderSlot'], 'bpy_prop_collection', 'RenderSlots']
+    :type: typing.Union[typing.Dict[str, 'RenderSlot'], typing.List['RenderSlot'], 'bpy_prop_collection', 'RenderSlots']
     '''
 
     resolution: typing.List[float] = None
@@ -52211,10 +52324,10 @@ class Image(ID, bpy_struct):
     :type: typing.List[int]
     '''
 
-    source: typing.Union[int, str] = None
+    source: typing.Union[str, int] = None
     ''' Where the image comes from * FILE Single Image, Single image file. * SEQUENCE Image Sequence, Multiple image files, as a sequence. * MOVIE Movie, Movie file. * GENERATED Generated, Generated image. * VIEWER Viewer, Compositing node viewer. * TILED UDIM Tiles, Tiled UDIM image texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     stereo_3d_format: 'Stereo3dFormat' = None
@@ -52223,17 +52336,17 @@ class Image(ID, bpy_struct):
     :type: 'Stereo3dFormat'
     '''
 
-    tiles: typing.Union[typing.List['UDIMTile'], 'bpy_prop_collection',
-                        'UDIMTiles'] = None
+    tiles: typing.Union[typing.Dict[str, 'UDIMTile'], typing.List['UDIMTile'],
+                        'bpy_prop_collection', 'UDIMTiles'] = None
     ''' Tiles of the image
 
-    :type: typing.Union[typing.List['UDIMTile'], 'bpy_prop_collection', 'UDIMTiles']
+    :type: typing.Union[typing.Dict[str, 'UDIMTile'], typing.List['UDIMTile'], 'bpy_prop_collection', 'UDIMTiles']
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' How to generate the image
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_deinterlace: bool = None
@@ -52266,10 +52379,10 @@ class Image(ID, bpy_struct):
     :type: bool
     '''
 
-    views_format: typing.Union[int, str] = None
+    views_format: typing.Union[str, int] = None
     ''' Mode to load image views * INDIVIDUAL Individual, Individual files for each view with the prefix as defined by the scene views. * STEREO_3D Stereo 3D, Single file with an encoded stereo pair.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def save_render(self, filepath: str, scene: 'Scene' = None):
@@ -52298,11 +52411,11 @@ class Image(ID, bpy_struct):
         '''
         pass
 
-    def unpack(self, method: typing.Union[int, str] = 'USE_LOCAL'):
+    def unpack(self, method: typing.Union[str, int] = 'USE_LOCAL'):
         ''' Save an image packed in the .blend file to disk
 
         :param method: method, How to unpack
-        :type method: typing.Union[int, str]
+        :type method: typing.Union[str, int]
         '''
         pass
 
@@ -52408,11 +52521,11 @@ class Key(ID, bpy_struct):
     :type: float
     '''
 
-    key_blocks: typing.Union[typing.
+    key_blocks: typing.Union[typing.Dict[str, 'ShapeKey'], typing.
                              List['ShapeKey'], 'bpy_prop_collection'] = None
     ''' Shape keys
 
-    :type: typing.Union[typing.List['ShapeKey'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ShapeKey'], typing.List['ShapeKey'], 'bpy_prop_collection']
     '''
 
     reference_key: 'ShapeKey' = None
@@ -52465,22 +52578,22 @@ class Lattice(ID, bpy_struct):
     :type: 'AnimData'
     '''
 
-    interpolation_type_u: typing.Union[int, str] = None
+    interpolation_type_u: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    interpolation_type_v: typing.Union[int, str] = None
+    interpolation_type_v: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    interpolation_type_w: typing.Union[int, str] = None
+    interpolation_type_w: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_editmode: bool = None
@@ -52489,11 +52602,11 @@ class Lattice(ID, bpy_struct):
     :type: bool
     '''
 
-    points: typing.Union[typing.
+    points: typing.Union[typing.Dict[str, 'LatticePoint'], typing.
                          List['LatticePoint'], 'bpy_prop_collection'] = None
     ''' Points of the lattice
 
-    :type: typing.Union[typing.List['LatticePoint'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'LatticePoint'], typing.List['LatticePoint'], 'bpy_prop_collection']
     '''
 
     points_u: int = None
@@ -52672,10 +52785,10 @@ class Light(ID, bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of Light * POINT Point, Omnidirectional point light source. * SUN Sun, Constant direction parallel ray light source. * SPOT Spot, Directional cone light source. * AREA Area, Directional area light source.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_custom_distance: bool = None
@@ -52764,10 +52877,10 @@ class LightProbe(ID, bpy_struct):
     :type: float
     '''
 
-    influence_type: typing.Union[int, str] = None
+    influence_type: typing.Union[str, int] = None
     ''' Type of influence volume
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     intensity: float = None
@@ -52788,10 +52901,10 @@ class LightProbe(ID, bpy_struct):
     :type: float
     '''
 
-    parallax_type: typing.Union[int, str] = None
+    parallax_type: typing.Union[str, int] = None
     ''' Type of parallax volume
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_clip: bool = None
@@ -52818,10 +52931,10 @@ class LightProbe(ID, bpy_struct):
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of light probe * CUBEMAP Reflection Cubemap, Capture reflections. * PLANAR Reflection Plane. * GRID Irradiance Volume, Volume used for precomputing indirect lighting.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_custom_parallax: bool = None
@@ -52904,11 +53017,12 @@ class Mask(ID, bpy_struct):
     :type: int
     '''
 
-    layers: typing.Union[typing.List['MaskLayer'], 'bpy_prop_collection',
+    layers: typing.Union[typing.Dict[str, 'MaskLayer'], typing.
+                         List['MaskLayer'], 'bpy_prop_collection',
                          'MaskLayers'] = None
     ''' Collection of layers which defines this mask
 
-    :type: typing.Union[typing.List['MaskLayer'], 'bpy_prop_collection', 'MaskLayers']
+    :type: typing.Union[typing.Dict[str, 'MaskLayer'], typing.List['MaskLayer'], 'bpy_prop_collection', 'MaskLayers']
     '''
 
     @classmethod
@@ -52949,10 +53063,10 @@ class Material(ID, bpy_struct):
     :type: 'AnimData'
     '''
 
-    blend_method: typing.Union[int, str] = None
+    blend_method: typing.Union[str, int] = None
     ''' Blend Mode for Transparent Faces * OPAQUE Opaque, Render surface without transparency. * CLIP Alpha Clip, Use the alpha threshold to clip the visibility (binary visibility). * HASHED Alpha Hashed, Use noise to dither the binary visibility (works well with multi-samples). * BLEND Alpha Blend, Render polygon transparent, depending on alpha channel of the texture.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cycles = None
@@ -53018,10 +53132,10 @@ class Material(ID, bpy_struct):
     :type: int
     '''
 
-    preview_render_type: typing.Union[int, str] = None
+    preview_render_type: typing.Union[str, int] = None
     ''' Type of preview render * FLAT Flat, Flat XY plane. * SPHERE Sphere, Sphere. * CUBE Cube, Cube. * HAIR Hair, Hair strands. * SHADERBALL Shader Ball, Shader Ball. * CLOTH Cloth, Cloth. * FLUID Fluid, Fluid.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     refraction_depth: float = None
@@ -53036,10 +53150,10 @@ class Material(ID, bpy_struct):
     :type: float
     '''
 
-    shadow_method: typing.Union[int, str] = None
+    shadow_method: typing.Union[str, int] = None
     ''' Shadow mapping method * NONE None, Material will cast no shadow. * OPAQUE Opaque, Material will cast shadows without transparency. * CLIP Alpha Clip, Use the alpha threshold to clip the visibility (binary visibility). * HASHED Alpha Hashed, Use noise to dither the binary visibility and use filtering to reduce the noise.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_transparent_back: bool = None
@@ -53060,18 +53174,20 @@ class Material(ID, bpy_struct):
     :type: float
     '''
 
-    texture_paint_images: typing.Union[typing.List['Image'],
+    texture_paint_images: typing.Union[typing.Dict[str, 'Image'], typing.
+                                       List['Image'],
                                        'bpy_prop_collection'] = None
     ''' Texture images used for texture painting
 
-    :type: typing.Union[typing.List['Image'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Image'], typing.List['Image'], 'bpy_prop_collection']
     '''
 
-    texture_paint_slots: typing.Union[typing.List['TexPaintSlot'],
+    texture_paint_slots: typing.Union[typing.Dict[str, 'TexPaintSlot'], typing.
+                                      List['TexPaintSlot'],
                                       'bpy_prop_collection'] = None
     ''' Texture slots defining the mapping and influence of textures
 
-    :type: typing.Union[typing.List['TexPaintSlot'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'TexPaintSlot'], typing.List['TexPaintSlot'], 'bpy_prop_collection']
     '''
 
     use_backface_culling: bool = None
@@ -53151,18 +53267,19 @@ class Mesh(ID, bpy_struct):
     cycles = None
     ''' Cycles mesh settings'''
 
-    edges: typing.Union[typing.List['MeshEdge'], 'bpy_prop_collection',
-                        'MeshEdges'] = None
+    edges: typing.Union[typing.Dict[str, 'MeshEdge'], typing.List['MeshEdge'],
+                        'bpy_prop_collection', 'MeshEdges'] = None
     ''' Edges of the mesh
 
-    :type: typing.Union[typing.List['MeshEdge'], 'bpy_prop_collection', 'MeshEdges']
+    :type: typing.Union[typing.Dict[str, 'MeshEdge'], typing.List['MeshEdge'], 'bpy_prop_collection', 'MeshEdges']
     '''
 
-    face_maps: typing.Union[typing.List['MeshFaceMapLayer'],
-                            'bpy_prop_collection', 'MeshFaceMapLayers'] = None
+    face_maps: typing.Union[typing.Dict[str, 'MeshFaceMapLayer'], typing.
+                            List['MeshFaceMapLayer'], 'bpy_prop_collection',
+                            'MeshFaceMapLayers'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshFaceMapLayer'], 'bpy_prop_collection', 'MeshFaceMapLayers']
+    :type: typing.Union[typing.Dict[str, 'MeshFaceMapLayer'], typing.List['MeshFaceMapLayer'], 'bpy_prop_collection', 'MeshFaceMapLayers']
     '''
 
     has_custom_normals: bool = None
@@ -53177,62 +53294,68 @@ class Mesh(ID, bpy_struct):
     :type: bool
     '''
 
-    loop_triangles: typing.Union[typing.List[
-        'MeshLoopTriangle'], 'bpy_prop_collection', 'MeshLoopTriangles'] = None
+    loop_triangles: typing.Union[
+        typing.Dict[str, 'MeshLoopTriangle'], typing.List['MeshLoopTriangle'],
+        'bpy_prop_collection', 'MeshLoopTriangles'] = None
     ''' Tessellation of mesh polygons into triangles
 
-    :type: typing.Union[typing.List['MeshLoopTriangle'], 'bpy_prop_collection', 'MeshLoopTriangles']
+    :type: typing.Union[typing.Dict[str, 'MeshLoopTriangle'], typing.List['MeshLoopTriangle'], 'bpy_prop_collection', 'MeshLoopTriangles']
     '''
 
-    loops: typing.Union[typing.List['MeshLoop'], 'bpy_prop_collection',
-                        'MeshLoops'] = None
+    loops: typing.Union[typing.Dict[str, 'MeshLoop'], typing.List['MeshLoop'],
+                        'bpy_prop_collection', 'MeshLoops'] = None
     ''' Loops of the mesh (polygon corners)
 
-    :type: typing.Union[typing.List['MeshLoop'], 'bpy_prop_collection', 'MeshLoops']
+    :type: typing.Union[typing.Dict[str, 'MeshLoop'], typing.List['MeshLoop'], 'bpy_prop_collection', 'MeshLoops']
     '''
 
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
+    materials: typing.Union[typing.Dict[str, 'Material'], typing.
+                            List['Material'], 'bpy_prop_collection',
                             'IDMaterials'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
+    :type: typing.Union[typing.Dict[str, 'Material'], typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
     '''
 
     polygon_layers_float: typing.Union[
-        typing.List['MeshPolygonFloatPropertyLayer'], 'bpy_prop_collection',
+        typing.Dict[str, 'MeshPolygonFloatPropertyLayer'], typing.
+        List['MeshPolygonFloatPropertyLayer'], 'bpy_prop_collection',
         'PolygonFloatProperties'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPolygonFloatPropertyLayer'], 'bpy_prop_collection', 'PolygonFloatProperties']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygonFloatPropertyLayer'], typing.List['MeshPolygonFloatPropertyLayer'], 'bpy_prop_collection', 'PolygonFloatProperties']
     '''
 
     polygon_layers_int: typing.Union[
-        typing.List['MeshPolygonIntPropertyLayer'], 'bpy_prop_collection',
+        typing.Dict[str, 'MeshPolygonIntPropertyLayer'], typing.
+        List['MeshPolygonIntPropertyLayer'], 'bpy_prop_collection',
         'PolygonIntProperties'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPolygonIntPropertyLayer'], 'bpy_prop_collection', 'PolygonIntProperties']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygonIntPropertyLayer'], typing.List['MeshPolygonIntPropertyLayer'], 'bpy_prop_collection', 'PolygonIntProperties']
     '''
 
     polygon_layers_string: typing.Union[
-        typing.List['MeshPolygonStringPropertyLayer'], 'bpy_prop_collection',
+        typing.Dict[str, 'MeshPolygonStringPropertyLayer'], typing.
+        List['MeshPolygonStringPropertyLayer'], 'bpy_prop_collection',
         'PolygonStringProperties'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshPolygonStringPropertyLayer'], 'bpy_prop_collection', 'PolygonStringProperties']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygonStringPropertyLayer'], typing.List['MeshPolygonStringPropertyLayer'], 'bpy_prop_collection', 'PolygonStringProperties']
     '''
 
-    polygons: typing.Union[typing.List['MeshPolygon'], 'bpy_prop_collection',
+    polygons: typing.Union[typing.Dict[str, 'MeshPolygon'], typing.
+                           List['MeshPolygon'], 'bpy_prop_collection',
                            'MeshPolygons'] = None
     ''' Polygons of the mesh
 
-    :type: typing.Union[typing.List['MeshPolygon'], 'bpy_prop_collection', 'MeshPolygons']
+    :type: typing.Union[typing.Dict[str, 'MeshPolygon'], typing.List['MeshPolygon'], 'bpy_prop_collection', 'MeshPolygons']
     '''
 
-    remesh_mode: typing.Union[int, str] = None
+    remesh_mode: typing.Union[str, int] = None
     ''' * VOXEL Voxel, Use the voxel remesher. * QUAD Quad, Use the quad remesher.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     remesh_voxel_adaptivity: float = None
@@ -53253,11 +53376,12 @@ class Mesh(ID, bpy_struct):
     :type: 'Key'
     '''
 
-    skin_vertices: typing.Union[typing.List['MeshSkinVertexLayer'],
-                                'bpy_prop_collection'] = None
+    skin_vertices: typing.Union[
+        typing.Dict[str, 'MeshSkinVertexLayer'], typing.
+        List['MeshSkinVertexLayer'], 'bpy_prop_collection'] = None
     ''' All skin vertices
 
-    :type: typing.Union[typing.List['MeshSkinVertexLayer'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshSkinVertexLayer'], typing.List['MeshSkinVertexLayer'], 'bpy_prop_collection']
     '''
 
     texco_mesh: 'Mesh' = None
@@ -53422,56 +53546,63 @@ class Mesh(ID, bpy_struct):
     :type: int
     '''
 
-    uv_layers: typing.Union[typing.List['MeshUVLoopLayer'],
-                            'bpy_prop_collection', 'UVLoopLayers'] = None
+    uv_layers: typing.Union[typing.Dict[str, 'MeshUVLoopLayer'], typing.
+                            List['MeshUVLoopLayer'], 'bpy_prop_collection',
+                            'UVLoopLayers'] = None
     ''' All UV loop layers
 
-    :type: typing.Union[typing.List['MeshUVLoopLayer'], 'bpy_prop_collection', 'UVLoopLayers']
+    :type: typing.Union[typing.Dict[str, 'MeshUVLoopLayer'], typing.List['MeshUVLoopLayer'], 'bpy_prop_collection', 'UVLoopLayers']
     '''
 
-    vertex_colors: typing.Union[typing.List['MeshLoopColorLayer'],
+    vertex_colors: typing.Union[typing.Dict[str, 'MeshLoopColorLayer'], typing.
+                                List['MeshLoopColorLayer'],
                                 'bpy_prop_collection', 'LoopColors'] = None
     ''' All vertex colors
 
-    :type: typing.Union[typing.List['MeshLoopColorLayer'], 'bpy_prop_collection', 'LoopColors']
+    :type: typing.Union[typing.Dict[str, 'MeshLoopColorLayer'], typing.List['MeshLoopColorLayer'], 'bpy_prop_collection', 'LoopColors']
     '''
 
     vertex_layers_float: typing.Union[
-        typing.List['MeshVertexFloatPropertyLayer'], 'bpy_prop_collection',
+        typing.Dict[str, 'MeshVertexFloatPropertyLayer'], typing.
+        List['MeshVertexFloatPropertyLayer'], 'bpy_prop_collection',
         'VertexFloatProperties'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshVertexFloatPropertyLayer'], 'bpy_prop_collection', 'VertexFloatProperties']
+    :type: typing.Union[typing.Dict[str, 'MeshVertexFloatPropertyLayer'], typing.List['MeshVertexFloatPropertyLayer'], 'bpy_prop_collection', 'VertexFloatProperties']
     '''
 
-    vertex_layers_int: typing.Union[typing.List['MeshVertexIntPropertyLayer'],
-                                    'bpy_prop_collection',
-                                    'VertexIntProperties'] = None
+    vertex_layers_int: typing.Union[
+        typing.Dict[str, 'MeshVertexIntPropertyLayer'], typing.
+        List['MeshVertexIntPropertyLayer'], 'bpy_prop_collection',
+        'VertexIntProperties'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshVertexIntPropertyLayer'], 'bpy_prop_collection', 'VertexIntProperties']
+    :type: typing.Union[typing.Dict[str, 'MeshVertexIntPropertyLayer'], typing.List['MeshVertexIntPropertyLayer'], 'bpy_prop_collection', 'VertexIntProperties']
     '''
 
     vertex_layers_string: typing.Union[
-        typing.List['MeshVertexStringPropertyLayer'], 'bpy_prop_collection',
+        typing.Dict[str, 'MeshVertexStringPropertyLayer'], typing.
+        List['MeshVertexStringPropertyLayer'], 'bpy_prop_collection',
         'VertexStringProperties'] = None
     ''' 
 
-    :type: typing.Union[typing.List['MeshVertexStringPropertyLayer'], 'bpy_prop_collection', 'VertexStringProperties']
+    :type: typing.Union[typing.Dict[str, 'MeshVertexStringPropertyLayer'], typing.List['MeshVertexStringPropertyLayer'], 'bpy_prop_collection', 'VertexStringProperties']
     '''
 
-    vertex_paint_masks: typing.Union[typing.List['MeshPaintMaskLayer'],
-                                     'bpy_prop_collection'] = None
+    vertex_paint_masks: typing.Union[
+        typing.Dict[str, 'MeshPaintMaskLayer'], typing.
+        List['MeshPaintMaskLayer'], 'bpy_prop_collection'] = None
     ''' Vertex paint mask
 
-    :type: typing.Union[typing.List['MeshPaintMaskLayer'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MeshPaintMaskLayer'], typing.List['MeshPaintMaskLayer'], 'bpy_prop_collection']
     '''
 
-    vertices: typing.Union[typing.List['MeshVertex'], 'bpy_prop_collection',
+    vertices: typing.Union[typing.Dict[str, 'MeshVertex'], typing.
+                           List['MeshVertex'], 'bpy_prop_collection',
                            'MeshVertices'] = None
     ''' Vertices of the mesh
 
-    :type: typing.Union[typing.List['MeshVertex'], 'bpy_prop_collection', 'MeshVertices']
+    :type: typing.Union[typing.Dict[str, 'MeshVertex'], typing.List['MeshVertex'], 'bpy_prop_collection', 'MeshVertices']
     '''
 
     edge_keys = None
@@ -53683,11 +53814,12 @@ class MetaBall(ID, bpy_struct):
     cycles = None
     ''' Cycles mesh settings'''
 
-    elements: typing.Union[typing.List['MetaElement'], 'bpy_prop_collection',
+    elements: typing.Union[typing.Dict[str, 'MetaElement'], typing.
+                           List['MetaElement'], 'bpy_prop_collection',
                            'MetaBallElements'] = None
     ''' Meta elements
 
-    :type: typing.Union[typing.List['MetaElement'], 'bpy_prop_collection', 'MetaBallElements']
+    :type: typing.Union[typing.Dict[str, 'MetaElement'], typing.List['MetaElement'], 'bpy_prop_collection', 'MetaBallElements']
     '''
 
     is_editmode: bool = None
@@ -53696,11 +53828,12 @@ class MetaBall(ID, bpy_struct):
     :type: bool
     '''
 
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
+    materials: typing.Union[typing.Dict[str, 'Material'], typing.
+                            List['Material'], 'bpy_prop_collection',
                             'IDMaterials'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
+    :type: typing.Union[typing.Dict[str, 'Material'], typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
     '''
 
     render_resolution: float = None
@@ -53733,10 +53866,10 @@ class MetaBall(ID, bpy_struct):
     :type: float
     '''
 
-    update_method: typing.Union[int, str] = None
+    update_method: typing.Union[str, int] = None
     ''' Metaball edit update behavior * UPDATE_ALWAYS Always, While editing, update metaball always. * HALFRES Half, While editing, update metaball in half resolution. * FAST Fast, While editing, update metaball without polygonization. * NEVER Never, While editing, don't update metaball at all.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_texspace: bool = None
@@ -53851,10 +53984,10 @@ class MovieClip(ID, bpy_struct):
     :type: typing.List[int]
     '''
 
-    source: typing.Union[int, str] = None
+    source: typing.Union[str, int] = None
     ''' Where the clip comes from * SEQUENCE Image Sequence, Multiple image files, as a sequence. * MOVIE Movie File, Movie file.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     tracking: 'MovieTracking' = None
@@ -53933,10 +54066,10 @@ class NodeTree(ID, bpy_struct):
     :type: str
     '''
 
-    bl_icon: typing.Union[int, str] = None
+    bl_icon: typing.Union[str, int] = None
     ''' The node tree icon
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bl_idname: str = None
@@ -53957,38 +54090,40 @@ class NodeTree(ID, bpy_struct):
     :type: 'GreasePencil'
     '''
 
-    inputs: typing.Union[typing.List['NodeSocketInterface'],
-                         'bpy_prop_collection', 'NodeTreeInputs'] = None
+    inputs: typing.Union[typing.Dict[str, 'NodeSocketInterface'], typing.
+                         List['NodeSocketInterface'], 'bpy_prop_collection',
+                         'NodeTreeInputs'] = None
     ''' Node tree inputs
 
-    :type: typing.Union[typing.List['NodeSocketInterface'], 'bpy_prop_collection', 'NodeTreeInputs']
+    :type: typing.Union[typing.Dict[str, 'NodeSocketInterface'], typing.List['NodeSocketInterface'], 'bpy_prop_collection', 'NodeTreeInputs']
     '''
 
-    links: typing.Union[typing.List['NodeLink'], 'bpy_prop_collection',
-                        'NodeLinks'] = None
+    links: typing.Union[typing.Dict[str, 'NodeLink'], typing.List['NodeLink'],
+                        'bpy_prop_collection', 'NodeLinks'] = None
     ''' 
 
-    :type: typing.Union[typing.List['NodeLink'], 'bpy_prop_collection', 'NodeLinks']
+    :type: typing.Union[typing.Dict[str, 'NodeLink'], typing.List['NodeLink'], 'bpy_prop_collection', 'NodeLinks']
     '''
 
-    nodes: typing.Union[typing.
+    nodes: typing.Union[typing.Dict[str, 'Node'], typing.
                         List['Node'], 'bpy_prop_collection', 'Nodes'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Node'], 'bpy_prop_collection', 'Nodes']
+    :type: typing.Union[typing.Dict[str, 'Node'], typing.List['Node'], 'bpy_prop_collection', 'Nodes']
     '''
 
-    outputs: typing.Union[typing.List['NodeSocketInterface'],
-                          'bpy_prop_collection', 'NodeTreeOutputs'] = None
+    outputs: typing.Union[typing.Dict[str, 'NodeSocketInterface'], typing.
+                          List['NodeSocketInterface'], 'bpy_prop_collection',
+                          'NodeTreeOutputs'] = None
     ''' Node tree outputs
 
-    :type: typing.Union[typing.List['NodeSocketInterface'], 'bpy_prop_collection', 'NodeTreeOutputs']
+    :type: typing.Union[typing.Dict[str, 'NodeSocketInterface'], typing.List['NodeSocketInterface'], 'bpy_prop_collection', 'NodeTreeOutputs']
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Node Tree type (deprecated, bl_idname is the actual node tree type identifier) * SHADER Shader, Shader nodes. * TEXTURE Texture, Texture nodes. * COMPOSITING Compositing, Compositing nodes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     view_center: typing.List[float] = None
@@ -54109,11 +54244,12 @@ class Object(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    constraints: typing.Union[typing.List['Constraint'], 'bpy_prop_collection',
+    constraints: typing.Union[typing.Dict[str, 'Constraint'], typing.
+                              List['Constraint'], 'bpy_prop_collection',
                               'ObjectConstraints'] = None
     ''' Constraints affecting the transformation of the object
 
-    :type: typing.Union[typing.List['Constraint'], 'bpy_prop_collection', 'ObjectConstraints']
+    :type: typing.Union[typing.Dict[str, 'Constraint'], typing.List['Constraint'], 'bpy_prop_collection', 'ObjectConstraints']
     '''
 
     cycles = None
@@ -54164,16 +54300,16 @@ class Object(ID, bpy_struct):
     :type: 'ObjectDisplay'
     '''
 
-    display_bounds_type: typing.Union[int, str] = None
+    display_bounds_type: typing.Union[str, int] = None
     ''' Object boundary display type * BOX Box, Display bounds as box. * SPHERE Sphere, Display bounds as sphere. * CYLINDER Cylinder, Display bounds as cylinder. * CONE Cone, Display bounds as cone. * CAPSULE Capsule, Display bounds as capsule.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    display_type: typing.Union[int, str] = None
+    display_type: typing.Union[str, int] = None
     ''' How to display object in viewport * BOUNDS Bounds, Display the bounds of the object. * WIRE Wire, Display the object as a wireframe. * SOLID Solid, Display the object as a solid (if solid drawing is enabled in the viewport). * TEXTURED Textured, Display the object with textures (if textures are enabled in the viewport).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     empty_display_size: float = None
@@ -54182,16 +54318,16 @@ class Object(ID, bpy_struct):
     :type: float
     '''
 
-    empty_display_type: typing.Union[int, str] = None
+    empty_display_type: typing.Union[str, int] = None
     ''' Viewport display style for empties
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    empty_image_depth: typing.Union[int, str] = None
+    empty_image_depth: typing.Union[str, int] = None
     ''' Determine which other objects will occlude the image
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     empty_image_offset: typing.List[float] = None
@@ -54200,17 +54336,18 @@ class Object(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    empty_image_side: typing.Union[int, str] = None
+    empty_image_side: typing.Union[str, int] = None
     ''' Show front/back side
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    face_maps: typing.Union[typing.List['FaceMap'], 'bpy_prop_collection',
+    face_maps: typing.Union[typing.Dict[str, 'FaceMap'], typing.
+                            List['FaceMap'], 'bpy_prop_collection',
                             'FaceMaps'] = None
     ''' Maps of faces of the object
 
-    :type: typing.Union[typing.List['FaceMap'], 'bpy_prop_collection', 'FaceMaps']
+    :type: typing.Union[typing.Dict[str, 'FaceMap'], typing.List['FaceMap'], 'bpy_prop_collection', 'FaceMaps']
     '''
 
     field: 'FieldSettings' = None
@@ -54219,12 +54356,12 @@ class Object(ID, bpy_struct):
     :type: 'FieldSettings'
     '''
 
-    grease_pencil_modifiers: typing.Union[typing.List['GpencilModifier'],
-                                          'bpy_prop_collection',
-                                          'ObjectGpencilModifiers'] = None
+    grease_pencil_modifiers: typing.Union[
+        typing.Dict[str, 'GpencilModifier'], typing.List['GpencilModifier'],
+        'bpy_prop_collection', 'ObjectGpencilModifiers'] = None
     ''' Modifiers affecting the data of the grease pencil object
 
-    :type: typing.Union[typing.List['GpencilModifier'], 'bpy_prop_collection', 'ObjectGpencilModifiers']
+    :type: typing.Union[typing.Dict[str, 'GpencilModifier'], typing.List['GpencilModifier'], 'bpy_prop_collection', 'ObjectGpencilModifiers']
     '''
 
     hide_render: bool = None
@@ -54263,10 +54400,10 @@ class Object(ID, bpy_struct):
     :type: float
     '''
 
-    instance_type: typing.Union[int, str] = None
+    instance_type: typing.Union[str, int] = None
     ''' If not None, object instancing method to use * NONE None. * VERTS Verts, Instantiate child objects on all vertices. * FACES Faces, Instantiate child objects on all faces. * COLLECTION Collection, Enable collection instancing.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_from_instancer: bool = None
@@ -54323,11 +54460,12 @@ class Object(ID, bpy_struct):
     :type: typing.List[bool]
     '''
 
-    material_slots: typing.Union[typing.List['MaterialSlot'],
+    material_slots: typing.Union[typing.Dict[str, 'MaterialSlot'], typing.
+                                 List['MaterialSlot'],
                                  'bpy_prop_collection'] = None
     ''' Material slots in the object
 
-    :type: typing.Union[typing.List['MaterialSlot'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'MaterialSlot'], typing.List['MaterialSlot'], 'bpy_prop_collection']
     '''
 
     matrix_basis: typing.List[float] = None
@@ -54354,17 +54492,18 @@ class Object(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Object interaction mode * OBJECT Object Mode. * EDIT Edit Mode. * POSE Pose Mode. * SCULPT Sculpt Mode. * VERTEX_PAINT Vertex Paint. * WEIGHT_PAINT Weight Paint. * TEXTURE_PAINT Texture Paint. * PARTICLE_EDIT Particle Edit. * EDIT_GPENCIL Edit Mode, Edit Grease Pencil Strokes. * SCULPT_GPENCIL Sculpt Mode, Sculpt Grease Pencil Strokes. * PAINT_GPENCIL Draw, Paint Grease Pencil Strokes. * VERTEX_GPENCIL Vertex Paint, Grease Pencil Vertex Paint Strokes. * WEIGHT_GPENCIL Weight Paint, Grease Pencil Weight Paint Strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    modifiers: typing.Union[typing.List['Modifier'], 'bpy_prop_collection',
+    modifiers: typing.Union[typing.Dict[str, 'Modifier'], typing.
+                            List['Modifier'], 'bpy_prop_collection',
                             'ObjectModifiers'] = None
     ''' Modifiers affecting the geometric data of the object
 
-    :type: typing.Union[typing.List['Modifier'], 'bpy_prop_collection', 'ObjectModifiers']
+    :type: typing.Union[typing.Dict[str, 'Modifier'], typing.List['Modifier'], 'bpy_prop_collection', 'ObjectModifiers']
     '''
 
     motion_path: 'MotionPath' = None
@@ -54385,10 +54524,10 @@ class Object(ID, bpy_struct):
     :type: str
     '''
 
-    parent_type: typing.Union[int, str] = None
+    parent_type: typing.Union[str, int] = None
     ''' Type of parent relation * OBJECT Object, The object is parented to an object. * ARMATURE Armature. * LATTICE Lattice, The object is parented to a lattice. * VERTEX Vertex, The object is parented to a vertex. * VERTEX_3 3 Vertices. * BONE Bone, The object is parented to a bone.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     parent_vertices: typing.List[int] = None
@@ -54397,11 +54536,12 @@ class Object(ID, bpy_struct):
     :type: typing.List[int]
     '''
 
-    particle_systems: typing.Union[typing.List[
-        'ParticleSystem'], 'bpy_prop_collection', 'ParticleSystems'] = None
+    particle_systems: typing.Union[
+        typing.Dict[str, 'ParticleSystem'], typing.List['ParticleSystem'],
+        'bpy_prop_collection', 'ParticleSystems'] = None
     ''' Particle systems emitted from the object
 
-    :type: typing.Union[typing.List['ParticleSystem'], 'bpy_prop_collection', 'ParticleSystems']
+    :type: typing.Union[typing.Dict[str, 'ParticleSystem'], typing.List['ParticleSystem'], 'bpy_prop_collection', 'ParticleSystems']
     '''
 
     pass_index: int = None
@@ -54458,10 +54598,10 @@ class Object(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    rotation_mode: typing.Union[int, str] = None
+    rotation_mode: typing.Union[str, int] = None
     ''' * QUATERNION Quaternion (WXYZ), No Gimbal Lock. * XYZ XYZ Euler, XYZ Rotation Order - prone to Gimbal Lock (default). * XZY XZY Euler, XZY Rotation Order - prone to Gimbal Lock. * YXZ YXZ Euler, YXZ Rotation Order - prone to Gimbal Lock. * YZX YZX Euler, YZX Rotation Order - prone to Gimbal Lock. * ZXY ZXY Euler, ZXY Rotation Order - prone to Gimbal Lock. * ZYX ZYX Euler, ZYX Rotation Order - prone to Gimbal Lock. * AXIS_ANGLE Axis Angle, Axis Angle (W+XYZ), defines a rotation around some axis defined by 3D-Vector.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation_quaternion: typing.List[float] = None
@@ -54476,12 +54616,12 @@ class Object(ID, bpy_struct):
     :type: typing.List[float]
     '''
 
-    shader_effects: typing.Union[typing.
+    shader_effects: typing.Union[typing.Dict[str, 'ShaderFx'], typing.
                                  List['ShaderFx'], 'bpy_prop_collection',
                                  'ObjectShaderFx'] = None
     ''' Effects affecting display of object
 
-    :type: typing.Union[typing.List['ShaderFx'], 'bpy_prop_collection', 'ObjectShaderFx']
+    :type: typing.Union[typing.Dict[str, 'ShaderFx'], typing.List['ShaderFx'], 'bpy_prop_collection', 'ObjectShaderFx']
     '''
 
     show_all_edges: bool = None
@@ -54574,22 +54714,22 @@ class Object(ID, bpy_struct):
     :type: 'SoftBodySettings'
     '''
 
-    track_axis: typing.Union[int, str] = None
+    track_axis: typing.Union[str, int] = None
     ''' Axis that points in 'forward' direction (applies to InstanceFrame when parent 'Follow' is enabled)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of Object
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    up_axis: typing.Union[int, str] = None
+    up_axis: typing.Union[str, int] = None
     ''' Axis that points in the upward direction (applies to InstanceFrame when parent 'Follow' is enabled)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_dynamic_topology_sculpting: bool = None
@@ -54628,11 +54768,12 @@ class Object(ID, bpy_struct):
     :type: bool
     '''
 
-    vertex_groups: typing.Union[typing.List['VertexGroup'],
-                                'bpy_prop_collection', 'VertexGroups'] = None
+    vertex_groups: typing.Union[typing.Dict[str, 'VertexGroup'], typing.
+                                List['VertexGroup'], 'bpy_prop_collection',
+                                'VertexGroups'] = None
     ''' Vertex groups of the object
 
-    :type: typing.Union[typing.List['VertexGroup'], 'bpy_prop_collection', 'VertexGroups']
+    :type: typing.Union[typing.Dict[str, 'VertexGroup'], typing.List['VertexGroup'], 'bpy_prop_collection', 'VertexGroups']
     '''
 
     children = None
@@ -54755,8 +54896,8 @@ class Object(ID, bpy_struct):
                                                                  0.0),
                                           (0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0,
                                                                  0.0)),
-            from_space: typing.Union[int, str] = 'WORLD',
-            to_space: typing.Union[int, str] = 'WORLD') -> typing.List[float]:
+            from_space: typing.Union[str, int] = 'WORLD',
+            to_space: typing.Union[str, int] = 'WORLD') -> typing.List[float]:
         ''' Convert (transform) the given matrix from one space to another
 
         :param pose_bone: Bone to use to define spaces (may be None, in which case only the two 'WORLD' and 'LOCAL' spaces are usable)
@@ -54764,9 +54905,9 @@ class Object(ID, bpy_struct):
         :param matrix: The matrix to transform
         :type matrix: typing.List[float]
         :param from_space: The space in which 'matrix' is currently * WORLD World Space, The most global space in Blender. * POSE Pose Space, The pose space of a bone (its armature's object space). * LOCAL_WITH_PARENT Local With Parent, The rest pose local space of a bone (thus matrix includes parent transforms). * LOCAL Local Space, The local space of an object/bone.
-        :type from_space: typing.Union[int, str]
+        :type from_space: typing.Union[str, int]
         :param to_space: The space to which you want to transform 'matrix' * WORLD World Space, The most global space in Blender. * POSE Pose Space, The pose space of a bone (its armature's object space). * LOCAL_WITH_PARENT Local With Parent, The rest pose local space of a bone (thus matrix includes parent transforms). * LOCAL Local Space, The local space of an object/bone.
-        :type to_space: typing.Union[int, str]
+        :type to_space: typing.Union[str, int]
         :rtype: typing.List[float]
         :return: The transformed matrix
         '''
@@ -54895,26 +55036,26 @@ class Object(ID, bpy_struct):
         pass
 
     def is_modified(self, scene: 'Scene',
-                    settings: typing.Union[int, str]) -> bool:
+                    settings: typing.Union[str, int]) -> bool:
         ''' Determine if this object is modified from the base mesh data
 
         :param scene: Scene in which to check the object
         :type scene: 'Scene'
         :param settings: Modifier settings to apply * PREVIEW Preview, Apply modifier preview settings. * RENDER Render, Apply modifier render settings.
-        :type settings: typing.Union[int, str]
+        :type settings: typing.Union[str, int]
         :rtype: bool
         :return: Whether the object is modified
         '''
         pass
 
     def is_deform_modified(self, scene: 'Scene',
-                           settings: typing.Union[int, str]) -> bool:
+                           settings: typing.Union[str, int]) -> bool:
         ''' Determine if this object is modified by a deformation from the base mesh data
 
         :param scene: Scene in which to check the object
         :type scene: 'Scene'
         :param settings: Modifier settings to apply * PREVIEW Preview, Apply modifier preview settings. * RENDER Render, Apply modifier render settings.
-        :type settings: typing.Union[int, str]
+        :type settings: typing.Union[str, int]
         :rtype: bool
         :return: Whether the object is deform-modified
         '''
@@ -54997,11 +55138,12 @@ class PaintCurve(ID, bpy_struct):
 
 
 class Palette(ID, bpy_struct):
-    colors: typing.Union[typing.List['PaletteColor'], 'bpy_prop_collection',
+    colors: typing.Union[typing.Dict[str, 'PaletteColor'], typing.
+                         List['PaletteColor'], 'bpy_prop_collection',
                          'PaletteColors'] = None
     ''' 
 
-    :type: typing.Union[typing.List['PaletteColor'], 'bpy_prop_collection', 'PaletteColors']
+    :type: typing.Union[typing.Dict[str, 'PaletteColor'], typing.List['PaletteColor'], 'bpy_prop_collection', 'PaletteColors']
     '''
 
     @classmethod
@@ -55072,10 +55214,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    angular_velocity_mode: typing.Union[int, str] = None
+    angular_velocity_mode: typing.Union[str, int] = None
     ''' What axis is used to change particle rotation with time
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_data: 'AnimData' = None
@@ -55180,10 +55322,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    child_type: typing.Union[int, str] = None
+    child_type: typing.Union[str, int] = None
     ''' Create child particles
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     clump_curve: 'CurveMapping' = None
@@ -55246,16 +55388,16 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    display_color: typing.Union[int, str] = None
+    display_color: typing.Union[str, int] = None
     ''' Draw additional particle data as a color
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    display_method: typing.Union[int, str] = None
+    display_method: typing.Union[str, int] = None
     ''' How particles are drawn in viewport
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     display_percentage: int = None
@@ -55276,10 +55418,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: int
     '''
 
-    distribution: typing.Union[int, str] = None
+    distribution: typing.Union[str, int] = None
     ''' How to distribute particles on selected element
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     drag_factor: float = None
@@ -55306,10 +55448,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: 'EffectorWeights'
     '''
 
-    emit_from: typing.Union[int, str] = None
+    emit_from: typing.Union[str, int] = None
     ''' Where to emit particles from
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     factor_random: float = None
@@ -55390,17 +55532,18 @@ class ParticleSettings(ID, bpy_struct):
     :type: 'Object'
     '''
 
-    instance_weights: typing.Union[typing.List['ParticleDupliWeight'],
-                                   'bpy_prop_collection'] = None
+    instance_weights: typing.Union[
+        typing.Dict[str, 'ParticleDupliWeight'], typing.
+        List['ParticleDupliWeight'], 'bpy_prop_collection'] = None
     ''' Weights for all of the objects in the dupli collection
 
-    :type: typing.Union[typing.List['ParticleDupliWeight'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ParticleDupliWeight'], typing.List['ParticleDupliWeight'], 'bpy_prop_collection']
     '''
 
-    integrator: typing.Union[int, str] = None
+    integrator: typing.Union[str, int] = None
     ''' Algorithm used to calculate physics, from the fastest to the most stable/accurate: Midpoint, Euler, Verlet, RK4 (Old)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_grid: bool = None
@@ -55433,10 +55576,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: int
     '''
 
-    kink: typing.Union[int, str] = None
+    kink: typing.Union[str, int] = None
     ''' Type of periodic offset on the path
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     kink_amplitude: float = None
@@ -55457,10 +55600,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    kink_axis: typing.Union[int, str] = None
+    kink_axis: typing.Union[str, int] = None
     ''' Which axis to use for offset
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     kink_axis_random: float = None
@@ -55541,10 +55684,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: int
     '''
 
-    material_slot: typing.Union[int, str] = None
+    material_slot: typing.Union[str, int] = None
     ''' Material slot used for rendering particles
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     normal_factor: float = None
@@ -55601,10 +55744,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    physics_type: typing.Union[int, str] = None
+    physics_type: typing.Union[str, int] = None
     ''' Particle physics type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     radius_scale: float = None
@@ -55613,10 +55756,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    react_event: typing.Union[int, str] = None
+    react_event: typing.Union[str, int] = None
     ''' The event of target particles to react on
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     reactor_factor: float = None
@@ -55631,10 +55774,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: int
     '''
 
-    render_type: typing.Union[int, str] = None
+    render_type: typing.Union[str, int] = None
     ''' How particles are rendered
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rendered_child_count: int = None
@@ -55655,10 +55798,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    rotation_mode: typing.Union[int, str] = None
+    rotation_mode: typing.Union[str, int] = None
     ''' Particle orientation axis (does not affect Explode modifier's results)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     roughness_1: float = None
@@ -55781,12 +55924,13 @@ class ParticleSettings(ID, bpy_struct):
     :type: float
     '''
 
-    texture_slots: typing.Union[typing.List['ParticleSettingsTextureSlot'],
-                                'bpy_prop_collection',
-                                'ParticleSettingsTextureSlots'] = None
+    texture_slots: typing.Union[
+        typing.Dict[str, 'ParticleSettingsTextureSlot'], typing.
+        List['ParticleSettingsTextureSlot'], 'bpy_prop_collection',
+        'ParticleSettingsTextureSlots'] = None
     ''' Texture slots defining the mapping and influence of textures
 
-    :type: typing.Union[typing.List['ParticleSettingsTextureSlot'], 'bpy_prop_collection', 'ParticleSettingsTextureSlots']
+    :type: typing.Union[typing.Dict[str, 'ParticleSettingsTextureSlot'], typing.List['ParticleSettingsTextureSlot'], 'bpy_prop_collection', 'ParticleSettingsTextureSlots']
     '''
 
     time_tweak: float = None
@@ -55825,10 +55969,10 @@ class ParticleSettings(ID, bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Particle Type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_absolute_path_time: bool = None
@@ -56073,10 +56217,10 @@ class Scene(ID, bpy_struct):
     :type: 'AnimData'
     '''
 
-    audio_distance_model: typing.Union[int, str] = None
+    audio_distance_model: typing.Union[str, int] = None
     ''' Distance model for distance attenuation calculation * NONE None, No distance attenuation. * INVERSE Inverse, Inverse distance model. * INVERSE_CLAMPED Inverse Clamped, Inverse distance model with clamping. * LINEAR Linear, Linear distance model. * LINEAR_CLAMPED Linear Clamped, Linear distance model with clamping. * EXPONENT Exponent, Exponent distance model. * EXPONENT_CLAMPED Exponent Clamped, Exponent distance model with clamping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     audio_doppler_factor: float = None
@@ -56223,19 +56367,20 @@ class Scene(ID, bpy_struct):
     :type: bool
     '''
 
-    keying_sets: typing.Union[typing.List['KeyingSet'], 'bpy_prop_collection',
+    keying_sets: typing.Union[typing.Dict[str, 'KeyingSet'], typing.
+                              List['KeyingSet'], 'bpy_prop_collection',
                               'KeyingSets'] = None
     ''' Absolute Keying Sets for this Scene
 
-    :type: typing.Union[typing.List['KeyingSet'], 'bpy_prop_collection', 'KeyingSets']
+    :type: typing.Union[typing.Dict[str, 'KeyingSet'], typing.List['KeyingSet'], 'bpy_prop_collection', 'KeyingSets']
     '''
 
-    keying_sets_all: typing.Union[typing.
+    keying_sets_all: typing.Union[typing.Dict[str, 'KeyingSet'], typing.
                                   List['KeyingSet'], 'bpy_prop_collection',
                                   'KeyingSetsAll'] = None
     ''' All Keying Sets available for use (Builtins and Absolute Keying Sets for this Scene)
 
-    :type: typing.Union[typing.List['KeyingSet'], 'bpy_prop_collection', 'KeyingSetsAll']
+    :type: typing.Union[typing.Dict[str, 'KeyingSet'], typing.List['KeyingSet'], 'bpy_prop_collection', 'KeyingSetsAll']
     '''
 
     lock_frame_selection_to_range: bool = None
@@ -56250,11 +56395,11 @@ class Scene(ID, bpy_struct):
     :type: 'NodeTree'
     '''
 
-    objects: typing.Union[typing.List['Object'], 'bpy_prop_collection',
-                          'SceneObjects'] = None
+    objects: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'],
+                          'bpy_prop_collection', 'SceneObjects'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Object'], 'bpy_prop_collection', 'SceneObjects']
+    :type: typing.Union[typing.Dict[str, 'Object'], typing.List['Object'], 'bpy_prop_collection', 'SceneObjects']
     '''
 
     render: 'RenderSettings' = None
@@ -56299,17 +56444,18 @@ class Scene(ID, bpy_struct):
     :type: bool
     '''
 
-    sync_mode: typing.Union[int, str] = None
+    sync_mode: typing.Union[str, int] = None
     ''' How to sync playback * NONE No Sync, Do not sync, play every frame. * FRAME_DROP Frame Dropping, Drop frames if playback is too slow. * AUDIO_SYNC AV-sync, Sync to audio playback, dropping frames.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    timeline_markers: typing.Union[typing.List[
-        'TimelineMarker'], 'bpy_prop_collection', 'TimelineMarkers'] = None
+    timeline_markers: typing.Union[
+        typing.Dict[str, 'TimelineMarker'], typing.List['TimelineMarker'],
+        'bpy_prop_collection', 'TimelineMarkers'] = None
     ''' Markers used in all timelines for the current scene
 
-    :type: typing.Union[typing.List['TimelineMarker'], 'bpy_prop_collection', 'TimelineMarkers']
+    :type: typing.Union[typing.Dict[str, 'TimelineMarker'], typing.List['TimelineMarker'], 'bpy_prop_collection', 'TimelineMarkers']
     '''
 
     tool_settings: 'ToolSettings' = None
@@ -56319,10 +56465,11 @@ class Scene(ID, bpy_struct):
     '''
 
     transform_orientation_slots: typing.Union[
-        typing.List['TransformOrientationSlot'], 'bpy_prop_collection'] = None
+        typing.Dict[str, 'TransformOrientationSlot'], typing.
+        List['TransformOrientationSlot'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['TransformOrientationSlot'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'TransformOrientationSlot'], typing.List['TransformOrientationSlot'], 'bpy_prop_collection']
     '''
 
     unit_settings: 'UnitSettings' = None
@@ -56367,11 +56514,12 @@ class Scene(ID, bpy_struct):
     :type: str
     '''
 
-    view_layers: typing.Union[typing.List['ViewLayer'], 'bpy_prop_collection',
+    view_layers: typing.Union[typing.Dict[str, 'ViewLayer'], typing.
+                              List['ViewLayer'], 'bpy_prop_collection',
                               'ViewLayers'] = None
     ''' 
 
-    :type: typing.Union[typing.List['ViewLayer'], 'bpy_prop_collection', 'ViewLayers']
+    :type: typing.Union[typing.Dict[str, 'ViewLayer'], typing.List['ViewLayer'], 'bpy_prop_collection', 'ViewLayers']
     '''
 
     view_settings: 'ColorManagedViewSettings' = None
@@ -56468,12 +56616,12 @@ class Scene(ID, bpy_struct):
                        subdiv_schema: bool = False,
                        export_hair: bool = True,
                        export_particles: bool = True,
-                       compression_type: typing.Union[int, str] = 'OGAWA',
+                       compression_type: typing.Union[str, int] = 'OGAWA',
                        packuv: bool = False,
                        scale: float = 1.0,
                        triangulate: bool = False,
-                       quad_method: typing.Union[int, str] = 'BEAUTY',
-                       ngon_method: typing.Union[int, str] = 'BEAUTY'):
+                       quad_method: typing.Union[str, int] = 'BEAUTY',
+                       ngon_method: typing.Union[str, int] = 'BEAUTY'):
         ''' Export to Alembic file (deprecated, use the Alembic export operator)
 
         :param filepath: File Path, File path to write Alembic file
@@ -56515,7 +56663,7 @@ class Scene(ID, bpy_struct):
         :param export_particles: Export Particles, Exports non-hair particle systems
         :type export_particles: bool
         :param compression_type: Compression
-        :type compression_type: typing.Union[int, str]
+        :type compression_type: typing.Union[str, int]
         :param packuv: Export with packed UV islands, Export with packed UV islands
         :type packuv: bool
         :param scale: Scale, Value by which to enlarge or shrink the objects with respect to the world's origin
@@ -56523,9 +56671,9 @@ class Scene(ID, bpy_struct):
         :param triangulate: Triangulate, Export Polygons (Quads & NGons) as Triangles
         :type triangulate: bool
         :param quad_method: Quad Method, Method for splitting the quads into triangles * BEAUTY Beauty , Split the quads in nice triangles, slower method. * FIXED Fixed, Split the quads on the first and third vertices. * FIXED_ALTERNATE Fixed Alternate, Split the quads on the 2nd and 4th vertices. * SHORTEST_DIAGONAL Shortest Diagonal, Split the quads based on the distance between the vertices.
-        :type quad_method: typing.Union[int, str]
+        :type quad_method: typing.Union[str, int]
         :param ngon_method: Polygon Method, Method for splitting the polygons into triangles * BEAUTY Beauty , Split the quads in nice triangles, slower method. * FIXED Fixed, Split the quads on the first and third vertices. * FIXED_ALTERNATE Fixed Alternate, Split the quads on the 2nd and 4th vertices. * SHORTEST_DIAGONAL Shortest Diagonal, Split the quads based on the distance between the vertices.
-        :type ngon_method: typing.Union[int, str]
+        :type ngon_method: typing.Union[str, int]
         '''
         pass
 
@@ -56555,10 +56703,11 @@ class Screen(ID, bpy_struct):
     ''' Screen data-block, defining the layout of areas in a window
     '''
 
-    areas: typing.Union[typing.List['Area'], 'bpy_prop_collection'] = None
+    areas: typing.Union[typing.Dict[str, 'Area'], typing.
+                        List['Area'], 'bpy_prop_collection'] = None
     ''' Areas the screen is subdivided into
 
-    :type: typing.Union[typing.List['Area'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Area'], typing.List['Area'], 'bpy_prop_collection']
     '''
 
     is_animation_playing: bool = None
@@ -56698,11 +56847,11 @@ class Sound(ID, bpy_struct):
         '''
         pass
 
-    def unpack(self, method: typing.Union[int, str] = 'USE_LOCAL'):
+    def unpack(self, method: typing.Union[str, int] = 'USE_LOCAL'):
         ''' Unpack the sound to the samples filename
 
         :param method: method, How to unpack
-        :type method: typing.Union[int, str]
+        :type method: typing.Union[str, int]
         '''
         pass
 
@@ -56860,10 +57009,10 @@ class Text(ID, bpy_struct):
     :type: str
     '''
 
-    indentation: typing.Union[int, str] = None
+    indentation: typing.Union[str, int] = None
     ''' Use tabs or spaces for indentation * TABS Tabs, Indent using tabs. * SPACES Spaces, Indent using spaces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_dirty: bool = None
@@ -56884,10 +57033,11 @@ class Text(ID, bpy_struct):
     :type: bool
     '''
 
-    lines: typing.Union[typing.List['TextLine'], 'bpy_prop_collection'] = None
+    lines: typing.Union[typing.Dict[str, 'TextLine'], typing.
+                        List['TextLine'], 'bpy_prop_collection'] = None
     ''' Lines of text
 
-    :type: typing.Union[typing.List['TextLine'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'TextLine'], typing.List['TextLine'], 'bpy_prop_collection']
     '''
 
     select_end_character: int = None
@@ -57059,10 +57209,10 @@ class Texture(ID, bpy_struct):
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' * NONE None. * BLEND Blend, Procedural - create a ramp texture. * CLOUDS Clouds, Procedural - create a cloud-like fractal noise texture. * DISTORTED_NOISE Distorted Noise, Procedural - noise texture distorted by two noise algorithms. * IMAGE Image or Movie, Allow for images or movies to be used as textures. * MAGIC Magic, Procedural - color texture based on trigonometric functions. * MARBLE Marble, Procedural - marble-like noise texture with wave generated bands. * MUSGRAVE Musgrave, Procedural - highly flexible fractal noise texture. * NOISE Noise, Procedural - random noise, gives a different result every time, for every frame, for every pixel. * STUCCI Stucci, Procedural - create a fractal noise texture. * VORONOI Voronoi, Procedural - create cell-like patterns based on Worley noise. * WOOD Wood, Procedural - wave generated bands or rings, with optional noise.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_clamp: bool = None
@@ -57149,11 +57299,11 @@ class VectorFont(ID, bpy_struct):
         '''
         pass
 
-    def unpack(self, method: typing.Union[int, str] = 'USE_LOCAL'):
+    def unpack(self, method: typing.Union[str, int] = 'USE_LOCAL'):
         ''' Unpack the font to the samples filename
 
         :param method: method, How to unpack
-        :type method: typing.Union[int, str]
+        :type method: typing.Union[str, int]
         '''
         pass
 
@@ -57219,11 +57369,12 @@ class Volume(ID, bpy_struct):
     :type: int
     '''
 
-    grids: typing.Union[typing.List['VolumeGrid'], 'bpy_prop_collection',
+    grids: typing.Union[typing.Dict[str, 'VolumeGrid'], typing.
+                        List['VolumeGrid'], 'bpy_prop_collection',
                         'VolumeGrids'] = None
     ''' 3D volume grids
 
-    :type: typing.Union[typing.List['VolumeGrid'], 'bpy_prop_collection', 'VolumeGrids']
+    :type: typing.Union[typing.Dict[str, 'VolumeGrid'], typing.List['VolumeGrid'], 'bpy_prop_collection', 'VolumeGrids']
     '''
 
     is_sequence: bool = None
@@ -57232,11 +57383,12 @@ class Volume(ID, bpy_struct):
     :type: bool
     '''
 
-    materials: typing.Union[typing.List['Material'], 'bpy_prop_collection',
+    materials: typing.Union[typing.Dict[str, 'Material'], typing.
+                            List['Material'], 'bpy_prop_collection',
                             'IDMaterials'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
+    :type: typing.Union[typing.Dict[str, 'Material'], typing.List['Material'], 'bpy_prop_collection', 'IDMaterials']
     '''
 
     packed_file: 'PackedFile' = None
@@ -57251,10 +57403,10 @@ class Volume(ID, bpy_struct):
     :type: 'VolumeRender'
     '''
 
-    sequence_mode: typing.Union[int, str] = None
+    sequence_mode: typing.Union[str, int] = None
     ''' Sequence playback mode * CLIP Clip, Hide frames outside the specified frame range. * EXTEND Extend, Repeat the start frame before, and the end frame after the frame range. * REPEAT Repeat, Cycle the frames in the sequence. * PING_PONG Ping-Pong, Repeat the frames, reversing the playback direction every other cycle.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -57283,10 +57435,10 @@ class WindowManager(ID, bpy_struct):
     ''' Window manager data-block defining open windows and other user interface data
     '''
 
-    addon_filter: typing.Union[int, str] = None
+    addon_filter: typing.Union[str, int] = None
     ''' Filter add-ons by category
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     addon_search: str = None
@@ -57295,10 +57447,10 @@ class WindowManager(ID, bpy_struct):
     :type: str
     '''
 
-    addon_support: typing.Union[typing.Set[int], typing.Set[str]] = None
+    addon_support: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Display support level * OFFICIAL Official, Officially supported. * COMMUNITY Community, Maintained by community developers. * TESTING Testing, Newly contributed scripts (excluded from release builds).
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     is_interface_locked: bool = None
@@ -57307,18 +57459,19 @@ class WindowManager(ID, bpy_struct):
     :type: bool
     '''
 
-    keyconfigs: typing.Union[typing.List['KeyConfig'], 'bpy_prop_collection',
+    keyconfigs: typing.Union[typing.Dict[str, 'KeyConfig'], typing.
+                             List['KeyConfig'], 'bpy_prop_collection',
                              'KeyConfigurations'] = None
     ''' Registered key configurations
 
-    :type: typing.Union[typing.List['KeyConfig'], 'bpy_prop_collection', 'KeyConfigurations']
+    :type: typing.Union[typing.Dict[str, 'KeyConfig'], typing.List['KeyConfig'], 'bpy_prop_collection', 'KeyConfigurations']
     '''
 
-    operators: typing.Union[typing.
+    operators: typing.Union[typing.Dict[str, 'Operator'], typing.
                             List['Operator'], 'bpy_prop_collection'] = None
     ''' Operator registry
 
-    :type: typing.Union[typing.List['Operator'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Operator'], typing.List['Operator'], 'bpy_prop_collection']
     '''
 
     preset_name: str = None
@@ -57327,10 +57480,11 @@ class WindowManager(ID, bpy_struct):
     :type: str
     '''
 
-    windows: typing.Union[typing.List['Window'], 'bpy_prop_collection'] = None
+    windows: typing.Union[typing.Dict[str, 'Window'], typing.
+                          List['Window'], 'bpy_prop_collection'] = None
     ''' Open windows
 
-    :type: typing.Union[typing.List['Window'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Window'], typing.List['Window'], 'bpy_prop_collection']
     '''
 
     xr_session_settings: 'XrSessionSettings' = None
@@ -57427,14 +57581,14 @@ class WindowManager(ID, bpy_struct):
 
     @classmethod
     def invoke_props_popup(cls, operator: 'Operator', event: 'Event'
-                           ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+                           ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Operator popup invoke (show operator properties and execute it automatically on changes)
 
         :param operator: Operator to call
         :type operator: 'Operator'
         :param event: Event
         :type event: 'Event'
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -57442,14 +57596,14 @@ class WindowManager(ID, bpy_struct):
     @classmethod
     def invoke_props_dialog(
             cls, operator: 'Operator', width: int = 300
-    ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+    ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Operator dialog (non-autoexec popup) invoke (show operator properties and only execute it on click on OK button)
 
         :param operator: Operator to call
         :type operator: 'Operator'
         :param width: Width of the popup
         :type width: int
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -57465,28 +57619,28 @@ class WindowManager(ID, bpy_struct):
 
     @classmethod
     def invoke_popup(cls, operator: 'Operator', width: int = 300
-                     ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+                     ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Operator popup invoke (only shows operator's properties, without executing it)
 
         :param operator: Operator to call
         :type operator: 'Operator'
         :param width: Width of the popup
         :type width: int
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
 
     @classmethod
     def invoke_confirm(cls, operator: 'Operator', event: 'Event'
-                       ) -> typing.Union[typing.Set[int], typing.Set[str]]:
+                       ) -> typing.Union[typing.Set[str], typing.Set[int]]:
         ''' Operator confirmation popup (only to let user confirm the execution, no operator properties shown)
 
         :param operator: Operator to call
         :type operator: 'Operator'
         :param event: Event
         :type event: 'Event'
-        :rtype: typing.Union[typing.Set[int], typing.Set[str]]
+        :rtype: typing.Union[typing.Set[str], typing.Set[int]]
         :return: result * RUNNING_MODAL Running Modal, Keep the operator running with blender. * CANCELLED Cancelled, The operator exited without doing anything, so no undo entry should be pushed. * FINISHED Finished, The operator exited after completing its action. * PASS_THROUGH Pass Through, Do nothing and pass the event on. * INTERFACE Interface, Handled but not executed (popup menus).
         '''
         pass
@@ -57494,13 +57648,13 @@ class WindowManager(ID, bpy_struct):
     @classmethod
     def popmenu_begin__internal(cls,
                                 title: str,
-                                icon: typing.Union[int, str] = 'NONE'):
+                                icon: typing.Union[str, int] = 'NONE'):
         ''' popmenu_begin__internal
 
         :param title: 
         :type title: str
         :param icon: icon
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         '''
         pass
 
@@ -57540,14 +57694,14 @@ class WindowManager(ID, bpy_struct):
     @classmethod
     def piemenu_begin__internal(cls,
                                 title: str,
-                                icon: typing.Union[int, str] = 'NONE',
+                                icon: typing.Union[str, int] = 'NONE',
                                 event: 'Event' = None):
         ''' piemenu_begin__internal
 
         :param title: 
         :type title: str
         :param icon: icon
-        :type icon: typing.Union[int, str]
+        :type icon: typing.Union[str, int]
         :param event: 
         :type event: 'Event'
         '''
@@ -57640,30 +57794,33 @@ class WorkSpace(ID, bpy_struct):
     ''' Workspace data-block, defining the working environment for the user
     '''
 
-    object_mode: typing.Union[int, str] = None
+    object_mode: typing.Union[str, int] = None
     ''' Switch to this object mode when activating the workspace * OBJECT Object Mode. * EDIT Edit Mode. * POSE Pose Mode. * SCULPT Sculpt Mode. * VERTEX_PAINT Vertex Paint. * WEIGHT_PAINT Weight Paint. * TEXTURE_PAINT Texture Paint. * PARTICLE_EDIT Particle Edit. * EDIT_GPENCIL Grease Pencil Edit Mode, Edit Grease Pencil Strokes. * SCULPT_GPENCIL Grease Pencil Sculpt Mode, Sculpt Grease Pencil Strokes. * PAINT_GPENCIL Grease Pencil Draw, Paint Grease Pencil Strokes. * VERTEX_GPENCIL Grease Pencil Vertex Paint, Grease Pencil Vertex Paint Strokes. * WEIGHT_GPENCIL Grease Pencil Weight Paint, Grease Pencil Weight Paint Strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    owner_ids: typing.Union[typing.List['wmOwnerID'], 'bpy_prop_collection',
+    owner_ids: typing.Union[typing.Dict[str, 'wmOwnerID'], typing.
+                            List['wmOwnerID'], 'bpy_prop_collection',
                             'wmOwnerIDs'] = None
     ''' 
 
-    :type: typing.Union[typing.List['wmOwnerID'], 'bpy_prop_collection', 'wmOwnerIDs']
+    :type: typing.Union[typing.Dict[str, 'wmOwnerID'], typing.List['wmOwnerID'], 'bpy_prop_collection', 'wmOwnerIDs']
     '''
 
-    screens: typing.Union[typing.List['Screen'], 'bpy_prop_collection'] = None
+    screens: typing.Union[typing.Dict[str, 'Screen'], typing.
+                          List['Screen'], 'bpy_prop_collection'] = None
     ''' Screen layouts of a workspace
 
-    :type: typing.Union[typing.List['Screen'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Screen'], typing.List['Screen'], 'bpy_prop_collection']
     '''
 
-    tools: typing.Union[typing.List['WorkSpaceTool'], 'bpy_prop_collection',
+    tools: typing.Union[typing.Dict[str, 'WorkSpaceTool'], typing.
+                        List['WorkSpaceTool'], 'bpy_prop_collection',
                         'wmTools'] = None
     ''' 
 
-    :type: typing.Union[typing.List['WorkSpaceTool'], 'bpy_prop_collection', 'wmTools']
+    :type: typing.Union[typing.Dict[str, 'WorkSpaceTool'], typing.List['WorkSpaceTool'], 'bpy_prop_collection', 'wmTools']
     '''
 
     use_filter_by_owner: bool = None
@@ -57805,10 +57962,10 @@ class Itasc(IKParam, bpy_struct):
     :type: int
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' * ANIMATION Animation, Stateless solver computing pose starting from current action and non-IK constraints. * SIMULATION Simulation, State-full solver running in real-time context and ignoring actions and non-IK constraints.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     precision: float = None
@@ -57817,16 +57974,16 @@ class Itasc(IKParam, bpy_struct):
     :type: float
     '''
 
-    reiteration_method: typing.Union[int, str] = None
+    reiteration_method: typing.Union[str, int] = None
     ''' Defines if the solver is allowed to reiterate (converge until precision is met) on none, first or all frames * NEVER Never, The solver does not reiterate, not even on first frame (starts from rest pose). * INITIAL Initial, The solver reiterates (converges) on the first frame but not on subsequent frame. * ALWAYS Always, The solver reiterates (converges) on all frames.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    solver: typing.Union[int, str] = None
+    solver: typing.Union[str, int] = None
     ''' Solving method selection: automatic damping or manual damping * SDLS SDLS, Selective Damped Least Square. * DLS DLS, Damped Least Square with Numerical Filtering.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     step_count: int = None
@@ -58087,10 +58244,10 @@ class ArrayModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    fit_type: typing.Union[int, str] = None
+    fit_type: typing.Union[str, int] = None
     ''' Array length calculation method * FIXED_COUNT Fixed Count, Duplicate the object a certain number of times. * FIT_LENGTH Fit Length, Duplicate the object as many times as fits in a certain length. * FIT_CURVE Fit Curve, Fit the duplicated objects to a curve.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     merge_threshold: float = None
@@ -58197,10 +58354,10 @@ class BevelModifier(Modifier, bpy_struct):
     :type: 'CurveProfile'
     '''
 
-    face_strength_mode: typing.Union[int, str] = None
+    face_strength_mode: typing.Union[str, int] = None
     ''' Whether to set face strength, and which faces to set it on * FSTR_NONE None, Do not set face strength. * FSTR_NEW New, Set face strength on new faces only. * FSTR_AFFECTED Affected, Set face strength on new and affected faces only. * FSTR_ALL All, Set face strength on all faces.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     harden_normals: bool = None
@@ -58215,10 +58372,10 @@ class BevelModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    limit_method: typing.Union[int, str] = None
+    limit_method: typing.Union[str, int] = None
     ''' * NONE None, Bevel the entire mesh by a constant amount. * ANGLE Angle, Only bevel edges with sharp enough angles between faces. * WEIGHT Weight, Use bevel weights to determine how much bevel is applied in edge mode. * VGROUP Vertex Group, Use vertex group weights to select whether vertex or edge is beveled.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     loop_slide: bool = None
@@ -58245,22 +58402,22 @@ class BevelModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    miter_inner: typing.Union[int, str] = None
+    miter_inner: typing.Union[str, int] = None
     ''' Pattern to use for inside of miters * MITER_SHARP Sharp, Inside of miter is sharp. * MITER_ARC Arc, Inside of miter is arc.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    miter_outer: typing.Union[int, str] = None
+    miter_outer: typing.Union[str, int] = None
     ''' Pattern to use for outside of miters * MITER_SHARP Sharp, Outside of miter is sharp. * MITER_PATCH Patch, Outside of miter is squared-off patch. * MITER_ARC Arc, Outside of miter is arc.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    offset_type: typing.Union[int, str] = None
+    offset_type: typing.Union[str, int] = None
     ''' What distance Width measures * OFFSET Offset, Amount is offset of new edges from original. * WIDTH Width, Amount is width of new face. * DEPTH Depth, Amount is perpendicular distance from original edge to bevel face. * PERCENT Percent, Amount is percent of adjacent edge length.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     profile: float = None
@@ -58305,10 +58462,10 @@ class BevelModifier(Modifier, bpy_struct):
     :type: str
     '''
 
-    vmesh_method: typing.Union[int, str] = None
+    vmesh_method: typing.Union[str, int] = None
     ''' The method to use to create the mesh at intersections * ADJ Grid Fill, Default patterned fill. * CUTOFF Cutoff, A cut-off at the end of each profile before the intersection.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     width: float = None
@@ -58349,10 +58506,10 @@ class BooleanModifier(Modifier, bpy_struct):
     ''' Boolean operations modifier
     '''
 
-    debug_options: typing.Union[typing.Set[int], typing.Set[str]] = None
+    debug_options: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Debugging options, only when started with '-d'
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     double_threshold: float = None
@@ -58367,10 +58524,10 @@ class BooleanModifier(Modifier, bpy_struct):
     :type: 'Object'
     '''
 
-    operation: typing.Union[int, str] = None
+    operation: typing.Union[str, int] = None
     ''' * INTERSECT Intersect, Keep the part of the mesh that intersects with the other selected object. * UNION Union, Combine two meshes in an additive way. * DIFFERENCE Difference, Combine two meshes in a subtractive way.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -58455,10 +58612,10 @@ class CastModifier(Modifier, bpy_struct):
     ''' Modifier to cast to other shapes
     '''
 
-    cast_type: typing.Union[int, str] = None
+    cast_type: typing.Union[str, int] = None
     ''' Target object shape
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     factor: float = None
@@ -58677,10 +58834,10 @@ class CorrectiveSmoothModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    rest_source: typing.Union[int, str] = None
+    rest_source: typing.Union[str, int] = None
     ''' Select the source of rest positions * ORCO Original Coords, Use base mesh vert coords as the rest position. * BIND Bind Coords, Use bind vert coords for rest position.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     scale: float = None
@@ -58689,10 +58846,10 @@ class CorrectiveSmoothModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    smooth_type: typing.Union[int, str] = None
+    smooth_type: typing.Union[str, int] = None
     ''' Method used for smoothing * SIMPLE Simple, Use the average of adjacent edge-vertices. * LENGTH_WEIGHTED Length Weight, Use the average of adjacent edge-vertices weighted by their length.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_only_smooth: bool = None
@@ -58739,10 +58896,10 @@ class CurveModifier(Modifier, bpy_struct):
     ''' Curve deformation modifier
     '''
 
-    deform_axis: typing.Union[int, str] = None
+    deform_axis: typing.Union[str, int] = None
     ''' The axis that the curve deforms along
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_vertex_group: bool = None
@@ -58789,34 +58946,34 @@ class DataTransferModifier(Modifier, bpy_struct):
     ''' Modifier transferring some data from a source mesh
     '''
 
-    data_types_edges: typing.Union[typing.Set[int], typing.Set[str]] = None
+    data_types_edges: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Which edge data layers to transfer * SHARP_EDGE Sharp, Transfer sharp mark. * SEAM UV Seam, Transfer UV seam mark. * CREASE Subsurf Crease, Transfer crease values. * BEVEL_WEIGHT_EDGE Bevel Weight, Transfer bevel weights. * FREESTYLE_EDGE Freestyle Mark, Transfer Freestyle edge mark.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    data_types_loops: typing.Union[typing.Set[int], typing.Set[str]] = None
+    data_types_loops: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Which face corner data layers to transfer * CUSTOM_NORMAL Custom Normals, Transfer custom normals. * VCOL VCol, Vertex (face corners) colors. * UV UVs, Transfer UV layers.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    data_types_polys: typing.Union[typing.Set[int], typing.Set[str]] = None
+    data_types_polys: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Which poly data layers to transfer * SMOOTH Smooth, Transfer flat/smooth mark. * FREESTYLE_FACE Freestyle Mark, Transfer Freestyle face mark.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    data_types_verts: typing.Union[typing.Set[int], typing.Set[str]] = None
+    data_types_verts: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Which vertex data layers to transfer * VGROUP_WEIGHTS Vertex Group(s), Transfer active or all vertex groups. * BEVEL_WEIGHT_VERT Bevel Weight, Transfer bevel weights.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    edge_mapping: typing.Union[int, str] = None
+    edge_mapping: typing.Union[str, int] = None
     ''' Method used to map source edges to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * VERT_NEAREST Nearest Vertices, Copy from most similar edge (edge which vertices are the closest of destination edge's ones). * NEAREST Nearest Edge, Copy from closest edge (using midpoints). * POLY_NEAREST Nearest Face Edge, Copy from closest edge of closest face (using midpoints). * EDGEINTERP_VNORPROJ Projected Edge Interpolated, Interpolate all source edges hit by the projection of destination one along its own normal (from vertices).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_vertex_group: bool = None
@@ -58831,46 +58988,46 @@ class DataTransferModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    layers_uv_select_dst: typing.Union[int, str] = None
+    layers_uv_select_dst: typing.Union[str, int] = None
     ''' How to match source and destination layers * ACTIVE Active Layer, Affect active data layer of all targets. * NAME By Name, Match target data layers to affect by name. * INDEX By Order, Match target data layers to affect by order (indices).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    layers_uv_select_src: typing.Union[int, str] = None
+    layers_uv_select_src: typing.Union[str, int] = None
     ''' Which layers to transfer, in case of multi-layers types * ACTIVE Active Layer, Only transfer active data layer. * ALL All Layers, Transfer all data layers. * BONE_SELECT Selected Pose Bones, Transfer all vertex groups used by selected pose bones. * BONE_DEFORM Deform Pose Bones, Transfer all vertex groups used by deform bones.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    layers_vcol_select_dst: typing.Union[int, str] = None
+    layers_vcol_select_dst: typing.Union[str, int] = None
     ''' How to match source and destination layers * ACTIVE Active Layer, Affect active data layer of all targets. * NAME By Name, Match target data layers to affect by name. * INDEX By Order, Match target data layers to affect by order (indices).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    layers_vcol_select_src: typing.Union[int, str] = None
+    layers_vcol_select_src: typing.Union[str, int] = None
     ''' Which layers to transfer, in case of multi-layers types * ACTIVE Active Layer, Only transfer active data layer. * ALL All Layers, Transfer all data layers. * BONE_SELECT Selected Pose Bones, Transfer all vertex groups used by selected pose bones. * BONE_DEFORM Deform Pose Bones, Transfer all vertex groups used by deform bones.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    layers_vgroup_select_dst: typing.Union[int, str] = None
+    layers_vgroup_select_dst: typing.Union[str, int] = None
     ''' How to match source and destination layers * ACTIVE Active Layer, Affect active data layer of all targets. * NAME By Name, Match target data layers to affect by name. * INDEX By Order, Match target data layers to affect by order (indices).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    layers_vgroup_select_src: typing.Union[int, str] = None
+    layers_vgroup_select_src: typing.Union[str, int] = None
     ''' Which layers to transfer, in case of multi-layers types * ACTIVE Active Layer, Only transfer active data layer. * ALL All Layers, Transfer all data layers. * BONE_SELECT Selected Pose Bones, Transfer all vertex groups used by selected pose bones. * BONE_DEFORM Deform Pose Bones, Transfer all vertex groups used by deform bones.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    loop_mapping: typing.Union[int, str] = None
+    loop_mapping: typing.Union[str, int] = None
     ''' Method used to map source faces' corners to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * NEAREST_NORMAL Nearest Corner And Best Matching Normal, Copy from nearest corner which has the best matching normal. * NEAREST_POLYNOR Nearest Corner And Best Matching Face Normal, Copy from nearest corner which has the face with the best matching normal to destination corner's face one. * NEAREST_POLY Nearest Corner Of Nearest Face, Copy from nearest corner of nearest polygon. * POLYINTERP_NEAREST Nearest Face Interpolated, Copy from interpolated corners of the nearest source polygon. * POLYINTERP_LNORPROJ Projected Face Interpolated, Copy from interpolated corners of the source polygon hit by corner normal projection.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     max_distance: float = None
@@ -58885,10 +59042,10 @@ class DataTransferModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' How to affect destination elements with source values * REPLACE Replace, Overwrite all elements' data. * ABOVE_THRESHOLD Above Threshold, Only replace destination elements where data is above given threshold (exact behavior depends on data type). * BELOW_THRESHOLD Below Threshold, Only replace destination elements where data is below given threshold (exact behavior depends on data type). * MIX Mix, Mix source value into destination one, using given threshold as factor. * ADD Add, Add source value to destination one, using given threshold as factor. * SUB Subtract, Subtract source value to destination one, using given threshold as factor. * MUL Multiply, Multiply source value to destination one, using given threshold as factor.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     object: 'Object' = None
@@ -58897,10 +59054,10 @@ class DataTransferModifier(Modifier, bpy_struct):
     :type: 'Object'
     '''
 
-    poly_mapping: typing.Union[int, str] = None
+    poly_mapping: typing.Union[str, int] = None
     ''' Method used to map source faces to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * NEAREST Nearest Face, Copy from nearest polygon (using center points). * NORMAL Best Normal-Matching, Copy from source polygon which normal is the closest to destination one. * POLYINTERP_PNORPROJ Projected Face Interpolated, Interpolate all source polygons intersected by the projection of destination one along its own normal.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ray_radius: float = None
@@ -58945,10 +59102,10 @@ class DataTransferModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    vert_mapping: typing.Union[int, str] = None
+    vert_mapping: typing.Union[str, int] = None
     ''' Method used to map source vertices to destination ones * TOPOLOGY Topology, Copy from identical topology meshes. * NEAREST Nearest vertex, Copy from closest vertex. * EDGE_NEAREST Nearest Edge Vertex, Copy from closest vertex of closest edge. * EDGEINTERP_NEAREST Nearest Edge Interpolated, Copy from interpolated values of vertices from closest point on closest edge. * POLY_NEAREST Nearest Face Vertex, Copy from closest vertex of closest face. * POLYINTERP_NEAREST Nearest Face Interpolated, Copy from interpolated values of vertices from closest point on closest face. * POLYINTERP_VNORPROJ Projected Face Interpolated, Copy from interpolated values of vertices from point on closest face hit by normal-projection.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     vertex_group: str = None
@@ -58989,16 +59146,16 @@ class DecimateModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    decimate_type: typing.Union[int, str] = None
+    decimate_type: typing.Union[str, int] = None
     ''' * COLLAPSE Collapse, Use edge collapsing. * UNSUBDIV Un-Subdivide, Use un-subdivide face reduction. * DISSOLVE Planar, Dissolve geometry to form planar polygons.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    delimit: typing.Union[typing.Set[int], typing.Set[str]] = None
+    delimit: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Limit merging geometry * NORMAL Normal, Delimit by face directions. * MATERIAL Material, Delimit by face material. * SEAM Seam, Delimit by edge seams. * SHARP Sharp, Delimit by sharp edges. * UV UVs, Delimit by UV coordinates.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     face_count: int = None
@@ -59025,10 +59182,10 @@ class DecimateModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    symmetry_axis: typing.Union[int, str] = None
+    symmetry_axis: typing.Union[str, int] = None
     ''' Axis of symmetry
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_collapse_triangulate: bool = None
@@ -59087,10 +59244,10 @@ class DisplaceModifier(Modifier, bpy_struct):
     ''' Displacement modifier
     '''
 
-    direction: typing.Union[int, str] = None
+    direction: typing.Union[str, int] = None
     ''' * X X, Use the texture's intensity value to displace in the X direction. * Y Y, Use the texture's intensity value to displace in the Y direction. * Z Z, Use the texture's intensity value to displace in the Z direction. * NORMAL Normal, Use the texture's intensity value to displace along the vertex normal. * CUSTOM_NORMAL Custom Normal, Use the texture's intensity value to displace along the (averaged) custom normal (falls back to vertex). * RGB_TO_XYZ RGB to XYZ, Use the texture's RGB values to displace the mesh in the XYZ direction.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_vertex_group: bool = None
@@ -59105,10 +59262,10 @@ class DisplaceModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' * LOCAL Local, Direction is defined in local coordinates. * GLOBAL Global, Direction is defined in global coordinates.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     strength: float = None
@@ -59123,10 +59280,10 @@ class DisplaceModifier(Modifier, bpy_struct):
     :type: 'Texture'
     '''
 
-    texture_coords: typing.Union[int, str] = None
+    texture_coords: typing.Union[str, int] = None
     ''' * LOCAL Local, Use the local coordinate system for the texture coordinates. * GLOBAL Global, Use the global coordinate system for the texture coordinates. * OBJECT Object, Use the linked object's local coordinate system for the texture coordinates. * UV UV, Use UV coordinates for the texture coordinates.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_coords_bone: str = None
@@ -59191,10 +59348,10 @@ class DynamicPaintModifier(Modifier, bpy_struct):
     :type: 'DynamicPaintCanvasSettings'
     '''
 
-    ui_type: typing.Union[int, str] = None
+    ui_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -59365,10 +59522,10 @@ class FluidModifier(Modifier, bpy_struct):
     :type: 'FluidFlowSettings'
     '''
 
-    fluid_type: typing.Union[int, str] = None
+    fluid_type: typing.Union[str, int] = None
     ''' * NONE None. * DOMAIN Domain. * FLOW Flow, Inflow/Outflow. * EFFECTOR Effector.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -59415,10 +59572,10 @@ class HookModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_vertex_group: bool = None
@@ -59701,10 +59858,10 @@ class MaskModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     threshold: float = None
@@ -59745,16 +59902,16 @@ class MeshCacheModifier(Modifier, bpy_struct):
     ''' Cache Mesh
     '''
 
-    cache_format: typing.Union[int, str] = None
+    cache_format: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    deform_mode: typing.Union[int, str] = None
+    deform_mode: typing.Union[str, int] = None
     ''' * OVERWRITE Overwrite, Replace vertex coords with cached values. * INTEGRATE Integrate, Integrate deformation from this modifiers input with the mesh-cache coords (useful for shape keys).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     eval_factor: float = None
@@ -59787,16 +59944,16 @@ class MeshCacheModifier(Modifier, bpy_struct):
     :type: str
     '''
 
-    flip_axis: typing.Union[typing.Set[int], typing.Set[str]] = None
+    flip_axis: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' 
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    forward_axis: typing.Union[int, str] = None
+    forward_axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     frame_scale: float = None
@@ -59811,28 +59968,28 @@ class MeshCacheModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    play_mode: typing.Union[int, str] = None
+    play_mode: typing.Union[str, int] = None
     ''' * SCENE Scene, Use the time from the scene. * CUSTOM Custom, Use the modifier's own time evaluation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    time_mode: typing.Union[int, str] = None
+    time_mode: typing.Union[str, int] = None
     ''' Method to control playback time * FRAME Frame, Control playback using a frame-number (ignoring time FPS and start frame from the file). * TIME Time, Control playback using time in seconds. * FACTOR Factor, Control playback using a value between [0, 1].
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    up_axis: typing.Union[int, str] = None
+    up_axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -59935,10 +60092,10 @@ class MeshSequenceCacheModifier(Modifier, bpy_struct):
     :type: str
     '''
 
-    read_data: typing.Union[typing.Set[int], typing.Set[str]] = None
+    read_data: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' 
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
     @classmethod
@@ -60125,10 +60282,10 @@ class MultiresModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    subdivision_type: typing.Union[int, str] = None
+    subdivision_type: typing.Union[str, int] = None
     ''' Select type of subdivision algorithm
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     total_levels: int = None
@@ -60143,10 +60300,10 @@ class MultiresModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    uv_smooth: typing.Union[int, str] = None
+    uv_smooth: typing.Union[str, int] = None
     ''' Controls how smoothing is applied to UVs * NONE Sharp, UVs are not smoothed, boundaries are kept sharp. * PRESERVE_CORNERS Smooth, keep corners, UVs are smoothed, corners on discontinuous boundary are kept sharp.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -60193,16 +60350,16 @@ class NormalEditModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' How to mix generated normals with existing ones * COPY Copy, Copy new normals (overwrite existing). * ADD Add, Copy sum of new and old normals. * SUB Subtract, Copy new normals minus old normals. * MUL Multiply, Copy product of old and new normals (\*not\* cross product).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' How to affect (generate) normals * RADIAL Radial, From an ellipsoid (shape defined by the boundbox's dimensions, target is optional). * DIRECTIONAL Directional, Normals 'track' (point to) the target object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     no_polynors_fix: bool = None
@@ -60321,10 +60478,10 @@ class OceanModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    geometry_mode: typing.Union[int, str] = None
+    geometry_mode: typing.Union[str, int] = None
     ''' Method of modifying geometry * GENERATE Generate, Generate ocean surface geometry at the specified resolution. * DISPLACE Displace, Displace existing geometry according to simulation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_cached: bool = None
@@ -60375,10 +60532,10 @@ class OceanModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    spectrum: typing.Union[int, str] = None
+    spectrum: typing.Union[str, int] = None
     ''' Spectrum to use * PHILLIPS Turbulent Ocean, Use for turbulent seas with foam. * PIERSON_MOSKOWITZ Established Ocean, Use for a large area, established ocean (Pierson-Moskowitz method). * JONSWAP Established Ocean (Sharp Peaks), Use for sharp peaks ('JONSWAP', Pierson-Moskowitz method) with peak sharpening. * TEXEL_MARSEN_ARSLOE Shallow Water, Use for shallow water ('JONSWAP', 'TMA' - Texel-Marsen-Arsloe method).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     time: float = None
@@ -60455,10 +60612,10 @@ class ParticleInstanceModifier(Modifier, bpy_struct):
     ''' Particle system instancing modifier
     '''
 
-    axis: typing.Union[int, str] = None
+    axis: typing.Union[str, int] = None
     ''' Pole axis for rotation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     index_layer_name: str = None
@@ -60539,10 +60696,10 @@ class ParticleInstanceModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Space to use for copying mesh data * LOCAL Local, Use offset from the particle object in the instance object. * WORLD World, Use world space offset in the instance object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_children: bool = None
@@ -60645,10 +60802,10 @@ class RemeshModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' * BLOCKS Blocks, Output a blocky surface with no smoothing. * SMOOTH Smooth, Output a smooth surface with no sharp-features detection. * SHARP Sharp, Output a surface that reproduces sharp edges and corners from the input mesh. * VOXEL Voxel, Output a mesh corresponding to the volume of the original mesh.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     octree_depth: int = None
@@ -60725,10 +60882,10 @@ class ScrewModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    axis: typing.Union[int, str] = None
+    axis: typing.Union[str, int] = None
     ''' Screw axis
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     iterations: int = None
@@ -60841,10 +60998,10 @@ class ShrinkwrapModifier(Modifier, bpy_struct):
     :type: 'Object'
     '''
 
-    cull_face: typing.Union[int, str] = None
+    cull_face: typing.Union[str, int] = None
     ''' Stop vertices from projecting to a face on the target when facing towards/away * OFF Off, No culling. * FRONT Front, No projection when in front of the face. * BACK Back, No projection when behind the face.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_vertex_group: bool = None
@@ -60919,16 +61076,16 @@ class ShrinkwrapModifier(Modifier, bpy_struct):
     :type: str
     '''
 
-    wrap_method: typing.Union[int, str] = None
+    wrap_method: typing.Union[str, int] = None
     ''' * NEAREST_SURFACEPOINT Nearest Surface Point, Shrink the mesh to the nearest target surface. * PROJECT Project, Shrink the mesh to the nearest target surface along a given axis. * NEAREST_VERTEX Nearest Vertex, Shrink the mesh to the nearest target vertex. * TARGET_PROJECT Target Normal Project, Shrink the mesh to the nearest target surface along the interpolated vertex normals of the target.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    wrap_mode: typing.Union[int, str] = None
+    wrap_mode: typing.Union[str, int] = None
     ''' Select how vertices are constrained to the target surface * ON_SURFACE On Surface, The point is constrained to the surface of the target object, with distance offset towards the original point location. * INSIDE Inside, The point is constrained to be inside the target object. * OUTSIDE Outside, The point is constrained to be outside the target object. * OUTSIDE_SURFACE Outside Surface, The point is constrained to the surface of the target object, with distance offset always to the outside, towards or away from the original location. * ABOVE_SURFACE Above Surface, The point is constrained to the surface of the target object, with distance offset applied exactly along the target normal.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -60963,16 +61120,16 @@ class SimpleDeformModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    deform_axis: typing.Union[int, str] = None
+    deform_axis: typing.Union[str, int] = None
     ''' Deform around local axis
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    deform_method: typing.Union[int, str] = None
+    deform_method: typing.Union[str, int] = None
     ''' * TWIST Twist, Rotate around the Z axis of the modifier space. * BEND Bend, Bend the mesh over the Z axis of the modifier space. * TAPER Taper, Linearly scale along Z axis of the modifier space. * STRETCH Stretch, Stretch the object along the Z axis of the modifier space.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     factor: float = None
@@ -61253,10 +61410,10 @@ class SolidifyModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    nonmanifold_boundary_mode: typing.Union[int, str] = None
+    nonmanifold_boundary_mode: typing.Union[str, int] = None
     ''' Selects the boundary adjustment algorithm * NONE None, No shape correction. * ROUND Round, Round open perimeter shape. * FLAT Flat, Flat open perimeter shape.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     nonmanifold_merge_threshold: float = None
@@ -61265,10 +61422,10 @@ class SolidifyModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    nonmanifold_thickness_mode: typing.Union[int, str] = None
+    nonmanifold_thickness_mode: typing.Union[str, int] = None
     ''' Selects the used thickness algorithm * FIXED Fixed, Most basic thickness calculation. * EVEN Even, Even thickness calculation which takes the angle between faces into account. * CONSTRAINTS Constraints, Thickness calculation using constraints, most advanced.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     offset: float = None
@@ -61289,10 +61446,10 @@ class SolidifyModifier(Modifier, bpy_struct):
     :type: str
     '''
 
-    solidify_mode: typing.Union[int, str] = None
+    solidify_mode: typing.Union[str, int] = None
     ''' Selects the used algorithm * EXTRUDE Simple, Output a solidified version of a mesh by simple extrusion. * NON_MANIFOLD Complex, Output a manifold mesh even if the base mesh is non-manifold, where edges have 3 or more connecting faces.This method is slower.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     thickness: float = None
@@ -61411,10 +61568,10 @@ class SubsurfModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    subdivision_type: typing.Union[int, str] = None
+    subdivision_type: typing.Union[str, int] = None
     ''' Select type of subdivision algorithm
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_creases: bool = None
@@ -61423,10 +61580,10 @@ class SubsurfModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    uv_smooth: typing.Union[int, str] = None
+    uv_smooth: typing.Union[str, int] = None
     ''' Controls how smoothing is applied to UVs * NONE Sharp, UVs are not smoothed, boundaries are kept sharp. * PRESERVE_CORNERS Smooth, keep corners, UVs are smoothed, corners on discontinuous boundary are kept sharp.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -61552,16 +61709,16 @@ class TriangulateModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    ngon_method: typing.Union[int, str] = None
+    ngon_method: typing.Union[str, int] = None
     ''' Method for splitting the polygons into triangles * BEAUTY Beauty, Arrange the new triangles evenly (slow). * CLIP Clip, Split the polygons with an ear clipping algorithm.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    quad_method: typing.Union[int, str] = None
+    quad_method: typing.Union[str, int] = None
     ''' Method for splitting the quads into triangles * BEAUTY Beauty , Split the quads in nice triangles, slower method. * FIXED Fixed, Split the quads on the first and third vertices. * FIXED_ALTERNATE Fixed Alternate, Split the quads on the 2nd and 4th vertices. * SHORTEST_DIAGONAL Shortest Diagonal, Split the quads based on the distance between the vertices.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -61608,11 +61765,11 @@ class UVProjectModifier(Modifier, bpy_struct):
     :type: int
     '''
 
-    projectors: typing.Union[typing.
+    projectors: typing.Union[typing.Dict[str, 'UVProjector'], typing.
                              List['UVProjector'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['UVProjector'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'UVProjector'], typing.List['UVProjector'], 'bpy_prop_collection']
     '''
 
     scale_x: float = None
@@ -61659,16 +61816,16 @@ class UVWarpModifier(Modifier, bpy_struct):
     ''' Add target position to uv coordinates
     '''
 
-    axis_u: typing.Union[int, str] = None
+    axis_u: typing.Union[str, int] = None
     ''' Pole axis for rotation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    axis_v: typing.Union[int, str] = None
+    axis_v: typing.Union[str, int] = None
     ''' Pole axis for rotation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     bone_from: str = None
@@ -61775,10 +61932,10 @@ class VertexWeightEditModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' How weights are mapped to their new values * LINEAR Linear, Null action. * CURVE Custom Curve. * SHARP Sharp. * SMOOTH Smooth. * ROOT Root. * ICON_SPHERECURVE Sphere. * RANDOM Random. * STEP Median Step, Map all values below 0.5 to 0.0, and all others to 1.0.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_falloff: bool = None
@@ -61817,16 +61974,16 @@ class VertexWeightEditModifier(Modifier, bpy_struct):
     :type: 'Object'
     '''
 
-    mask_tex_mapping: typing.Union[int, str] = None
+    mask_tex_mapping: typing.Union[str, int] = None
     ''' Which texture coordinates to use for mapping * LOCAL Local, Use local generated coordinates. * GLOBAL Global, Use global coordinates. * OBJECT Object, Use local generated coordinates of another object. * UV UV, Use coordinates from an UV layer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_tex_use_channel: typing.Union[int, str] = None
+    mask_tex_use_channel: typing.Union[str, int] = None
     ''' Which texture channel to use for masking
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mask_tex_uv_layer: str = None
@@ -61933,16 +62090,16 @@ class VertexWeightMixModifier(Modifier, bpy_struct):
     :type: 'Object'
     '''
 
-    mask_tex_mapping: typing.Union[int, str] = None
+    mask_tex_mapping: typing.Union[str, int] = None
     ''' Which texture coordinates to use for mapping * LOCAL Local, Use local generated coordinates. * GLOBAL Global, Use global coordinates. * OBJECT Object, Use local generated coordinates of another object. * UV UV, Use coordinates from an UV layer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_tex_use_channel: typing.Union[int, str] = None
+    mask_tex_use_channel: typing.Union[str, int] = None
     ''' Which texture channel to use for masking
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mask_tex_uv_layer: str = None
@@ -61963,16 +62120,16 @@ class VertexWeightMixModifier(Modifier, bpy_struct):
     :type: str
     '''
 
-    mix_mode: typing.Union[int, str] = None
+    mix_mode: typing.Union[str, int] = None
     ''' How weights from vgroup B affect weights of vgroup A * SET Replace, Replace VGroup A's weights by VGroup B's ones. * ADD Add, Add VGroup B's weights to VGroup A's ones. * SUB Subtract, Subtract VGroup B's weights from VGroup A's ones. * MUL Multiply, Multiply VGroup A's weights by VGroup B's ones. * DIV Divide, Divide VGroup A's weights by VGroup B's ones. * DIF Difference, Difference between VGroup A's and VGroup B's weights. * AVG Average, Average value of VGroup A's and VGroup B's weights.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mix_set: typing.Union[int, str] = None
+    mix_set: typing.Union[str, int] = None
     ''' Which vertices should be affected * ALL All, Affect all vertices (might add some to VGroup A). * A VGroup A, Affect vertices in VGroup A. * B VGroup B, Affect vertices in VGroup B (might add some to VGroup A). * OR VGroup A or B, Affect vertices in at least one of both VGroups (might add some to VGroup A). * AND VGroup A and B, Affect vertices in both groups.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     vertex_group_a: str = None
@@ -62013,10 +62170,10 @@ class VertexWeightProximityModifier(Modifier, bpy_struct):
     ''' Set the weights of vertices in a group from a target object's distance
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' How weights are mapped to their new values * LINEAR Linear, Null action. * SHARP Sharp. * SMOOTH Smooth. * ROOT Root. * ICON_SPHERECURVE Sphere. * RANDOM Random. * STEP Median Step, Map all values below 0.5 to 0.0, and all others to 1.0.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_falloff: bool = None
@@ -62049,16 +62206,16 @@ class VertexWeightProximityModifier(Modifier, bpy_struct):
     :type: 'Object'
     '''
 
-    mask_tex_mapping: typing.Union[int, str] = None
+    mask_tex_mapping: typing.Union[str, int] = None
     ''' Which texture coordinates to use for mapping * LOCAL Local, Use local generated coordinates. * GLOBAL Global, Use global coordinates. * OBJECT Object, Use local generated coordinates of another object. * UV UV, Use coordinates from an UV layer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_tex_use_channel: typing.Union[int, str] = None
+    mask_tex_use_channel: typing.Union[str, int] = None
     ''' Which texture channel to use for masking
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     mask_tex_uv_layer: str = None
@@ -62091,16 +62248,16 @@ class VertexWeightProximityModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    proximity_geometry: typing.Union[typing.Set[int], typing.Set[str]] = None
+    proximity_geometry: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Use the shortest computed distance to target object's geometry as weight * VERTEX Vertex, Compute distance to nearest vertex. * EDGE Edge, Compute distance to nearest edge. * FACE Face, Compute distance to nearest face.
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    proximity_mode: typing.Union[int, str] = None
+    proximity_mode: typing.Union[str, int] = None
     ''' Which distances to target object to use * OBJECT Object, Use distance between affected and target objects. * GEOMETRY Geometry, Use distance between affected object's vertices and target object, or target object's geometry.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     target: 'Object' = None
@@ -62165,10 +62322,10 @@ class WarpModifier(Modifier, bpy_struct):
     :type: float
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_vertex_group: bool = None
@@ -62201,10 +62358,10 @@ class WarpModifier(Modifier, bpy_struct):
     :type: 'Texture'
     '''
 
-    texture_coords: typing.Union[int, str] = None
+    texture_coords: typing.Union[str, int] = None
     ''' * LOCAL Local, Use the local coordinate system for the texture coordinates. * GLOBAL Global, Use the global coordinate system for the texture coordinates. * OBJECT Object, Use the linked object's local coordinate system for the texture coordinates. * UV UV, Use UV coordinates for the texture coordinates.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_coords_bone: str = None
@@ -62329,10 +62486,10 @@ class WaveModifier(Modifier, bpy_struct):
     :type: 'Texture'
     '''
 
-    texture_coords: typing.Union[int, str] = None
+    texture_coords: typing.Union[str, int] = None
     ''' * LOCAL Local, Use the local coordinate system for the texture coordinates. * GLOBAL Global, Use the global coordinate system for the texture coordinates. * OBJECT Object, Use the linked object's local coordinate system for the texture coordinates. * UV UV, Use UV coordinates for the texture coordinates.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_coords_bone: str = None
@@ -62454,10 +62611,10 @@ class WeightedNormalModifier(Modifier, bpy_struct):
     :type: bool
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Weighted vertex normal mode to use * FACE_AREA Face Area, Generate face area weighted normals. * CORNER_ANGLE Corner Angle, Generate corner angle weighted normals. * FACE_AREA_WITH_ANGLE Face Area And Angle, Generated normals weighted by both face area and angle.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     thresh: float = None
@@ -62807,10 +62964,10 @@ class NodeSocketStandard(NodeSocket, bpy_struct):
 
 
 class NodeSocketInterfaceStandard(NodeSocketInterface, bpy_struct):
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Data type
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def draw(self, context: 'Context', layout: 'UILayout'):
@@ -62856,10 +63013,10 @@ class NodeSocketInterfaceStandard(NodeSocketInterface, bpy_struct):
 
 
 class GpPaint(Paint, bpy_struct):
-    color_mode: typing.Union[int, str] = None
+    color_mode: typing.Union[str, int] = None
     ''' Paint Mode * MATERIAL Material, Paint using the active material base color. * VERTEXCOLOR Vertex Color, Paint the material with custom vertex color.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -62975,10 +63132,10 @@ class ImagePaint(Paint, bpy_struct):
     :type: float
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Texture filtering type * LINEAR Linear, Linear interpolation. * CLOSEST Closest, No interpolation (sample closest texel).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert_stencil: bool = None
@@ -63011,10 +63168,10 @@ class ImagePaint(Paint, bpy_struct):
     :type: bool
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Mode of operation for projection painting * MATERIAL Material, Detect image slots from the material. * IMAGE Single Image, Set image for texture painting directly.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     normal_angle: int = None
@@ -63118,10 +63275,10 @@ class Sculpt(Paint, bpy_struct):
     :type: float
     '''
 
-    detail_refine_method: typing.Union[int, str] = None
+    detail_refine_method: typing.Union[str, int] = None
     ''' In dynamic-topology mode, how to add or remove mesh detail * SUBDIVIDE Subdivide Edges, Subdivide long edges to add mesh detail where needed. * COLLAPSE Collapse Edges, Collapse short edges to remove mesh detail where possible. * SUBDIVIDE_COLLAPSE Subdivide Collapse, Both subdivide long edges and collapse short edges to refine mesh detail.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     detail_size: float = None
@@ -63130,10 +63287,10 @@ class Sculpt(Paint, bpy_struct):
     :type: float
     '''
 
-    detail_type_method: typing.Union[int, str] = None
+    detail_type_method: typing.Union[str, int] = None
     ''' In dynamic-topology mode, how mesh detail size is calculated * RELATIVE Relative Detail, Mesh detail is relative to the brush size and detail size. * CONSTANT Constant Detail, Mesh detail is constant in world space according to detail size. * BRUSH Brush Detail, Mesh detail is relative to brush radius. * MANUAL Manual Detail, Mesh detail does not change on each stroke, only when using Flood Fill.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gravity: float = None
@@ -63184,10 +63341,10 @@ class Sculpt(Paint, bpy_struct):
     :type: bool
     '''
 
-    symmetrize_direction: typing.Union[int, str] = None
+    symmetrize_direction: typing.Union[str, int] = None
     ''' Source and destination for symmetrize operator
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_automasking_boundary_edges: bool = None
@@ -63407,30 +63564,32 @@ class EnumProperty(Property, bpy_struct):
     ''' RNA enumeration property definition, to choose from a number of predefined options
     '''
 
-    default: typing.Union[int, str] = None
+    default: typing.Union[str, int] = None
     ''' Default value for this enum
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    default_flag: typing.Union[typing.Set[int], typing.Set[str]] = None
+    default_flag: typing.Union[typing.Set[str], typing.Set[int]] = None
     ''' Default value for this enum
 
-    :type: typing.Union[typing.Set[int], typing.Set[str]]
+    :type: typing.Union[typing.Set[str], typing.Set[int]]
     '''
 
-    enum_items: typing.Union[typing.List['EnumPropertyItem'],
+    enum_items: typing.Union[typing.Dict[str, 'EnumPropertyItem'], typing.
+                             List['EnumPropertyItem'],
                              'bpy_prop_collection'] = None
     ''' Possible values for the property
 
-    :type: typing.Union[typing.List['EnumPropertyItem'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'EnumPropertyItem'], typing.List['EnumPropertyItem'], 'bpy_prop_collection']
     '''
 
-    enum_items_static: typing.Union[typing.List['EnumPropertyItem'],
-                                    'bpy_prop_collection'] = None
+    enum_items_static: typing.Union[
+        typing.Dict[str, 'EnumPropertyItem'], typing.
+        List['EnumPropertyItem'], 'bpy_prop_collection'] = None
     ''' Possible values for the property (never calls optional dynamic generation of those)
 
-    :type: typing.Union[typing.List['EnumPropertyItem'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'EnumPropertyItem'], typing.List['EnumPropertyItem'], 'bpy_prop_collection']
     '''
 
     @classmethod
@@ -63874,10 +64033,10 @@ class EffectSequence(Sequence, bpy_struct):
     ''' Sequence strip applying an effect on the images created by other strips
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_multiply: float = None
@@ -63990,10 +64149,10 @@ class ImageSequence(Sequence, bpy_struct):
     ''' Sequence strip to load one or more images
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_offset_end: int = None
@@ -64038,11 +64197,12 @@ class ImageSequence(Sequence, bpy_struct):
     :type: str
     '''
 
-    elements: typing.Union[typing.List['SequenceElement'],
-                           'bpy_prop_collection', 'SequenceElements'] = None
+    elements: typing.Union[typing.Dict[str, 'SequenceElement'], typing.
+                           List['SequenceElement'], 'bpy_prop_collection',
+                           'SequenceElements'] = None
     ''' 
 
-    :type: typing.Union[typing.List['SequenceElement'], 'bpy_prop_collection', 'SequenceElements']
+    :type: typing.Union[typing.Dict[str, 'SequenceElement'], typing.List['SequenceElement'], 'bpy_prop_collection', 'SequenceElements']
     '''
 
     proxy: 'SequenceProxy' = None
@@ -64123,10 +64283,10 @@ class ImageSequence(Sequence, bpy_struct):
     :type: bool
     '''
 
-    views_format: typing.Union[int, str] = None
+    views_format: typing.Union[str, int] = None
     ''' Mode to load image views * INDIVIDUAL Individual, Individual files for each view with the prefix as defined by the scene views. * STEREO_3D Stereo 3D, Single file with an encoded stereo pair.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -64155,10 +64315,10 @@ class MaskSequence(Sequence, bpy_struct):
     ''' Sequence strip to load a video from a mask
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_offset_end: int = None
@@ -64277,10 +64437,10 @@ class MetaSequence(Sequence, bpy_struct):
     ''' Sequence strip to group other strips as a single sequence strip
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_offset_end: int = None
@@ -64319,11 +64479,11 @@ class MetaSequence(Sequence, bpy_struct):
     :type: 'SequenceProxy'
     '''
 
-    sequences: typing.Union[typing.
+    sequences: typing.Union[typing.Dict[str, 'Sequence'], typing.
                             List['Sequence'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['Sequence'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'Sequence'], typing.List['Sequence'], 'bpy_prop_collection']
     '''
 
     strobe: float = None
@@ -64412,10 +64572,10 @@ class MovieClipSequence(Sequence, bpy_struct):
     ''' Sequence strip to load a video from the clip editor
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_offset_end: int = None
@@ -64546,10 +64706,10 @@ class MovieSequence(Sequence, bpy_struct):
     ''' Sequence strip to load a video
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_offset_end: int = None
@@ -64588,11 +64748,12 @@ class MovieSequence(Sequence, bpy_struct):
     :type: 'SequenceCrop'
     '''
 
-    elements: typing.Union[typing.List['SequenceElement'],
+    elements: typing.Union[typing.Dict[str, 'SequenceElement'], typing.
+                           List['SequenceElement'],
                            'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['SequenceElement'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'SequenceElement'], typing.List['SequenceElement'], 'bpy_prop_collection']
     '''
 
     filepath: str = None
@@ -64697,10 +64858,10 @@ class MovieSequence(Sequence, bpy_struct):
     :type: bool
     '''
 
-    views_format: typing.Union[int, str] = None
+    views_format: typing.Union[str, int] = None
     ''' Mode to load movie views * INDIVIDUAL Individual, Individual files for each view with the prefix as defined by the scene views. * STEREO_3D Stereo 3D, Single file with an encoded stereo pair.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     def metadata(self) -> 'IDPropertyWrapPtr':
@@ -64737,10 +64898,10 @@ class SceneSequence(Sequence, bpy_struct):
     ''' Sequence strip to used the rendered image of a scene
     '''
 
-    alpha_mode: typing.Union[int, str] = None
+    alpha_mode: typing.Union[str, int] = None
     ''' Representation of alpha information in the RGBA pixels * STRAIGHT Straight, RGB channels in transparent pixels are unaffected by the alpha channel. * PREMUL Premultiplied, RGB channels in transparent pixels are multiplied by the alpha channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     animation_offset_end: int = None
@@ -64797,10 +64958,10 @@ class SceneSequence(Sequence, bpy_struct):
     :type: 'Object'
     '''
 
-    scene_input: typing.Union[int, str] = None
+    scene_input: typing.Union[str, int] = None
     ''' Input type to use for the Scene strip * CAMERA Camera, Use the Scene's 3D camera as input. * SEQUENCER Sequencer, Use the Scene's Sequencer timeline as input.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     strobe: float = None
@@ -65171,10 +65332,10 @@ class SequencerTonemapModifierData(SequenceModifier, bpy_struct):
     :type: float
     '''
 
-    tonemap_type: typing.Union[int, str] = None
+    tonemap_type: typing.Union[str, int] = None
     ''' Tone mapping algorithm
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -65303,10 +65464,10 @@ class ShaderFxColorize(ShaderFx, bpy_struct):
     :type: typing.List[float]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Effect mode
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -65373,10 +65534,10 @@ class ShaderFxGlow(ShaderFx, bpy_struct):
     ''' Glow effect
     '''
 
-    blend_mode: typing.Union[int, str] = None
+    blend_mode: typing.Union[str, int] = None
     ''' Blend mode
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     glow_color: typing.List[float] = None
@@ -65385,10 +65546,10 @@ class ShaderFxGlow(ShaderFx, bpy_struct):
     :type: typing.List[float]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Glow mode
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     opacity: float = None
@@ -65509,10 +65670,10 @@ class ShaderFxRim(ShaderFx, bpy_struct):
     :type: typing.List[float]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Blend mode
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     offset: typing.List[int] = None
@@ -65583,10 +65744,10 @@ class ShaderFxShadow(ShaderFx, bpy_struct):
     :type: typing.List[int]
     '''
 
-    orientation: typing.Union[int, str] = None
+    orientation: typing.Union[str, int] = None
     ''' Direction of the wave
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     period: float = None
@@ -65719,10 +65880,10 @@ class ShaderFxWave(ShaderFx, bpy_struct):
     :type: float
     '''
 
-    orientation: typing.Union[int, str] = None
+    orientation: typing.Union[str, int] = None
     ''' Direction of the wave
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     period: float = None
@@ -65763,10 +65924,10 @@ class SpaceClipEditor(Space, bpy_struct):
     ''' Clip editor space data
     '''
 
-    annotation_source: typing.Union[int, str] = None
+    annotation_source: typing.Union[str, int] = None
     ''' Where the annotation comes from * CLIP Clip, Show annotation data-block which belongs to movie clip. * TRACK Track, Show annotation data-block which belongs to active track.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     clip: 'MovieClip' = None
@@ -65799,22 +65960,22 @@ class SpaceClipEditor(Space, bpy_struct):
     :type: 'Mask'
     '''
 
-    mask_display_type: typing.Union[int, str] = None
+    mask_display_type: typing.Union[str, int] = None
     ''' Display type for mask splines * OUTLINE Outline, Display white edges with black outline. * DASH Dash, Display dashed black-white edges. * BLACK Black, Display black edges. * WHITE White, Display white edges.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_overlay_mode: typing.Union[int, str] = None
+    mask_overlay_mode: typing.Union[str, int] = None
     ''' Overlay mode of rasterized mask * ALPHACHANNEL Alpha Channel, Show alpha channel of the mask. * COMBINED Combined, Combine space background image with the mask.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Editing context being displayed * TRACKING Tracking, Show tracking and solving tools. * MASK Mask, Show mask editing tools.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     path_length: int = None
@@ -65823,10 +65984,10 @@ class SpaceClipEditor(Space, bpy_struct):
     :type: int
     '''
 
-    pivot_point: typing.Union[int, str] = None
+    pivot_point: typing.Union[str, int] = None
     ''' Pivot center for rotation/scaling * BOUNDING_BOX_CENTER Bounding Box Center, Pivot around bounding box center of selected object(s). * CURSOR 2D Cursor, Pivot around the 2D cursor. * INDIVIDUAL_ORIGINS Individual Origins, Pivot around each object's own origin. * MEDIAN_POINT Median Point, Pivot around the median point of selected objects.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     scopes: 'MovieClipScopes' = None
@@ -66009,10 +66170,10 @@ class SpaceClipEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    view: typing.Union[int, str] = None
+    view: typing.Union[str, int] = None
     ''' Type of the clip editor view * CLIP Clip, Show editing clip preview. * GRAPH Graph, Show graph view for active element. * DOPESHEET Dopesheet, Dopesheet view for tracking data.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -66040,13 +66201,13 @@ class SpaceClipEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66057,9 +66218,9 @@ class SpaceClipEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66075,11 +66236,11 @@ class SpaceConsole(Space, bpy_struct):
     :type: int
     '''
 
-    history: typing.Union[typing.
+    history: typing.Union[typing.Dict[str, 'ConsoleLine'], typing.
                           List['ConsoleLine'], 'bpy_prop_collection'] = None
     ''' Command history
 
-    :type: typing.Union[typing.List['ConsoleLine'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ConsoleLine'], typing.List['ConsoleLine'], 'bpy_prop_collection']
     '''
 
     language: str = None
@@ -66094,11 +66255,11 @@ class SpaceConsole(Space, bpy_struct):
     :type: str
     '''
 
-    scrollback: typing.Union[typing.
+    scrollback: typing.Union[typing.Dict[str, 'ConsoleLine'], typing.
                              List['ConsoleLine'], 'bpy_prop_collection'] = None
     ''' Command output
 
-    :type: typing.Union[typing.List['ConsoleLine'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'ConsoleLine'], typing.List['ConsoleLine'], 'bpy_prop_collection']
     '''
 
     select_end: int = None
@@ -66138,13 +66299,13 @@ class SpaceConsole(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66155,9 +66316,9 @@ class SpaceConsole(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66173,10 +66334,10 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
     :type: 'Action'
     '''
 
-    auto_snap: typing.Union[int, str] = None
+    auto_snap: typing.Union[str, int] = None
     ''' Automatic time snapping settings for transformations * NONE No Auto-Snap. * STEP Frame Step, Snap to 1.0 frame intervals. * TIME_STEP Second Step, Snap to 1.0 second intervals. * FRAME Nearest Frame, Snap to actual frames (nla-action time). * SECOND Nearest Second, Snap to actual seconds (nla-action time). * MARKER Nearest Marker, Snap to nearest marker.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cache_cloth: bool = None
@@ -66221,10 +66382,10 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
     :type: 'DopeSheet'
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Editing context being displayed * DOPESHEET Dope Sheet, Edit all keyframes in scene. * TIMELINE Timeline, Timeline and playback controls. * ACTION Action Editor, Edit keyframes in active object's Object-level action. * SHAPEKEY Shape Key Editor, Edit keyframes in active object's Shape Keys action. * GPENCIL Grease Pencil, Edit timings for all Grease Pencil sketches in file. * MASK Mask, Edit timings for Mask Editor splines. * CACHEFILE Cache File, Edit timings for Cache File data-blocks.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_cache: bool = None
@@ -66281,10 +66442,10 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    ui_mode: typing.Union[int, str] = None
+    ui_mode: typing.Union[str, int] = None
     ''' Editing context being displayed * DOPESHEET Dope Sheet, Edit all keyframes in scene. * ACTION Action Editor, Edit keyframes in active object's Object-level action. * SHAPEKEY Shape Key Editor, Edit keyframes in active object's Shape Keys action. * GPENCIL Grease Pencil, Edit timings for all Grease Pencil sketches in file. * MASK Mask, Edit timings for Mask Editor splines. * CACHEFILE Cache File, Edit timings for Cache File data-blocks.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_merge_keyframes: bool = None
@@ -66330,13 +66491,13 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66347,9 +66508,9 @@ class SpaceDopeSheetEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66365,11 +66526,12 @@ class SpaceFileBrowser(Space, bpy_struct):
     :type: 'Operator'
     '''
 
-    bookmarks: typing.Union[typing.List['FileBrowserFSMenuEntry'],
+    bookmarks: typing.Union[typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.
+                            List['FileBrowserFSMenuEntry'],
                             'bpy_prop_collection'] = None
     ''' User's bookmarks
 
-    :type: typing.Union[typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
     '''
 
     bookmarks_active: int = None
@@ -66390,11 +66552,12 @@ class SpaceFileBrowser(Space, bpy_struct):
     :type: 'FileSelectParams'
     '''
 
-    recent_folders: typing.Union[typing.List['FileBrowserFSMenuEntry'],
-                                 'bpy_prop_collection'] = None
+    recent_folders: typing.Union[
+        typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.
+        List['FileBrowserFSMenuEntry'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
     '''
 
     recent_folders_active: int = None
@@ -66415,11 +66578,12 @@ class SpaceFileBrowser(Space, bpy_struct):
     :type: bool
     '''
 
-    system_bookmarks: typing.Union[typing.List['FileBrowserFSMenuEntry'],
-                                   'bpy_prop_collection'] = None
+    system_bookmarks: typing.Union[
+        typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.
+        List['FileBrowserFSMenuEntry'], 'bpy_prop_collection'] = None
     ''' System's bookmarks
 
-    :type: typing.Union[typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
     '''
 
     system_bookmarks_active: int = None
@@ -66428,11 +66592,12 @@ class SpaceFileBrowser(Space, bpy_struct):
     :type: int
     '''
 
-    system_folders: typing.Union[typing.List['FileBrowserFSMenuEntry'],
-                                 'bpy_prop_collection'] = None
+    system_folders: typing.Union[
+        typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.
+        List['FileBrowserFSMenuEntry'], 'bpy_prop_collection'] = None
     ''' System's folders (usually root, available hard drives, etc)
 
-    :type: typing.Union[typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'FileBrowserFSMenuEntry'], typing.List['FileBrowserFSMenuEntry'], 'bpy_prop_collection']
     '''
 
     system_folders_active: int = None
@@ -66466,13 +66631,13 @@ class SpaceFileBrowser(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66483,9 +66648,9 @@ class SpaceFileBrowser(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66495,10 +66660,10 @@ class SpaceGraphEditor(Space, bpy_struct):
     ''' Graph Editor space data
     '''
 
-    auto_snap: typing.Union[int, str] = None
+    auto_snap: typing.Union[str, int] = None
     ''' Automatic time snapping settings for transformations * NONE No Auto-Snap. * STEP Frame Step, Snap to 1.0 frame intervals. * TIME_STEP Second Step, Snap to 1.0 second intervals. * FRAME Nearest Frame, Snap to actual frames (nla-action time). * SECOND Nearest Second, Snap to actual seconds (nla-action time). * MARKER Nearest Marker, Snap to nearest marker.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     cursor_position_x: float = None
@@ -66525,16 +66690,16 @@ class SpaceGraphEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Editing context being displayed * FCURVES Graph Editor, Edit animation/keyframes displayed as 2D curves. * DRIVERS Drivers, Edit drivers.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    pivot_point: typing.Union[int, str] = None
+    pivot_point: typing.Union[str, int] = None
     ''' Pivot center for rotation/scaling
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_cursor: bool = None
@@ -66652,13 +66817,13 @@ class SpaceGraphEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66669,9 +66834,9 @@ class SpaceGraphEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66687,10 +66852,10 @@ class SpaceImageEditor(Space, bpy_struct):
     :type: typing.List[float]
     '''
 
-    display_channels: typing.Union[int, str] = None
+    display_channels: typing.Union[str, int] = None
     ''' Channels of the image to draw * COLOR_ALPHA Color and Alpha, Display image with RGB colors and alpha transparency. * COLOR Color, Display image with RGB colors. * ALPHA Alpha, Display alpha transparency channel. * Z_BUFFER Z-Buffer, Display Z-buffer associated with image (mapped from camera clip start to end). * RED Red. * GREEN Green. * BLUE Blue.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     grease_pencil: 'GreasePencil' = None
@@ -66717,28 +66882,28 @@ class SpaceImageEditor(Space, bpy_struct):
     :type: 'Mask'
     '''
 
-    mask_display_type: typing.Union[int, str] = None
+    mask_display_type: typing.Union[str, int] = None
     ''' Display type for mask splines * OUTLINE Outline, Display white edges with black outline. * DASH Dash, Display dashed black-white edges. * BLACK Black, Display black edges. * WHITE White, Display white edges.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_overlay_mode: typing.Union[int, str] = None
+    mask_overlay_mode: typing.Union[str, int] = None
     ''' Overlay mode of rasterized mask * ALPHACHANNEL Alpha Channel, Show alpha channel of the mask. * COMBINED Combined, Combine space background image with the mask.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Editing context being displayed * VIEW View, View the image. * UV UV Editor, UV edit in mesh editmode. * PAINT Paint, 2D image painting mode. * MASK Mask, Mask editing.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    pivot_point: typing.Union[int, str] = None
+    pivot_point: typing.Union[str, int] = None
     ''' Rotation/Scaling Pivot * BOUNDING_BOX_CENTER Bounding Box Center, Pivot around bounding box center of selected object(s). * CURSOR 3D Cursor, Pivot around the 3D cursor. * INDIVIDUAL_ORIGINS Individual Origins, Pivot around each object's own origin. * MEDIAN_POINT Median Point, Pivot around the median point of selected objects. * ACTIVE_ELEMENT Active Element, Pivot around active object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sample_histogram: 'Histogram' = None
@@ -66831,10 +66996,10 @@ class SpaceImageEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    ui_mode: typing.Union[int, str] = None
+    ui_mode: typing.Union[str, int] = None
     ''' Editing context being displayed * VIEW View, View the image. * PAINT Paint, 2D image painting mode. * MASK Mask, Mask editing.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_image_pin: bool = None
@@ -66886,13 +67051,13 @@ class SpaceImageEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66903,9 +67068,9 @@ class SpaceImageEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66970,13 +67135,13 @@ class SpaceInfo(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -66987,9 +67152,9 @@ class SpaceInfo(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -66999,10 +67164,10 @@ class SpaceNLA(Space, bpy_struct):
     ''' NLA editor space data
     '''
 
-    auto_snap: typing.Union[int, str] = None
+    auto_snap: typing.Union[str, int] = None
     ''' Automatic time snapping settings for transformations * NONE No Auto-Snap. * STEP Frame Step, Snap to 1.0 frame intervals. * TIME_STEP Second Step, Snap to 1.0 second intervals. * FRAME Nearest Frame, Snap to actual frames (nla-action time). * SECOND Nearest Second, Snap to actual seconds (nla-action time). * MARKER Nearest Marker, Snap to nearest marker.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     dopesheet: 'DopeSheet' = None
@@ -67072,13 +67237,13 @@ class SpaceNLA(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67089,9 +67254,9 @@ class SpaceNLA(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67101,10 +67266,10 @@ class SpaceNodeEditor(Space, bpy_struct):
     ''' Node editor space data
     '''
 
-    backdrop_channels: typing.Union[int, str] = None
+    backdrop_channels: typing.Union[str, int] = None
     ''' Channels of the image to draw * COLOR_ALPHA Color and Alpha, Display image with RGB colors and alpha transparency. * COLOR Color, Display image with RGB colors. * ALPHA Alpha, Display alpha transparency channel. * RED Red. * GREEN Green. * BLUE Blue.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     backdrop_offset: typing.List[float] = None
@@ -67143,10 +67308,10 @@ class SpaceNodeEditor(Space, bpy_struct):
     :type: 'ID'
     '''
 
-    insert_offset_direction: typing.Union[int, str] = None
+    insert_offset_direction: typing.Union[str, int] = None
     ''' Direction to offset nodes on insertion
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     node_tree: 'NodeTree' = None
@@ -67155,11 +67320,12 @@ class SpaceNodeEditor(Space, bpy_struct):
     :type: 'NodeTree'
     '''
 
-    path: typing.Union[typing.List['NodeTreePath'], 'bpy_prop_collection',
+    path: typing.Union[typing.Dict[str, 'NodeTreePath'], typing.
+                       List['NodeTreePath'], 'bpy_prop_collection',
                        'SpaceNodeEditorPath'] = None
     ''' Path from the data-block to the currently edited node tree
 
-    :type: typing.Union[typing.List['NodeTreePath'], 'bpy_prop_collection', 'SpaceNodeEditorPath']
+    :type: typing.Union[typing.Dict[str, 'NodeTreePath'], typing.List['NodeTreePath'], 'bpy_prop_collection', 'SpaceNodeEditorPath']
     '''
 
     pin: bool = None
@@ -67168,10 +67334,10 @@ class SpaceNodeEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    shader_type: typing.Union[int, str] = None
+    shader_type: typing.Union[str, int] = None
     ''' Type of data to take shader from * OBJECT Object, Edit shader nodes from Object. * WORLD World, Edit shader nodes from World. * LINESTYLE Line Style, Edit shader nodes from Line Style.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_annotation: bool = None
@@ -67198,16 +67364,16 @@ class SpaceNodeEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    texture_type: typing.Union[int, str] = None
+    texture_type: typing.Union[str, int] = None
     ''' Type of data to take texture from * WORLD World, Edit texture nodes from World. * BRUSH Brush, Edit texture nodes from Brush. * LINESTYLE Line Style, Edit texture nodes from Line Style.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    tree_type: typing.Union[int, str] = None
+    tree_type: typing.Union[str, int] = None
     ''' Node tree type to display and edit
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_render: bool = None
@@ -67257,13 +67423,13 @@ class SpaceNodeEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67274,9 +67440,9 @@ class SpaceNodeEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67286,22 +67452,22 @@ class SpaceOutliner(Space, bpy_struct):
     ''' Outliner space data
     '''
 
-    display_mode: typing.Union[int, str] = None
+    display_mode: typing.Union[str, int] = None
     ''' Type of information to display * SCENES Scenes, Display scenes and their view layers, collections and objects. * VIEW_LAYER View Layer, Display collections and objects in the view layer. * SEQUENCE Sequence, Display sequence data-blocks. * LIBRARIES Blender File, Display data of current file and linked libraries. * DATA_API Data API, Display low level Blender data and its properties. * ORPHAN_DATA Orphan Data, Display data-blocks which are unused and/or will be lost when the file is reloaded.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    filter_id_type: typing.Union[int, str] = None
+    filter_id_type: typing.Union[str, int] = None
     ''' Data-block type to show
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    filter_state: typing.Union[int, str] = None
+    filter_state: typing.Union[str, int] = None
     ''' * ALL All, Show all objects in the view layer. * VISIBLE Visible, Show visible objects. * HIDDEN Hidden, Show hidden objects. * SELECTED Selected, Show selected objects. * ACTIVE Active, Show only the active object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     filter_text: str = None
@@ -67467,13 +67633,13 @@ class SpaceOutliner(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67484,9 +67650,9 @@ class SpaceOutliner(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67502,10 +67668,10 @@ class SpacePreferences(Space, bpy_struct):
     :type: str
     '''
 
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' Filter method * NAME Name, Filter based on the operator name. * KEY Key-Binding, Filter based on key bindings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -67533,13 +67699,13 @@ class SpacePreferences(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67550,9 +67716,9 @@ class SpacePreferences(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67562,10 +67728,10 @@ class SpaceProperties(Space, bpy_struct):
     ''' Properties space data
     '''
 
-    context: typing.Union[int, str] = None
+    context: typing.Union[str, int] = None
     ''' * TOOL Tool, Active Tool and Workspace settings. * SCENE Scene, Scene Properties. * RENDER Render, Render Properties. * OUTPUT Output, Output Properties. * VIEW_LAYER View Layer, View Layer Properties. * WORLD World, World Properties. * OBJECT Object, Object Properties. * CONSTRAINT Constraints, Object Constraint Properties. * MODIFIER Modifiers, Modifier Properties. * DATA Data, Object Data Properties. * BONE Bone, Bone Properties. * BONE_CONSTRAINT Bone Constraints, Bone Constraint Properties. * MATERIAL Material, Material Properties. * TEXTURE Texture, Texture Properties. * PARTICLES Particles, Particle Properties. * PHYSICS Physics, Physics Properties. * SHADERFX Effects, Visual Effects Properties.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pin_id: 'ID' = None
@@ -67605,13 +67771,13 @@ class SpaceProperties(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67622,9 +67788,9 @@ class SpaceProperties(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -67640,10 +67806,10 @@ class SpaceSequenceEditor(Space, bpy_struct):
     :type: int
     '''
 
-    display_mode: typing.Union[int, str] = None
+    display_mode: typing.Union[str, int] = None
     ''' View mode to use for displaying sequencer output
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     grease_pencil: 'GreasePencil' = None
@@ -67652,22 +67818,22 @@ class SpaceSequenceEditor(Space, bpy_struct):
     :type: 'GreasePencil'
     '''
 
-    overlay_type: typing.Union[int, str] = None
+    overlay_type: typing.Union[str, int] = None
     ''' Overlay draw type * RECTANGLE Rectangle, Show rectangle area overlay. * REFERENCE Reference, Show reference frame only. * CURRENT Current, Show current frame only.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    preview_channels: typing.Union[int, str] = None
+    preview_channels: typing.Union[str, int] = None
     ''' Channels of the preview to draw * COLOR_ALPHA Color and Alpha, Display image with RGB colors and alpha transparency. * COLOR Color, Display image with RGB colors.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    proxy_render_size: typing.Union[int, str] = None
+    proxy_render_size: typing.Union[str, int] = None
     ''' Display preview using full resolution or different proxy resolutions
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     show_annotation: bool = None
@@ -67772,16 +67938,16 @@ class SpaceSequenceEditor(Space, bpy_struct):
     :type: bool
     '''
 
-    view_type: typing.Union[int, str] = None
+    view_type: typing.Union[str, int] = None
     ''' Type of the Sequencer view (sequencer, preview or both)
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    waveform_display_type: typing.Union[int, str] = None
+    waveform_display_type: typing.Union[str, int] = None
     ''' How Waveforms are drawn * NO_WAVEFORMS Waveforms Off, No waveforms drawn for any sound strips. * ALL_WAVEFORMS Waveforms On, Waveforms drawn for all sound strips. * DEFAULT_WAVEFORMS Use Strip Option, Waveforms drawn according to strip setting.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -67809,13 +67975,13 @@ class SpaceSequenceEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -67826,9 +67992,9 @@ class SpaceSequenceEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68002,13 +68168,13 @@ class SpaceTextEditor(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68019,9 +68185,9 @@ class SpaceTextEditor(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68109,11 +68275,12 @@ class SpaceView3D(Space, bpy_struct):
     :type: 'RegionView3D'
     '''
 
-    region_quadviews: typing.Union[typing.List['RegionView3D'],
+    region_quadviews: typing.Union[typing.Dict[str, 'RegionView3D'], typing.
+                                   List['RegionView3D'],
                                    'bpy_prop_collection'] = None
     ''' 3D regions (the third one defines quad view settings, the fourth one is same as 'region_3d')
 
-    :type: typing.Union[typing.List['RegionView3D'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'RegionView3D'], typing.List['RegionView3D'], 'bpy_prop_collection']
     '''
 
     render_border_max_x: float = None
@@ -68452,10 +68619,10 @@ class SpaceView3D(Space, bpy_struct):
     :type: bool
     '''
 
-    stereo_3d_camera: typing.Union[int, str] = None
+    stereo_3d_camera: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     stereo_3d_convergence_plane_alpha: float = None
@@ -68464,10 +68631,10 @@ class SpaceView3D(Space, bpy_struct):
     :type: float
     '''
 
-    stereo_3d_eye: typing.Union[int, str] = None
+    stereo_3d_eye: typing.Union[str, int] = None
     ''' Current stereo eye being drawn
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     stereo_3d_volume_alpha: float = None
@@ -68482,10 +68649,10 @@ class SpaceView3D(Space, bpy_struct):
     :type: float
     '''
 
-    tracks_display_type: typing.Union[int, str] = None
+    tracks_display_type: typing.Union[str, int] = None
     ''' Viewport display style for tracks
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_local_camera: bool = None
@@ -68531,13 +68698,13 @@ class SpaceView3D(Space, bpy_struct):
                          draw_type: str) -> 'bpy.context.object':
         ''' Add a new draw handler to this space type. It will be called every time the specified region in the space type will be drawn. Note: All arguments are positional only for now.
 
-        :param callback: 
+        :param callback: A function that will be called when the region is drawn. It gets the specified arguments as input.
         :type callback: 
-        :param args: 
+        :param args: Arguments that will be passed to the callback.
         :type args: tuple
-        :param region_type: 
+        :param region_type: bpy.types.Region.type )
         :type region_type: str
-        :param draw_type: 
+        :param draw_type: Usually POST_PIXEL for 2D drawing and POST_VIEW for 3D drawing. In some cases PRE_VIEW can be used. BACKDROP can be used for backdrops in the node editor.
         :type draw_type: str
         :rtype: 'bpy.context.object'
         :return: Handler that can be removed later on.
@@ -68548,9 +68715,9 @@ class SpaceView3D(Space, bpy_struct):
                             region_type: str):
         ''' Remove a draw handler that was added previously.
 
-        :param handler: 
+        :param handler: The draw handler that should be removed.
         :type handler: 'bpy.context.object'
-        :param region_type: 
+        :param region_type: Region type the callback was added to.
         :type region_type: str
         '''
         pass
@@ -68584,16 +68751,16 @@ class BrushTextureSlot(TextureSlot, bpy_struct):
     :type: bool
     '''
 
-    map_mode: typing.Union[int, str] = None
+    map_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mask_map_mode: typing.Union[int, str] = None
+    mask_map_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     random_angle: float = None
@@ -68602,10 +68769,10 @@ class BrushTextureSlot(TextureSlot, bpy_struct):
     :type: float
     '''
 
-    tex_paint_map_mode: typing.Union[int, str] = None
+    tex_paint_map_mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_rake: bool = None
@@ -68658,34 +68825,34 @@ class LineStyleTextureSlot(TextureSlot, bpy_struct):
     :type: float
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' * FLAT Flat, Map X and Y coordinates directly. * CUBE Cube, Map using the normal vector. * TUBE Tube, Map with Z as central axis. * SPHERE Sphere, Map with Z as central axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_x: typing.Union[int, str] = None
+    mapping_x: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_y: typing.Union[int, str] = None
+    mapping_y: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_z: typing.Union[int, str] = None
+    mapping_z: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    texture_coords: typing.Union[int, str] = None
+    texture_coords: typing.Union[str, int] = None
     ''' Texture coordinates used to map the texture onto the background * WINDOW Window, Use screen coordinates as texture coordinates. * GLOBAL Global, Use global coordinates for the texture coordinates. * ALONG_STROKE Along stroke, Use stroke length for texture coordinates. * ORCO Generated, Use the original undeformed coordinates of the object.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_map_alpha: bool = None
@@ -68780,28 +68947,28 @@ class ParticleSettingsTextureSlot(TextureSlot, bpy_struct):
     :type: float
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' * FLAT Flat, Map X and Y coordinates directly. * CUBE Cube, Map using the normal vector. * TUBE Tube, Map with Z as central axis. * SPHERE Sphere, Map with Z as central axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_x: typing.Union[int, str] = None
+    mapping_x: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_y: typing.Union[int, str] = None
+    mapping_y: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mapping_z: typing.Union[int, str] = None
+    mapping_z: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     object: 'Object' = None
@@ -68822,10 +68989,10 @@ class ParticleSettingsTextureSlot(TextureSlot, bpy_struct):
     :type: float
     '''
 
-    texture_coords: typing.Union[int, str] = None
+    texture_coords: typing.Union[str, int] = None
     ''' Texture coordinates used to map the texture onto the background * GLOBAL Global, Use global coordinates for the texture coordinates. * OBJECT Object, Use linked object's coordinates for texture coordinates. * UV UV, Use UV coordinates for texture coordinates. * ORCO Generated, Use the original undeformed coordinates of the object. * STRAND Strand / Particle, Use normalized strand texture coordinate (1D) or particle age (X) and trail position (Y).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     time_factor: float = None
@@ -69816,16 +69983,16 @@ class TextCurve(Curve, ID, bpy_struct):
     :type: int
     '''
 
-    align_x: typing.Union[int, str] = None
+    align_x: typing.Union[str, int] = None
     ''' Text horizontal align from the object center * LEFT Left, Align text to the left. * CENTER Center, Center text. * RIGHT Right, Align text to the right. * JUSTIFY Justify, Align to the left and the right. * FLUSH Flush, Align to the left and the right, with equal character spacing.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    align_y: typing.Union[int, str] = None
+    align_y: typing.Union[str, int] = None
     ''' Text vertical align from the object center * TOP_BASELINE Top Base-Line, Align to top but use the base-line of the text. * TOP Top, Align text to the top. * CENTER Center, Align text to the middle. * BOTTOM Bottom, Align text to the bottom. * BOTTOM_BASELINE Bottom Base-Line, Align text to the bottom but use the base-line of the text.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     body: str = None
@@ -69834,11 +70001,12 @@ class TextCurve(Curve, ID, bpy_struct):
     :type: str
     '''
 
-    body_format: typing.Union[typing.List['TextCharacterFormat'],
+    body_format: typing.Union[typing.Dict[str, 'TextCharacterFormat'], typing.
+                              List['TextCharacterFormat'],
                               'bpy_prop_collection'] = None
     ''' Stores the style of each character
 
-    :type: typing.Union[typing.List['TextCharacterFormat'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'TextCharacterFormat'], typing.List['TextCharacterFormat'], 'bpy_prop_collection']
     '''
 
     edit_format: 'TextCharacterFormat' = None
@@ -69895,10 +70063,10 @@ class TextCurve(Curve, ID, bpy_struct):
     :type: float
     '''
 
-    overflow: typing.Union[int, str] = None
+    overflow: typing.Union[str, int] = None
     ''' Handle the text behavior when it doesn't fit in the text boxes * NONE Overflow, Let the text overflow outside the text boxes. * SCALE Scale to Fit, Scale down the text to fit inside the text boxes. * TRUNCATE Truncate, Truncate the text that would go outside the text boxes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     shear: float = None
@@ -69937,11 +70105,11 @@ class TextCurve(Curve, ID, bpy_struct):
     :type: float
     '''
 
-    text_boxes: typing.Union[typing.
+    text_boxes: typing.Union[typing.Dict[str, 'TextBox'], typing.
                              List['TextBox'], 'bpy_prop_collection'] = None
     ''' 
 
-    :type: typing.Union[typing.List['TextBox'], 'bpy_prop_collection']
+    :type: typing.Union[typing.Dict[str, 'TextBox'], typing.List['TextBox'], 'bpy_prop_collection']
     '''
 
     underline_height: float = None
@@ -70024,10 +70192,10 @@ class AreaLight(Light, ID, bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' Intensity Decay with distance
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     linear_attenuation: float = None
@@ -70090,10 +70258,10 @@ class AreaLight(Light, ID, bpy_struct):
     :type: float
     '''
 
-    shape: typing.Union[int, str] = None
+    shape: typing.Union[str, int] = None
     ''' Shape of the area Light
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     size: float = None
@@ -70182,10 +70350,10 @@ class PointLight(Light, ID, bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' Intensity Decay with distance
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     linear_attenuation: float = None
@@ -70322,10 +70490,10 @@ class SpotLight(Light, ID, bpy_struct):
     :type: 'CurveMapping'
     '''
 
-    falloff_type: typing.Union[int, str] = None
+    falloff_type: typing.Union[str, int] = None
     ''' Intensity Decay with distance
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     linear_attenuation: float = None
@@ -70578,22 +70746,22 @@ class CompositorNodeTree(NodeTree, ID, bpy_struct):
     ''' Node tree consisting of linked nodes used for compositing
     '''
 
-    chunk_size: typing.Union[int, str] = None
+    chunk_size: typing.Union[str, int] = None
     ''' Max size of a tile (smaller values gives better distribution of multiple threads, but more overhead) * 32 32x32, Chunksize of 32x32. * 64 64x64, Chunksize of 64x64. * 128 128x128, Chunksize of 128x128. * 256 256x256, Chunksize of 256x256. * 512 512x512, Chunksize of 512x512. * 1024 1024x1024, Chunksize of 1024x1024.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    edit_quality: typing.Union[int, str] = None
+    edit_quality: typing.Union[str, int] = None
     ''' Quality when editing * HIGH High, High quality. * MEDIUM Medium, Medium quality. * LOW Low, Low quality.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    render_quality: typing.Union[int, str] = None
+    render_quality: typing.Union[str, int] = None
     ''' Quality when rendering * HIGH High, High quality. * MEDIUM Medium, Medium quality. * LOW Low, Low quality.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_groupnode_buffer: bool = None
@@ -70646,11 +70814,11 @@ class ShaderNodeTree(NodeTree, ID, bpy_struct):
     ''' Node tree consisting of linked nodes used for materials (and other shading data-blocks)
     '''
 
-    def get_output_node(self, target: typing.Union[int, str]) -> 'ShaderNode':
+    def get_output_node(self, target: typing.Union[str, int]) -> 'ShaderNode':
         ''' Return active shader output node for the specified target
 
         :param target: Target * ALL All, Use shaders for all renderers and viewports, unless there exists a more specific output. * EEVEE Eevee, Use shaders for Eevee renderer. * CYCLES Cycles, Use shaders for Cycles renderer.
-        :type target: typing.Union[int, str]
+        :type target: typing.Union[str, int]
         :rtype: 'ShaderNode'
         :return: Node
         '''
@@ -70708,16 +70876,16 @@ class BlendTexture(Texture, ID, bpy_struct):
     ''' Procedural color blending texture
     '''
 
-    progression: typing.Union[int, str] = None
+    progression: typing.Union[str, int] = None
     ''' Style of the color blending * LINEAR Linear, Create a linear progression. * QUADRATIC Quadratic, Create a quadratic progression. * EASING Easing, Create a progression easing from one step to the next. * DIAGONAL Diagonal, Create a diagonal progression. * SPHERICAL Spherical, Create a spherical progression. * QUADRATIC_SPHERE Quadratic sphere, Create a quadratic progression in the shape of a sphere. * RADIAL Radial, Create a radial progression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    use_flip_axis: typing.Union[int, str] = None
+    use_flip_axis: typing.Union[str, int] = None
     ''' Flip the texture's X and Y axis * HORIZONTAL Horizontal, No flipping. * VERTICAL Vertical, Flip the texture's X and Y axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     users_material = None
@@ -70752,10 +70920,10 @@ class CloudsTexture(Texture, ID, bpy_struct):
     ''' Procedural noise texture
     '''
 
-    cloud_type: typing.Union[int, str] = None
+    cloud_type: typing.Union[str, int] = None
     ''' Determine whether Noise returns grayscale or RGB values
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     nabla: float = None
@@ -70764,10 +70932,10 @@ class CloudsTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_basis: typing.Union[int, str] = None
+    noise_basis: typing.Union[str, int] = None
     ''' Noise basis used for turbulence * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     noise_depth: int = None
@@ -70782,10 +70950,10 @@ class CloudsTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_type: typing.Union[int, str] = None
+    noise_type: typing.Union[str, int] = None
     ''' * SOFT_NOISE Soft, Generate soft noise (smooth transitions). * HARD_NOISE Hard, Generate hard noise (sharp transitions).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     users_material = None
@@ -70832,16 +71000,16 @@ class DistortedNoiseTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_basis: typing.Union[int, str] = None
+    noise_basis: typing.Union[str, int] = None
     ''' Noise basis used for turbulence * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    noise_distortion: typing.Union[int, str] = None
+    noise_distortion: typing.Union[str, int] = None
     ''' Noise basis for the distortion * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     noise_scale: float = None
@@ -70909,10 +71077,10 @@ class ImageTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    extension: typing.Union[int, str] = None
+    extension: typing.Union[str, int] = None
     ''' How the image is extrapolated past its original bounds * EXTEND Extend, Extend by repeating edge pixels of the image. * CLIP Clip, Clip to image size and set exterior pixels as transparent. * CLIP_CUBE Clip Cube, Clip to cubic-shaped area around the image and set exterior pixels as transparent. * REPEAT Repeat, Cause the image to repeat horizontally and vertically. * CHECKER Checker, Cause the image to repeat in checker board pattern.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     filter_eccentricity: int = None
@@ -70933,10 +71101,10 @@ class ImageTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' Texture filter to use for sampling image
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     image: 'Image' = None
@@ -71117,10 +71285,10 @@ class MarbleTexture(Texture, ID, bpy_struct):
     ''' Procedural noise texture
     '''
 
-    marble_type: typing.Union[int, str] = None
+    marble_type: typing.Union[str, int] = None
     ''' * SOFT Soft, Use soft marble. * SHARP Sharp, Use more clearly defined marble. * SHARPER Sharper, Use very clearly defined marble.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     nabla: float = None
@@ -71129,16 +71297,16 @@ class MarbleTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_basis: typing.Union[int, str] = None
+    noise_basis: typing.Union[str, int] = None
     ''' Noise basis used for turbulence * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    noise_basis_2: typing.Union[int, str] = None
+    noise_basis_2: typing.Union[str, int] = None
     ''' * SIN Sin, Use a sine wave to produce bands. * SAW Saw, Use a saw wave to produce bands. * TRI Tri, Use a triangle wave to produce bands.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     noise_depth: int = None
@@ -71153,10 +71321,10 @@ class MarbleTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_type: typing.Union[int, str] = None
+    noise_type: typing.Union[str, int] = None
     ''' * SOFT_NOISE Soft, Generate soft noise (smooth transitions). * HARD_NOISE Hard, Generate hard noise (sharp transitions).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     turbulence: float = None
@@ -71215,10 +71383,10 @@ class MusgraveTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    musgrave_type: typing.Union[int, str] = None
+    musgrave_type: typing.Union[str, int] = None
     ''' Fractal noise algorithm * MULTIFRACTAL Multifractal, Use Perlin noise as a basis. * RIDGED_MULTIFRACTAL Ridged Multifractal, Use Perlin noise with inflection as a basis. * HYBRID_MULTIFRACTAL Hybrid Multifractal, Use Perlin noise as a basis, with extended controls. * FBM fBM, Fractal Brownian Motion, use Brownian noise as a basis. * HETERO_TERRAIN Hetero Terrain, Similar to multifractal.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     nabla: float = None
@@ -71227,10 +71395,10 @@ class MusgraveTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_basis: typing.Union[int, str] = None
+    noise_basis: typing.Union[str, int] = None
     ''' Noise basis used for turbulence * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     noise_intensity: float = None
@@ -71321,10 +71489,10 @@ class StucciTexture(Texture, ID, bpy_struct):
     ''' Procedural noise texture
     '''
 
-    noise_basis: typing.Union[int, str] = None
+    noise_basis: typing.Union[str, int] = None
     ''' Noise basis used for turbulence * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     noise_scale: float = None
@@ -71333,16 +71501,16 @@ class StucciTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_type: typing.Union[int, str] = None
+    noise_type: typing.Union[str, int] = None
     ''' * SOFT_NOISE Soft, Generate soft noise (smooth transitions). * HARD_NOISE Hard, Generate hard noise (sharp transitions).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    stucci_type: typing.Union[int, str] = None
+    stucci_type: typing.Union[str, int] = None
     ''' * PLASTIC Plastic, Use standard stucci. * WALL_IN Wall in, Create Dimples. * WALL_OUT Wall out, Create Ridges.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     turbulence: float = None
@@ -71383,16 +71551,16 @@ class VoronoiTexture(Texture, ID, bpy_struct):
     ''' Procedural voronoi texture
     '''
 
-    color_mode: typing.Union[int, str] = None
+    color_mode: typing.Union[str, int] = None
     ''' * INTENSITY Intensity, Only calculate intensity. * POSITION Position, Color cells by position. * POSITION_OUTLINE Position and Outline, Use position plus an outline based on F2-F1. * POSITION_OUTLINE_INTENSITY Position, Outline, and Intensity, Multiply position and outline by intensity.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    distance_metric: typing.Union[int, str] = None
+    distance_metric: typing.Union[str, int] = None
     ''' Algorithm used to calculate distance of sample points to feature points * DISTANCE Actual Distance, sqrt(x\*x+y\*y+z\*z). * DISTANCE_SQUARED Distance Squared, (x\*x+y\*y+z\*z). * MANHATTAN Manhattan, The length of the distance in axial directions. * CHEBYCHEV Chebychev, The length of the longest Axial journey. * MINKOVSKY_HALF Minkowski 1/2, Set Minkowski variable to 0.5. * MINKOVSKY_FOUR Minkowski 4, Set Minkowski variable to 4. * MINKOVSKY Minkowski, Use the Minkowski function to calculate distance (exponent value determines the shape of the boundaries).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     minkovsky_exponent: float = None
@@ -71481,16 +71649,16 @@ class WoodTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_basis: typing.Union[int, str] = None
+    noise_basis: typing.Union[str, int] = None
     ''' Noise basis used for turbulence * BLENDER_ORIGINAL Blender Original, Noise algorithm - Blender original: Smooth interpolated noise. * ORIGINAL_PERLIN Original Perlin, Noise algorithm - Original Perlin: Smooth interpolated noise. * IMPROVED_PERLIN Improved Perlin, Noise algorithm - Improved Perlin: Smooth interpolated noise. * VORONOI_F1 Voronoi F1, Noise algorithm - Voronoi F1: Returns distance to the closest feature point. * VORONOI_F2 Voronoi F2, Noise algorithm - Voronoi F2: Returns distance to the 2nd closest feature point. * VORONOI_F3 Voronoi F3, Noise algorithm - Voronoi F3: Returns distance to the 3rd closest feature point. * VORONOI_F4 Voronoi F4, Noise algorithm - Voronoi F4: Returns distance to the 4th closest feature point. * VORONOI_F2_F1 Voronoi F2-F1, Noise algorithm - Voronoi F1-F2. * VORONOI_CRACKLE Voronoi Crackle, Noise algorithm - Voronoi Crackle: Voronoi tessellation with sharp edges. * CELL_NOISE Cell Noise, Noise algorithm - Cell Noise: Square cell tessellation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    noise_basis_2: typing.Union[int, str] = None
+    noise_basis_2: typing.Union[str, int] = None
     ''' * SIN Sine, Use a sine wave to produce bands. * SAW Saw, Use a saw wave to produce bands. * TRI Tri, Use a triangle wave to produce bands.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     noise_scale: float = None
@@ -71499,10 +71667,10 @@ class WoodTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    noise_type: typing.Union[int, str] = None
+    noise_type: typing.Union[str, int] = None
     ''' * SOFT_NOISE Soft, Generate soft noise (smooth transitions). * HARD_NOISE Hard, Generate hard noise (sharp transitions).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     turbulence: float = None
@@ -71511,10 +71679,10 @@ class WoodTexture(Texture, ID, bpy_struct):
     :type: float
     '''
 
-    wood_type: typing.Union[int, str] = None
+    wood_type: typing.Union[str, int] = None
     ''' * BANDS Bands, Use standard wood texture in bands. * RINGS Rings, Use wood texture in rings. * BANDNOISE Band Noise, Add noise to standard wood. * RINGNOISE Ring Noise, Add noise to rings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     users_material = None
@@ -71550,10 +71718,10 @@ class LineStyleAlphaModifier_AlongStroke(LineStyleAlphaModifier,
     ''' Change alpha transparency along stroke
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -71580,10 +71748,10 @@ class LineStyleAlphaModifier_AlongStroke(LineStyleAlphaModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -71592,10 +71760,10 @@ class LineStyleAlphaModifier_AlongStroke(LineStyleAlphaModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -71643,10 +71811,10 @@ class LineStyleAlphaModifier_CreaseAngle(LineStyleAlphaModifier,
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -71673,10 +71841,10 @@ class LineStyleAlphaModifier_CreaseAngle(LineStyleAlphaModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -71685,10 +71853,10 @@ class LineStyleAlphaModifier_CreaseAngle(LineStyleAlphaModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -71724,10 +71892,10 @@ class LineStyleAlphaModifier_Curvature_3D(LineStyleAlphaModifier,
     ''' Alpha transparency based on the radial curvature of 3D mesh surfaces
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curvature_max: float = None
@@ -71766,10 +71934,10 @@ class LineStyleAlphaModifier_Curvature_3D(LineStyleAlphaModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -71778,10 +71946,10 @@ class LineStyleAlphaModifier_Curvature_3D(LineStyleAlphaModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -71817,10 +71985,10 @@ class LineStyleAlphaModifier_DistanceFromCamera(LineStyleAlphaModifier,
     ''' Change alpha transparency based on the distance from the camera
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -71847,10 +72015,10 @@ class LineStyleAlphaModifier_DistanceFromCamera(LineStyleAlphaModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -71871,10 +72039,10 @@ class LineStyleAlphaModifier_DistanceFromCamera(LineStyleAlphaModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -71910,10 +72078,10 @@ class LineStyleAlphaModifier_DistanceFromObject(LineStyleAlphaModifier,
     ''' Change alpha transparency based on the distance from an object
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -71940,10 +72108,10 @@ class LineStyleAlphaModifier_DistanceFromObject(LineStyleAlphaModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -71970,10 +72138,10 @@ class LineStyleAlphaModifier_DistanceFromObject(LineStyleAlphaModifier,
     :type: 'Object'
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72009,10 +72177,10 @@ class LineStyleAlphaModifier_Material(LineStyleAlphaModifier,
     ''' Change alpha transparency based on a material attribute
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -72039,16 +72207,16 @@ class LineStyleAlphaModifier_Material(LineStyleAlphaModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    material_attribute: typing.Union[int, str] = None
+    material_attribute: typing.Union[str, int] = None
     ''' Specify which material attribute is used
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -72057,10 +72225,10 @@ class LineStyleAlphaModifier_Material(LineStyleAlphaModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72102,10 +72270,10 @@ class LineStyleAlphaModifier_Noise(LineStyleAlphaModifier, LineStyleModifier,
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -72132,10 +72300,10 @@ class LineStyleAlphaModifier_Noise(LineStyleAlphaModifier, LineStyleModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -72156,10 +72324,10 @@ class LineStyleAlphaModifier_Noise(LineStyleAlphaModifier, LineStyleModifier,
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72195,10 +72363,10 @@ class LineStyleAlphaModifier_Tangent(LineStyleAlphaModifier, LineStyleModifier,
     ''' Alpha transparency based on the direction of the stroke
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -72225,10 +72393,10 @@ class LineStyleAlphaModifier_Tangent(LineStyleAlphaModifier, LineStyleModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -72237,10 +72405,10 @@ class LineStyleAlphaModifier_Tangent(LineStyleAlphaModifier, LineStyleModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72276,10 +72444,10 @@ class LineStyleColorModifier_AlongStroke(LineStyleColorModifier,
     ''' Change line color along stroke
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72306,10 +72474,10 @@ class LineStyleColorModifier_AlongStroke(LineStyleColorModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72357,10 +72525,10 @@ class LineStyleColorModifier_CreaseAngle(LineStyleColorModifier,
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72387,10 +72555,10 @@ class LineStyleColorModifier_CreaseAngle(LineStyleColorModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72426,10 +72594,10 @@ class LineStyleColorModifier_Curvature_3D(LineStyleColorModifier,
     ''' Change line color based on the radial curvature of 3D mesh surfaces
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72468,10 +72636,10 @@ class LineStyleColorModifier_Curvature_3D(LineStyleColorModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72507,10 +72675,10 @@ class LineStyleColorModifier_DistanceFromCamera(LineStyleColorModifier,
     ''' Change line color based on the distance from the camera
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72549,10 +72717,10 @@ class LineStyleColorModifier_DistanceFromCamera(LineStyleColorModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72588,10 +72756,10 @@ class LineStyleColorModifier_DistanceFromObject(LineStyleColorModifier,
     ''' Change line color based on the distance from an object
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72636,10 +72804,10 @@ class LineStyleColorModifier_DistanceFromObject(LineStyleColorModifier,
     :type: 'Object'
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72675,10 +72843,10 @@ class LineStyleColorModifier_Material(LineStyleColorModifier,
     ''' Change line color based on a material attribute
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72699,10 +72867,10 @@ class LineStyleColorModifier_Material(LineStyleColorModifier,
     :type: float
     '''
 
-    material_attribute: typing.Union[int, str] = None
+    material_attribute: typing.Union[str, int] = None
     ''' Specify which material attribute is used
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -72711,10 +72879,10 @@ class LineStyleColorModifier_Material(LineStyleColorModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72762,10 +72930,10 @@ class LineStyleColorModifier_Noise(LineStyleColorModifier, LineStyleModifier,
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72804,10 +72972,10 @@ class LineStyleColorModifier_Noise(LineStyleColorModifier, LineStyleModifier,
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72843,10 +73011,10 @@ class LineStyleColorModifier_Tangent(LineStyleColorModifier, LineStyleModifier,
     ''' Change line color based on the direction of a stroke
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_ramp: 'ColorRamp' = None
@@ -72873,10 +73041,10 @@ class LineStyleColorModifier_Tangent(LineStyleColorModifier, LineStyleModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -72936,10 +73104,10 @@ class LineStyleGeometryModifier_2DOffset(LineStyleGeometryModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73005,10 +73173,10 @@ class LineStyleGeometryModifier_2DTransform(LineStyleGeometryModifier,
     :type: str
     '''
 
-    pivot: typing.Union[int, str] = None
+    pivot: typing.Union[str, int] = None
     ''' Pivot of scaling and rotation operations
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     pivot_u: float = None
@@ -73041,10 +73209,10 @@ class LineStyleGeometryModifier_2DTransform(LineStyleGeometryModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73098,10 +73266,10 @@ class LineStyleGeometryModifier_BackboneStretcher(
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73155,10 +73323,10 @@ class LineStyleGeometryModifier_BezierCurve(LineStyleGeometryModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73236,16 +73404,16 @@ class LineStyleGeometryModifier_Blueprint(LineStyleGeometryModifier,
     :type: int
     '''
 
-    shape: typing.Union[int, str] = None
+    shape: typing.Union[str, int] = None
     ''' Select the shape of blueprint contour strokes * CIRCLES Circles, Draw a blueprint using circular contour strokes. * ELLIPSES Ellipses, Draw a blueprint using elliptic contour strokes. * SQUARES Squares, Draw a blueprint using square contour strokes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73299,10 +73467,10 @@ class LineStyleGeometryModifier_GuidingLines(LineStyleGeometryModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73380,10 +73548,10 @@ class LineStyleGeometryModifier_PerlinNoise1D(LineStyleGeometryModifier,
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73461,10 +73629,10 @@ class LineStyleGeometryModifier_PerlinNoise2D(LineStyleGeometryModifier,
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73518,10 +73686,10 @@ class LineStyleGeometryModifier_Polygonalization(
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73575,10 +73743,10 @@ class LineStyleGeometryModifier_Sampling(LineStyleGeometryModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73632,10 +73800,10 @@ class LineStyleGeometryModifier_Simplification(LineStyleGeometryModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73695,10 +73863,10 @@ class LineStyleGeometryModifier_SinusDisplacement(
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73776,10 +73944,10 @@ class LineStyleGeometryModifier_SpatialNoise(LineStyleGeometryModifier,
     :type: bool
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73839,10 +74007,10 @@ class LineStyleGeometryModifier_TipRemover(LineStyleGeometryModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73878,10 +74046,10 @@ class LineStyleThicknessModifier_AlongStroke(LineStyleThicknessModifier,
     ''' Change line thickness along stroke
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -73908,10 +74076,10 @@ class LineStyleThicknessModifier_AlongStroke(LineStyleThicknessModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -73920,10 +74088,10 @@ class LineStyleThicknessModifier_AlongStroke(LineStyleThicknessModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -73971,10 +74139,10 @@ class LineStyleThicknessModifier_Calligraphy(LineStyleThicknessModifier,
     ''' Change line thickness so that stroke looks like made with a calligraphic pen
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     expanded: bool = None
@@ -74013,10 +74181,10 @@ class LineStyleThicknessModifier_Calligraphy(LineStyleThicknessModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74064,10 +74232,10 @@ class LineStyleThicknessModifier_CreaseAngle(LineStyleThicknessModifier,
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -74094,10 +74262,10 @@ class LineStyleThicknessModifier_CreaseAngle(LineStyleThicknessModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -74118,10 +74286,10 @@ class LineStyleThicknessModifier_CreaseAngle(LineStyleThicknessModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74157,10 +74325,10 @@ class LineStyleThicknessModifier_Curvature_3D(LineStyleThicknessModifier,
     ''' Line thickness based on the radial curvature of 3D mesh surfaces
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curvature_max: float = None
@@ -74199,10 +74367,10 @@ class LineStyleThicknessModifier_Curvature_3D(LineStyleThicknessModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -74223,10 +74391,10 @@ class LineStyleThicknessModifier_Curvature_3D(LineStyleThicknessModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74262,10 +74430,10 @@ class LineStyleThicknessModifier_DistanceFromCamera(
     ''' Change line thickness based on the distance from the camera
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -74292,10 +74460,10 @@ class LineStyleThicknessModifier_DistanceFromCamera(
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -74316,10 +74484,10 @@ class LineStyleThicknessModifier_DistanceFromCamera(
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74367,10 +74535,10 @@ class LineStyleThicknessModifier_DistanceFromObject(
     ''' Change line thickness based on the distance from an object
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -74397,10 +74565,10 @@ class LineStyleThicknessModifier_DistanceFromObject(
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -74427,10 +74595,10 @@ class LineStyleThicknessModifier_DistanceFromObject(
     :type: 'Object'
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74478,10 +74646,10 @@ class LineStyleThicknessModifier_Material(LineStyleThicknessModifier,
     ''' Change line thickness based on a material attribute
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -74508,16 +74676,16 @@ class LineStyleThicknessModifier_Material(LineStyleThicknessModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    material_attribute: typing.Union[int, str] = None
+    material_attribute: typing.Union[str, int] = None
     ''' Specify which material attribute is used
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -74526,10 +74694,10 @@ class LineStyleThicknessModifier_Material(LineStyleThicknessModifier,
     :type: str
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74583,10 +74751,10 @@ class LineStyleThicknessModifier_Noise(LineStyleThicknessModifier,
     :type: float
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     expanded: bool = None
@@ -74619,10 +74787,10 @@ class LineStyleThicknessModifier_Noise(LineStyleThicknessModifier,
     :type: int
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -74664,10 +74832,10 @@ class LineStyleThicknessModifier_Tangent(LineStyleThicknessModifier,
     ''' Thickness based on the direction of the stroke
     '''
 
-    blend: typing.Union[int, str] = None
+    blend: typing.Union[str, int] = None
     ''' Specify how the modifier value is blended into the base value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     curve: 'CurveMapping' = None
@@ -74694,10 +74862,10 @@ class LineStyleThicknessModifier_Tangent(LineStyleThicknessModifier,
     :type: bool
     '''
 
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Select the mapping type * LINEAR Linear, Use linear mapping. * CURVE Curve, Use curve mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     name: str = None
@@ -74718,10 +74886,10 @@ class LineStyleThicknessModifier_Tangent(LineStyleThicknessModifier,
     :type: float
     '''
 
-    type: typing.Union[int, str] = None
+    type: typing.Union[str, int] = None
     ''' Type of the modifier
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use: bool = None
@@ -76983,10 +77151,10 @@ class ColorMixSequence(EffectSequence, Sequence, bpy_struct):
     ''' Color Mix Sequence
     '''
 
-    blend_effect: typing.Union[int, str] = None
+    blend_effect: typing.Union[str, int] = None
     ''' Method for controlling how the strip combines with other strips
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     factor: float = None
@@ -77527,16 +77695,16 @@ class TextSequence(EffectSequence, Sequence, bpy_struct):
     ''' Sequence strip creating text
     '''
 
-    align_x: typing.Union[int, str] = None
+    align_x: typing.Union[str, int] = None
     ''' Align the text along the X axis, relative to the text bounds
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    align_y: typing.Union[int, str] = None
+    align_y: typing.Union[str, int] = None
     ''' Align the text along the Y axis, relative to the text bounds
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color: typing.List[float] = None
@@ -77631,10 +77799,10 @@ class TransformSequence(EffectSequence, Sequence, bpy_struct):
     :type: int
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Method to determine how missing pixels are created * NONE None, No interpolation. * BILINEAR Bilinear, Bilinear interpolation. * BICUBIC Bicubic, Bicubic interpolation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation_start: float = None
@@ -77667,10 +77835,10 @@ class TransformSequence(EffectSequence, Sequence, bpy_struct):
     :type: float
     '''
 
-    translation_unit: typing.Union[int, str] = None
+    translation_unit: typing.Union[str, int] = None
     ''' Unit of measure to translate the input
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_uniform_scale: bool = None
@@ -77717,10 +77885,10 @@ class WipeSequence(EffectSequence, Sequence, bpy_struct):
     :type: float
     '''
 
-    direction: typing.Union[int, str] = None
+    direction: typing.Union[str, int] = None
     ''' Wipe direction
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     input_1: 'Sequence' = None
@@ -77741,10 +77909,10 @@ class WipeSequence(EffectSequence, Sequence, bpy_struct):
     :type: int
     '''
 
-    transition_type: typing.Union[int, str] = None
+    transition_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -77921,10 +78089,10 @@ class CompositorNodeBilateralblur(CompositorNode, NodeInternal, Node,
 
 
 class CompositorNodeBlur(CompositorNode, NodeInternal, Node, bpy_struct):
-    aspect_correction: typing.Union[int, str] = None
+    aspect_correction: typing.Union[str, int] = None
     ''' Type of aspect correction to use
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     factor: float = None
@@ -77945,10 +78113,10 @@ class CompositorNodeBlur(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     size_x: int = None
@@ -78227,10 +78395,10 @@ class CompositorNodeBoxMask(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    mask_type: typing.Union[int, str] = None
+    mask_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation: float = None
@@ -78385,16 +78553,16 @@ class CompositorNodeBrightContrast(CompositorNode, NodeInternal, Node,
 
 class CompositorNodeChannelMatte(CompositorNode, NodeInternal, Node,
                                  bpy_struct):
-    color_space: typing.Union[int, str] = None
+    color_space: typing.Union[str, int] = None
     ''' * RGB RGB, RGB Color Space. * HSV HSV, HSV Color Space. * YUV YUV, YUV Color Space. * YCC YCbCr, YCbCr Color Space.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    limit_channel: typing.Union[int, str] = None
+    limit_channel: typing.Union[str, int] = None
     ''' Limit by this channel's value
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     limit_max: float = None
@@ -78403,10 +78571,10 @@ class CompositorNodeChannelMatte(CompositorNode, NodeInternal, Node,
     :type: float
     '''
 
-    limit_method: typing.Union[int, str] = None
+    limit_method: typing.Union[str, int] = None
     ''' Algorithm to use to limit channel * SINGLE Single, Limit by single channel. * MAX Max, Limit by max of other channels .
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     limit_min: float = None
@@ -78415,10 +78583,10 @@ class CompositorNodeChannelMatte(CompositorNode, NodeInternal, Node,
     :type: float
     '''
 
-    matte_channel: typing.Union[int, str] = None
+    matte_channel: typing.Union[str, int] = None
     ''' Channel used to determine matte
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -78573,10 +78741,10 @@ class CompositorNodeChromaMatte(CompositorNode, NodeInternal, Node,
 
 class CompositorNodeColorBalance(CompositorNode, NodeInternal, Node,
                                  bpy_struct):
-    correction_method: typing.Union[int, str] = None
+    correction_method: typing.Union[str, int] = None
     ''' * LIFT_GAMMA_GAIN Lift/Gamma/Gain. * OFFSET_POWER_SLOPE Offset/Power/Slope (ASC-CDL), ASC-CDL standard color correction.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     gain: typing.List[float] = None
@@ -78970,22 +79138,22 @@ class CompositorNodeColorMatte(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeColorSpill(CompositorNode, NodeInternal, Node, bpy_struct):
-    channel: typing.Union[int, str] = None
+    channel: typing.Union[str, int] = None
     ''' * R R, Red Spill Suppression. * G G, Green Spill Suppression. * B B, Blue Spill Suppression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    limit_channel: typing.Union[int, str] = None
+    limit_channel: typing.Union[str, int] = None
     ''' * R R, Limit by Red. * G G, Limit by Green. * B B, Limit by Blue.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    limit_method: typing.Union[int, str] = None
+    limit_method: typing.Union[str, int] = None
     ''' * SIMPLE Simple, Simple Limit Algorithm. * AVERAGE Average, Average Limit Algorithm.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     ratio: float = None
@@ -79198,10 +79366,10 @@ class CompositorNodeCombRGBA(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeCombYCCA(CompositorNode, NodeInternal, Node, bpy_struct):
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -79946,10 +80114,10 @@ class CompositorNodeDefocus(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    bokeh: typing.Union[int, str] = None
+    bokeh: typing.Union[str, int] = None
     ''' * OCTAGON Octagonal, 8 sides. * HEPTAGON Heptagonal, 7 sides. * HEXAGON Hexagonal, 6 sides. * PENTAGON Pentagonal, 5 sides. * SQUARE Square, 4 sides. * TRIANGLE Triangular, 3 sides. * CIRCLE Circular.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     f_stop: float = None
@@ -80277,16 +80445,16 @@ class CompositorNodeDilateErode(CompositorNode, NodeInternal, Node,
     :type: float
     '''
 
-    falloff: typing.Union[int, str] = None
+    falloff: typing.Union[str, int] = None
     ''' Falloff type the feather * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Growing/shrinking mode
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -80410,10 +80578,10 @@ class CompositorNodeDisplace(CompositorNode, NodeInternal, Node, bpy_struct):
 
 class CompositorNodeDistanceMatte(CompositorNode, NodeInternal, Node,
                                   bpy_struct):
-    channel: typing.Union[int, str] = None
+    channel: typing.Union[str, int] = None
     ''' * RGB RGB, RGB color space. * YCC YCC, YCbCr Suppression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     falloff: float = None
@@ -80489,16 +80657,16 @@ class CompositorNodeDistanceMatte(CompositorNode, NodeInternal, Node,
 
 class CompositorNodeDoubleEdgeMask(CompositorNode, NodeInternal, Node,
                                    bpy_struct):
-    edge_mode: typing.Union[int, str] = None
+    edge_mode: typing.Union[str, int] = None
     ''' * BLEED_OUT Bleed Out, Allow mask pixels to bleed along edges. * KEEP_IN Keep In, Restrict mask pixels from touching edges.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    inner_mode: typing.Union[int, str] = None
+    inner_mode: typing.Union[str, int] = None
     ''' * ALL All, All pixels on inner mask edge are considered during mask calculation. * ADJACENT_ONLY Adjacent Only, Only inner mask pixels adjacent to outer mask pixels are considered during mask calculation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -80568,10 +80736,10 @@ class CompositorNodeEllipseMask(CompositorNode, NodeInternal, Node,
     :type: float
     '''
 
-    mask_type: typing.Union[int, str] = None
+    mask_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     rotation: float = None
@@ -80658,10 +80826,10 @@ class CompositorNodeEllipseMask(CompositorNode, NodeInternal, Node,
 
 
 class CompositorNodeFilter(CompositorNode, NodeInternal, Node, bpy_struct):
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -80724,10 +80892,10 @@ class CompositorNodeFilter(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeFlip(CompositorNode, NodeInternal, Node, bpy_struct):
-    axis: typing.Union[int, str] = None
+    axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -80868,10 +81036,10 @@ class CompositorNodeGlare(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    glare_type: typing.Union[int, str] = None
+    glare_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     iterations: int = None
@@ -80886,10 +81054,10 @@ class CompositorNodeGlare(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    quality: typing.Union[int, str] = None
+    quality: typing.Union[str, int] = None
     ''' If not set to high quality, the effect will be applied to a low-res copy of the source image
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     size: int = None
@@ -81282,10 +81450,10 @@ class CompositorNodeImage(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: 'Image'
     '''
 
-    layer: typing.Union[int, str] = None
+    layer: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_auto_refresh: bool = None
@@ -81306,10 +81474,10 @@ class CompositorNodeImage(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    view: typing.Union[int, str] = None
+    view: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -81570,10 +81738,10 @@ class CompositorNodeKeying(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: int
     '''
 
-    feather_falloff: typing.Union[int, str] = None
+    feather_falloff: typing.Union[str, int] = None
     ''' Falloff type the feather * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     screen_balance: float = None
@@ -81793,10 +81961,10 @@ class CompositorNodeLensdist(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeLevels(CompositorNode, NodeInternal, Node, bpy_struct):
-    channel: typing.Union[int, str] = None
+    channel: typing.Union[str, int] = None
     ''' * COMBINED_RGB C, Combined RGB. * RED R, Red Channel. * GREEN G, Green Channel. * BLUE B, Blue Channel. * LUMINANCE L, Luminance Channel.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -82177,10 +82345,10 @@ class CompositorNodeMask(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    size_source: typing.Union[int, str] = None
+    size_source: typing.Union[str, int] = None
     ''' Where to get the mask size from for aspect/size information * SCENE Scene Size. * FIXED Fixed, Use pixel size for the buffer. * FIXED_SCENE Fixed/Scene, Pixel size scaled by scene percentage.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     size_x: int = None
@@ -82267,10 +82435,10 @@ class CompositorNodeMask(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeMath(CompositorNode, NodeInternal, Node, bpy_struct):
-    operation: typing.Union[int, str] = None
+    operation: typing.Union[str, int] = None
     ''' * ADD Add, A + B. * SUBTRACT Subtract, A - B. * MULTIPLY Multiply, A \* B. * DIVIDE Divide, A / B. * MULTIPLY_ADD Multiply Add, A \* B + C. * POWER Power, A power B. * LOGARITHM Logarithm, Logarithm A base B. * SQRT Square Root, Square root of A. * INVERSE_SQRT Inverse Square Root, 1 / Square root of A. * ABSOLUTE Absolute, Magnitude of A. * EXPONENT Exponent, exp(A). * MINIMUM Minimum, The minimum from A and B. * MAXIMUM Maximum, The maximum from A and B. * LESS_THAN Less Than, 1 if A < B else 0. * GREATER_THAN Greater Than, 1 if A > B else 0. * SIGN Sign, Returns the sign of A. * COMPARE Compare, 1 if (A == B) within tolerance C else 0. * SMOOTH_MIN Smooth Minimum, The minimum from A and B with smoothing C. * SMOOTH_MAX Smooth Maximum, The maximum from A and B with smoothing C. * ROUND Round, Round A to the nearest integer. Round upward if the fraction part is 0.5. * FLOOR Floor, The largest integer smaller than or equal A. * CEIL Ceil, The smallest integer greater than or equal A. * TRUNC Truncate, The integer part of A, removing fractional digits. * FRACT Fraction, The fraction part of A. * MODULO Modulo, Modulo using fmod(A,B). * WRAP Wrap, Wrap value to range, wrap(A,B). * SNAP Snap, Snap to increment, snap(A,B). * PINGPONG Ping-pong, Wraps a value and reverses every other cycle (A,B). * SINE Sine, sin(A). * COSINE Cosine, cos(A). * TANGENT Tangent, tan(A). * ARCSINE Arcsine, arcsin(A). * ARCCOSINE Arccosine, arccos(A). * ARCTANGENT Arctangent, arctan(A). * ARCTAN2 Arctan2, The signed angle arctan(A / B). * SINH Hyperbolic Sine, sinh(A). * COSH Hyperbolic Cosine, cosh(A). * TANH Hyperbolic Tangent, tanh(A). * RADIANS To Radians, Convert from degrees to radians. * DEGREES To Degrees, Convert from radians to degrees.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_clamp: bool = None
@@ -82339,10 +82507,10 @@ class CompositorNodeMath(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeMixRGB(CompositorNode, NodeInternal, Node, bpy_struct):
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_alpha: bool = None
@@ -82490,10 +82658,10 @@ class CompositorNodeMovieDistortion(CompositorNode, NodeInternal, Node,
     :type: 'MovieClip'
     '''
 
-    distortion_type: typing.Union[int, str] = None
+    distortion_type: typing.Union[str, int] = None
     ''' Distortion to use to filter image
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -82688,12 +82856,13 @@ class CompositorNodeOutputFile(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: str
     '''
 
-    file_slots: typing.Union[typing.List['NodeOutputFileSlotFile'],
-                             'bpy_prop_collection',
-                             'CompositorNodeOutputFileFileSlots'] = None
+    file_slots: typing.Union[
+        typing.Dict[str, 'NodeOutputFileSlotFile'], typing.
+        List['NodeOutputFileSlotFile'], 'bpy_prop_collection',
+        'CompositorNodeOutputFileFileSlots'] = None
     ''' 
 
-    :type: typing.Union[typing.List['NodeOutputFileSlotFile'], 'bpy_prop_collection', 'CompositorNodeOutputFileFileSlots']
+    :type: typing.Union[typing.Dict[str, 'NodeOutputFileSlotFile'], typing.List['NodeOutputFileSlotFile'], 'bpy_prop_collection', 'CompositorNodeOutputFileFileSlots']
     '''
 
     format: 'ImageFormatSettings' = None
@@ -82702,12 +82871,13 @@ class CompositorNodeOutputFile(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: 'ImageFormatSettings'
     '''
 
-    layer_slots: typing.Union[typing.List['NodeOutputFileSlotLayer'],
-                              'bpy_prop_collection',
-                              'CompositorNodeOutputFileLayerSlots'] = None
+    layer_slots: typing.Union[
+        typing.Dict[str, 'NodeOutputFileSlotLayer'], typing.
+        List['NodeOutputFileSlotLayer'], 'bpy_prop_collection',
+        'CompositorNodeOutputFileLayerSlots'] = None
     ''' 
 
-    :type: typing.Union[typing.List['NodeOutputFileSlotLayer'], 'bpy_prop_collection', 'CompositorNodeOutputFileLayerSlots']
+    :type: typing.Union[typing.Dict[str, 'NodeOutputFileSlotLayer'], typing.List['NodeOutputFileSlotLayer'], 'bpy_prop_collection', 'CompositorNodeOutputFileLayerSlots']
     '''
 
     @classmethod
@@ -82927,10 +83097,10 @@ class CompositorNodePlaneTrackDeform(CompositorNode, NodeInternal, Node,
 
 
 class CompositorNodePremulKey(CompositorNode, NodeInternal, Node, bpy_struct):
-    mapping: typing.Union[int, str] = None
+    mapping: typing.Union[str, int] = None
     ''' Conversion between premultiplied alpha and key alpha
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -83113,10 +83283,10 @@ class CompositorNodeRGBToBW(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeRLayers(CompositorNode, NodeInternal, Node, bpy_struct):
-    layer: typing.Union[int, str] = None
+    layer: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     scene: 'Scene' = None
@@ -83185,10 +83355,10 @@ class CompositorNodeRLayers(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeRotate(CompositorNode, NodeInternal, Node, bpy_struct):
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' Method to use to filter rotation
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -83251,10 +83421,10 @@ class CompositorNodeRotate(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeScale(CompositorNode, NodeInternal, Node, bpy_struct):
-    frame_method: typing.Union[int, str] = None
+    frame_method: typing.Union[str, int] = None
     ''' How the image fits in the camera frame
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     offset_x: float = None
@@ -83269,10 +83439,10 @@ class CompositorNodeScale(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Coordinate space to scale relative to
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -83455,10 +83625,10 @@ class CompositorNodeSepRGBA(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeSepYCCA(CompositorNode, NodeInternal, Node, bpy_struct):
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -83642,10 +83812,10 @@ class CompositorNodeSetAlpha(CompositorNode, NodeInternal, Node, bpy_struct):
 
 class CompositorNodeSplitViewer(CompositorNode, NodeInternal, Node,
                                 bpy_struct):
-    axis: typing.Union[int, str] = None
+    axis: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     factor: int = None
@@ -83720,10 +83890,10 @@ class CompositorNodeStabilize(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: 'MovieClip'
     '''
 
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' Method to use to filter stabilization
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     invert: bool = None
@@ -84182,10 +84352,10 @@ class CompositorNodeTonemap(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    tonemap_type: typing.Union[int, str] = None
+    tonemap_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -84260,10 +84430,10 @@ class CompositorNodeTrackPos(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: int
     '''
 
-    position: typing.Union[int, str] = None
+    position: typing.Union[str, int] = None
     ''' Which marker position to use for output * ABSOLUTE Absolute, Output absolute position of a marker. * RELATIVE_START Relative Start, Output position of a marker relative to first marker of a track. * RELATIVE_FRAME Relative Frame, Output position of a marker relative to marker at given frame number. * ABSOLUTE_FRAME Absolute Frame, Output absolute position of a marker at given frame number.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     track_name: str = None
@@ -84338,10 +84508,10 @@ class CompositorNodeTrackPos(CompositorNode, NodeInternal, Node, bpy_struct):
 
 
 class CompositorNodeTransform(CompositorNode, NodeInternal, Node, bpy_struct):
-    filter_type: typing.Union[int, str] = None
+    filter_type: typing.Union[str, int] = None
     ''' Method to use to filter transform
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -84410,10 +84580,10 @@ class CompositorNodeTranslate(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    wrap_axis: typing.Union[int, str] = None
+    wrap_axis: typing.Union[str, int] = None
     ''' Wrap image on a specific axis * NONE None, No wrapping on X and Y. * XAXIS X Axis, Wrap all pixels on the X axis. * YAXIS Y Axis, Wrap all pixels on the Y axis. * BOTH Both Axes, Wrap all pixels on both axes.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -84704,10 +84874,10 @@ class CompositorNodeViewer(CompositorNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    tile_order: typing.Union[int, str] = None
+    tile_order: typing.Union[str, int] = None
     ''' Tile order * CENTEROUT Center, Expand from center. * RANDOM Random, Random tiles. * BOTTOMUP Bottom up, Expand from bottom. * RULE_OF_THIRDS Rule of thirds, Expand from 9 places.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_alpha: bool = None
@@ -85256,10 +85426,10 @@ class ShaderNodeBrightContrast(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfAnisotropic(ShaderNode, NodeInternal, Node, bpy_struct):
-    distribution: typing.Union[int, str] = None
+    distribution: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85370,10 +85540,10 @@ class ShaderNodeBsdfDiffuse(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfGlass(ShaderNode, NodeInternal, Node, bpy_struct):
-    distribution: typing.Union[int, str] = None
+    distribution: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85430,10 +85600,10 @@ class ShaderNodeBsdfGlass(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfGlossy(ShaderNode, NodeInternal, Node, bpy_struct):
-    distribution: typing.Union[int, str] = None
+    distribution: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85490,10 +85660,10 @@ class ShaderNodeBsdfGlossy(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfHair(ShaderNode, NodeInternal, Node, bpy_struct):
-    component: typing.Union[int, str] = None
+    component: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85550,10 +85720,10 @@ class ShaderNodeBsdfHair(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfHairPrincipled(ShaderNode, NodeInternal, Node, bpy_struct):
-    parametrization: typing.Union[int, str] = None
+    parametrization: typing.Union[str, int] = None
     ''' Select the shader's color parametrization * ABSORPTION Absorption coefficient, Directly set the absorption coefficient sigma_a (this is not the most intuitive way to color hair). * MELANIN Melanin concentration, Define the melanin concentrations below to get the most realistic-looking hair(you can get the concentrations for different types of hair online). * COLOR Direct coloring, Choose the color of your preference, and the shader will approximate the absorption coefficient to render lookalike hair.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85610,16 +85780,16 @@ class ShaderNodeBsdfHairPrincipled(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfPrincipled(ShaderNode, NodeInternal, Node, bpy_struct):
-    distribution: typing.Union[int, str] = None
+    distribution: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    subsurface_method: typing.Union[int, str] = None
+    subsurface_method: typing.Union[str, int] = None
     ''' Method for rendering subsurface scattering * BURLEY Christensen-Burley, Approximation to physically based volume scattering. * RANDOM_WALK Random Walk, Volumetric approximation to physically based volume scattering.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85676,10 +85846,10 @@ class ShaderNodeBsdfPrincipled(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfRefraction(ShaderNode, NodeInternal, Node, bpy_struct):
-    distribution: typing.Union[int, str] = None
+    distribution: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -85736,10 +85906,10 @@ class ShaderNodeBsdfRefraction(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeBsdfToon(ShaderNode, NodeInternal, Node, bpy_struct):
-    component: typing.Union[int, str] = None
+    component: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -86072,10 +86242,10 @@ class ShaderNodeCameraData(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeClamp(ShaderNode, NodeInternal, Node, bpy_struct):
-    clamp_type: typing.Union[int, str] = None
+    clamp_type: typing.Union[str, int] = None
     ''' * MINMAX Min Max, Clamp values using Min and Max values. * RANGE Range, Clamp values between Min and Max range.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -86332,10 +86502,10 @@ class ShaderNodeCustomGroup(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeDisplacement(ShaderNode, NodeInternal, Node, bpy_struct):
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Space of the input height * OBJECT Object Space, Displacement is in object space, affected by object scale. * WORLD World Space, Displacement is in world space, not affected by object scale.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -87058,10 +87228,10 @@ class ShaderNodeMapRange(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    interpolation_type: typing.Union[int, str] = None
+    interpolation_type: typing.Union[str, int] = None
     ''' * LINEAR Linear, Linear interpolation between From Min and From Max values. * STEPPED Stepped Linear, Stepped linear interpolation between From Min and From Max values. * SMOOTHSTEP Smooth Step, Smooth Hermite edge interpolation between From Min and From Max values. * SMOOTHERSTEP Smoother Step, Smoother Hermite edge interpolation between From Min and From Max values.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -87118,10 +87288,10 @@ class ShaderNodeMapRange(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeMapping(ShaderNode, NodeInternal, Node, bpy_struct):
-    vector_type: typing.Union[int, str] = None
+    vector_type: typing.Union[str, int] = None
     ''' Type of vector that the mapping transforms * POINT Point, Transform a point. * TEXTURE Texture, Transform a texture by inverse mapping the texture coordinate. * VECTOR Vector, Transform a direction vector. Location is ignored. * NORMAL Normal, Transform a unit normal vector. Location is ignored.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -87178,10 +87348,10 @@ class ShaderNodeMapping(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeMath(ShaderNode, NodeInternal, Node, bpy_struct):
-    operation: typing.Union[int, str] = None
+    operation: typing.Union[str, int] = None
     ''' * ADD Add, A + B. * SUBTRACT Subtract, A - B. * MULTIPLY Multiply, A \* B. * DIVIDE Divide, A / B. * MULTIPLY_ADD Multiply Add, A \* B + C. * POWER Power, A power B. * LOGARITHM Logarithm, Logarithm A base B. * SQRT Square Root, Square root of A. * INVERSE_SQRT Inverse Square Root, 1 / Square root of A. * ABSOLUTE Absolute, Magnitude of A. * EXPONENT Exponent, exp(A). * MINIMUM Minimum, The minimum from A and B. * MAXIMUM Maximum, The maximum from A and B. * LESS_THAN Less Than, 1 if A < B else 0. * GREATER_THAN Greater Than, 1 if A > B else 0. * SIGN Sign, Returns the sign of A. * COMPARE Compare, 1 if (A == B) within tolerance C else 0. * SMOOTH_MIN Smooth Minimum, The minimum from A and B with smoothing C. * SMOOTH_MAX Smooth Maximum, The maximum from A and B with smoothing C. * ROUND Round, Round A to the nearest integer. Round upward if the fraction part is 0.5. * FLOOR Floor, The largest integer smaller than or equal A. * CEIL Ceil, The smallest integer greater than or equal A. * TRUNC Truncate, The integer part of A, removing fractional digits. * FRACT Fraction, The fraction part of A. * MODULO Modulo, Modulo using fmod(A,B). * WRAP Wrap, Wrap value to range, wrap(A,B). * SNAP Snap, Snap to increment, snap(A,B). * PINGPONG Ping-pong, Wraps a value and reverses every other cycle (A,B). * SINE Sine, sin(A). * COSINE Cosine, cos(A). * TANGENT Tangent, tan(A). * ARCSINE Arcsine, arcsin(A). * ARCCOSINE Arccosine, arccos(A). * ARCTANGENT Arctangent, arctan(A). * ARCTAN2 Arctan2, The signed angle arctan(A / B). * SINH Hyperbolic Sine, sinh(A). * COSH Hyperbolic Cosine, cosh(A). * TANH Hyperbolic Tangent, tanh(A). * RADIANS To Radians, Convert from degrees to radians. * DEGREES To Degrees, Convert from radians to degrees.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_clamp: bool = None
@@ -87244,10 +87414,10 @@ class ShaderNodeMath(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeMixRGB(ShaderNode, NodeInternal, Node, bpy_struct):
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_alpha: bool = None
@@ -87478,10 +87648,10 @@ class ShaderNodeNormal(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeNormalMap(ShaderNode, NodeInternal, Node, bpy_struct):
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Space of the input normal * TANGENT Tangent Space, Tangent space normal mapping. * OBJECT Object Space, Object space normal mapping. * WORLD World Space, World space normal mapping. * BLENDER_OBJECT Blender Object Space, Object space normal mapping, compatible with Blender render baking. * BLENDER_WORLD Blender World Space, World space normal mapping, compatible with Blender render baking.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     uv_map: str = None
@@ -87664,10 +87834,10 @@ class ShaderNodeOutputLight(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    target: typing.Union[int, str] = None
+    target: typing.Union[str, int] = None
     ''' Which renderer and viewport shading types to use the shaders for * ALL All, Use shaders for all renderers and viewports, unless there exists a more specific output. * EEVEE Eevee, Use shaders for Eevee renderer. * CYCLES Cycles, Use shaders for Cycles renderer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -87724,10 +87894,10 @@ class ShaderNodeOutputLight(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeOutputLineStyle(ShaderNode, NodeInternal, Node, bpy_struct):
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     is_active_output: bool = None
@@ -87736,10 +87906,10 @@ class ShaderNodeOutputLineStyle(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    target: typing.Union[int, str] = None
+    target: typing.Union[str, int] = None
     ''' Which renderer and viewport shading types to use the shaders for * ALL All, Use shaders for all renderers and viewports, unless there exists a more specific output. * EEVEE Eevee, Use shaders for Eevee renderer. * CYCLES Cycles, Use shaders for Cycles renderer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_alpha: bool = None
@@ -87814,10 +87984,10 @@ class ShaderNodeOutputMaterial(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    target: typing.Union[int, str] = None
+    target: typing.Union[str, int] = None
     ''' Which renderer and viewport shading types to use the shaders for * ALL All, Use shaders for all renderers and viewports, unless there exists a more specific output. * EEVEE Eevee, Use shaders for Eevee renderer. * CYCLES Cycles, Use shaders for Cycles renderer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -87880,10 +88050,10 @@ class ShaderNodeOutputWorld(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    target: typing.Union[int, str] = None
+    target: typing.Union[str, int] = None
     ''' Which renderer and viewport shading types to use the shaders for * ALL All, Use shaders for all renderers and viewports, unless there exists a more specific output. * EEVEE Eevee, Use shaders for Eevee renderer. * CYCLES Cycles, Use shaders for Cycles renderer.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -88180,10 +88350,10 @@ class ShaderNodeScript(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: str
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' * INTERNAL Internal, Use internal text data-block. * EXTERNAL External, Use external .osl or .oso file.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     script: 'Text' = None
@@ -88523,10 +88693,10 @@ class ShaderNodeSqueeze(ShaderNode, NodeInternal, Node, bpy_struct):
 
 class ShaderNodeSubsurfaceScattering(ShaderNode, NodeInternal, Node,
                                      bpy_struct):
-    falloff: typing.Union[int, str] = None
+    falloff: typing.Union[str, int] = None
     ''' Function to determine how much light nearby points contribute based on their distance to the shading point * CUBIC Cubic, Simple cubic falloff function. * GAUSSIAN Gaussian, Normal distribution, multiple can be combined to fit more complex profiles. * BURLEY Christensen-Burley, Approximation to physically based volume scattering. * RANDOM_WALK Random Walk, Volumetric approximation to physically based volume scattering.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -88583,16 +88753,16 @@ class ShaderNodeSubsurfaceScattering(ShaderNode, NodeInternal, Node,
 
 
 class ShaderNodeTangent(ShaderNode, NodeInternal, Node, bpy_struct):
-    axis: typing.Union[int, str] = None
+    axis: typing.Union[str, int] = None
     ''' Axis for radial tangents * X X, X axis. * Y Y, Y axis. * Z Z, Z axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    direction_type: typing.Union[int, str] = None
+    direction_type: typing.Union[str, int] = None
     ''' Method to use for the tangent * RADIAL Radial, Radial tangent around the X, Y or Z axis. * UV_MAP UV Map, Tangent from UV map.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     uv_map: str = None
@@ -88895,16 +89065,16 @@ class ShaderNodeTexEnvironment(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ImageUser'
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Texture interpolation * Linear Linear, Linear interpolation. * Closest Closest, No interpolation (sample closest texel). * Cubic Cubic, Cubic interpolation. * Smart Smart, Bicubic when magnifying, else bilinear (OSL only).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    projection: typing.Union[int, str] = None
+    projection: typing.Union[str, int] = None
     ''' Projection of the input image * EQUIRECTANGULAR Equirectangular, Equirectangular or latitude-longitude projection. * MIRROR_BALL Mirror Ball, Projection from an orthographic photo of a mirror ball.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_mapping: 'TexMapping' = None
@@ -88973,10 +89143,10 @@ class ShaderNodeTexGradient(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ColorMapping'
     '''
 
-    gradient_type: typing.Union[int, str] = None
+    gradient_type: typing.Union[str, int] = None
     ''' Style of the color blending * LINEAR Linear, Create a linear progression. * QUADRATIC Quadratic, Create a quadratic progression. * EASING Easing, Create a progression easing from one step to the next. * DIAGONAL Diagonal, Create a diagonal progression. * SPHERICAL Spherical, Create a spherical progression. * QUADRATIC_SPHERE Quadratic sphere, Create a quadratic progression in the shape of a sphere. * RADIAL Radial, Create a radial progression.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_mapping: 'TexMapping' = None
@@ -89051,10 +89221,10 @@ class ShaderNodeTexIES(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'Text'
     '''
 
-    mode: typing.Union[int, str] = None
+    mode: typing.Union[str, int] = None
     ''' Whether the IES file is loaded from disk or from a Text datablock * INTERNAL Internal, Use internal text datablock. * EXTERNAL External, Use external .ies file.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -89117,10 +89287,10 @@ class ShaderNodeTexImage(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ColorMapping'
     '''
 
-    extension: typing.Union[int, str] = None
+    extension: typing.Union[str, int] = None
     ''' How the image is extrapolated past its original bounds * REPEAT Repeat, Cause the image to repeat horizontally and vertically. * EXTEND Extend, Extend by repeating edge pixels of the image. * CLIP Clip, Clip to image size and set exterior pixels as transparent.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     image: 'Image' = None
@@ -89135,16 +89305,16 @@ class ShaderNodeTexImage(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ImageUser'
     '''
 
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Texture interpolation * Linear Linear, Linear interpolation. * Closest Closest, No interpolation (sample closest texel). * Cubic Cubic, Cubic interpolation. * Smart Smart, Bicubic when magnifying, else bilinear (OSL only).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    projection: typing.Union[int, str] = None
+    projection: typing.Union[str, int] = None
     ''' Method to project 2D image on object with a 3D texture vector * FLAT Flat, Image is projected flat using the X and Y coordinates of the texture vector. * BOX Box, Image is projected using different components for each side of the object space bounding box. * SPHERE Sphere, Image is projected spherically using the Z axis as central. * TUBE Tube, Image is projected from the tube using the Z axis as central.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     projection_blend: float = None
@@ -89291,16 +89461,16 @@ class ShaderNodeTexMusgrave(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ColorMapping'
     '''
 
-    musgrave_dimensions: typing.Union[int, str] = None
+    musgrave_dimensions: typing.Union[str, int] = None
     ''' * 1D 1D, Use the scalar value W as input. * 2D 2D, Use the 2D vector (x, y) as input. The z component is ignored. * 3D 3D, Use the 3D vector Vector as input. * 4D 4D, Use the 4D vector (x, y, z, w) as input.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    musgrave_type: typing.Union[int, str] = None
+    musgrave_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_mapping: 'TexMapping' = None
@@ -89369,10 +89539,10 @@ class ShaderNodeTexNoise(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ColorMapping'
     '''
 
-    noise_dimensions: typing.Union[int, str] = None
+    noise_dimensions: typing.Union[str, int] = None
     ''' The dimensions of the space to evaluate the noise in * 1D 1D, Use the scalar value W as input. * 2D 2D, Use the 2D vector (x, y) as input. The z component is ignored. * 3D 3D, Use the 3D vector Vector as input. * 4D 4D, Use the 4D vector (x, y, z, w) as input.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_mapping: 'TexMapping' = None
@@ -89435,10 +89605,10 @@ class ShaderNodeTexNoise(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeTexPointDensity(ShaderNode, NodeInternal, Node, bpy_struct):
-    interpolation: typing.Union[int, str] = None
+    interpolation: typing.Union[str, int] = None
     ''' Texture interpolation * Closest Closest, No interpolation (sample closest texel). * Linear Linear, Linear interpolation. * Cubic Cubic, Cubic interpolation.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     object: 'Object' = None
@@ -89447,10 +89617,10 @@ class ShaderNodeTexPointDensity(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'Object'
     '''
 
-    particle_color_source: typing.Union[int, str] = None
+    particle_color_source: typing.Union[str, int] = None
     ''' Data to derive color results from * PARTICLE_AGE Particle Age, Lifetime mapped as 0.0 - 1.0 intensity. * PARTICLE_SPEED Particle Speed, Particle speed (absolute magnitude of velocity) mapped as 0.0-1.0 intensity. * PARTICLE_VELOCITY Particle Velocity, XYZ velocity mapped to RGB colors.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     particle_system: 'ParticleSystem' = None
@@ -89459,10 +89629,10 @@ class ShaderNodeTexPointDensity(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ParticleSystem'
     '''
 
-    point_source: typing.Union[int, str] = None
+    point_source: typing.Union[str, int] = None
     ''' Point data to use as renderable point density * PARTICLE_SYSTEM Particle System, Generate point density from a particle system. * OBJECT Object Vertices, Generate point density from an object's vertices.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     radius: float = None
@@ -89477,10 +89647,10 @@ class ShaderNodeTexPointDensity(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: int
     '''
 
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Coordinate system to calculate voxels in
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     vertex_attribute_name: str = None
@@ -89489,10 +89659,10 @@ class ShaderNodeTexPointDensity(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: str
     '''
 
-    vertex_color_source: typing.Union[int, str] = None
+    vertex_color_source: typing.Union[str, int] = None
     ''' Data to derive color results from * VERTEX_COLOR Vertex Color, Vertex color layer. * VERTEX_WEIGHT Vertex Weight, Vertex group weight. * VERTEX_NORMAL Vertex Normal, XYZ normal vector mapped to RGB colors.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -89588,10 +89758,10 @@ class ShaderNodeTexSky(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: float
     '''
 
-    sky_type: typing.Union[int, str] = None
+    sky_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     sun_direction: typing.List[float] = None
@@ -89672,16 +89842,16 @@ class ShaderNodeTexVoronoi(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ColorMapping'
     '''
 
-    distance: typing.Union[int, str] = None
+    distance: typing.Union[str, int] = None
     ''' * EUCLIDEAN Euclidean, Euclidean distance. * MANHATTAN Manhattan, Manhattan distance. * CHEBYCHEV Chebychev, Chebychev distance. * MINKOWSKI Minkowski, Minkowski distance.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    feature: typing.Union[int, str] = None
+    feature: typing.Union[str, int] = None
     ''' * F1 F1, Computes the distance to the closest point as well as its position and color. * F2 F2, Computes the distance to the second closest point as well as its position and color. * SMOOTH_F1 Smooth F1, Smoothed version of F1. Weighted sum of neighbor voronoi cells. * DISTANCE_TO_EDGE Distance To Edge, Computes the distance to the edge of the voronoi cell. * N_SPHERE_RADIUS N-Sphere Radius, Computes the radius of the n-sphere inscribed in the voronoi cell.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_mapping: 'TexMapping' = None
@@ -89690,10 +89860,10 @@ class ShaderNodeTexVoronoi(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'TexMapping'
     '''
 
-    voronoi_dimensions: typing.Union[int, str] = None
+    voronoi_dimensions: typing.Union[str, int] = None
     ''' * 1D 1D, Use the scalar value W as input. * 2D 2D, Use the 2D vector (x, y) as input. The z component is ignored. * 3D 3D, Use the 3D vector Vector as input. * 4D 4D, Use the 4D vector (x, y, z, w) as input.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -89750,10 +89920,10 @@ class ShaderNodeTexVoronoi(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeTexWave(ShaderNode, NodeInternal, Node, bpy_struct):
-    bands_direction: typing.Union[int, str] = None
+    bands_direction: typing.Union[str, int] = None
     ''' * X X, Bands across X axis. * Y Y, Bands across Y axis. * Z Z, Bands across Z axis. * DIAGONAL Diagonal, Bands across diagonal axis.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     color_mapping: 'ColorMapping' = None
@@ -89762,10 +89932,10 @@ class ShaderNodeTexWave(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'ColorMapping'
     '''
 
-    rings_direction: typing.Union[int, str] = None
+    rings_direction: typing.Union[str, int] = None
     ''' * X X, Rings along X axis. * Y Y, Rings along Y axis. * Z Z, Rings along Z axis. * SPHERICAL Spherical, Rings along spherical distance.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     texture_mapping: 'TexMapping' = None
@@ -89774,16 +89944,16 @@ class ShaderNodeTexWave(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: 'TexMapping'
     '''
 
-    wave_profile: typing.Union[int, str] = None
+    wave_profile: typing.Union[str, int] = None
     ''' * SIN Sine, Use a standard sine profile. * SAW Saw, Use a sawtooth profile. * TRI Triangle, Use a triangle profile.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    wave_type: typing.Union[int, str] = None
+    wave_type: typing.Union[str, int] = None
     ''' * BANDS Bands, Use standard wave texture in bands. * RINGS Rings, Use wave texture in rings.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -89840,10 +90010,10 @@ class ShaderNodeTexWave(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeTexWhiteNoise(ShaderNode, NodeInternal, Node, bpy_struct):
-    noise_dimensions: typing.Union[int, str] = None
+    noise_dimensions: typing.Union[str, int] = None
     ''' The dimensions of the space to evaluate the noise in * 1D 1D, Use the scalar value W as input. * 2D 2D, Use the 2D vector (x, y) as input. The z component is ignored. * 3D 3D, Use the 3D vector Vector as input. * 4D 4D, Use the 4D vector (x, y, z, w) as input.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -90200,10 +90370,10 @@ class ShaderNodeVectorCurve(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeVectorDisplacement(ShaderNode, NodeInternal, Node, bpy_struct):
-    space: typing.Union[int, str] = None
+    space: typing.Union[str, int] = None
     ''' Space of the input height * TANGENT Tangent Space, Tangent space vector displacement mapping. * OBJECT Object Space, Object space vector displacement mapping. * WORLD World Space, World space vector displacement mapping.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -90260,10 +90430,10 @@ class ShaderNodeVectorDisplacement(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeVectorMath(ShaderNode, NodeInternal, Node, bpy_struct):
-    operation: typing.Union[int, str] = None
+    operation: typing.Union[str, int] = None
     ''' * ADD Add, A + B. * SUBTRACT Subtract, A - B. * MULTIPLY Multiply, Entry-wise multiply. * DIVIDE Divide, Entry-wise divide. * CROSS_PRODUCT Cross Product, A cross B. * PROJECT Project, Project A onto B. * REFLECT Reflect, Reflect A around the normal B. B doesn't need to be normalized. * DOT_PRODUCT Dot Product, A dot B. * DISTANCE Distance, Distance between A and B. * LENGTH Length, Length of A. * SCALE Scale, A multiplied by Scale. * NORMALIZE Normalize, Normalize A. * ABSOLUTE Absolute, Entry-wise absolute. * MINIMUM Minimum, Entry-wise minimum. * MAXIMUM Maximum, Entry-wise maximum. * FLOOR Floor, Entry-wise floor. * CEIL Ceil, Entry-wise ceil. * FRACTION Fraction, The fraction part of A entry-wise. * MODULO Modulo, Entry-wise modulo using fmod(A,B). * WRAP Wrap, Entry-wise wrap(A,B). * SNAP Snap, Round A to the largest integer multiple of B less than or equal A. * SINE Sine, Entry-wise sin(A). * COSINE Cosine, Entry-wise cos(A). * TANGENT Tangent, Entry-wise tan(A).
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -90326,10 +90496,10 @@ class ShaderNodeVectorRotate(ShaderNode, NodeInternal, Node, bpy_struct):
     :type: bool
     '''
 
-    rotation_type: typing.Union[int, str] = None
+    rotation_type: typing.Union[str, int] = None
     ''' Type of rotation * AXIS_ANGLE Axis Angle, Rotate a point using axis angle. * X_AXIS X Axis, Rotate a point using X axis. * Y_AXIS Y Axis, Rotate a point using Y axis. * Z_AXIS Z Axis, Rotate a point using Z axis. * EULER_XYZ Euler, Rotate a point using XYZ order.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -90386,22 +90556,22 @@ class ShaderNodeVectorRotate(ShaderNode, NodeInternal, Node, bpy_struct):
 
 
 class ShaderNodeVectorTransform(ShaderNode, NodeInternal, Node, bpy_struct):
-    convert_from: typing.Union[int, str] = None
+    convert_from: typing.Union[str, int] = None
     ''' Space to convert from
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    convert_to: typing.Union[int, str] = None
+    convert_to: typing.Union[str, int] = None
     ''' Space to convert to
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
-    vector_type: typing.Union[int, str] = None
+    vector_type: typing.Union[str, int] = None
     ''' * POINT Point, Transform a point. * VECTOR Vector, Transform a direction vector. * NORMAL Normal, Transform a normal vector with unit length.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     @classmethod
@@ -91622,10 +91792,10 @@ class TextureNodeInvert(TextureNode, NodeInternal, Node, bpy_struct):
 
 
 class TextureNodeMath(TextureNode, NodeInternal, Node, bpy_struct):
-    operation: typing.Union[int, str] = None
+    operation: typing.Union[str, int] = None
     ''' * ADD Add, A + B. * SUBTRACT Subtract, A - B. * MULTIPLY Multiply, A \* B. * DIVIDE Divide, A / B. * MULTIPLY_ADD Multiply Add, A \* B + C. * POWER Power, A power B. * LOGARITHM Logarithm, Logarithm A base B. * SQRT Square Root, Square root of A. * INVERSE_SQRT Inverse Square Root, 1 / Square root of A. * ABSOLUTE Absolute, Magnitude of A. * EXPONENT Exponent, exp(A). * MINIMUM Minimum, The minimum from A and B. * MAXIMUM Maximum, The maximum from A and B. * LESS_THAN Less Than, 1 if A < B else 0. * GREATER_THAN Greater Than, 1 if A > B else 0. * SIGN Sign, Returns the sign of A. * COMPARE Compare, 1 if (A == B) within tolerance C else 0. * SMOOTH_MIN Smooth Minimum, The minimum from A and B with smoothing C. * SMOOTH_MAX Smooth Maximum, The maximum from A and B with smoothing C. * ROUND Round, Round A to the nearest integer. Round upward if the fraction part is 0.5. * FLOOR Floor, The largest integer smaller than or equal A. * CEIL Ceil, The smallest integer greater than or equal A. * TRUNC Truncate, The integer part of A, removing fractional digits. * FRACT Fraction, The fraction part of A. * MODULO Modulo, Modulo using fmod(A,B). * WRAP Wrap, Wrap value to range, wrap(A,B). * SNAP Snap, Snap to increment, snap(A,B). * PINGPONG Ping-pong, Wraps a value and reverses every other cycle (A,B). * SINE Sine, sin(A). * COSINE Cosine, cos(A). * TANGENT Tangent, tan(A). * ARCSINE Arcsine, arcsin(A). * ARCCOSINE Arccosine, arccos(A). * ARCTANGENT Arctangent, arctan(A). * ARCTAN2 Arctan2, The signed angle arctan(A / B). * SINH Hyperbolic Sine, sinh(A). * COSH Hyperbolic Cosine, cosh(A). * TANH Hyperbolic Tangent, tanh(A). * RADIANS To Radians, Convert from degrees to radians. * DEGREES To Degrees, Convert from radians to degrees.
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_clamp: bool = None
@@ -91688,10 +91858,10 @@ class TextureNodeMath(TextureNode, NodeInternal, Node, bpy_struct):
 
 
 class TextureNodeMixRGB(TextureNode, NodeInternal, Node, bpy_struct):
-    blend_type: typing.Union[int, str] = None
+    blend_type: typing.Union[str, int] = None
     ''' 
 
-    :type: typing.Union[int, str]
+    :type: typing.Union[str, int]
     '''
 
     use_alpha: bool = None

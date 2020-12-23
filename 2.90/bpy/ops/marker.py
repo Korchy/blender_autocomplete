@@ -36,11 +36,11 @@ def duplicate(frames: int = 0):
     pass
 
 
-def make_links_scene(scene: typing.Union[int, str] = ''):
+def make_links_scene(scene: typing.Union[str, int] = ''):
     ''' Copy selected markers to another scene
 
     :param scene: Scene
-    :type scene: typing.Union[int, str]
+    :type scene: typing.Union[str, int]
     '''
 
     pass
@@ -90,11 +90,11 @@ def select(wait_to_deselect_others: bool = False,
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Change selection of all time markers
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -105,7 +105,7 @@ def select_box(xmin: int = 0,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[int, str] = 'SET',
+               mode: typing.Union[str, int] = 'SET',
                tweak: bool = False):
     ''' Select all time markers using box selection
 
@@ -120,7 +120,7 @@ def select_box(xmin: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param tweak: Tweak, Operator has been activated using a tweak event
     :type tweak: bool
     '''

@@ -6,9 +6,11 @@ import bpy.types
 def fbx(filepath: str = "",
         directory: str = "",
         filter_glob: str = "*.fbx",
-        files: typing.Union[typing.List['bpy.types.OperatorFileListElement'],
-                            'bpy_prop_collection'] = None,
-        ui_tab: typing.Union[int, str] = 'MAIN',
+        files: typing.
+        Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.
+              List['bpy.types.OperatorFileListElement'],
+              'bpy_prop_collection'] = None,
+        ui_tab: typing.Union[str, int] = 'MAIN',
         use_manual_orientation: bool = False,
         global_scale: float = 1.0,
         bake_space_transform: bool = False,
@@ -24,11 +26,11 @@ def fbx(filepath: str = "",
         ignore_leaf_bones: bool = False,
         force_connect_children: bool = False,
         automatic_bone_orientation: bool = False,
-        primary_bone_axis: typing.Union[int, str] = 'Y',
-        secondary_bone_axis: typing.Union[int, str] = 'X',
+        primary_bone_axis: typing.Union[str, int] = 'Y',
+        secondary_bone_axis: typing.Union[str, int] = 'X',
         use_prepost_rot: bool = True,
-        axis_forward: typing.Union[int, str] = '-Z',
-        axis_up: typing.Union[int, str] = 'Y'):
+        axis_forward: typing.Union[str, int] = '-Z',
+        axis_up: typing.Union[str, int] = 'Y'):
     ''' Load a FBX file
 
     :param filepath: File Path, Filepath used for importing the file
@@ -38,9 +40,9 @@ def fbx(filepath: str = "",
     :param filter_glob: filter_glob
     :type filter_glob: str
     :param files: File Path
-    :type files: typing.Union[typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
+    :type files: typing.Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
     :param ui_tab: ui_tab, Import options categories * MAIN Main, Main basic settings. * ARMATURE Armatures, Armature-related settings.
-    :type ui_tab: typing.Union[int, str]
+    :type ui_tab: typing.Union[str, int]
     :param use_manual_orientation: Manual Orientation, Specify orientation and scale, instead of using embedded data in FBX file
     :type use_manual_orientation: bool
     :param global_scale: Scale
@@ -72,15 +74,15 @@ def fbx(filepath: str = "",
     :param automatic_bone_orientation: Automatic Bone Orientation, Try to align the major bone axis with the bone children
     :type automatic_bone_orientation: bool
     :param primary_bone_axis: Primary Bone Axis
-    :type primary_bone_axis: typing.Union[int, str]
+    :type primary_bone_axis: typing.Union[str, int]
     :param secondary_bone_axis: Secondary Bone Axis
-    :type secondary_bone_axis: typing.Union[int, str]
+    :type secondary_bone_axis: typing.Union[str, int]
     :param use_prepost_rot: Use Pre/Post Rotation, Use pre/post rotation from FBX transform (you may have to disable that in some cases)
     :type use_prepost_rot: bool
     :param axis_forward: Forward
-    :type axis_forward: typing.Union[int, str]
+    :type axis_forward: typing.Union[str, int]
     :param axis_up: Up
-    :type axis_up: typing.Union[int, str]
+    :type axis_up: typing.Union[str, int]
     '''
 
     pass
@@ -88,13 +90,15 @@ def fbx(filepath: str = "",
 
 def gltf(filepath: str = "",
          filter_glob: str = "*.glb;*.gltf",
-         files: typing.Union[typing.List['bpy.types.OperatorFileListElement'],
-                             'bpy_prop_collection'] = None,
+         files: typing.
+         Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.
+               List['bpy.types.OperatorFileListElement'],
+               'bpy_prop_collection'] = None,
          loglevel: int = 0,
          import_pack_images: bool = True,
          merge_vertices: bool = False,
-         import_shading: typing.Union[int, str] = 'NORMALS',
-         bone_heuristic: typing.Union[int, str] = 'TEMPERANCE',
+         import_shading: typing.Union[str, int] = 'NORMALS',
+         bone_heuristic: typing.Union[str, int] = 'TEMPERANCE',
          guess_original_bind_pose: bool = True):
     ''' Load a glTF 2.0 file
 
@@ -103,7 +107,7 @@ def gltf(filepath: str = "",
     :param filter_glob: filter_glob
     :type filter_glob: str
     :param files: File Path
-    :type files: typing.Union[typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
+    :type files: typing.Union[typing.Dict[str, 'bpy.types.OperatorFileListElement'], typing.List['bpy.types.OperatorFileListElement'], 'bpy_prop_collection']
     :param loglevel: Log Level, Log Level
     :type loglevel: int
     :param import_pack_images: Pack Images, Pack all images into .blend file
@@ -111,9 +115,9 @@ def gltf(filepath: str = "",
     :param merge_vertices: Merge Vertices, The glTF format requires discontinuous normals, UVs, and other vertex attributes to be stored as separate vertices, as required for rendering on typical graphics hardware. This option attempts to combine co-located vertices where possible. Currently cannot combine verts with different normals
     :type merge_vertices: bool
     :param import_shading: Shading, How normals are computed during import
-    :type import_shading: typing.Union[int, str]
+    :type import_shading: typing.Union[str, int]
     :param bone_heuristic: Bone Dir, Heuristic for placing bones. Tries to make bones pretty * BLENDER Blender (best for re-importing), Good for re-importing glTFs exported from Blender. Bone tips are placed on their local +Y axis (in glTF space). * TEMPERANCE Temperance (average), Decent all-around strategy. A bone with one child has its tip placed on the local axis closest to its child. * FORTUNE Fortune (may look better, less accurate), Might look better than Temperance, but also might have errors. A bone with one child has its tip placed at its child's root. Non-uniform scalings may get messed up though, so beware.
-    :type bone_heuristic: typing.Union[int, str]
+    :type bone_heuristic: typing.Union[str, int]
     :param guess_original_bind_pose: Guess Original Bind Pose, Try to guess the original bind pose for skinned meshes from the inverse bind matrices. When off, use default/rest pose as bind pose
     :type guess_original_bind_pose: bool
     '''
@@ -129,10 +133,10 @@ def obj(filepath: str = "",
         use_split_groups: bool = False,
         use_groups_as_vgroups: bool = False,
         use_image_search: bool = True,
-        split_mode: typing.Union[int, str] = 'ON',
+        split_mode: typing.Union[str, int] = 'ON',
         global_clight_size: float = 0.0,
-        axis_forward: typing.Union[int, str] = '-Z',
-        axis_up: typing.Union[int, str] = 'Y'):
+        axis_forward: typing.Union[str, int] = '-Z',
+        axis_up: typing.Union[str, int] = 'Y'):
     ''' Load a Wavefront OBJ File
 
     :param filepath: File Path, Filepath used for importing the file
@@ -152,13 +156,13 @@ def obj(filepath: str = "",
     :param use_image_search: Image Search, Search subdirs for any associated images (Warning, may be slow)
     :type use_image_search: bool
     :param split_mode: Split * ON Split, Split geometry, omits unused verts. * OFF Keep Vert Order, Keep vertex order from file.
-    :type split_mode: typing.Union[int, str]
+    :type split_mode: typing.Union[str, int]
     :param global_clight_size: Clamp Size, Clamp bounds under this value (zero to disable)
     :type global_clight_size: float
     :param axis_forward: Forward
-    :type axis_forward: typing.Union[int, str]
+    :type axis_forward: typing.Union[str, int]
     :param axis_up: Up
-    :type axis_up: typing.Union[int, str]
+    :type axis_up: typing.Union[str, int]
     '''
 
     pass
@@ -166,8 +170,8 @@ def obj(filepath: str = "",
 
 def x3d(filepath: str = "",
         filter_glob: str = "*.x3d;*.wrl",
-        axis_forward: typing.Union[int, str] = 'Z',
-        axis_up: typing.Union[int, str] = 'Y'):
+        axis_forward: typing.Union[str, int] = 'Z',
+        axis_up: typing.Union[str, int] = 'Y'):
     ''' Import an X3D or VRML2 file
 
     :param filepath: File Path, Filepath used for importing the file
@@ -175,9 +179,9 @@ def x3d(filepath: str = "",
     :param filter_glob: filter_glob
     :type filter_glob: str
     :param axis_forward: Forward
-    :type axis_forward: typing.Union[int, str]
+    :type axis_forward: typing.Union[str, int]
     :param axis_up: Up
-    :type axis_up: typing.Union[int, str]
+    :type axis_up: typing.Union[str, int]
     '''
 
     pass

@@ -50,36 +50,36 @@ def pose_add(frame: int = 1, name: str = "Pose"):
     pass
 
 
-def pose_move(pose: typing.Union[int, str] = '',
-              direction: typing.Union[int, str] = 'UP'):
+def pose_move(pose: typing.Union[str, int] = '',
+              direction: typing.Union[str, int] = 'UP'):
     ''' Move the pose up or down in the active Pose Library
 
     :param pose: Pose, The pose to move
-    :type pose: typing.Union[int, str]
+    :type pose: typing.Union[str, int]
     :param direction: Direction, Direction to move the chosen pose towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
 
 
-def pose_remove(pose: typing.Union[int, str] = ''):
+def pose_remove(pose: typing.Union[str, int] = ''):
     ''' Remove nth pose from the active Pose Library
 
     :param pose: Pose, The pose to remove
-    :type pose: typing.Union[int, str]
+    :type pose: typing.Union[str, int]
     '''
 
     pass
 
 
-def pose_rename(name: str = "RenamedPose", pose: typing.Union[int, str] = ''):
+def pose_rename(name: str = "RenamedPose", pose: typing.Union[str, int] = ''):
     ''' Rename specified pose from the active Pose Library
 
     :param name: New Pose Name, New name for pose
     :type name: str
     :param pose: Pose, The pose to rename
-    :type pose: typing.Union[int, str]
+    :type pose: typing.Union[str, int]
     '''
 
     pass

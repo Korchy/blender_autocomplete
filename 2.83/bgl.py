@@ -133,11 +133,11 @@ def glBindRenderbuffer(p0: int, p1: int):
     pass
 
 
-def glBindTexture(target: typing.Union[int, str], texture: int):
+def glBindTexture(target: typing.Union[str, int], texture: int):
     ''' Bind a named texture to a texturing target
 
     :param target: Specifies the target to which the texture is bound.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param texture: Specifies the name of a texture.
     :type texture: int
     '''
@@ -185,14 +185,14 @@ def glBlendEquationSeparate(p0: int, p1: int):
     pass
 
 
-def glBlendFunc(sfactor: typing.Union[int, str],
-                dfactor: typing.Union[int, str]):
+def glBlendFunc(sfactor: typing.Union[str, int],
+                dfactor: typing.Union[str, int]):
     ''' Specify pixel arithmetic
 
     :param sfactor: Specifies how the red, green, blue, and alpha source blending factors are computed.
-    :type sfactor: typing.Union[int, str]
+    :type sfactor: typing.Union[str, int]
     :param dfactor: Specifies how the red, green, blue, and alpha destination blending factors are computed.
-    :type dfactor: typing.Union[int, str]
+    :type dfactor: typing.Union[str, int]
     '''
 
     pass
@@ -293,12 +293,12 @@ def glClearStencil(s: int):
     pass
 
 
-def glClipPlane(plane: typing.Union[int, str],
+def glClipPlane(plane: typing.Union[str, int],
                 equation: typing.Union['bpy.context.object', 'Buffer']):
     ''' Specify a plane against which all geometry is clipped
 
     :param plane: Specifies which clipping plane is being positioned.
-    :type plane: typing.Union[int, str]
+    :type plane: typing.Union[str, int]
     :param equation: Specifies the address of an array of four double- precision floating-point values. These values are interpreted as a plane equation.
     :type equation: typing.Union['bpy.context.object', 'Buffer']
     '''
@@ -441,13 +441,13 @@ def glCopyTexImage1D(p0: int, p1: int, p2: int, p3: int, p4: int, p5: int,
     pass
 
 
-def glCopyTexImage2D(target: typing.Union[int, str], level: int,
+def glCopyTexImage2D(target: typing.Union[str, int], level: int,
                      internalformat: int, x: int, y: int, width: int,
                      height: int, border: int):
     ''' Copy pixels into a 2D texture image
 
     :param target: Specifies the target texture.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param level: Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.
     :type level: int
     :param internalformat: Specifies the number of color components in the texture.
@@ -527,22 +527,22 @@ def glCreateProgram() -> int:
 
 def glCreateShader(
         shaderType: typing.
-        Union['GL_FRAGMENT_SHADER', 'GL_GEOMETRY_SHADER', 'GL_VERTEX_SHADER']
+        Union['GL_GEOMETRY_SHADER', 'GL_VERTEX_SHADER', 'GL_FRAGMENT_SHADER']
 ) -> int:
     ''' Creates a shader object.
 
-    :type shaderType: typing.Union['GL_FRAGMENT_SHADER', 'GL_GEOMETRY_SHADER', 'GL_VERTEX_SHADER']
+    :type shaderType: typing.Union['GL_GEOMETRY_SHADER', 'GL_VERTEX_SHADER', 'GL_FRAGMENT_SHADER']
     :return: 0 if an error occurs.
     '''
 
     pass
 
 
-def glCullFace(mode: typing.Union[int, str]):
+def glCullFace(mode: typing.Union[str, int]):
     ''' Specify whether front- or back-facing facets can be culled
 
     :param mode: Specifies whether front- or back-facing facets are candidates for culling.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -630,11 +630,11 @@ def glDeleteVertexArrays(p0: int, p1: int):
     pass
 
 
-def glDepthFunc(func: typing.Union[int, str]):
+def glDepthFunc(func: typing.Union[str, int]):
     ''' Specify the value used for depth buffer comparisons
 
     :param func: Specifies the depth comparison function.
-    :type func: typing.Union[int, str]
+    :type func: typing.Union[str, int]
     '''
 
     pass
@@ -674,11 +674,11 @@ def glDetachShader(program: int, shader: int):
     pass
 
 
-def glDisable(cap: typing.Union[int, str]):
+def glDisable(cap: typing.Union[str, int]):
     ''' Disable server-side GL capabilities
 
     :param cap: Specifies a symbolic constant indicating a GL capability.
-    :type cap: typing.Union[int, str]
+    :type cap: typing.Union[str, int]
     '''
 
     pass
@@ -704,11 +704,11 @@ def glDrawArrays(p0: int, p1: int, p2: int):
     pass
 
 
-def glDrawBuffer(mode: typing.Union[int, str]):
+def glDrawBuffer(mode: typing.Union[str, int]):
     ''' Specify which color buffers are to be drawn into
 
     :param mode: Specifies up to four color buffers to be drawn into.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -757,11 +757,11 @@ def glEdgeFlag(flag):
     pass
 
 
-def glEnable(cap: typing.Union[int, str]):
+def glEnable(cap: typing.Union[str, int]):
     ''' Enable server-side GL capabilities
 
     :param cap: Specifies a symbolic constant indicating a GL capability.
-    :type cap: typing.Union[int, str]
+    :type cap: typing.Union[str, int]
     '''
 
     pass
@@ -795,11 +795,11 @@ def glEvalCoord(u, v):
     pass
 
 
-def glEvalMesh(mode: typing.Union[int, str], i1: int, i2: int):
+def glEvalMesh(mode: typing.Union[str, int], i1: int, i2: int):
     ''' B{glEvalMesh1 or glEvalMesh2} Compute a one- or two-dimensional grid of points or lines
 
     :param mode: In glEvalMesh1, specifies whether to compute a one-dimensional mesh of points or lines.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param i1: Specify the first and last integer values for the grid domain variable i.
     :type i1: int
     :param i2: Specify the first and last integer values for the grid domain variable i.
@@ -821,14 +821,14 @@ def glEvalPoint(i: int, j: int):
     pass
 
 
-def glFeedbackBuffer(size: int, type: typing.Union[int, str],
+def glFeedbackBuffer(size: int, type: typing.Union[str, int],
                      buffer: typing.Union['bpy.context.object', 'Buffer']):
     ''' Controls feedback mode
 
     :param size: Specifies the maximum number of values that can be written into buffer.
     :type size: int
     :param type: Specifies a symbolic constant that describes the information that will be returned for each vertex.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param buffer: Returns the feedback data.
     :type buffer: typing.Union['bpy.context.object', 'Buffer']
     '''
@@ -852,11 +852,11 @@ def glFlush():
     pass
 
 
-def glFog(pname: typing.Union[int, str], param):
+def glFog(pname: typing.Union[str, int], param):
     ''' B{glFogf, glFogi, glFogfv, glFogiv} Specify fog parameters
 
     :param pname: Specifies a single-valued fog parameter. If the function prototype ends in 'v' specifies a fog parameter.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies the value or values to be assigned to pname. GL_FOG_COLOR requires an array of four values. All other parameters accept an array containing only a single value.
     '''
 
@@ -887,11 +887,11 @@ def glFramebufferTexture(p0: int, p1: int, p2: int, p3: int):
     pass
 
 
-def glFrontFace(mode: typing.Union[int, str]):
+def glFrontFace(mode: typing.Union[str, int]):
     ''' Define front- and back-facing polygons
 
     :param mode: Specifies the orientation of front-facing polygons.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -960,11 +960,11 @@ def glGenVertexArrays(p0: int, p1: int):
     pass
 
 
-def glGet(pname: typing.Union[int, str], param):
+def glGet(pname: typing.Union[str, int], param):
     ''' B{glGetBooleanv, glGetfloatv, glGetFloatv, glGetIntegerv} Return the value or values of a selected parameter
 
     :param pname: Specifies the parameter value to be returned.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Returns the value or values of the specified parameter.
     '''
 
@@ -1183,14 +1183,14 @@ def glGetIntegerv(p0: int, p1: int):
     pass
 
 
-def glGetLight(light: typing.Union[int, str], pname: typing.Union[int, str],
+def glGetLight(light: typing.Union[str, int], pname: typing.Union[str, int],
                params: 'Buffer'):
     ''' B{glGetLightfv and glGetLightiv} Return light source parameter values
 
     :param light: Specifies a light source. The number of possible lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form GL_LIGHTi where 0 < i < GL_MAX_LIGHTS.
-    :type light: typing.Union[int, str]
+    :type light: typing.Union[str, int]
     :param pname: Specifies a light source parameter for light.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Returns the requested data.
     :type params: 'Buffer'
     '''
@@ -1198,14 +1198,14 @@ def glGetLight(light: typing.Union[int, str], pname: typing.Union[int, str],
     pass
 
 
-def glGetMap(target: typing.Union[int, str], query: typing.Union[int, str],
+def glGetMap(target: typing.Union[str, int], query: typing.Union[str, int],
              v: 'Buffer'):
     ''' B{glGetMapdv, glGetMapfv, glGetMapiv} Return evaluator parameters
 
     :param target: Specifies the symbolic name of a map.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param query: Specifies which parameter to return.
-    :type query: typing.Union[int, str]
+    :type query: typing.Union[str, int]
     :param v: Returns the requested data.
     :type v: 'Buffer'
     '''
@@ -1213,14 +1213,14 @@ def glGetMap(target: typing.Union[int, str], query: typing.Union[int, str],
     pass
 
 
-def glGetMaterial(face: typing.Union[int, str], pname: typing.Union[int, str],
+def glGetMaterial(face: typing.Union[str, int], pname: typing.Union[str, int],
                   params: 'Buffer'):
     ''' B{glGetMaterialfv, glGetMaterialiv} Return material parameters
 
     :param face: Specifies which of the two materials is being queried. representing the front and back materials, respectively.
-    :type face: typing.Union[int, str]
+    :type face: typing.Union[str, int]
     :param pname: Specifies the material parameter to return.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Returns the requested data.
     :type params: 'Buffer'
     '''
@@ -1239,11 +1239,11 @@ def glGetMultisamplefv(p0: int, p1: int, p2: float):
     pass
 
 
-def glGetPixelMap(map: typing.Union[int, str], values: 'Buffer'):
+def glGetPixelMap(map: typing.Union[str, int], values: 'Buffer'):
     ''' B{glGetPixelMapfv, glGetPixelMapuiv, glGetPixelMapusv} Return the specified pixel map
 
     :param map: Specifies the name of the pixel map to return.
-    :type map: typing.Union[int, str]
+    :type map: typing.Union[str, int]
     :param values: Returns the pixel map contents.
     :type values: 'Buffer'
     '''
@@ -1362,11 +1362,11 @@ def glGetShaderiv(p0: int, p1: int, p2: int):
     pass
 
 
-def glGetString(name: typing.Union[int, str]):
+def glGetString(name: typing.Union[str, int]):
     ''' Return a string describing the current GL connection
 
     :param name: Specifies a symbolic constant.
-    :type name: typing.Union[int, str]
+    :type name: typing.Union[str, int]
     '''
 
     pass
@@ -1382,14 +1382,14 @@ def glGetStringi(p0: int, p1: int) -> str:
     pass
 
 
-def glGetTexEnv(target: typing.Union[int, str], pname: typing.Union[int, str],
+def glGetTexEnv(target: typing.Union[str, int], pname: typing.Union[str, int],
                 params: 'Buffer'):
     ''' B{glGetTexEnvfv, glGetTexEnviv} Return texture environment parameters
 
     :param target: Specifies a texture environment. Must be GL_TEXTURE_ENV.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param pname: Specifies the symbolic name of a texture environment parameter.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Returns the requested data.
     :type params: 'Buffer'
     '''
@@ -1397,14 +1397,14 @@ def glGetTexEnv(target: typing.Union[int, str], pname: typing.Union[int, str],
     pass
 
 
-def glGetTexGen(coord: typing.Union[int, str], pname: typing.Union[int, str],
+def glGetTexGen(coord: typing.Union[str, int], pname: typing.Union[str, int],
                 params: 'Buffer'):
     ''' B{glGetTexGendv, glGetTexGenfv, glGetTexGeniv} Return texture coordinate generation parameters
 
     :param coord: Specifies a texture coordinate.
-    :type coord: typing.Union[int, str]
+    :type coord: typing.Union[str, int]
     :param pname: Specifies the symbolic name of the value(s) to be returned.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Returns the requested data.
     :type params: 'Buffer'
     '''
@@ -1412,19 +1412,19 @@ def glGetTexGen(coord: typing.Union[int, str], pname: typing.Union[int, str],
     pass
 
 
-def glGetTexImage(target: typing.Union[int, str], level: int,
-                  format: typing.Union[int, str], type: typing.Union[int, str],
+def glGetTexImage(target: typing.Union[str, int], level: int,
+                  format: typing.Union[str, int], type: typing.Union[str, int],
                   pixels: 'Buffer'):
     ''' Return a texture image
 
     :param target: Specifies which texture is to be obtained.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param level: Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level n is the nth mipmap reduction image.
     :type level: int
     :param format: Specifies a pixel format for the returned data.
-    :type format: typing.Union[int, str]
+    :type format: typing.Union[str, int]
     :param type: Specifies a pixel type for the returned data.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param pixels: Returns the texture image. Should be a pointer to an array of the type specified by type
     :type pixels: 'Buffer'
     '''
@@ -1432,16 +1432,16 @@ def glGetTexImage(target: typing.Union[int, str], level: int,
     pass
 
 
-def glGetTexLevelParameter(target: typing.Union[int, str], level: int,
-                           pname: typing.Union[int, str], params: 'Buffer'):
+def glGetTexLevelParameter(target: typing.Union[str, int], level: int,
+                           pname: typing.Union[str, int], params: 'Buffer'):
     ''' B{glGetTexLevelParameterfv, glGetTexLevelParameteriv} return texture parameter values for a specific level of detail
 
     :param target: Specifies the symbolic name of the target texture.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param level: Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level n is the nth mipmap reduction image.
     :type level: int
     :param pname: Specifies the symbolic name of a texture parameter.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Returns the requested data.
     :type params: 'Buffer'
     '''
@@ -1473,14 +1473,14 @@ def glGetTexLevelParameteriv(p0: int, p1: int, p2: int, p3: int):
     pass
 
 
-def glGetTexParameter(target: typing.Union[int, str],
-                      pname: typing.Union[int, str], params: 'Buffer'):
+def glGetTexParameter(target: typing.Union[str, int],
+                      pname: typing.Union[str, int], params: 'Buffer'):
     ''' B{glGetTexParameterfv, glGetTexParameteriv} Return texture parameter values
 
     :param target: Specifies the symbolic name of the target texture.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param pname: Specifies the symbolic name the target texture.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Returns the texture parameters.
     :type params: 'Buffer'
     '''
@@ -1607,13 +1607,13 @@ def glGetVertexAttribiv(p0: int, p1: int, p2: int):
     pass
 
 
-def glHint(target: typing.Union[int, str], mode: typing.Union[int, str]):
+def glHint(target: typing.Union[str, int], mode: typing.Union[str, int]):
     ''' Specify implementation-specific hints
 
     :param target: Specifies a symbolic constant indicating the behavior to be controlled.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param mode: Specifies a symbolic constant indicating the desired behavior.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -1628,11 +1628,11 @@ def glIsBuffer(p0: int) -> bool:
     pass
 
 
-def glIsEnabled(cap: typing.Union[int, str]):
+def glIsEnabled(cap: typing.Union[str, int]):
     ''' Test whether a capability is enabled
 
     :param cap: Specifies a constant representing a GL capability.
-    :type cap: typing.Union[int, str]
+    :type cap: typing.Union[str, int]
     '''
 
     pass
@@ -1686,25 +1686,25 @@ def glIsVertexArray(p0: int) -> bool:
     pass
 
 
-def glLight(light: typing.Union[int, str], pname: typing.Union[int, str],
+def glLight(light: typing.Union[str, int], pname: typing.Union[str, int],
             param):
     ''' B{glLightf,glLighti, glLightfv, glLightiv} Set the light source parameters
 
     :param light: Specifies a light. The number of lights depends on the implementation, but at least eight lights are supported. They are identified by symbolic names of the form GL_LIGHTi where 0 < i < GL_MAX_LIGHTS.
-    :type light: typing.Union[int, str]
+    :type light: typing.Union[str, int]
     :param pname: Specifies a single-valued light source parameter for light.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies the value that parameter pname of light source light will be set to. If function prototype ends in 'v' specifies a pointer to the value or values that parameter pname of light source light will be set to.
     '''
 
     pass
 
 
-def glLightModel(pname: typing.Union[int, str], param):
+def glLightModel(pname: typing.Union[str, int], param):
     ''' B{glLightModelf, glLightModeli, glLightModelfv, glLightModeliv} Set the lighting model parameters
 
     :param pname: Specifies a single-value light model parameter.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies the value that param will be set to. If function prototype ends in 'v' specifies a pointer to the value or values that param will be set to.
     '''
 
@@ -1741,22 +1741,22 @@ def glLoadMatrix(m: 'Buffer'):
     pass
 
 
-def glLogicOp(opcode: typing.Union[int, str]):
+def glLogicOp(opcode: typing.Union[str, int]):
     ''' Specify a logical pixel operation for color index rendering
 
     :param opcode: Specifies a symbolic constant that selects a logical operation.
-    :type opcode: typing.Union[int, str]
+    :type opcode: typing.Union[str, int]
     '''
 
     pass
 
 
-def glMap1(target: typing.Union[int, str], u1, u2, stride: int, order: int,
+def glMap1(target: typing.Union[str, int], u1, u2, stride: int, order: int,
            points: 'Buffer'):
     ''' B{glMap1d, glMap1f} Define a one-dimensional evaluator
 
     :param target: Specifies the kind of values that are generated by the evaluator.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param u1: Specify a linear mapping of u, as presented to glEvalCoord1, to ^, t he variable that is evaluated by the equations specified by this command.
     :param u2: Specify a linear mapping of u, as presented to glEvalCoord1, to ^, t he variable that is evaluated by the equations specified by this command.
     :param stride: Specifies the number of floats or float (double)s between the beginning of one control point and the beginning of the next one in the data structure referenced in points. This allows control points to be embedded in arbitrary data structures. The only constraint is that the values for a particular control point must occupy contiguous memory locations.
@@ -1770,12 +1770,12 @@ def glMap1(target: typing.Union[int, str], u1, u2, stride: int, order: int,
     pass
 
 
-def glMap2(target: typing.Union[int, str], u1, u2, ustride: int, uorder: int,
+def glMap2(target: typing.Union[str, int], u1, u2, ustride: int, uorder: int,
            v1, v2, vstride: int, vorder: int, points: 'Buffer'):
     ''' B{glMap2d, glMap2f} Define a two-dimensional evaluator
 
     :param target: Specifies the kind of values that are generated by the evaluator.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param u1: Specify a linear mapping of u, as presented to glEvalCoord2, to ^, t he variable that is evaluated by the equations specified by this command. Initially u1 is 0 and u2 is 1.
     :param u2: Specify a linear mapping of u, as presented to glEvalCoord2, to ^, t he variable that is evaluated by the equations specified by this command. Initially u1 is 0 and u2 is 1.
     :param ustride: Specifies the number of floats or float (double)s between the beginning of control point R and the beginning of control point R ij, where i and j are the u and v control point indices, respectively. This allows control points to be embedded in arbitrary data structures. The only constraint is that the values for a particular control point must occupy contiguous memory locations. The initial value of ustride is 0.
@@ -1821,13 +1821,13 @@ def glMapGrid(un: int, u1, u2, vn: int, v1, v2):
     pass
 
 
-def glMaterial(face: typing.Union[int, str], pname: typing.Union[int, str],
+def glMaterial(face: typing.Union[str, int], pname: typing.Union[str, int],
                params: int):
     ''' Specify material parameters for the lighting model.
 
-    :type face: typing.Union[int, str]
+    :type face: typing.Union[str, int]
     :param pname: Specifies the single-valued material parameter of the face or faces that is being updated. Must be GL_SHININESS.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param params: Specifies the value that parameter GL_SHININESS will be set to. If function prototype ends in 'v' specifies a pointer to the value or values that pname will be set to.
     :type params: int
     '''
@@ -1858,11 +1858,11 @@ def glNormal3(nx, ny, nz, v: 'Buffer'):
     pass
 
 
-def glPixelMap(map: typing.Union[int, str], mapsize: int, values: 'Buffer'):
+def glPixelMap(map: typing.Union[str, int], mapsize: int, values: 'Buffer'):
     ''' B{glPixelMapfv, glPixelMapuiv, glPixelMapusv} Set up pixel transfer maps
 
     :param map: Specifies a symbolic map name.
-    :type map: typing.Union[int, str]
+    :type map: typing.Union[str, int]
     :param mapsize: Specifies the size of the map being defined.
     :type mapsize: int
     :param values: Specifies an array of mapsize values.
@@ -1872,11 +1872,11 @@ def glPixelMap(map: typing.Union[int, str], mapsize: int, values: 'Buffer'):
     pass
 
 
-def glPixelStore(pname: typing.Union[int, str], param):
+def glPixelStore(pname: typing.Union[str, int], param):
     ''' B{glPixelStoref, glPixelStorei} Set pixel storage modes
 
     :param pname: Specifies the symbolic name of the parameter to be set. Six values affect the packing of pixel data into memory. Six more affect the unpacking of pixel data from memory.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies the value that pname is set to.
     '''
 
@@ -1903,11 +1903,11 @@ def glPixelStorei(p0: int, p1: int):
     pass
 
 
-def glPixelTransfer(pname: typing.Union[int, str], param):
+def glPixelTransfer(pname: typing.Union[str, int], param):
     ''' B{glPixelTransferf, glPixelTransferi} Set pixel transfer modes
 
     :param pname: Specifies the symbolic name of the pixel transfer parameter to be set.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies the value that pname is set to.
     '''
 
@@ -1924,13 +1924,13 @@ def glPointSize(size: float):
     pass
 
 
-def glPolygonMode(face: typing.Union[int, str], mode: typing.Union[int, str]):
+def glPolygonMode(face: typing.Union[str, int], mode: typing.Union[str, int]):
     ''' Select a polygon rasterization mode
 
     :param face: Specifies the polygons that mode applies to. Must be GL_FRONT for front-facing polygons, GL_BACK for back- facing polygons, or GL_FRONT_AND_BACK for front- and back-facing polygons.
-    :type face: typing.Union[int, str]
+    :type face: typing.Union[str, int]
     :param mode: Specifies how polygons will be rasterized. The initial value is GL_FILL for both front- and back- facing polygons.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -1960,18 +1960,18 @@ def glRasterPos(x, y, z, w):
     pass
 
 
-def glReadBuffer(mode: typing.Union[int, str]):
+def glReadBuffer(mode: typing.Union[str, int]):
     ''' Select a color buffer source for pixels.
 
     :param mode: Specifies a color buffer.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
 
 
 def glReadPixels(x: int, y: int, width: int, height: int,
-                 format: typing.Union[int, str], type: typing.Union[int, str],
+                 format: typing.Union[str, int], type: typing.Union[str, int],
                  pixels: typing.Union['bpy.context.object', 'Buffer']):
     ''' Read a block of pixels from the frame buffer
 
@@ -1984,9 +1984,9 @@ def glReadPixels(x: int, y: int, width: int, height: int,
     :param height: Specify the dimensions of the pixel rectangle. width and height of one correspond to a single pixel.
     :type height: int
     :param format: Specifies the format of the pixel data.
-    :type format: typing.Union[int, str]
+    :type format: typing.Union[str, int]
     :param type: Specifies the data type of the pixel data.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param pixels: Returns the pixel data.
     :type pixels: typing.Union['bpy.context.object', 'Buffer']
     '''
@@ -2089,11 +2089,11 @@ def glShaderSource(shader: int, shader_string: str):
     pass
 
 
-def glStencilFunc(func: typing.Union[int, str], ref: int, mask: int):
+def glStencilFunc(func: typing.Union[str, int], ref: int, mask: int):
     ''' Set function and reference value for stencil testing
 
     :param func: Specifies the test function.
-    :type func: typing.Union[int, str]
+    :type func: typing.Union[str, int]
     :param ref: Specifies the reference value for the stencil test. ref is clamped to the range [0,2n-1], where n is the number of bitplanes in the stencil buffer. The initial value is 0.
     :type ref: int
     :param mask: Specifies a mask that is ANDed with both the reference value and the stored stencil value when the test is done. The initial value is all 1's.
@@ -2135,16 +2135,16 @@ def glStencilMaskSeparate(p0: int, p1: int):
     pass
 
 
-def glStencilOp(fail: typing.Union[int, str], zfail: typing.Union[int, str],
-                zpass: typing.Union[int, str]):
+def glStencilOp(fail: typing.Union[str, int], zfail: typing.Union[str, int],
+                zpass: typing.Union[str, int]):
     ''' Set stencil test actions
 
     :param fail: Specifies the action to take when the stencil test fails. The initial value is GL_KEEP.
-    :type fail: typing.Union[int, str]
+    :type fail: typing.Union[str, int]
     :param zfail: Specifies the stencil action when the stencil test passes, but the depth test fails. zfail accepts the same symbolic constants as fail. The initial value is GL_KEEP.
-    :type zfail: typing.Union[int, str]
+    :type zfail: typing.Union[str, int]
     :param zpass: Specifies the stencil action when both the stencil test and the depth test pass, or when the stencil test passes and either there is no depth buffer or depth testing is not enabled. zpass accepts the same symbolic constants as fail. The initial value is GL_KEEP.
-    :type zpass: typing.Union[int, str]
+    :type zpass: typing.Union[str, int]
     '''
 
     pass
@@ -2176,42 +2176,42 @@ def glTexCoord(s, t, r, q, v: 'Buffer'):
     pass
 
 
-def glTexEnv(target: typing.Union[int, str], pname: typing.Union[int, str],
+def glTexEnv(target: typing.Union[str, int], pname: typing.Union[str, int],
              param):
     ''' B{glTextEnvf, glTextEnvi, glTextEnvfv, glTextEnviv} Set texture environment parameters
 
     :param target: Specifies a texture environment. Must be GL_TEXTURE_ENV.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param pname: Specifies the symbolic name of a single-valued texture environment parameter. Must be GL_TEXTURE_ENV_MODE.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies a single symbolic constant. If function prototype ends in 'v' specifies a pointer to a parameter array that contains either a single symbolic constant or an RGBA color
     '''
 
     pass
 
 
-def glTexGen(coord: typing.Union[int, str], pname: typing.Union[int, str],
+def glTexGen(coord: typing.Union[str, int], pname: typing.Union[str, int],
              param):
     ''' B{glTexGend, glTexGenf, glTexGeni, glTexGendv, glTexGenfv, glTexGeniv} Control the generation of texture coordinates
 
     :param coord: Specifies a texture coordinate.
-    :type coord: typing.Union[int, str]
+    :type coord: typing.Union[str, int]
     :param pname: Specifies the symbolic name of the texture- coordinate generation function.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies a single-valued texture generation parameter. If function prototype ends in 'v' specifies a pointer to an array of texture generation parameters. If pname is GL_TEXTURE_GEN_MODE, then the array must contain a single symbolic constant. Otherwise, params holds the coefficients for the texture-coordinate generation function specified by pname.
     '''
 
     pass
 
 
-def glTexImage1D(target: typing.Union[int, str], level: int,
+def glTexImage1D(target: typing.Union[str, int], level: int,
                  internalformat: int, width: int, border: int,
-                 format: typing.Union[int, str], type: typing.Union[int, str],
+                 format: typing.Union[str, int], type: typing.Union[str, int],
                  pixels: 'Buffer'):
     ''' Specify a one-dimensional texture image
 
     :param target: Specifies the target texture.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param level: Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.
     :type level: int
     :param internalformat: Specifies the number of color components in the texture.
@@ -2221,9 +2221,9 @@ def glTexImage1D(target: typing.Union[int, str], level: int,
     :param border: Specifies the width of the border. Must be either 0 or 1.
     :type border: int
     :param format: Specifies the format of the pixel data.
-    :type format: typing.Union[int, str]
+    :type format: typing.Union[str, int]
     :param type: Specifies the data type of the pixel data.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param pixels: Specifies a pointer to the image data in memory.
     :type pixels: 'Buffer'
     '''
@@ -2231,14 +2231,14 @@ def glTexImage1D(target: typing.Union[int, str], level: int,
     pass
 
 
-def glTexImage2D(target: typing.Union[int, str], level: int,
+def glTexImage2D(target: typing.Union[str, int], level: int,
                  internalformat: int, width: int, height: int, border: int,
-                 format: typing.Union[int, str], type: typing.Union[int, str],
+                 format: typing.Union[str, int], type: typing.Union[str, int],
                  pixels: 'Buffer'):
     ''' Specify a two-dimensional texture image
 
     :param target: Specifies the target texture.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param level: Specifies the level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.
     :type level: int
     :param internalformat: Specifies the number of color components in the texture.
@@ -2250,9 +2250,9 @@ def glTexImage2D(target: typing.Union[int, str], level: int,
     :param border: Specifies the width of the border. Must be either 0 or 1.
     :type border: int
     :param format: Specifies the format of the pixel data.
-    :type format: typing.Union[int, str]
+    :type format: typing.Union[str, int]
     :param type: Specifies the data type of the pixel data.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param pixels: Specifies a pointer to the image data in memory.
     :type pixels: 'Buffer'
     '''
@@ -2309,14 +2309,14 @@ def glTexImage3DMultisample(p0: int, p1: int, p2: int, p3: int, p4: int,
     pass
 
 
-def glTexParameter(target: typing.Union[int, str],
-                   pname: typing.Union[int, str], param):
+def glTexParameter(target: typing.Union[str, int],
+                   pname: typing.Union[str, int], param):
     ''' B{glTexParameterf, glTexParameteri, glTexParameterfv, glTexParameteriv} Set texture parameters
 
     :param target: Specifies the target texture.
-    :type target: typing.Union[int, str]
+    :type target: typing.Union[str, int]
     :param pname: Specifies the symbolic name of a single-valued texture parameter.
-    :type pname: typing.Union[int, str]
+    :type pname: typing.Union[str, int]
     :param param: Specifies the value of pname. If function prototype ends in 'v' specifies a pointer to an array where the value or values of pname are stored.
     '''
 

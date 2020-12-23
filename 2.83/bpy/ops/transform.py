@@ -3,11 +3,11 @@ import typing
 
 
 def bbone_resize(value: typing.List[float] = (1.0, 1.0),
-                 orient_type: typing.Union[int, str] = 'GLOBAL',
+                 orient_type: typing.Union[str, int] = 'GLOBAL',
                  orient_matrix: typing.List[float] = ((0.0, 0.0,
                                                        0.0), (0.0, 0.0, 0.0),
                                                       (0.0, 0.0, 0.0)),
-                 orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+                 orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
                  constraint_axis: typing.List[bool] = (False, False, False),
                  mirror: bool = False,
                  release_confirm: bool = False,
@@ -17,11 +17,11 @@ def bbone_resize(value: typing.List[float] = (1.0, 1.0),
     :param value: Display Size
     :type value: typing.List[float]
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -38,12 +38,12 @@ def bbone_resize(value: typing.List[float] = (1.0, 1.0),
 def bend(value: typing.List[float] = (0.0),
          mirror: bool = False,
          use_proportional_edit: bool = False,
-         proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+         proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
          proportional_size: float = 1.0,
          use_proportional_connected: bool = False,
          use_proportional_projected: bool = False,
          snap: bool = False,
-         snap_target: typing.Union[int, str] = 'CLOSEST',
+         snap_target: typing.Union[str, int] = 'CLOSEST',
          snap_point: typing.List[float] = (0.0, 0.0, 0.0),
          snap_align: bool = False,
          snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -60,7 +60,7 @@ def bend(value: typing.List[float] = (0.0),
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -70,7 +70,7 @@ def bend(value: typing.List[float] = (0.0),
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -119,7 +119,7 @@ def delete_orientation():
 
 def edge_bevelweight(value: float = 0.0,
                      snap: bool = False,
-                     snap_target: typing.Union[int, str] = 'CLOSEST',
+                     snap_target: typing.Union[str, int] = 'CLOSEST',
                      snap_point: typing.List[float] = (0.0, 0.0, 0.0),
                      snap_align: bool = False,
                      snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -132,7 +132,7 @@ def edge_bevelweight(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -150,7 +150,7 @@ def edge_bevelweight(value: float = 0.0,
 
 def edge_crease(value: float = 0.0,
                 snap: bool = False,
-                snap_target: typing.Union[int, str] = 'CLOSEST',
+                snap_target: typing.Union[str, int] = 'CLOSEST',
                 snap_point: typing.List[float] = (0.0, 0.0, 0.0),
                 snap_align: bool = False,
                 snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -163,7 +163,7 @@ def edge_crease(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -186,7 +186,7 @@ def edge_slide(value: float = 0.0,
                use_clamp: bool = True,
                mirror: bool = False,
                snap: bool = False,
-               snap_target: typing.Union[int, str] = 'CLOSEST',
+               snap_target: typing.Union[str, int] = 'CLOSEST',
                snap_point: typing.List[float] = (0.0, 0.0, 0.0),
                snap_align: bool = False,
                snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -210,7 +210,7 @@ def edge_slide(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -236,14 +236,14 @@ def from_gizmo():
     pass
 
 
-def mirror(orient_type: typing.Union[int, str] = 'GLOBAL',
+def mirror(orient_type: typing.Union[str, int] = 'GLOBAL',
            orient_matrix: typing.List[float] = ((0.0, 0.0, 0.0),
                                                 (0.0, 0.0, 0.0), (0.0, 0.0,
                                                                   0.0)),
-           orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+           orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
            constraint_axis: typing.List[bool] = (False, False, False),
            use_proportional_edit: bool = False,
-           proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+           proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
            proportional_size: float = 1.0,
            use_proportional_connected: bool = False,
            use_proportional_projected: bool = False,
@@ -254,17 +254,17 @@ def mirror(orient_type: typing.Union[int, str] = 'GLOBAL',
     ''' Mirror selected items around one or more axes
 
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -287,12 +287,12 @@ def mirror(orient_type: typing.Union[int, str] = 'GLOBAL',
 def push_pull(value: float = 0.0,
               mirror: bool = False,
               use_proportional_edit: bool = False,
-              proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+              proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
               proportional_size: float = 1.0,
               use_proportional_connected: bool = False,
               use_proportional_projected: bool = False,
               snap: bool = False,
-              snap_target: typing.Union[int, str] = 'CLOSEST',
+              snap_target: typing.Union[str, int] = 'CLOSEST',
               snap_point: typing.List[float] = (0.0, 0.0, 0.0),
               snap_align: bool = False,
               snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -308,7 +308,7 @@ def push_pull(value: float = 0.0,
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -318,7 +318,7 @@ def push_pull(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -337,20 +337,20 @@ def push_pull(value: float = 0.0,
 
 
 def resize(value: typing.List[float] = (1.0, 1.0, 1.0),
-           orient_type: typing.Union[int, str] = 'GLOBAL',
+           orient_type: typing.Union[str, int] = 'GLOBAL',
            orient_matrix: typing.List[float] = ((0.0, 0.0, 0.0),
                                                 (0.0, 0.0, 0.0), (0.0, 0.0,
                                                                   0.0)),
-           orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+           orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
            constraint_axis: typing.List[bool] = (False, False, False),
            mirror: bool = False,
            use_proportional_edit: bool = False,
-           proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+           proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
            proportional_size: float = 1.0,
            use_proportional_connected: bool = False,
            use_proportional_projected: bool = False,
            snap: bool = False,
-           snap_target: typing.Union[int, str] = 'CLOSEST',
+           snap_target: typing.Union[str, int] = 'CLOSEST',
            snap_point: typing.List[float] = (0.0, 0.0, 0.0),
            snap_align: bool = False,
            snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -365,11 +365,11 @@ def resize(value: typing.List[float] = (1.0, 1.0, 1.0),
     :param value: Scale
     :type value: typing.List[float]
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -377,7 +377,7 @@ def resize(value: typing.List[float] = (1.0, 1.0, 1.0),
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -387,7 +387,7 @@ def resize(value: typing.List[float] = (1.0, 1.0, 1.0),
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -412,21 +412,21 @@ def resize(value: typing.List[float] = (1.0, 1.0, 1.0),
 
 
 def rotate(value: float = 0.0,
-           orient_axis: typing.Union[int, str] = 'Z',
-           orient_type: typing.Union[int, str] = 'GLOBAL',
+           orient_axis: typing.Union[str, int] = 'Z',
+           orient_type: typing.Union[str, int] = 'GLOBAL',
            orient_matrix: typing.List[float] = ((0.0, 0.0, 0.0),
                                                 (0.0, 0.0, 0.0), (0.0, 0.0,
                                                                   0.0)),
-           orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+           orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
            constraint_axis: typing.List[bool] = (False, False, False),
            mirror: bool = False,
            use_proportional_edit: bool = False,
-           proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+           proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
            proportional_size: float = 1.0,
            use_proportional_connected: bool = False,
            use_proportional_projected: bool = False,
            snap: bool = False,
-           snap_target: typing.Union[int, str] = 'CLOSEST',
+           snap_target: typing.Union[str, int] = 'CLOSEST',
            snap_point: typing.List[float] = (0.0, 0.0, 0.0),
            snap_align: bool = False,
            snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -439,13 +439,13 @@ def rotate(value: float = 0.0,
     :param value: Angle
     :type value: float
     :param orient_axis: Axis
-    :type orient_axis: typing.Union[int, str]
+    :type orient_axis: typing.Union[str, int]
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -453,7 +453,7 @@ def rotate(value: float = 0.0,
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -463,7 +463,7 @@ def rotate(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -484,12 +484,12 @@ def rotate(value: float = 0.0,
 
 
 def rotate_normal(value: float = 0.0,
-                  orient_axis: typing.Union[int, str] = 'Z',
-                  orient_type: typing.Union[int, str] = 'GLOBAL',
+                  orient_axis: typing.Union[str, int] = 'Z',
+                  orient_type: typing.Union[str, int] = 'GLOBAL',
                   orient_matrix: typing.List[float] = ((0.0, 0.0,
                                                         0.0), (0.0, 0.0, 0.0),
                                                        (0.0, 0.0, 0.0)),
-                  orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+                  orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
                   constraint_axis: typing.List[bool] = (False, False, False),
                   mirror: bool = False,
                   release_confirm: bool = False,
@@ -499,13 +499,13 @@ def rotate_normal(value: float = 0.0,
     :param value: Angle
     :type value: float
     :param orient_axis: Axis
-    :type orient_axis: typing.Union[int, str]
+    :type orient_axis: typing.Union[str, int]
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -519,11 +519,11 @@ def rotate_normal(value: float = 0.0,
     pass
 
 
-def select_orientation(orientation: typing.Union[int, str] = 'GLOBAL'):
+def select_orientation(orientation: typing.Union[str, int] = 'GLOBAL'):
     ''' Select transformation orientation
 
     :param orientation: Orientation, Transformation orientation
-    :type orientation: typing.Union[int, str]
+    :type orientation: typing.Union[str, int]
     '''
 
     pass
@@ -531,7 +531,7 @@ def select_orientation(orientation: typing.Union[int, str] = 'GLOBAL'):
 
 def seq_slide(value: typing.List[float] = (0.0, 0.0),
               snap: bool = False,
-              snap_target: typing.Union[int, str] = 'CLOSEST',
+              snap_target: typing.Union[str, int] = 'CLOSEST',
               snap_point: typing.List[float] = (0.0, 0.0, 0.0),
               snap_align: bool = False,
               snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -544,7 +544,7 @@ def seq_slide(value: typing.List[float] = (0.0, 0.0),
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -561,21 +561,21 @@ def seq_slide(value: typing.List[float] = (0.0, 0.0),
 
 
 def shear(value: float = 0.0,
-          orient_axis: typing.Union[int, str] = 'Z',
-          orient_axis_ortho: typing.Union[int, str] = 'X',
-          orient_type: typing.Union[int, str] = 'GLOBAL',
+          orient_axis: typing.Union[str, int] = 'Z',
+          orient_axis_ortho: typing.Union[str, int] = 'X',
+          orient_type: typing.Union[str, int] = 'GLOBAL',
           orient_matrix: typing.List[float] = ((0.0, 0.0, 0.0),
                                                (0.0, 0.0, 0.0), (0.0, 0.0,
                                                                  0.0)),
-          orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+          orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
           mirror: bool = False,
           use_proportional_edit: bool = False,
-          proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+          proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
           proportional_size: float = 1.0,
           use_proportional_connected: bool = False,
           use_proportional_projected: bool = False,
           snap: bool = False,
-          snap_target: typing.Union[int, str] = 'CLOSEST',
+          snap_target: typing.Union[str, int] = 'CLOSEST',
           snap_point: typing.List[float] = (0.0, 0.0, 0.0),
           snap_align: bool = False,
           snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -587,21 +587,21 @@ def shear(value: float = 0.0,
     :param value: Offset
     :type value: float
     :param orient_axis: Axis
-    :type orient_axis: typing.Union[int, str]
+    :type orient_axis: typing.Union[str, int]
     :param orient_axis_ortho: Axis Ortho
-    :type orient_axis_ortho: typing.Union[int, str]
+    :type orient_axis_ortho: typing.Union[str, int]
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param mirror: Mirror Editing
     :type mirror: bool
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -611,7 +611,7 @@ def shear(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -633,12 +633,12 @@ def shrink_fatten(value: float = 0.0,
                   use_even_offset: bool = False,
                   mirror: bool = False,
                   use_proportional_edit: bool = False,
-                  proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+                  proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
                   proportional_size: float = 1.0,
                   use_proportional_connected: bool = False,
                   use_proportional_projected: bool = False,
                   snap: bool = False,
-                  snap_target: typing.Union[int, str] = 'CLOSEST',
+                  snap_target: typing.Union[str, int] = 'CLOSEST',
                   snap_point: typing.List[float] = (0.0, 0.0, 0.0),
                   snap_align: bool = False,
                   snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -655,7 +655,7 @@ def shrink_fatten(value: float = 0.0,
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -665,7 +665,7 @@ def shrink_fatten(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -682,20 +682,20 @@ def shrink_fatten(value: float = 0.0,
 
 
 def skin_resize(value: typing.List[float] = (1.0, 1.0, 1.0),
-                orient_type: typing.Union[int, str] = 'GLOBAL',
+                orient_type: typing.Union[str, int] = 'GLOBAL',
                 orient_matrix: typing.List[float] = ((0.0, 0.0,
                                                       0.0), (0.0, 0.0, 0.0),
                                                      (0.0, 0.0, 0.0)),
-                orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+                orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
                 constraint_axis: typing.List[bool] = (False, False, False),
                 mirror: bool = False,
                 use_proportional_edit: bool = False,
-                proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+                proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
                 proportional_size: float = 1.0,
                 use_proportional_connected: bool = False,
                 use_proportional_projected: bool = False,
                 snap: bool = False,
-                snap_target: typing.Union[int, str] = 'CLOSEST',
+                snap_target: typing.Union[str, int] = 'CLOSEST',
                 snap_point: typing.List[float] = (0.0, 0.0, 0.0),
                 snap_align: bool = False,
                 snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -706,11 +706,11 @@ def skin_resize(value: typing.List[float] = (1.0, 1.0, 1.0),
     :param value: Scale
     :type value: typing.List[float]
     :param orient_type: Orientation, Transformation orientation
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -718,7 +718,7 @@ def skin_resize(value: typing.List[float] = (1.0, 1.0, 1.0),
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -728,7 +728,7 @@ def skin_resize(value: typing.List[float] = (1.0, 1.0, 1.0),
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -747,12 +747,12 @@ def skin_resize(value: typing.List[float] = (1.0, 1.0, 1.0),
 def tilt(value: float = 0.0,
          mirror: bool = False,
          use_proportional_edit: bool = False,
-         proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+         proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
          proportional_size: float = 1.0,
          use_proportional_connected: bool = False,
          use_proportional_projected: bool = False,
          snap: bool = False,
-         snap_target: typing.Union[int, str] = 'CLOSEST',
+         snap_target: typing.Union[str, int] = 'CLOSEST',
          snap_point: typing.List[float] = (0.0, 0.0, 0.0),
          snap_align: bool = False,
          snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -767,7 +767,7 @@ def tilt(value: float = 0.0,
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -777,7 +777,7 @@ def tilt(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -796,12 +796,12 @@ def tilt(value: float = 0.0,
 def tosphere(value: float = 0.0,
              mirror: bool = False,
              use_proportional_edit: bool = False,
-             proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+             proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
              proportional_size: float = 1.0,
              use_proportional_connected: bool = False,
              use_proportional_projected: bool = False,
              snap: bool = False,
-             snap_target: typing.Union[int, str] = 'CLOSEST',
+             snap_target: typing.Union[str, int] = 'CLOSEST',
              snap_point: typing.List[float] = (0.0, 0.0, 0.0),
              snap_align: bool = False,
              snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -818,7 +818,7 @@ def tosphere(value: float = 0.0,
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -828,7 +828,7 @@ def tosphere(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -851,12 +851,12 @@ def tosphere(value: float = 0.0,
 def trackball(value: typing.List[float] = (0.0, 0.0),
               mirror: bool = False,
               use_proportional_edit: bool = False,
-              proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+              proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
               proportional_size: float = 1.0,
               use_proportional_connected: bool = False,
               use_proportional_projected: bool = False,
               snap: bool = False,
-              snap_target: typing.Union[int, str] = 'CLOSEST',
+              snap_target: typing.Union[str, int] = 'CLOSEST',
               snap_point: typing.List[float] = (0.0, 0.0, 0.0),
               snap_align: bool = False,
               snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -873,7 +873,7 @@ def trackball(value: typing.List[float] = (0.0, 0.0),
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -883,7 +883,7 @@ def trackball(value: typing.List[float] = (0.0, 0.0),
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -903,23 +903,23 @@ def trackball(value: typing.List[float] = (0.0, 0.0),
     pass
 
 
-def transform(mode: typing.Union[int, str] = 'TRANSLATION',
+def transform(mode: typing.Union[str, int] = 'TRANSLATION',
               value: typing.List[float] = (0.0, 0.0, 0.0, 0.0),
-              orient_axis: typing.Union[int, str] = 'Z',
-              orient_type: typing.Union[int, str] = 'GLOBAL',
+              orient_axis: typing.Union[str, int] = 'Z',
+              orient_type: typing.Union[str, int] = 'GLOBAL',
               orient_matrix: typing.List[float] = ((0.0, 0.0, 0.0),
                                                    (0.0, 0.0, 0.0), (0.0, 0.0,
                                                                      0.0)),
-              orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+              orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
               constraint_axis: typing.List[bool] = (False, False, False),
               mirror: bool = False,
               use_proportional_edit: bool = False,
-              proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+              proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
               proportional_size: float = 1.0,
               use_proportional_connected: bool = False,
               use_proportional_projected: bool = False,
               snap: bool = False,
-              snap_target: typing.Union[int, str] = 'CLOSEST',
+              snap_target: typing.Union[str, int] = 'CLOSEST',
               snap_point: typing.List[float] = (0.0, 0.0, 0.0),
               snap_align: bool = False,
               snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -930,17 +930,17 @@ def transform(mode: typing.Union[int, str] = 'TRANSLATION',
     ''' Transform selected items by mode type
 
     :param mode: Mode
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param value: Values
     :type value: typing.List[float]
     :param orient_axis: Axis
-    :type orient_axis: typing.Union[int, str]
+    :type orient_axis: typing.Union[str, int]
     :param orient_type: Orientation, Transformation orientation * GLOBAL Global, Align the transformation axes to world space. * LOCAL Local, Align the transformation axes to the selected objects' local space. * NORMAL Normal, Align the transformation axes to average normal of selected elements (bone Y axis for pose mode). * GIMBAL Gimbal, Align each axis to the Euler rotation axis as used for input. * VIEW View, Align the transformation axes to the window. * CURSOR Cursor, Align the transformation axes to the 3D cursor.
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation * GLOBAL Global, Align the transformation axes to world space. * LOCAL Local, Align the transformation axes to the selected objects' local space. * NORMAL Normal, Align the transformation axes to average normal of selected elements (bone Y axis for pose mode). * GIMBAL Gimbal, Align each axis to the Euler rotation axis as used for input. * VIEW View, Align the transformation axes to the window. * CURSOR Cursor, Align the transformation axes to the 3D cursor.
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -948,7 +948,7 @@ def transform(mode: typing.Union[int, str] = 'TRANSLATION',
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -958,7 +958,7 @@ def transform(mode: typing.Union[int, str] = 'TRANSLATION',
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -979,20 +979,20 @@ def transform(mode: typing.Union[int, str] = 'TRANSLATION',
 
 
 def translate(value: typing.List[float] = (0.0, 0.0, 0.0),
-              orient_type: typing.Union[int, str] = 'GLOBAL',
+              orient_type: typing.Union[str, int] = 'GLOBAL',
               orient_matrix: typing.List[float] = ((0.0, 0.0, 0.0),
                                                    (0.0, 0.0, 0.0), (0.0, 0.0,
                                                                      0.0)),
-              orient_matrix_type: typing.Union[int, str] = 'GLOBAL',
+              orient_matrix_type: typing.Union[str, int] = 'GLOBAL',
               constraint_axis: typing.List[bool] = (False, False, False),
               mirror: bool = False,
               use_proportional_edit: bool = False,
-              proportional_edit_falloff: typing.Union[int, str] = 'SMOOTH',
+              proportional_edit_falloff: typing.Union[str, int] = 'SMOOTH',
               proportional_size: float = 1.0,
               use_proportional_connected: bool = False,
               use_proportional_projected: bool = False,
               snap: bool = False,
-              snap_target: typing.Union[int, str] = 'CLOSEST',
+              snap_target: typing.Union[str, int] = 'CLOSEST',
               snap_point: typing.List[float] = (0.0, 0.0, 0.0),
               snap_align: bool = False,
               snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -1007,11 +1007,11 @@ def translate(value: typing.List[float] = (0.0, 0.0, 0.0),
     :param value: Move
     :type value: typing.List[float]
     :param orient_type: Orientation, Transformation orientation * GLOBAL Global, Align the transformation axes to world space. * LOCAL Local, Align the transformation axes to the selected objects' local space. * NORMAL Normal, Align the transformation axes to average normal of selected elements (bone Y axis for pose mode). * GIMBAL Gimbal, Align each axis to the Euler rotation axis as used for input. * VIEW View, Align the transformation axes to the window. * CURSOR Cursor, Align the transformation axes to the 3D cursor.
-    :type orient_type: typing.Union[int, str]
+    :type orient_type: typing.Union[str, int]
     :param orient_matrix: Matrix
     :type orient_matrix: typing.List[float]
     :param orient_matrix_type: Matrix Orientation * GLOBAL Global, Align the transformation axes to world space. * LOCAL Local, Align the transformation axes to the selected objects' local space. * NORMAL Normal, Align the transformation axes to average normal of selected elements (bone Y axis for pose mode). * GIMBAL Gimbal, Align each axis to the Euler rotation axis as used for input. * VIEW View, Align the transformation axes to the window. * CURSOR Cursor, Align the transformation axes to the 3D cursor.
-    :type orient_matrix_type: typing.Union[int, str]
+    :type orient_matrix_type: typing.Union[str, int]
     :param constraint_axis: Constraint Axis
     :type constraint_axis: typing.List[bool]
     :param mirror: Mirror Editing
@@ -1019,7 +1019,7 @@ def translate(value: typing.List[float] = (0.0, 0.0, 0.0),
     :param use_proportional_edit: Proportional Editing
     :type use_proportional_edit: bool
     :param proportional_edit_falloff: Proportional Falloff, Falloff type for proportional editing mode * SMOOTH Smooth, Smooth falloff. * SPHERE Sphere, Spherical falloff. * ROOT Root, Root falloff. * INVERSE_SQUARE Inverse Square, Inverse Square falloff. * SHARP Sharp, Sharp falloff. * LINEAR Linear, Linear falloff. * CONSTANT Constant, Constant falloff. * RANDOM Random, Random falloff.
-    :type proportional_edit_falloff: typing.Union[int, str]
+    :type proportional_edit_falloff: typing.Union[str, int]
     :param proportional_size: Proportional Size
     :type proportional_size: float
     :param use_proportional_connected: Connected
@@ -1029,7 +1029,7 @@ def translate(value: typing.List[float] = (0.0, 0.0, 0.0),
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal
@@ -1059,7 +1059,7 @@ def vert_slide(value: float = 0.0,
                use_clamp: bool = True,
                mirror: bool = False,
                snap: bool = False,
-               snap_target: typing.Union[int, str] = 'CLOSEST',
+               snap_target: typing.Union[str, int] = 'CLOSEST',
                snap_point: typing.List[float] = (0.0, 0.0, 0.0),
                snap_align: bool = False,
                snap_normal: typing.List[float] = (0.0, 0.0, 0.0),
@@ -1081,7 +1081,7 @@ def vert_slide(value: float = 0.0,
     :param snap: Use Snapping Options
     :type snap: bool
     :param snap_target: Target * CLOSEST Closest, Snap closest point onto target. * CENTER Center, Snap transformation center onto target. * MEDIAN Median, Snap median onto target. * ACTIVE Active, Snap active onto target.
-    :type snap_target: typing.Union[int, str]
+    :type snap_target: typing.Union[str, int]
     :param snap_point: Point
     :type snap_point: typing.List[float]
     :param snap_align: Align with Point Normal

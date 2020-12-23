@@ -11,18 +11,18 @@ def add_simple_uvs():
     pass
 
 
-def add_texture_paint_slot(type: typing.Union[int, str] = 'BASE_COLOR',
+def add_texture_paint_slot(type: typing.Union[str, int] = 'BASE_COLOR',
                            name: str = "Untitled",
                            width: int = 1024,
                            height: int = 1024,
                            color: typing.List[float] = (0.0, 0.0, 0.0, 1.0),
                            alpha: bool = True,
-                           generated_type: typing.Union[int, str] = 'BLANK',
+                           generated_type: typing.Union[str, int] = 'BLANK',
                            float: bool = False):
     ''' Add a texture paint slot
 
     :param type: Type, Merge method to use
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param name: Name, Image data-block name
     :type name: str
     :param width: Width, Image width
@@ -34,7 +34,7 @@ def add_texture_paint_slot(type: typing.Union[int, str] = 'BASE_COLOR',
     :param alpha: Alpha, Create an image with an alpha channel
     :type alpha: bool
     :param generated_type: Generated Type, Fill the image with a grid for UV map testing * BLANK Blank, Generate a blank image. * UV_GRID UV Grid, Generated grid to test UV mappings. * COLOR_GRID Color Grid, Generated improved UV grid to test UV mappings.
-    :type generated_type: typing.Union[int, str]
+    :type generated_type: typing.Union[str, int]
     :param float: 32 bit Float, Create image with 32 bit floating point bit depth
     :type float: bool
     '''
@@ -50,34 +50,34 @@ def brush_colors_flip():
     pass
 
 
-def brush_select(sculpt_tool: typing.Union[int, str] = 'DRAW',
-                 vertex_tool: typing.Union[int, str] = 'DRAW',
-                 weight_tool: typing.Union[int, str] = 'DRAW',
-                 image_tool: typing.Union[int, str] = 'DRAW',
-                 gpencil_tool: typing.Union[int, str] = 'DRAW',
-                 gpencil_vertex_tool: typing.Union[int, str] = 'DRAW',
-                 gpencil_sculpt_tool: typing.Union[int, str] = 'SMOOTH',
-                 gpencil_weight_tool: typing.Union[int, str] = 'WEIGHT',
+def brush_select(sculpt_tool: typing.Union[str, int] = 'DRAW',
+                 vertex_tool: typing.Union[str, int] = 'DRAW',
+                 weight_tool: typing.Union[str, int] = 'DRAW',
+                 image_tool: typing.Union[str, int] = 'DRAW',
+                 gpencil_tool: typing.Union[str, int] = 'DRAW',
+                 gpencil_vertex_tool: typing.Union[str, int] = 'DRAW',
+                 gpencil_sculpt_tool: typing.Union[str, int] = 'SMOOTH',
+                 gpencil_weight_tool: typing.Union[str, int] = 'WEIGHT',
                  toggle: bool = False,
                  create_missing: bool = False):
     ''' Select a paint mode's brush by tool type
 
     :param sculpt_tool: sculpt_tool
-    :type sculpt_tool: typing.Union[int, str]
+    :type sculpt_tool: typing.Union[str, int]
     :param vertex_tool: vertex_tool
-    :type vertex_tool: typing.Union[int, str]
+    :type vertex_tool: typing.Union[str, int]
     :param weight_tool: weight_tool
-    :type weight_tool: typing.Union[int, str]
+    :type weight_tool: typing.Union[str, int]
     :param image_tool: image_tool
-    :type image_tool: typing.Union[int, str]
+    :type image_tool: typing.Union[str, int]
     :param gpencil_tool: gpencil_tool * DRAW Draw, The brush is of type used for drawing strokes. * FILL Fill, The brush is of type used for filling areas. * ERASE Erase, The brush is used for erasing strokes. * TINT Tint, The brush is of type used for tinting strokes.
-    :type gpencil_tool: typing.Union[int, str]
+    :type gpencil_tool: typing.Union[str, int]
     :param gpencil_vertex_tool: gpencil_vertex_tool
-    :type gpencil_vertex_tool: typing.Union[int, str]
+    :type gpencil_vertex_tool: typing.Union[str, int]
     :param gpencil_sculpt_tool: gpencil_sculpt_tool * SMOOTH Smooth, Smooth stroke points. * THICKNESS Thickness, Adjust thickness of strokes. * STRENGTH Strength, Adjust color strength of strokes. * RANDOMIZE Randomize, Introduce jitter/randomness into strokes. * GRAB Grab, Translate the set of points initially within the brush circle. * PUSH Push, Move points out of the way, as if combing them. * TWIST Twist, Rotate points around the midpoint of the brush. * PINCH Pinch, Pull points towards the midpoint of the brush. * CLONE Clone, Paste copies of the strokes stored on the clipboard.
-    :type gpencil_sculpt_tool: typing.Union[int, str]
+    :type gpencil_sculpt_tool: typing.Union[str, int]
     :param gpencil_weight_tool: gpencil_weight_tool * WEIGHT Weight, Weight Paint for Vertex Groups.
-    :type gpencil_weight_tool: typing.Union[int, str]
+    :type gpencil_weight_tool: typing.Union[str, int]
     :param toggle: Toggle, Toggle between two brushes rather than cycling
     :type toggle: bool
     :param create_missing: Create Missing, If the requested brush type does not exist, create a new brush
@@ -87,11 +87,11 @@ def brush_select(sculpt_tool: typing.Union[int, str] = 'DRAW',
     pass
 
 
-def face_select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def face_select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Change selection for all faces
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -145,8 +145,8 @@ def grab_clone(delta: typing.List[float] = (0.0, 0.0)):
     pass
 
 
-def hide_show(action: typing.Union[int, str] = 'HIDE',
-              area: typing.Union[int, str] = 'INSIDE',
+def hide_show(action: typing.Union[str, int] = 'HIDE',
+              area: typing.Union[str, int] = 'INSIDE',
               xmin: int = 0,
               xmax: int = 0,
               ymin: int = 0,
@@ -155,9 +155,9 @@ def hide_show(action: typing.Union[int, str] = 'HIDE',
     ''' Hide/show some vertices
 
     :param action: Action, Whether to hide or show vertices * HIDE Hide, Hide vertices. * SHOW Show, Show vertices.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     :param area: Area, Which vertices to hide or show * OUTSIDE Outside, Hide or show vertices outside the selection. * INSIDE Inside, Hide or show vertices inside the selection. * ALL All, Hide or show all vertices. * MASKED Masked, Hide or show vertices that are masked (minimum mask value of 0.5).
-    :type area: typing.Union[int, str]
+    :type area: typing.Union[str, int]
     :param xmin: X Min
     :type xmin: int
     :param xmax: X Max
@@ -183,27 +183,27 @@ def image_from_view(filepath: str = ""):
     pass
 
 
-def image_paint(
-        stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'],
-                             'bpy_prop_collection'] = None,
-        mode: typing.Union[int, str] = 'NORMAL'):
+def image_paint(stroke: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.
+        List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection'] = None,
+                mode: typing.Union[str, int] = 'NORMAL'):
     ''' Paint a stroke into the image
 
     :param stroke: Stroke
-    :type stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
+    :type stroke: typing.Union[typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
     :param mode: Stroke Mode, Action taken when a paint stroke is made * NORMAL Regular, Apply brush normally. * INVERT Invert, Invert action of brush for duration of stroke. * SMOOTH Smooth, Switch brush to smooth mode for duration of stroke.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
 
 
-def mask_flood_fill(mode: typing.Union[int, str] = 'VALUE',
+def mask_flood_fill(mode: typing.Union[str, int] = 'VALUE',
                     value: float = 0.0):
     ''' Fill the whole mask with a given value, or invert its values
 
     :param mode: Mode * VALUE Value, Set mask to the level specified by the 'value' property. * VALUE_INVERSE Value Inverted, Set mask to the level specified by the inverted 'value' property. * INVERT Invert, Invert the mask.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param value: Value, Mask level to use when mode is 'Value'; zero means no masking and one is fully masked
     :type value: float
     '''
@@ -211,17 +211,17 @@ def mask_flood_fill(mode: typing.Union[int, str] = 'VALUE',
     pass
 
 
-def mask_lasso_gesture(
-        path: typing.Union[typing.List['bpy.types.OperatorMousePath'],
-                           'bpy_prop_collection'] = None,
-        mode: typing.Union[int, str] = 'VALUE',
-        value: float = 1.0):
+def mask_lasso_gesture(path: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.
+        List['bpy.types.OperatorMousePath'], 'bpy_prop_collection'] = None,
+                       mode: typing.Union[str, int] = 'VALUE',
+                       value: float = 1.0):
     ''' Add mask within the lasso as you move the brush
 
     :param path: Path
-    :type path: typing.Union[typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
+    :type path: typing.Union[typing.Dict[str, 'bpy.types.OperatorMousePath'], typing.List['bpy.types.OperatorMousePath'], 'bpy_prop_collection']
     :param mode: Mode * VALUE Value, Set mask to the level specified by the 'value' property. * VALUE_INVERSE Value Inverted, Set mask to the level specified by the inverted 'value' property. * INVERT Invert, Invert the mask.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     :param value: Value, Mask level to use when mode is 'Value'; zero means no masking and one is fully masked
     :type value: float
     '''
@@ -229,11 +229,11 @@ def mask_lasso_gesture(
     pass
 
 
-def project_image(image: typing.Union[int, str] = ''):
+def project_image(image: typing.Union[str, int] = ''):
     ''' Project an edited render from the active camera back onto the object
 
     :param image: Image
-    :type image: typing.Union[int, str]
+    :type image: typing.Union[str, int]
     '''
 
     pass
@@ -263,11 +263,11 @@ def texture_paint_toggle():
     pass
 
 
-def vert_select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def vert_select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Change selection for all vertices
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -379,16 +379,16 @@ def vertex_color_smooth():
     pass
 
 
-def vertex_paint(
-        stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'],
-                             'bpy_prop_collection'] = None,
-        mode: typing.Union[int, str] = 'NORMAL'):
+def vertex_paint(stroke: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.
+        List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection'] = None,
+                 mode: typing.Union[str, int] = 'NORMAL'):
     ''' Paint a stroke in the active vertex color layer
 
     :param stroke: Stroke
-    :type stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
+    :type stroke: typing.Union[typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
     :param mode: Stroke Mode, Action taken when a paint stroke is made * NORMAL Regular, Apply brush normally. * INVERT Invert, Invert action of brush for duration of stroke. * SMOOTH Smooth, Switch brush to smooth mode for duration of stroke.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -402,17 +402,17 @@ def vertex_paint_toggle():
     pass
 
 
-def weight_from_bones(type: typing.Union[int, str] = 'AUTOMATIC'):
+def weight_from_bones(type: typing.Union[str, int] = 'AUTOMATIC'):
     ''' Set the weights of the groups matching the attached armature's selected bones, using the distance between the vertices and the bones
 
     :param type: Type, Method to use for assigning weights * AUTOMATIC Automatic, Automatic weights from bones. * ENVELOPES From Envelopes, Weights from envelopes with user defined radius.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def weight_gradient(type: typing.Union[int, str] = 'LINEAR',
+def weight_gradient(type: typing.Union[str, int] = 'LINEAR',
                     xstart: int = 0,
                     xend: int = 0,
                     ystart: int = 0,
@@ -421,7 +421,7 @@ def weight_gradient(type: typing.Union[int, str] = 'LINEAR',
     ''' Draw a line to apply a weight gradient to selected vertices
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param xstart: X Start
     :type xstart: int
     :param xend: X End
@@ -437,16 +437,16 @@ def weight_gradient(type: typing.Union[int, str] = 'LINEAR',
     pass
 
 
-def weight_paint(
-        stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'],
-                             'bpy_prop_collection'] = None,
-        mode: typing.Union[int, str] = 'NORMAL'):
+def weight_paint(stroke: typing.Union[
+        typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.
+        List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection'] = None,
+                 mode: typing.Union[str, int] = 'NORMAL'):
     ''' Paint a stroke in the current vertex group's weights
 
     :param stroke: Stroke
-    :type stroke: typing.Union[typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
+    :type stroke: typing.Union[typing.Dict[str, 'bpy.types.OperatorStrokeElement'], typing.List['bpy.types.OperatorStrokeElement'], 'bpy_prop_collection']
     :param mode: Stroke Mode, Action taken when a paint stroke is made * NORMAL Regular, Apply brush normally. * INVERT Invert, Invert action of brush for duration of stroke. * SMOOTH Smooth, Switch brush to smooth mode for duration of stroke.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
@@ -468,11 +468,11 @@ def weight_sample():
     pass
 
 
-def weight_sample_group(group: typing.Union[int, str] = 'DEFAULT'):
+def weight_sample_group(group: typing.Union[str, int] = 'DEFAULT'):
     ''' Select one of the vertex groups available under current mouse position
 
     :param group: Keying Set, The Keying Set to use
-    :type group: typing.Union[int, str]
+    :type group: typing.Union[str, int]
     '''
 
     pass

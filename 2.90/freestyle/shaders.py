@@ -51,12 +51,12 @@ class BlenderTextureShader:
     ''' Class hierarchy: freestyle.types.StrokeShader > BlenderTextureShader [Texture shader]
     '''
 
-    def __init__(self, texture: typing.Union[
-            'bpy.types.ShaderNodeTree', 'bpy.types.LineStyleTextureSlot']):
+    def __init__(self, texture: typing.Union['bpy.types.LineStyleTextureSlot',
+                                             'bpy.types.ShaderNodeTree']):
         ''' Builds a BlenderTextureShader object.
 
         :param texture: A line style texture slot or a shader node tree to define a set of textures.
-        :type texture: typing.Union['bpy.types.ShaderNodeTree', 'bpy.types.LineStyleTextureSlot']
+        :type texture: typing.Union['bpy.types.LineStyleTextureSlot', 'bpy.types.ShaderNodeTree']
         '''
         pass
 

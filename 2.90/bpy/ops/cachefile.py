@@ -22,8 +22,8 @@ def open(filepath: str = "",
          filter_folder: bool = True,
          filter_blenlib: bool = False,
          filemode: int = 8,
-         display_type: typing.Union[int, str] = 'DEFAULT',
-         sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
+         display_type: typing.Union[str, int] = 'DEFAULT',
+         sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
     ''' Load a cache file
 
     :param filepath: File Path, Path to file
@@ -67,9 +67,9 @@ def open(filepath: str = "",
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     '''
 
     pass

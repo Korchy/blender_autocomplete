@@ -30,12 +30,12 @@ def mixdown(filepath: str = "",
             filter_blenlib: bool = False,
             filemode: int = 9,
             relative_path: bool = True,
-            display_type: typing.Union[int, str] = 'DEFAULT',
-            sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+            display_type: typing.Union[str, int] = 'DEFAULT',
+            sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
             accuracy: int = 1024,
-            container: typing.Union[int, str] = 'FLAC',
-            codec: typing.Union[int, str] = 'FLAC',
-            format: typing.Union[int, str] = 'S16',
+            container: typing.Union[str, int] = 'FLAC',
+            codec: typing.Union[str, int] = 'FLAC',
+            format: typing.Union[str, int] = 'S16',
             bitrate: int = 192,
             split_channels: bool = False):
     ''' Mix the scene's audio to a sound file
@@ -81,17 +81,17 @@ def mixdown(filepath: str = "",
     :param relative_path: Relative Path, Select the file relative to the blend file
     :type relative_path: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param accuracy: Accuracy, Sample accuracy, important for animation data (the lower the value, the more accurate)
     :type accuracy: int
     :param container: Container, File format * AC3 ac3, Dolby Digital ATRAC 3. * FLAC flac, Free Lossless Audio Codec. * MATROSKA mkv, Matroska. * MP2 mp2, MPEG-1 Audio Layer II. * MP3 mp3, MPEG-2 Audio Layer III. * OGG ogg, Xiph.Org Ogg Container. * WAV wav, Waveform Audio File Format.
-    :type container: typing.Union[int, str]
+    :type container: typing.Union[str, int]
     :param codec: Codec, Audio Codec * AAC AAC, Advanced Audio Coding. * AC3 AC3, Dolby Digital ATRAC 3. * FLAC FLAC, Free Lossless Audio Codec. * MP2 MP2, MPEG-1 Audio Layer II. * MP3 MP3, MPEG-2 Audio Layer III. * PCM PCM, Pulse Code Modulation (RAW). * VORBIS Vorbis, Xiph.Org Vorbis Codec.
-    :type codec: typing.Union[int, str]
+    :type codec: typing.Union[str, int]
     :param format: Format, Sample format * U8 U8, 8 bit unsigned. * S16 S16, 16 bit signed. * S24 S24, 24 bit signed. * S32 S32, 32 bit signed. * F32 F32, 32 bit floating point. * F64 F64, 64 bit floating point.
-    :type format: typing.Union[int, str]
+    :type format: typing.Union[str, int]
     :param bitrate: Bitrate, Bitrate in kbit/s
     :type bitrate: int
     :param split_channels: Split channels, Each channel will be rendered into a mono file
@@ -123,8 +123,8 @@ def open(filepath: str = "",
          relative_path: bool = True,
          show_multiview: bool = False,
          use_multiview: bool = False,
-         display_type: typing.Union[int, str] = 'DEFAULT',
-         sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+         display_type: typing.Union[str, int] = 'DEFAULT',
+         sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
          cache: bool = False,
          mono: bool = False):
     ''' Load a sound file
@@ -174,9 +174,9 @@ def open(filepath: str = "",
     :param use_multiview: Use Multi-View
     :type use_multiview: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param cache: Cache, Cache the sound in memory
     :type cache: bool
     :param mono: Mono, Merge all the sound's channels into one
@@ -208,8 +208,8 @@ def open_mono(filepath: str = "",
               relative_path: bool = True,
               show_multiview: bool = False,
               use_multiview: bool = False,
-              display_type: typing.Union[int, str] = 'DEFAULT',
-              sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA',
+              display_type: typing.Union[str, int] = 'DEFAULT',
+              sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA',
               cache: bool = False,
               mono: bool = True):
     ''' Load a sound file as mono
@@ -259,9 +259,9 @@ def open_mono(filepath: str = "",
     :param use_multiview: Use Multi-View
     :type use_multiview: bool
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     :param cache: Cache, Cache the sound in memory
     :type cache: bool
     :param mono: Mono, Mixdown the sound to mono
@@ -279,11 +279,11 @@ def pack():
     pass
 
 
-def unpack(method: typing.Union[int, str] = 'USE_LOCAL', id: str = ""):
+def unpack(method: typing.Union[str, int] = 'USE_LOCAL', id: str = ""):
     ''' Unpack the sound to the samples filename
 
     :param method: Method, How to unpack
-    :type method: typing.Union[int, str]
+    :type method: typing.Union[str, int]
     :param id: Sound Name, Sound data-block name to unpack
     :type id: str
     '''

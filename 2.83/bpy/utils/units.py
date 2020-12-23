@@ -8,7 +8,7 @@ def to_string(unit_system: str,
               precision: int = 3,
               split_unit: bool = False,
               compatible_unit: bool = False) -> str:
-    ''' Convert a given input float value into a string with units.
+    ''' Convert a given input float value into a string with units. :raises ValueError: if conversion fails to generate a valid python string.
 
     :param unit_system: bpy.utils.units.systems .
     :type unit_system: str
@@ -32,7 +32,7 @@ def to_value(unit_system: str,
              unit_category: str,
              str_input: str,
              str_ref_unit: str = None) -> float:
-    ''' Convert a given input string into a float value.
+    ''' Convert a given input string into a float value. :raises ValueError: if conversion fails to generate a valid python float value.
 
     :param unit_system: bpy.utils.units.systems .
     :type unit_system: str

@@ -34,11 +34,11 @@ def reports_display_update():
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'SELECT'):
+def select_all(action: typing.Union[str, int] = 'SELECT'):
     ''' Change selection of all visible reports
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -49,7 +49,7 @@ def select_box(xmin: int = 0,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[int, str] = 'SET'):
+               mode: typing.Union[str, int] = 'SET'):
     ''' Toggle box selection
 
     :param xmin: X Min
@@ -63,7 +63,7 @@ def select_box(xmin: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass

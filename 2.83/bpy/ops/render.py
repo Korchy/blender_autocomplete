@@ -57,7 +57,7 @@ def opengl(animation: bool = False,
 
 
 def play_rendered_anim():
-    ''' Play back rendered frames/movies using an external player
+    ''' Play back rendered frames/movies using an external player :file: startup/bl_operators/screen_play_rendered_anim.py\:78 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/screen_play_rendered_anim.py$78> _
 
     '''
 
@@ -102,11 +102,11 @@ def render(animation: bool = False,
     pass
 
 
-def shutter_curve_preset(shape: typing.Union[int, str] = 'SMOOTH'):
+def shutter_curve_preset(shape: typing.Union[str, int] = 'SMOOTH'):
     ''' Set shutter curve
 
     :param shape: Mode
-    :type shape: typing.Union[int, str]
+    :type shape: typing.Union[str, int]
     '''
 
     pass

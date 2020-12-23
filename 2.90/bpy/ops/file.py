@@ -36,11 +36,11 @@ def bookmark_delete(index: int = -1):
     pass
 
 
-def bookmark_move(direction: typing.Union[int, str] = 'TOP'):
+def bookmark_move(direction: typing.Union[str, int] = 'TOP'):
     ''' Move the active bookmark up/down in the list
 
     :param direction: Direction, Direction to move the active bookmark towards * TOP Top, Top of the list. * UP Up. * DOWN Down. * BOTTOM Bottom, Bottom of the list.
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -128,8 +128,8 @@ def find_missing_files(
         filter_folder: bool = False,
         filter_blenlib: bool = False,
         filemode: int = 9,
-        display_type: typing.Union[int, str] = 'DEFAULT',
-        sort_method: typing.Union[int, str] = 'FILE_SORT_ALPHA'):
+        display_type: typing.Union[str, int] = 'DEFAULT',
+        sort_method: typing.Union[str, int] = 'FILE_SORT_ALPHA'):
     ''' Try to find missing external files
 
     :param find_all: Find All, Find all files in the search path (not just missing)
@@ -173,9 +173,9 @@ def find_missing_files(
     :param filemode: File Browser Mode, The setting for the file browser mode to load a .blend file, a library or a special file
     :type filemode: int
     :param display_type: Display Type * DEFAULT Default, Automatically determine display type for files. * LIST_VERTICAL Short List, Display files as short list. * LIST_HORIZONTAL Long List, Display files as a detailed list. * THUMBNAIL Thumbnails, Display files as thumbnails.
-    :type display_type: typing.Union[int, str]
+    :type display_type: typing.Union[str, int]
     :param sort_method: File sorting mode * FILE_SORT_ALPHA Name, Sort the file list alphabetically. * FILE_SORT_EXTENSION Extension, Sort the file list by extension/type. * FILE_SORT_TIME Modified Date, Sort files by modification time. * FILE_SORT_SIZE Size, Sort files by size.
-    :type sort_method: typing.Union[int, str]
+    :type sort_method: typing.Union[str, int]
     '''
 
     pass
@@ -304,11 +304,11 @@ def select(extend: bool = False,
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Select or deselect all files
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -329,7 +329,7 @@ def select_box(xmin: int = 0,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[int, str] = 'SET'):
+               mode: typing.Union[str, int] = 'SET'):
     ''' Activate/select the file(s) contained in the border
 
     :param xmin: X Min
@@ -343,19 +343,19 @@ def select_box(xmin: int = 0,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_walk(direction: typing.Union[int, str] = 'UP',
+def select_walk(direction: typing.Union[str, int] = 'UP',
                 extend: bool = False,
                 fill: bool = False):
     ''' Select/Deselect files by walking through them
 
     :param direction: Walk Direction, Select/Deselect element in this direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
     :param fill: Fill, Select everything beginning with the last selection
@@ -389,23 +389,23 @@ def start_filter():
     pass
 
 
-def unpack_all(method: typing.Union[int, str] = 'USE_LOCAL'):
+def unpack_all(method: typing.Union[str, int] = 'USE_LOCAL'):
     ''' Unpack all files packed into this .blend to external ones
 
     :param method: Method, How to unpack
-    :type method: typing.Union[int, str]
+    :type method: typing.Union[str, int]
     '''
 
     pass
 
 
-def unpack_item(method: typing.Union[int, str] = 'USE_LOCAL',
+def unpack_item(method: typing.Union[str, int] = 'USE_LOCAL',
                 id_name: str = "",
                 id_type: int = 19785):
     ''' Unpack this file to an external file
 
     :param method: Method, How to unpack
-    :type method: typing.Union[int, str]
+    :type method: typing.Union[str, int]
     :param id_name: ID name, Name of ID block to unpack
     :type id_name: str
     :param id_type: ID Type, Identifier type of ID block

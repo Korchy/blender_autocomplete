@@ -5,8 +5,8 @@ import bmesh.types
 
 from . import utils
 from . import ops
-from . import geometry
 from . import types
+from . import geometry
 
 
 def from_edit_mesh(mesh: 'bpy.types.Mesh') -> 'bmesh.types.BMesh':

@@ -2,21 +2,21 @@ import sys
 import typing
 
 
-def action_set(action: typing.Union[int, str] = ''):
+def action_set(action: typing.Union[str, int] = ''):
     ''' Change the active action used
 
     :param action: Action
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
 
 
-def animdata_operation(type: typing.Union[int, str] = 'CLEAR_ANIMDATA'):
+def animdata_operation(type: typing.Union[str, int] = 'CLEAR_ANIMDATA'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Animation Operation * CLEAR_ANIMDATA Clear Animation Data, Remove this animation data container. * SET_ACT Set Action. * CLEAR_ACT Unlink Action. * REFRESH_DRIVERS Refresh Drivers. * CLEAR_DRIVERS Clear Drivers.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -220,21 +220,21 @@ def collection_show_inside():
     pass
 
 
-def constraint_operation(type: typing.Union[int, str] = 'ENABLE'):
+def constraint_operation(type: typing.Union[str, int] = 'ENABLE'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Constraint Operation
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def data_operation(type: typing.Union[int, str] = 'SELECT'):
+def data_operation(type: typing.Union[str, int] = 'SELECT'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Data Operation
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -296,11 +296,11 @@ def id_delete():
     pass
 
 
-def id_operation(type: typing.Union[int, str] = 'UNLINK'):
+def id_operation(type: typing.Union[str, int] = 'UNLINK'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: ID data Operation * UNLINK Unlink. * LOCAL Make Local. * OVERRIDE_LIBRARY Add Library Override, Add a local override of this linked data-block. * SINGLE Make Single User. * DELETE Delete. * REMAP Remap Users, Make all users of selected data-blocks to use instead current (clicked) one. * COPY Copy. * PASTE Paste. * ADD_FAKE Add Fake User, Ensure data-block gets saved even if it isn't in use (e.g. for motion and material libraries). * CLEAR_FAKE Clear Fake User. * RENAME Rename. * SELECT_LINKED Select Linked.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -314,17 +314,17 @@ def id_paste():
     pass
 
 
-def id_remap(id_type: typing.Union[int, str] = 'OBJECT',
-             old_id: typing.Union[int, str] = '',
-             new_id: typing.Union[int, str] = ''):
+def id_remap(id_type: typing.Union[str, int] = 'OBJECT',
+             old_id: typing.Union[str, int] = '',
+             new_id: typing.Union[str, int] = ''):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param id_type: ID Type
-    :type id_type: typing.Union[int, str]
+    :type id_type: typing.Union[str, int]
     :param old_id: Old ID, Old ID to replace
-    :type old_id: typing.Union[int, str]
+    :type old_id: typing.Union[str, int]
     :param new_id: New ID, New ID to remap all selected IDs' users to
-    :type new_id: typing.Union[int, str]
+    :type new_id: typing.Union[str, int]
     '''
 
     pass
@@ -388,11 +388,11 @@ def keyingset_remove_selected():
     pass
 
 
-def lib_operation(type: typing.Union[int, str] = 'RENAME'):
+def lib_operation(type: typing.Union[str, int] = 'RENAME'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Library Operation * RENAME Rename. * DELETE Delete, Delete this library and all its item from Blender - WARNING: no undo. * RELOCATE Relocate, Select a new path for this library, and reload all its data. * RELOAD Reload, Reload all data from this library.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -414,21 +414,21 @@ def material_drop():
     pass
 
 
-def modifier_operation(type: typing.Union[int, str] = 'TOGVIS'):
+def modifier_operation(type: typing.Union[str, int] = 'TOGVIS'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Modifier Operation
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def object_operation(type: typing.Union[int, str] = 'SELECT'):
+def object_operation(type: typing.Union[str, int] = 'SELECT'):
     ''' Undocumented, consider contributing <https://developer.blender.org/T51061> __.
 
     :param type: Object Operation * SELECT Select. * DESELECT Deselect. * SELECT_HIERARCHY Select Hierarchy. * DELETE Delete. * DELETE_HIERARCHY Delete Hierarchy. * REMAP Remap Users, Make all users of selected data-blocks to use instead a new chosen one. * RENAME Rename. * OBJECT_MODE_ENTER Enter Mode. * OBJECT_MODE_EXIT Exit Mode.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -475,11 +475,11 @@ def scene_drop():
     pass
 
 
-def scene_operation(type: typing.Union[int, str] = 'DELETE'):
+def scene_operation(type: typing.Union[str, int] = 'DELETE'):
     ''' Context menu for scene operations
 
     :param type: Scene Operation
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -495,11 +495,11 @@ def scroll_page(up: bool = False):
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Toggle the Outliner selection of items
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
@@ -511,7 +511,7 @@ def select_box(tweak: bool = False,
                ymin: int = 0,
                ymax: int = 0,
                wait_for_input: bool = True,
-               mode: typing.Union[int, str] = 'SET'):
+               mode: typing.Union[str, int] = 'SET'):
     ''' Use box selection to select tree elements
 
     :param tweak: Tweak, Tweak gesture from empty space for box selection
@@ -527,19 +527,19 @@ def select_box(tweak: bool = False,
     :param wait_for_input: Wait for Input
     :type wait_for_input: bool
     :param mode: Mode * SET Set, Set a new selection. * ADD Extend, Extend existing selection. * SUB Subtract, Subtract existing selection.
-    :type mode: typing.Union[int, str]
+    :type mode: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_walk(direction: typing.Union[int, str] = 'UP',
+def select_walk(direction: typing.Union[str, int] = 'UP',
                 extend: bool = False,
                 toggle_all: bool = False):
     ''' Use walk navigation to select tree elements
 
     :param direction: Walk Direction, Select/Deselect element in this direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     :param extend: Extend, Extend selection on walk
     :type extend: bool
     :param toggle_all: Toggle All, Toggle open/close hierarchy

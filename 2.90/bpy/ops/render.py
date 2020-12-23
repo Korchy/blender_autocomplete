@@ -102,11 +102,11 @@ def render(animation: bool = False,
     pass
 
 
-def shutter_curve_preset(shape: typing.Union[int, str] = 'SMOOTH'):
+def shutter_curve_preset(shape: typing.Union[str, int] = 'SMOOTH'):
     ''' Set shutter curve
 
     :param shape: Mode
-    :type shape: typing.Union[int, str]
+    :type shape: typing.Union[str, int]
     '''
 
     pass

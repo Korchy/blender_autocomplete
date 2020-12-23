@@ -10,11 +10,11 @@ def bake():
     pass
 
 
-def output_toggle(output: typing.Union[int, str] = 'A'):
+def output_toggle(output: typing.Union[str, int] = 'A'):
     ''' Add or remove Dynamic Paint output data layer
 
     :param output: Output Toggle
-    :type output: typing.Union[int, str]
+    :type output: typing.Union[str, int]
     '''
 
     pass
@@ -36,11 +36,11 @@ def surface_slot_remove():
     pass
 
 
-def type_toggle(type: typing.Union[int, str] = 'CANVAS'):
+def type_toggle(type: typing.Union[str, int] = 'CANVAS'):
     ''' Toggle whether given type is active or not
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

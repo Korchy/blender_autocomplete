@@ -18,11 +18,11 @@ def slot_copy():
     pass
 
 
-def slot_move(type: typing.Union[int, str] = 'UP'):
+def slot_move(type: typing.Union[str, int] = 'UP'):
     ''' Move texture slots up and down
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass

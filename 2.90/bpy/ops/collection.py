@@ -12,31 +12,31 @@ def create(name: str = "Collection"):
     pass
 
 
-def objects_add_active(collection: typing.Union[int, str] = ''):
+def objects_add_active(collection: typing.Union[str, int] = ''):
     ''' Add the object to an object collection that contains the active object
 
     :param collection: Collection, The collection to add other selected objects to
-    :type collection: typing.Union[int, str]
+    :type collection: typing.Union[str, int]
     '''
 
     pass
 
 
-def objects_remove(collection: typing.Union[int, str] = ''):
+def objects_remove(collection: typing.Union[str, int] = ''):
     ''' Remove selected objects from a collection
 
     :param collection: Collection, The collection to remove this object from
-    :type collection: typing.Union[int, str]
+    :type collection: typing.Union[str, int]
     '''
 
     pass
 
 
-def objects_remove_active(collection: typing.Union[int, str] = ''):
+def objects_remove_active(collection: typing.Union[str, int] = ''):
     ''' Remove the object from an object collection that contains the active object
 
     :param collection: Collection, The collection to remove other selected objects from
-    :type collection: typing.Union[int, str]
+    :type collection: typing.Union[str, int]
     '''
 
     pass

@@ -26,11 +26,11 @@ def armature_layers(
     pass
 
 
-def autoside_names(type: typing.Union[int, str] = 'XAXIS'):
+def autoside_names(type: typing.Union[str, int] = 'XAXIS'):
     ''' Automatically renames the selected bones according to which side of the target axis they fall on
 
     :param type: Axis, Axis tag names with * XAXIS X-Axis, Left/Right. * YAXIS Y-Axis, Front/Back. * ZAXIS Z-Axis, Top/Bottom.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -62,13 +62,13 @@ def bone_primitive_add(name: str = "Bone"):
     pass
 
 
-def calculate_roll(type: typing.Union[int, str] = 'POS_X',
+def calculate_roll(type: typing.Union[str, int] = 'POS_X',
                    axis_flip: bool = False,
                    axis_only: bool = False):
     ''' Automatically fix alignment of select bones' axes
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param axis_flip: Flip Axis, Negate the alignment axis
     :type axis_flip: bool
     :param axis_only: Shortest Rotation, Ignore the axis direction, use the shortest rotation to align
@@ -190,21 +190,21 @@ def layers_show_all(all: bool = True):
     pass
 
 
-def parent_clear(type: typing.Union[int, str] = 'CLEAR'):
+def parent_clear(type: typing.Union[str, int] = 'CLEAR'):
     ''' Remove the parent-child relationship between selected bones and their parents
 
     :param type: ClearType, What way to clear parenting
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def parent_set(type: typing.Union[int, str] = 'CONNECTED'):
+def parent_set(type: typing.Union[str, int] = 'CONNECTED'):
     ''' Set the active bone as the parent of the selected bones
 
     :param type: ParentType, Type of parenting
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -230,22 +230,22 @@ def roll_clear(roll: float = 0.0):
     pass
 
 
-def select_all(action: typing.Union[int, str] = 'TOGGLE'):
+def select_all(action: typing.Union[str, int] = 'TOGGLE'):
     ''' Toggle selection status of all bones
 
     :param action: Action, Selection action to execute * TOGGLE Toggle, Toggle selection for all elements. * SELECT Select, Select all elements. * DESELECT Deselect, Deselect all elements. * INVERT Invert, Invert selection of all elements.
-    :type action: typing.Union[int, str]
+    :type action: typing.Union[str, int]
     '''
 
     pass
 
 
-def select_hierarchy(direction: typing.Union[int, str] = 'PARENT',
+def select_hierarchy(direction: typing.Union[str, int] = 'PARENT',
                      extend: bool = False):
     ''' Select immediate parent/children of selected bones
 
     :param direction: Direction
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     :param extend: Extend, Extend the selection
     :type extend: bool
     '''
@@ -303,12 +303,12 @@ def select_more():
     pass
 
 
-def select_similar(type: typing.Union[int, str] = 'LENGTH',
+def select_similar(type: typing.Union[str, int] = 'LENGTH',
                    threshold: float = 0.1):
     ''' Select similar bones by property types
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param threshold: Threshold
     :type threshold: float
     '''
@@ -358,11 +358,11 @@ def switch_direction():
     pass
 
 
-def symmetrize(direction: typing.Union[int, str] = 'NEGATIVE_X'):
+def symmetrize(direction: typing.Union[str, int] = 'NEGATIVE_X'):
     ''' Enforce symmetry, make copies of the selection or use existing
 
     :param direction: Direction, Which sides to copy from and to (when both are selected)
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass

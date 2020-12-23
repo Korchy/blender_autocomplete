@@ -11,7 +11,7 @@ def delete():
 
 
 def freestyle_add_edge_marks_to_keying_set():
-    ''' Add the data paths to the Freestyle Edge Mark property of selected edges to the active keying set
+    ''' Add the data paths to the Freestyle Edge Mark property of selected edges to the active keying set :file: startup/bl_operators/freestyle.py\:146 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/freestyle.py$146> _
 
     '''
 
@@ -19,7 +19,7 @@ def freestyle_add_edge_marks_to_keying_set():
 
 
 def freestyle_add_face_marks_to_keying_set():
-    ''' Add the data paths to the Freestyle Face Mark property of selected polygons to the active keying set
+    ''' Add the data paths to the Freestyle Face Mark property of selected polygons to the active keying set :file: startup/bl_operators/freestyle.py\:177 <https://developer.blender.org/diffusion/B/browse/master/release/scripts/startup/bl_operators/freestyle.py$177> _
 
     '''
 
@@ -27,33 +27,33 @@ def freestyle_add_face_marks_to_keying_set():
 
 
 def freestyle_alpha_modifier_add(
-        type: typing.Union[int, str] = 'ALONG_STROKE'):
+        type: typing.Union[str, int] = 'ALONG_STROKE'):
     ''' Add an alpha transparency modifier to the line style associated with the active lineset
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
 def freestyle_color_modifier_add(
-        type: typing.Union[int, str] = 'ALONG_STROKE'):
+        type: typing.Union[str, int] = 'ALONG_STROKE'):
     ''' Add a line color modifier to the line style associated with the active lineset
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
 
 
-def freestyle_fill_range_by_selection(type: typing.Union[int, str] = 'COLOR',
+def freestyle_fill_range_by_selection(type: typing.Union[str, int] = 'COLOR',
                                       name: str = ""):
     ''' Fill the Range Min/Max entries by the min/max distance between selected mesh objects and the source object
 
     :param type: Type, Type of the modifier to work on * COLOR Color, Color modifier type. * ALPHA Alpha, Alpha modifier type. * THICKNESS Thickness, Thickness modifier type.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     :param name: Name, Name of the modifier to work on
     :type name: str
     '''
@@ -62,11 +62,11 @@ def freestyle_fill_range_by_selection(type: typing.Union[int, str] = 'COLOR',
 
 
 def freestyle_geometry_modifier_add(
-        type: typing.Union[int, str] = '2D_OFFSET'):
+        type: typing.Union[str, int] = '2D_OFFSET'):
     ''' Add a stroke geometry modifier to the line style associated with the active lineset
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -88,11 +88,11 @@ def freestyle_lineset_copy():
     pass
 
 
-def freestyle_lineset_move(direction: typing.Union[int, str] = 'UP'):
+def freestyle_lineset_move(direction: typing.Union[str, int] = 'UP'):
     ''' Change the position of the active line set within the list of line sets
 
     :param direction: Direction, Direction to move the active line set towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -130,11 +130,11 @@ def freestyle_modifier_copy():
     pass
 
 
-def freestyle_modifier_move(direction: typing.Union[int, str] = 'UP'):
+def freestyle_modifier_move(direction: typing.Union[str, int] = 'UP'):
     ''' Move the modifier within the list of modifiers
 
     :param direction: Direction, Direction to move the chosen modifier towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -156,11 +156,11 @@ def freestyle_module_add():
     pass
 
 
-def freestyle_module_move(direction: typing.Union[int, str] = 'UP'):
+def freestyle_module_move(direction: typing.Union[str, int] = 'UP'):
     ''' Change the position of the style module within in the list of style modules
 
     :param direction: Direction, Direction to move the chosen style module towards
-    :type direction: typing.Union[int, str]
+    :type direction: typing.Union[str, int]
     '''
 
     pass
@@ -195,11 +195,11 @@ def freestyle_stroke_material_create():
 
 
 def freestyle_thickness_modifier_add(
-        type: typing.Union[int, str] = 'ALONG_STROKE'):
+        type: typing.Union[str, int] = 'ALONG_STROKE'):
     ''' Add a line thickness modifier to the line style associated with the active lineset
 
     :param type: Type
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -237,13 +237,13 @@ def gpencil_material_preset_add(name: str = "",
     pass
 
 
-def light_cache_bake(delay: int = 0, subset: typing.Union[int, str] = 'ALL'):
+def light_cache_bake(delay: int = 0, subset: typing.Union[str, int] = 'ALL'):
     ''' Bake the active view layer lighting
 
     :param delay: Delay, Delay in millisecond before baking starts
     :type delay: int
     :param subset: Subset, Subset of probes to update * ALL All LightProbes, Bake both irradiance grids and reflection cubemaps. * DIRTY Dirty Only, Only bake lightprobes that are marked as dirty. * CUBEMAPS Cubemaps Only, Try to only bake reflection cubemaps if irradiance grids are up to date.
-    :type subset: typing.Union[int, str]
+    :type subset: typing.Union[str, int]
     '''
 
     pass
@@ -257,11 +257,11 @@ def light_cache_free():
     pass
 
 
-def new(type: typing.Union[int, str] = 'NEW'):
+def new(type: typing.Union[str, int] = 'NEW'):
     ''' Add new scene by type
 
     :param type: Type * NEW New, Add a new, empty scene with default settings. * EMPTY Copy Settings, Add a new, empty scene, and copy settings from the current scene. * LINK_COPY Linked Copy, Link in the collections from the current scene (shallow copy). * FULL_COPY Full Copy, Make a full copy of the current scene.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
@@ -283,11 +283,11 @@ def render_view_remove():
     pass
 
 
-def view_layer_add(type: typing.Union[int, str] = 'NEW'):
+def view_layer_add(type: typing.Union[str, int] = 'NEW'):
     ''' Add a view layer
 
     :param type: Type * NEW New, Add a new view layer. * COPY Copy Settings, Copy settings of current view layer. * EMPTY Blank, Add a new view layer with all collections disabled.
-    :type type: typing.Union[int, str]
+    :type type: typing.Union[str, int]
     '''
 
     pass
