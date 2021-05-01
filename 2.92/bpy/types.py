@@ -8134,6 +8134,7 @@ class Context(bpy_struct):
     '''
 
     def __init__(self):
+        self.selected_objects = None
         self.object = None
 
     def evaluated_depsgraph_get(self) -> 'Depsgraph':
