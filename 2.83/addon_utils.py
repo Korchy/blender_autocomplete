@@ -10,7 +10,7 @@ def check(module_name):
     pass
 
 
-def disable(module_name, default_set, handle_error):
+def disable(module_name, *, default_set=False, handle_error=None):
     ''' 
 
     '''
@@ -26,7 +26,7 @@ def disable_all():
     pass
 
 
-def enable(module_name, default_set, persistent, handle_error):
+def enable(module_name, *, default_set=False, persistent=False, handle_error=None):
     ''' 
 
     '''
