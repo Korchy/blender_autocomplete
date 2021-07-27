@@ -8170,6 +8170,7 @@ class Context(bpy_struct):
     '''
 
     def __init__(self):
+        self.selected_objects = None
         self.object = None
         self.active_object = None
 
