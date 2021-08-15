@@ -317,7 +317,7 @@ class Matrix:
         pass
 
     @classmethod
-    def Scale(cls, factor: float, size: int, axis: 'Vector') -> 'Matrix':
+    def Scale(cls, factor: float, size: int, axis: 'Vector' = None) -> 'Matrix':
         ''' Create a matrix representing a scaling.
 
         :param factor: The factor of scaling to apply.
