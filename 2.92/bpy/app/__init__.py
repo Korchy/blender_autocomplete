@@ -213,7 +213,7 @@ use_userpref_skip_save_on_exit = None
 ''' Boolean, for application behavior (started with --enable-* matching this attribute name)
 '''
 
-version = None
+version: tuple
 ''' The Blender version as a tuple of 3 numbers. eg. (2, 83, 1)
 '''
 
