@@ -152,7 +152,7 @@ selected_nla_strips: typing.List['bpy.types.NlaStrip'] = None
 
 selected_nodes: typing.List['bpy.types.Node'] = None
 
-selected_objects: typing.List['bpy.types.Object'] = None
+selected_objects: typing.List['bpy.types.Object']
 
 selected_pose_bones: typing.List['bpy.types.PoseBone'] = None
 
