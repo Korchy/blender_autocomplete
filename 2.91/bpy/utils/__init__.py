@@ -288,7 +288,7 @@ def smpte_from_seconds(time: typing.Union[int, float], fps=None,
     pass
 
 
-def time_from_frame(frame, fps, fps_base):
+def time_from_frame(frame, fps=None, fps_base=None):
     ''' 
 
     '''
