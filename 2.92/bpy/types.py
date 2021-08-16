@@ -713,6 +713,8 @@ class AddonPreferences(bpy_struct):
     :type: str
     '''
 
+    layout: 'UILayout' = None
+
     @classmethod
     def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
         ''' 
@@ -56915,7 +56917,7 @@ class NodeTree(ID, bpy_struct):
 class Object(ID, bpy_struct):
     ''' Object data-block defining an object in a scene
     '''
-
+    bl_rna: 'Object'
     active_material: 'Material' = None
     ''' Active material being displayed
 
