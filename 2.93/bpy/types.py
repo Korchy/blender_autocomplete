@@ -36454,6 +36454,9 @@ class Space(bpy_struct):
     :type: typing.Union[str, int]
     '''
 
+    def __init__(self):
+        self.shading = None
+
     @classmethod
     def bl_rna_get_subclass(cls, id: str, default=None) -> 'Struct':
         ''' 
@@ -57802,6 +57805,7 @@ class Object(ID, bpy_struct):
     ''' Object data-block defining an object in a scene
     '''
 
+    bl_rna = None
     active_material: 'Material' = None
     ''' Active material being displayed
 

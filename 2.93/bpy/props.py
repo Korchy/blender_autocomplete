@@ -185,7 +185,7 @@ def FloatProperty(name: str = "",
 
 def FloatVectorProperty(name: str = "",
                         description: str = "",
-                        default: list = (0.0, 0.0, 0.0),
+                        default: tuple = (0.0, 0.0, 0.0),
                         min: float = 'sys.float_info.min',
                         max: float = 'sys.float_info.max',
                         soft_min: float = 'sys.float_info.min',
