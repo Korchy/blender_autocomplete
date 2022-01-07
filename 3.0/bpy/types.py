@@ -8268,6 +8268,11 @@ class Context(bpy_struct):
     :type: 'WorkSpace'
     '''
 
+    def __init__(self):
+        self.selected_objects = None
+        self.object = None
+        self.active_object = None
+
     def evaluated_depsgraph_get(self) -> 'Depsgraph':
         ''' Get the dependency graph for the current scene and view layer, to access to data-blocks with animation and modifiers applied. If any data-blocks have been edited, the dependency graph will be updated. This invalidates all references to evaluated data-blocks from the dependency graph.
 
