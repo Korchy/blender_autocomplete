@@ -44005,7 +44005,7 @@ class UILayout(bpy_struct):
         pass
 
     def prop(self,
-             data: 'AnyType',
+             data: typing.Any,
              property: str,
              text: str = "",
              text_ctxt: str = "",
@@ -45039,9 +45039,9 @@ class UILayout(bpy_struct):
     def template_list(self,
                       listtype_name: str,
                       list_id: str,
-                      dataptr: 'AnyType',
+                      dataptr: typing.Any,
                       propname: str,
-                      active_dataptr: 'AnyType',
+                      active_dataptr: typing.Any,
                       active_propname: str,
                       item_dyntip_propname: str = "",
                       rows: int = 5,
