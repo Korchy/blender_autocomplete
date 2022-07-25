@@ -1537,11 +1537,11 @@ def scale_clear(clear_delta: bool = False):
     pass
 
 
-def select_all(action: int = 'TOGGLE'):
+def select_all(action: str = 'TOGGLE'):
     '''Change selection of all visible objects in scene 
 
     :param action: Action, Selection action to executeTOGGLE Toggle, Toggle selection for all elements.SELECT Select, Select all elements.DESELECT Deselect, Deselect all elements.INVERT Invert, Invert selection of all elements. 
-    :type action: int
+    :type action: str
     '''
 
     pass

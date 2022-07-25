@@ -34537,11 +34537,11 @@ class Operator:
     bl_property = None
     '''The name of a property to use as this operators primary property. Currently this is only used to select the default property when expanding an operator into a menu. :type: string '''
 
-    def report(self, type: typing.Set[int], message: str):
+    def report(self, type: typing.Set[str], message: str):
         '''report 
 
         :param type: Type 
-        :type type: typing.Set[int]
+        :type type: typing.Set[str]
         :param message: Report Message 
         :type message: str
         '''
