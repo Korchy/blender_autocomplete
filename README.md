@@ -13,6 +13,8 @@ This modules getted from nutti fake-bpy-modules. Only files, without pip instala
 - 2.92 - 2021.03.04
 - 2.93 - 2021.07.01
 - 3.0 - 2021.12.12
+- 3.1 - 2022.06.15
+- 3.2 - 2022.06.15
 
 Installation and usage:
 -
