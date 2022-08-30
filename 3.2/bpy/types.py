@@ -44864,7 +44864,7 @@ class UILayout(bpy_struct):
         pass
 
     def prop(self,
-             data: 'AnyType',
+             data: typing.Any,
              property: str,
              text: str = "",
              text_ctxt: str = "",
@@ -45340,7 +45340,7 @@ class UILayout(bpy_struct):
         pass
 
     def template_ID(self,
-                    data: 'AnyType',
+                    data: typing.Any,
                     property: str,
                     new: str = "",
                     open: str = "",
