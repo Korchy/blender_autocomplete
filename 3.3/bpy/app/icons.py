@@ -1,0 +1,36 @@
+import sys
+import typing
+
+GenericType = typing.TypeVar("GenericType")
+
+
+def new_triangles(range, coords, colors) -> int:
+    ''' Create a new icon from triangle geometry.
+
+    :param range: Pair of ints.
+    :param coords: Sequence of bytes (6 floats for one triangle) for (X, Y) coordinates.
+    :param colors: Sequence of ints (12 for one triangles) for RGBA.
+    :rtype: int
+    :return: Unique icon value (pass to interface icon_value argument).
+    '''
+
+    pass
+
+
+def new_triangles_from_file(filename) -> int:
+    ''' Create a new icon from triangle geometry.
+
+    :param filename: File path.
+    :rtype: int
+    :return: Unique icon value (pass to interface icon_value argument).
+    '''
+
+    pass
+
+
+def release(icon_id):
+    ''' Release the icon.
+
+    '''
+
+    pass
