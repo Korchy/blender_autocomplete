@@ -1908,11 +1908,11 @@ def track_clear(type: int = 'CLEAR'):
     pass
 
 
-def track_set(type: int = 'DAMPTRACK'):
+def track_set(type: str = 'DAMPTRACK'):
     '''Make the object track another object, using various methods/constraints 
 
     :param type: Type 
-    :type type: int
+    :type type: str
     '''
 
     pass

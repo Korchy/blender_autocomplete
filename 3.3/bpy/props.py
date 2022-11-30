@@ -103,7 +103,7 @@ def CollectionProperty(
     pass
 
 
-def EnumProperty(items: typing.Union[int, str, typing.Set[str]],
+def EnumProperty(items: typing.Union[typing.List[typing.Tuple], typing.Tuple],
                  name: str = "",
                  description: str = "",
                  default: str = None,

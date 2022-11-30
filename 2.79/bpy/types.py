@@ -2354,6 +2354,9 @@ class BlendDataCameras:
     :type: bool
     '''
 
+    def __init__(self):
+        self.focal_lock = None
+
     def new(self, name: str) -> 'Camera':
         '''Add a new camera to the main database 
 
