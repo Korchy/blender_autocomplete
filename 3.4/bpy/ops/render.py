@@ -174,7 +174,7 @@ def preset_add(override_context: typing.
 
 
 def render(override_context: typing.Union[typing.
-                                          Dict, 'bpy.types.Context'] = None,
+                                          Dict, 'bpy.types.Context', str] = None,
            execution_context: typing.Union[str, int] = None,
            undo: typing.Optional[bool] = None,
            *,
