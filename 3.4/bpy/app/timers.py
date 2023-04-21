@@ -4,7 +4,7 @@ import typing
 GenericType = typing.TypeVar("GenericType")
 
 
-def is_registered(function: typing.Optional[int]) -> bool:
+def is_registered(function: typing.Optional[int, float]) -> bool:
     ''' Check if this function is registered as a timer.
 
     :param function: Function to check.

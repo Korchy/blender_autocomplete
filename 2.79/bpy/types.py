@@ -28666,6 +28666,9 @@ class MeshVertexStringPropertyLayer:
 class MeshVertices:
     '''Collection of mesh vertices '''
 
+    def __init__(self):
+        self.co = None
+
     def add(self, count: int = 0):
         '''add 
 
@@ -55231,7 +55234,7 @@ class UILayout:
                  text: str = "",
                  text_ctxt: str = "",
                  translate: bool = True,
-                 icon: int = 'NONE',
+                 icon: [int, str] = 'NONE',
                  emboss: bool = True,
                  icon_value: int = 0) -> 'OperatorProperties':
         '''Item. Places a button into the layout to call an Operator 
@@ -55245,7 +55248,7 @@ class UILayout:
         :param translate: Translate the given text, when UI translation is enabled 
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item 
-        :type icon: int
+        :type icon: int, str
         :param emboss: Draw the button itself, just the icon/text 
         :type emboss: bool
         :param icon_value: Icon Value, Override automatic icon of the item 
