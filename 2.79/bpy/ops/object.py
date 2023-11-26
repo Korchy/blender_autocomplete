@@ -231,7 +231,7 @@ def constraints_copy():
     pass
 
 
-def convert(target: int = 'MESH', keep_original: bool = False):
+def convert(target: typing.Union[int, str] = 'MESH', keep_original: bool = False):
     '''Convert selected objects to another type 
 
     :param target: Target, Type of object to convert to 

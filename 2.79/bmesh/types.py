@@ -247,11 +247,13 @@ class BMEdgeSeq:
         '''
         pass
 
-    def new(self, verts: 'BMVert', example: 'BMEdge' = None) -> 'BMEdge':
+    def new(self,
+            verts: typing.Union[list['BMVert', 'BMVert'], tuple['BMVert', 'BMVert']],
+            example: 'BMEdge' = None) -> 'BMEdge':
         '''Create a new edge from a given pair of verts. 
 
         :param verts: Vertex pair. 
-        :type verts: 'BMVert'
+        :type verts: typing.Union[list('BMVert'), tuple('BMVert')]
         :param example: Existing edge to initialize settings (optional argument). 
         :type example: 'BMEdge'
         :rtype: 'BMEdge'

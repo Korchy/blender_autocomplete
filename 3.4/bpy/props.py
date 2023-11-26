@@ -113,7 +113,7 @@ def CollectionProperty(type: typing.Optional[typing.Any] = None,
 
 
 def EnumProperty(
-        items: typing.Union[typing.List[typing.Tuple[str, str, str]], typing.
+        items: typing.Union[typing.List[typing.Tuple[str, str, str, int]], typing.
                             Callable],
         name: typing.Optional[str] = "",
         description: typing.Optional[str] = "",
