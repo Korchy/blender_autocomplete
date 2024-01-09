@@ -1622,7 +1622,7 @@ def select_mirror(axis: typing.Set[int] = {'X'}, extend: bool = False):
 
 def select_mode(use_extend: bool = False,
                 use_expand: bool = False,
-                type: int = 'VERT',
+                type: str = 'VERT',
                 action: int = 'TOGGLE'):
     '''Change selection mode 
 
@@ -1631,7 +1631,7 @@ def select_mode(use_extend: bool = False,
     :param use_expand: Expand 
     :type use_expand: bool
     :param type: Type 
-    :type type: int
+    :type type: str
     :param action: Action, Selection action to executeDISABLE Disable, Disable selected markers.ENABLE Enable, Enable selected markers.TOGGLE Toggle, Toggle disabled flag for selected markers. 
     :type action: int
     '''

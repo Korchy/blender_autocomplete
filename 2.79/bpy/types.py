@@ -55093,7 +55093,7 @@ class UILayout:
              text: str = "",
              text_ctxt: str = "",
              translate: bool = True,
-             icon: int = 'NONE',
+             icon: str = 'NONE',
              expand: bool = False,
              slider: bool = False,
              toggle: bool = False,
@@ -55116,7 +55116,7 @@ class UILayout:
         :param translate: Translate the given text, when UI translation is enabled 
         :type translate: bool
         :param icon: Icon, Override automatic icon of the item 
-        :type icon: int
+        :type icon: str
         :param expand: Expand button to show more detail 
         :type expand: bool
         :param slider: Use slider widget for numeric values 
