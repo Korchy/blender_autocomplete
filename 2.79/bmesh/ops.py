@@ -512,8 +512,8 @@ def dissolve_degenerate(bm: 'bmesh.types.BMesh', dist: float,
 
 
 def dissolve_edges(bm: 'bmesh.types.BMesh',
-                   edges: typing.List['bmesh.types.BMEdge'], use_verts: bool,
-                   use_face_split: bool) -> dict:
+                   edges: typing.List['bmesh.types.BMEdge'], use_verts: bool = False,
+                   use_face_split: bool = False) -> dict:
     '''Dissolve Edges. 
 
     :param bm: The bmesh to operate on. 
@@ -524,7 +524,8 @@ def dissolve_edges(bm: 'bmesh.types.BMesh',
     :type use_verts: bool
     :param use_face_split: Undocumented. 
     :type use_face_split: bool
-    :return:  region:type list of (bmesh.types.BMFace) 
+    :return:  region
+    :type list of (bmesh.types.BMFace)
     '''
 
     pass
@@ -574,7 +575,8 @@ def dissolve_limit(bm: 'bmesh.types.BMesh', angle_limit: float,
 
 def dissolve_verts(bm: 'bmesh.types.BMesh',
                    verts: typing.List['bmesh.types.BMVert'],
-                   use_face_split: bool, use_boundary_tear: bool):
+                   use_face_split: bool = False,
+                   use_boundary_tear: bool = False):
     '''Dissolve Verts. 
 
     :param bm: The bmesh to operate on. 
@@ -602,7 +604,8 @@ def duplicate(bm: 'bmesh.types.BMesh', geom: typing.List['bmesh.types.BMVert'],
     :type dest: 'bmesh.types.BMesh'
     :param use_select_history: Undocumented. 
     :type use_select_history: bool
-    :return:  geom_orig:type list of (bmesh.types.BMVert, bmesh.types.BMEdge, bmesh.types.BMFace)geom:type list of (bmesh.types.BMVert, bmesh.types.BMEdge, bmesh.types.BMFace)vert_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceedge_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceface_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceboundary_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceisovert_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFace 
+    :return:  geom_orig
+    :type list of (bmesh.types.BMVert, bmesh.types.BMEdge, bmesh.types.BMFace)geom:type list of (bmesh.types.BMVert, bmesh.types.BMEdge, bmesh.types.BMFace)vert_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceedge_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceface_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceboundary_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFaceisovert_map:type dict mapping vert/edge/face types to bmesh.types.BMVert/bmesh.types.BMEdge/bmesh.types.BMFace
     '''
 
     pass
