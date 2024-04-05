@@ -1,5 +1,6 @@
 import sys
 import typing
+from mathutils import Vector
 
 
 class KDTree:
@@ -11,8 +12,8 @@ class KDTree:
         '''
         pass
 
-    def find(self, co: float, filter=None):
-        '''Find nearest point to co. 
+    def find(self, co: Vector, filter=None):
+        '''Find nearest point to co.
 
         :param co: 3d coordinates. 
         :type co: float
@@ -22,7 +23,7 @@ class KDTree:
         '''
         pass
 
-    def find_n(self, co: float, n: int) -> list:
+    def find_n(self, co: Vector, n: int) -> list:
         '''Find nearest n points to co. 
 
         :param co: 3d coordinates. 
@@ -34,7 +35,7 @@ class KDTree:
         '''
         pass
 
-    def find_range(self, co: float, radius: float) -> list:
+    def find_range(self, co: Vector, radius: float) -> list:
         '''Find all points within radius of co. 
 
         :param co: 3d coordinates. 
@@ -46,7 +47,7 @@ class KDTree:
         '''
         pass
 
-    def insert(self, co: float, index: int):
+    def insert(self, co: Vector, index: int):
         '''Insert a point into the KDTree. 
 
         :param co: Point 3d position. 

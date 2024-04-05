@@ -14902,7 +14902,7 @@ class Gizmo(bpy_struct):
 
     @staticmethod
     def new_custom_shape(type: typing.Optional[str],
-                         verts: typing.Optional[typing.List]) -> typing.Any:
+                         verts: typing.Optional[typing.List, typing.Tuple]) -> typing.Any:
         ''' Create a new shape that can be passed to `Gizmo.draw_custom_shape`.
 
         :param type: The type of shape to create in (POINTS, LINES, TRIS, LINE_STRIP).

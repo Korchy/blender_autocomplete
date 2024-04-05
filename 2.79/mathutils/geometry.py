@@ -229,16 +229,19 @@ def intersect_plane_plane(
     pass
 
 
-def intersect_point_line(pt: 'mathutils.Vector', line_p1: 'mathutils.Vector',
-                         line_p2) -> float:
-    '''Takes a point and a line and returns a tuple with the closest point on the line and its distance from the first point of the line as a percentage of the length of the line. 
+def intersect_point_line(pt: mathutils.Vector, line_p1: mathutils.Vector,
+                         line_p2: mathutils.Vector) -> tuple:
+    """
+        Takes a point and a line and returns a tuple with the closest point on the line and its distance from the first
+        point of the line as a percentage of the length of the line.
 
-    :param pt: Point 
+    :param pt: Point
     :type pt: 'mathutils.Vector'
-    :param line_p1: First point of the line 
+    :param line_p1: First point of the line
     :type line_p1: 'mathutils.Vector'
-    :param line_p1: Second point of the line 
-    '''
+    :param line_p2: Second point of the line
+    :type line_p2: 'mathutils.Vector'
+    """
 
     pass
 
