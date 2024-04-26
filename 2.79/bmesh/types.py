@@ -2,6 +2,7 @@ import sys
 import typing
 import bpy
 import mathutils
+from collections.abc import Sequence
 
 
 class BMDeformVert:
@@ -283,7 +284,7 @@ class BMEditSelIter:
 
 
 class BMEditSelSeq:
-    active: 'BMVert' = None
+    active: ['BMVert', 'BMEdge', 'BMFace'] = None
     '''The last selected element or None (read-only). 
 
     :type: 'BMVert'
@@ -565,11 +566,11 @@ class BMFaceSeq:
         '''
         pass
 
-    def new(self, verts: 'BMVert', example: 'BMFace' = None) -> 'BMFace':
+    def new(self, verts: Sequence['BMVert'], example: 'BMFace' = None) -> 'BMFace':
         '''Create a new face from a given set of verts. 
 
         :param verts: Sequence of 3 or more verts. 
-        :type verts: 'BMVert'
+        :type verts: Sequence['BMVert']
         :param example: Existing face to initialize settings (optional argument). 
         :type example: 'BMFace'
         :rtype: 'BMFace'
