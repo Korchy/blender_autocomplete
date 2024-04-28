@@ -278,6 +278,12 @@ class BMEdgeSeq:
         '''
         pass
 
+    def __iter__(self):
+        '''
+
+        '''
+        pass
+
 
 class BMEditSelIter:
     pass
@@ -591,6 +597,12 @@ class BMFaceSeq:
         :type key: 
         :param reverse: Reverse the order of the elements 
         :type reverse: 
+        '''
+        pass
+
+    def __iter__(self):
+        '''
+
         '''
         pass
 
@@ -1142,6 +1154,12 @@ class BMVertSeq:
         :param reverse: Reverse the order of the elements 
         :type reverse: 
         '''
+        pass
+
+    def __iter__(self):
+        """
+
+        """
         pass
 
 
