@@ -373,24 +373,25 @@ def select(extend: bool = False,
            center: bool = False,
            enumerate: bool = False,
            object: bool = False,
-           location: int = (0, 0)):
-    '''Activate/select item(s) 
+           location: typing.Tuple[typing.Union[int, float]] | typing.List[typing.Union[int, float]] = (0, 0)
+           ):
+    """Activate/select item(s)
 
-    :param extend: Extend, Extend selection instead of deselecting everything first 
+    :param extend: Extend, Extend selection instead of deselecting everything first
     :type extend: bool
-    :param deselect: Deselect, Remove from selection 
+    :param deselect: Deselect, Remove from selection
     :type deselect: bool
-    :param toggle: Toggle Selection, Toggle the selection 
+    :param toggle: Toggle Selection, Toggle the selection
     :type toggle: bool
-    :param center: Center, Use the object center when selecting, in editmode used to extend object selection 
+    :param center: Center, Use the object center when selecting, in editmode used to extend object selection
     :type center: bool
-    :param enumerate: Enumerate, List objects under the mouse (object mode only) 
+    :param enumerate: Enumerate, List objects under the mouse (object mode only)
     :type enumerate: bool
-    :param object: Object, Use object selection (editmode only) 
+    :param object: Object, Use object selection (editmode only)
     :type object: bool
-    :param location: Location, Mouse location 
+    :param location: Location, Mouse location
     :type location: int
-    '''
+    """
 
     pass
 
