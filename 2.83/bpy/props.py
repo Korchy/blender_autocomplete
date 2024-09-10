@@ -86,7 +86,7 @@ def CollectionProperty(type=None,
     pass
 
 
-def EnumProperty(items: typing.List[str],
+def EnumProperty(items: typing.List[tuple],
                  name: str = "",
                  description: str = "",
                  default: typing.Union[typing.Set[str], str] = None,
@@ -169,7 +169,7 @@ def FloatProperty(name: str = "",
 
 def FloatVectorProperty(name: str = "",
                         description: str = "",
-                        default: list = (0.0, 0.0, 0.0),
+                        default: tuple | list = (0.0, 0.0, 0.0),
                         min: float = 'sys.float_info.min',
                         max: float = 'sys.float_info.max',
                         soft_min: float = 'sys.float_info.min',

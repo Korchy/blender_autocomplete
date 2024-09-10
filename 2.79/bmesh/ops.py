@@ -3,6 +3,7 @@ import typing
 import bmesh
 import mathutils
 import bpy
+from bmesh.types import BMFaceSeq
 
 
 def automerge(bm: 'bmesh.types.BMesh',
@@ -1053,7 +1054,7 @@ def poke(bm: 'bmesh.types.BMesh', faces: typing.List['bmesh.types.BMFace'],
 
 
 def recalc_face_normals(bm: 'bmesh.types.BMesh',
-                        faces: typing.List['bmesh.types.BMFace']):
+                        faces: typing.Union[typing.List['bmesh.types.BMFace'], BMFaceSeq]):
     '''Computes an “outside” normal for the specified input faces. 
 
     :param bm: The bmesh to operate on. 
