@@ -21,6 +21,7 @@ This modules getted from nutti fake-bpy-modules. Only files, without pip instala
 - 3.6 - 2023.11.26
 - 4.0 - 2023.11.26
 - 4.1 - 2024.06.04
+- 4.2 - 2024.10.10
 
 Installation and usage:
 -
