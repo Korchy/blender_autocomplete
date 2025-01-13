@@ -209,8 +209,9 @@ def collapse_uvs(bm: 'bmesh.types.BMesh',
 
 def connect_vert_pair(
         bm: 'bmesh.types.BMesh', verts: typing.List['bmesh.types.BMVert'],
-        verts_exclude: typing.List['bmesh.types.BMVert'],
-        faces_exclude: typing.List['bmesh.types.BMFace']) -> dict:
+        verts_exclude: typing.List['bmesh.types.BMVert'] = [],
+        faces_exclude: typing.List['bmesh.types.BMFace'] = []
+) -> dict:
     '''Split faces by adding edges that connect verts. 
 
     :param bm: The bmesh to operate on. 

@@ -1107,6 +1107,24 @@ class BMVert:
         '''
         pass
 
+    def __getitem__(self, key: int):
+        """
+
+        :param key:
+        :type key: BMLayerItem[_GenericType1]
+        :return:
+        :rtype: _GenericType1
+        """
+
+    def __setitem__(self, key: int, value):
+        """
+
+        :param key:
+        :type key: BMLayerItem[_GenericType1]
+        :param value:
+        :type value: _GenericType1
+        """
+
 
 class BMVertSeq:
     layers: 'BMLayerAccessVert' = None
@@ -1161,6 +1179,24 @@ class BMVertSeq:
 
         """
         pass
+
+    def __getitem__(self, key: int):
+        """
+
+        :param key:
+        :type key: BMLayerItem[_GenericType1]
+        :return:
+        :rtype: _GenericType1
+        """
+
+    def __setitem__(self, key: int, value):
+        """
+
+        :param key:
+        :type key: BMLayerItem[_GenericType1]
+        :param value:
+        :type value: _GenericType1
+        """
 
 
 class BMesh:

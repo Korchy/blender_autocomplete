@@ -5,6 +5,8 @@ from . import noise
 from . import interpolate
 from . import kdtree
 from . import geometry
+import collections.abc
+import typing_extensions
 
 
 class Color:
@@ -459,6 +461,10 @@ class Matrix:
         '''
 
         '''
+        pass
+
+    @classmethod
+    def Rotation(cls, angle, size, axis):
         pass
 
 
@@ -1786,22 +1792,22 @@ class Vector:
         '''
         pass
 
-    def cross(self, other: 'Vector') -> float:
+    def cross(self, other: 'Vector') -> 'Vector':
         '''Return the cross product of this vector and another. 
 
         :param other: The other vector to perform the cross product with. 
         :type other: 'Vector'
-        :rtype: float
+        :rtype: 'Vector'
         :return:  The cross product. 
         '''
         pass
 
-    def dot(self, other: 'Vector') -> 'Vector':
+    def dot(self, other: 'Vector') -> float:
         '''Return the dot product of this vector and another. 
 
         :param other: The other vector to perform the dot product with. 
         :type other: 'Vector'
-        :rtype: 'Vector'
+        :rtype: float
         :return:  The dot product. 
         '''
         pass
@@ -1991,5 +1997,32 @@ class Vector:
     def __init__(self, val):
         '''
 
+        '''
+        pass
+
+    def __add__(self, other: 'Vector') -> 'Vector':
+        '''
+
+        :param other:
+        :type other: 'Vector'
+        :rtype: 'Vector'
+        '''
+        pass
+
+    def __sub__(self, other: 'Vector') -> 'Vector':
+        '''
+
+        :param other:
+        :type other: 'Vector'
+        :rtype: 'Vector'
+        '''
+        pass
+
+    def __mul__(self, other: typing.Union[int, float]) -> 'Vector':
+        '''
+
+        :param other:
+        :type other: typing.Union[int, float]
+        :rtype: 'Vector'
         '''
         pass

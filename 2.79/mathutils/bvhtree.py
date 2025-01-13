@@ -4,6 +4,22 @@ import mathutils
 
 
 class BVHTree:
+
+    @classmethod
+    def FromPolygons(
+            cls, vertices, polygons, all_triangles: bool = False, epsilon: float = 0.0
+    ):
+        """BVH tree constructed geometry passed in as arguments.
+
+        :param vertices: float triplets each representing (x, y, z)
+        :param polygons: Sequence of polyugons, each containing indices to the vertices argument.
+        :param all_triangles: Use when all polygons are triangles for more efficient conversion.
+        :type all_triangles: bool
+        :param epsilon: Increase the threshold for detecting overlap and raycast hits.
+        :type epsilon: float
+        """
+        pass
+
     def find_nearest(self, origin, distance: float = 1.84467e+19):
         '''Find the nearest element (typically face index) to a point. 
 
