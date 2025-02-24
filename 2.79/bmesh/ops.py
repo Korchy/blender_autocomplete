@@ -90,7 +90,7 @@ def bevel(bm: 'bmesh.types.BMesh', geom: typing.List['bmesh.types.BMVert'],
 
 def bisect_edges(bm: 'bmesh.types.BMesh',
                  edges: typing.List['bmesh.types.BMEdge'], cuts: int,
-                 edge_percents: dict) -> dict:
+                 edge_percents: dict = None) -> dict:
     '''Splits input edges (but doesn’t do anything else). This creates a 2-valence vert. 
 
     :param bm: The bmesh to operate on. 

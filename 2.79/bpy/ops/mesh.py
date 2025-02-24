@@ -1089,8 +1089,8 @@ def primitive_cube_add(
         calc_uvs: bool = False,
         view_align: bool = False,
         enter_editmode: bool = False,
-        location: float = (0.0, 0.0, 0.0),
-        rotation: float = (0.0, 0.0, 0.0),
+        location: tuple = (0.0, 0.0, 0.0),
+        rotation: tuple = (0.0, 0.0, 0.0),
         layers: bool = (False, False, False, False, False, False, False, False,
                         False, False, False, False, False, False, False, False,
                         False, False, False, False)):
@@ -1105,9 +1105,9 @@ def primitive_cube_add(
     :param enter_editmode: Enter Editmode, Enter editmode when adding this object 
     :type enter_editmode: bool
     :param location: Location, Location for the newly added object 
-    :type location: float
+    :type location: tuple
     :param rotation: Rotation, Rotation for the newly added object 
-    :type rotation: float
+    :type rotation: tuple
     :param layers: Layer 
     :type layers: bool
     '''

@@ -464,7 +464,11 @@ class Matrix:
         pass
 
     @classmethod
-    def Rotation(cls, angle, size, axis):
+    def Rotation(cls, angle: float, size: int, axis):
+        pass
+
+    @classmethod
+    def Scale(cls, factor: float, size: int, axis):
         pass
 
 

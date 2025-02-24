@@ -999,11 +999,11 @@ def material_slot_deselect():
     pass
 
 
-def material_slot_move(direction: int = 'UP'):
+def material_slot_move(direction: str = 'UP'):
     '''Move the active material up/down in the list 
 
     :param direction: Direction, Direction to move the active material towards 
-    :type direction: int
+    :type direction: str
     '''
 
     pass
