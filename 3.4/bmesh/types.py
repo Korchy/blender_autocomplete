@@ -2,6 +2,7 @@ import sys
 import typing
 import bpy.types
 import mathutils
+from collections.abc import Sequence
 
 GenericType = typing.TypeVar("GenericType")
 
@@ -275,6 +276,12 @@ class BMEdgeSeq:
         :type key: typing.Any
         :param reverse: Reverse the order of the elements
         :type reverse: typing.Any
+        '''
+        pass
+
+    def __iter__(self):
+        '''
+
         '''
         pass
 
@@ -568,11 +575,11 @@ class BMFaceSeq:
         '''
         pass
 
-    def new(self, verts: 'BMVert', example: 'BMFace' = None) -> 'BMFace':
+    def new(self, verts: Sequence['BMVert'], example: 'BMFace' = None) -> 'BMFace':
         ''' Create a new face from a given set of verts.
 
         :param verts: Sequence of 3 or more verts.
-        :type verts: 'BMVert'
+        :type verts: Sequence['BMVert']
         :param example: Existing face to initialize settings (optional argument).
         :type example: 'BMFace'
         :rtype: 'BMFace'
@@ -1193,6 +1200,12 @@ class BMVertSeq:
         :type key: typing.Any
         :param reverse: Reverse the order of the elements
         :type reverse: typing.Any
+        '''
+        pass
+
+    def __iter__(self):
+        '''
+
         '''
         pass
 

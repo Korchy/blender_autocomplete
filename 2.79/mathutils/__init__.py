@@ -471,6 +471,10 @@ class Matrix:
     def Scale(cls, factor: float, size: int, axis):
         pass
 
+    @classmethod
+    def Translation(cls, vector: 'Vector' | collections.abc.Sequence[float]):
+        pass
+
 
 class Quaternion:
     '''The constructor takes arguments in various forms: '''

@@ -1753,11 +1753,11 @@ def select_ungrouped(extend: bool = False):
     pass
 
 
-def separate(type: [int, str] = 'SELECTED'):
+def separate(type: str = 'SELECTED'):
     '''Separate selected geometry into a new mesh 
 
     :param type: Type 
-    :type type: int, str
+    :type type: str
     '''
 
     pass
