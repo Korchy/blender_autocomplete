@@ -1,0 +1,41 @@
+import typing
+import collections.abc
+import typing_extensions
+import numpy.typing as npt
+import gpu.types
+
+def batch_for_shader(
+    shader: gpu.types.GPUShader,
+    type: typing.Literal[
+        "POINTS",
+        "LINES",
+        "TRIS",
+        "LINE_STRIP",
+        "TRI_STRIP",
+        "LINES_ADJ",
+        "TRIS_ADJ",
+        "LINE_STRIP_ADJ",
+    ],
+    content: dict[
+        str,
+        gpu.types.Buffer
+        | collections.abc.Sequence[float]
+        | collections.abc.Sequence[int]
+        | collections.abc.Sequence[collections.abc.Sequence[float]]
+        | collections.abc.Sequence[collections.abc.Sequence[int]],
+    ],
+    *,
+    indices: None
+    | collections.abc.Sequence[collections.abc.Sequence[int]]
+    | collections.abc.Sequence[int]
+    | None = None,
+) -> gpu.types.GPUBatch:
+    """Return a batch already configured and compatible with the shader.
+
+        :param shader: shader for which a compatible format will be computed.
+        :param type: The primitive type of batch geometry.
+        :param content: Maps the name of the shader attribute with the data to fill the vertex buffer.
+    For the dictionary values see documentation for `gpu.types.GPUVertBuf.attr_fill` data argument.
+        :param indices: Optional index buffer contents. When omitted, the batch draws all vertices in order.
+        :return: compatible batch
+    """

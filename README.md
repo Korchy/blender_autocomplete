@@ -26,6 +26,8 @@ This modules getted from nutti fake-bpy-modules. Only files, without pip instala
 - 4.4 - 2026.01.28
 - 4.5 - 2026.01.28
 - 5.0 - 2026.01.28
+- 5.1 - 2026.07.30
+- 5.2 - 2026.07.30
 
 Installation and usage:
 -
